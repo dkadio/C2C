@@ -1,0 +1,140 @@
+% !TEX encoding = UTF-8 Unicode
+%Präambel
+
+%Report für große Doukumente. Dieser ist in Kapitel (\chapter{}) aufgeteilt
+\documentclass[12pt, a4paper, ngerman]{report} 
+
+%Article für normale Doumente
+%\documentclass[12pt, a4paper, ngerman]{article}
+
+%Deutsche Beschreibungen von generiertem Text (table of contents => Inhaltsverzeichnis)
+\usepackage[ngerman]{babel}
+
+%Umlaute
+\usepackage[utf8]{inputenc}
+
+%Schriftart Helvetica 
+\usepackage[scaled]{helvet}
+
+%Seitenränder
+\usepackage{geometry}
+%top = Abstand nach oben
+%left = Abstand nach links
+%right = Abstand nach rechts
+%bottom= Abstand nach unten
+%heapsep= Abstand zwische Kopfzeile und Text
+%footskip= Abstand zwischen Text und Fußzeile
+\geometry{a4paper, top=25mm, left=30mm, right=25mm, bottom=30mm, headsep=10mm, footskip=12mm}
+
+%Farben nutzen
+\usepackage{xcolor}
+
+%Grafiken einbinden
+\usepackage{graphicx}
+
+%Zusätzliche Positionsbefehle
+\usepackage{float} 
+
+%Die Einrücktiefe bei einem neuen Absatz
+\setlength{\parindent}{0pt}
+
+%Fülltext
+\usepackage{blindtext}
+
+%Fuer Zitate	
+\PassOptionsToPackage{backend=bibtex}{biblatex}
+\usepackage[natbib=true,style=numeric]{biblatex}
+\usepackage[babel,german=guillemets]{csquotes}
+\bibliography{content/quellen.bib} 
+
+% Aufnahme von \paragraph in das Inhaltsverzeichnis 
+\setcounter{tocdepth}{3}  
+
+%Nummerierung vertiefen, \paragraph kommt mit ins Inhaltsverzeichnis
+\setcounter{secnumdepth}{4} 
+
+%Feste Tabellen
+\usepackage{tabulary}
+
+%caption für nummerierte Tabellenüberschriften
+%booktabs für die Steuerung von Linien
+\usepackage{caption, booktabs}
+
+%Abkürzungen 
+\usepackage{nomencl}
+\makenomenclature
+\usepackage[printonlyused]{acronym}
+
+%Eigene Kommandos
+% Osi Modell
+\newcommand{\osi}{ISO/OSI Referenzmodell\xspace}
+\newcommand{\fcs}{FCS, Frame Checking Sequence,\xspace}
+
+%Ende Präambel
+	
+\begin{document}
+
+\begin{titlepage}
+		\begin{center}
+			\includegraphics[width=.8\linewidth]{content/images/logos/logo_htw.png}\\[1cm]   
+			
+			\vspace{10 mm}
+			Ausarbeitung für das Fach \glqq Protokolle in öffentlichen und privaten Netzen\grqq 
+			\vspace{10 mm}	
+			
+			%\textsc{\LARGE Hochschule für Technik und Wirtschaft \newline Fakultät für Ingenieurwissenschaften}\\[1.5cm]
+			\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} \HRule \\[0.4cm] { \huge \bfseries Car to Car Communikation}\\[0.4cm]
+			\HRule \\[1.5cm]
+
+			\begin{minipage}{0.4\textwidth}
+				\begin{flushleft} \large
+					\emph{Autoren:}\\
+					Deniz Kadiogullati 3553892\\
+					Christoph Drost 3576450
+				\end{flushleft}
+			\end{minipage}
+			\hfill
+			\begin{minipage}{0.4\textwidth}
+				\begin{flushright} \large
+					\emph{Betreuer:} \\
+					Prof. Dr.-Ing. Horst Wieker
+				\end{flushright}
+			\end{minipage}
+			\vfill
+			{\large \today}
+		\end{center}
+	\end{titlepage}
+
+
+%Inhaltsverzeichnis auf eigener Seite
+\tableofcontents
+\newpage 
+
+%Die einzelnen \Chapter werden als jeweils eigene Datei eingebunden
+\cleardoublepage
+\input{./content/content}
+\ac{VM}
+
+
+%Uebersicht über die Abkürzungen
+\cleardoublepage
+\label{abkuerzungsverzeichnis}
+\begin{acronym}[LONGEST]
+	\input{./content/acronyms}
+\end{acronym}   	 		
+
+%indirekte Quellen einbinden
+\nocite{*} 
+
+%Quellenangabe auf eigener Seite
+\newpage
+\sloppy
+\printbibliography 
+
+
+
+%Abbildungsverzeichnis auf eigener Seite
+\newpage
+\listoffigures
+
+\end{document}
