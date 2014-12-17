@@ -1,0 +1,21 @@
+%************************************************
+%*  Abkürzungen *********************************
+%************************************************
+
+\chapter{Abkürzungen}
+
+Um Abkürzungen zu verwenden, muss über \lstinline|\usepackage{acronym}| das benötigte Package geladen werden.
+
+Ein kleiner Test könnte so aussehen: \\
+
+Dies ist eine \ac{Abk.}, die beim ersten Aufruf mit Erklärung und bei allen weiteren Malen nur als \ac{Abk.} dargestellt wird. Auch der Plural von \aclp{Abk.} kann definiert und abgerufen werden. Mit anderen Befehlen kann man auch die Erklärung mitliefern \acf{z.B.} so. Wer nur die Abkürzung mag, fügt sie \acs{z.B.} so ein. Mit \lstinline|\acused{Abk.}| wird die \acl{Abk.} als genutzt markiert und taucht im Folgenden nur noch in seiner Kurzform auf. \\
+ 
+ Ganz am Ende der Arbeit wird das Abkürzungsverzeichnis eingeführt (auch als eigenes Chapter möglich): 
+
+\begin{acronym}
+ 	\acro{Abk.}{Abkürzung}
+ 	\acroplural{Abk.}[Abk.]{Abkürzungen}
+ 	\acro{z.B.}{zum Beispiel}
+\end{acronym}
+
+Weitere Informationen sind im \textit{Acronym-Manual} zu finden.

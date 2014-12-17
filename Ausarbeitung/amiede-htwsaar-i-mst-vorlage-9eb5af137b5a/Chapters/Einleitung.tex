@@ -1,0 +1,67 @@
+%=========================================
+% 	   Einleitung     		 =
+%=========================================
+
+\chapter{Einleitung}
+
+\section{Latex installieren und einrichten}
+\subsection{Unter Windows}
+
+Als Latexdistribution unter Windows steht \href{http://www.miktex.org/}{\textit{MikTex}} zu Verfügung, die als freie Software im Internet erhältlich ist. 
+\textit{MikTex} unterstützt Windows XP, Vista und Windows 7. Neben \textit{MikTex} wird noch ein PostScript-Interpreter benötigt, 
+z.B. GhostScript, zu finden auf \href{http://www.chip.de}{Chip.de}.
+
+\textit{Wichtig:} Bei \textit{MikTex} unbedingt Vollinstallation auswählen, sonst sind eventuell benötigte Packages nicht vorhanden.
+
+\subsection{Unter Linux}
+
+Unter Linux existiert die Latexdistribution \textit{texlive}, die als aktuelle Version aus den Paketquellen geladen werden kann (unter Ubuntu mit 
+\lstinline{apt-get install texlive-full}). Auch hier ist ganz wichtig, die volle Distribution zu laden, damit alle Packages zur Verfügung stehen.
+
+\section{Entwicklungsumgebungen}
+
+Hat man die passende Distribution installiert, bieten sich vielerlei Möglichkeiten an ein Latex-Projekt anzugehen oder einzelne Dokumente zu editieren. Unter
+Windows könnten dies folgende sein:
+
+\begin{description}
+ \item [TexnicCenter] Umfangreiche Entwicklungsumgebung mit Projektorganisation und Autovervollständigung
+ \item [TexLipse] Eclipse-Plugin, das alle Vorteile der Eclipseumgebung mit Latex verbindet
+ \item [Texmaker] Einfacher Latexeditor mit Pdf-Direktvorschau
+\end{description}
+
+
+Unter Linux stehen bereit:
+
+\begin{description}
+ \item [Gummi] Ebenfalls einfacher Latexeditor mit Direktvorschau
+ \item [TexLipse] Auch für Linux erhältlich
+ \item [Kile] Umfangreiche Entwicklungsumgebung, ähnlich wie TexnicCenter
+\end{description}
+
+Nach der Installation muss die Entwicklungsumgebung eingerichtet werden; dazu finden sich viele Anleitungen im Internet, die genau erklären, welche Distribution
+auf welche Weise eingerichtet wird. Insbesondere sollte der PDF-Viewer festgelegt werden, damit bei Gummi und Texmaker die Direktvorschau funktioniert. Manchmal kommt es vor, dass die Ausgabe 
+nach dem Kompilieren Umlaute und Sonderzeichen nicht richtig darstellt. Unter Linux hängt dies mit den unterschiedlichen Zeichensätzen zusammen, die unterstützt
+werden. Um diese Vorlage zu verwenden ist es notwendig den verwendeten Zeichensatz des Editors bzw. der Entwicklungsumgebung auf den in diesem Dokument
+verwendeten Zeichensatz - \textit{ISO-8859-9} - umzustellen.
+
+\section{Werkzeuge}
+
+\begin{description}
+ \item [\href{http://jabref.sourceforge.net/}{JabRef}] Ein Literaturverwaltungsprogramm, welches das \textit{BibTeX}-Format einsetzt
+ und mithilfe einer graphischen Oberfläche das Anlegen von Literaturverzeichnissen vereinfacht.
+ 
+\end{description}
+
+\section{Einrichtung und Konfiguration der Vorlage}
+
+\subsection{Struktur der Vorlage}
+%Fehlt noch; erst, wenn Struktur endgültig feststeht.
+
+\subsection{Die Config-Datei}
+
+\begin{itemize}
+ \item Datei/Struktur erklären
+ \item Config-Datei
+\end{itemize}
+
+

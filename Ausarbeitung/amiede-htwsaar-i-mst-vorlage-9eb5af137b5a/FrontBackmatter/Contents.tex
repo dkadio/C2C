@@ -1,0 +1,19 @@
+%*******************************************************
+% Table of Contents
+%*******************************************************
+\setcounter{tocdepth}{2} % <-- 2 includes up to subsections in the ToC
+\setcounter{secnumdepth}{3} % <-- 3 numbers up to subsubsections
+
+%\pdfbookmark[1]{\contentsname}{toc}
+\tableofcontents 
+
+\cleardoublepage
+\begingroup
+	\let\clearpage\relax
+	\let\cleardoublepage\relax
+	\listoffigures
+	\listoftables
+	\addcontentsline{toc}{chapter}{\lstlistlistingname}
+	\lstlistoflistings 
+	\input{FrontBackmatter/Abbreviations} %Abkuerzungsverzeichnis lässt sich nicht ohne weiteres in ToC einbinden. Daher diese Lösung.
+\endgroup                   
