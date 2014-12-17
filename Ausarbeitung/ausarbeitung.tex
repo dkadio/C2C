@@ -65,6 +65,14 @@
 \makenomenclature
 \usepackage[printonlyused]{acronym}
 
+
+%Package, um PDF Dokumente einzubinden
+\usepackage{pdfpages} 
+
+%Package um die \ref{} zu verlinken. Die Links werden nicht als solche markiert
+\usepackage[hidelinks]{hyperref}
+
+
 %Eigene Kommandos
 % Osi Modell
 \newcommand{\osi}{ISO/OSI Referenzmodell\xspace}
@@ -113,7 +121,7 @@
 %Die einzelnen \Chapter werden als jeweils eigene Datei eingebunden
 \cleardoublepage
 \input{./content/content}
-\ac{VM}
+
 
 
 %Uebersicht über die Abkürzungen
