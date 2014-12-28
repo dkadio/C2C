@@ -10,6 +10,7 @@ pdf: ausarbeitung.tex
 	makeindex ausarbeitung.nlo -s nomencl.ist -o ausarbeitung.nls #> /dev/null 2>&1
 	pdflatex ausarbeitung.tex #> /dev/null 2>&1
 	pdflatex ausarbeitung.tex #> /dev/null 2>&1
+	open ausarbeitung.pdf
 	
 keeptemp: pdf
 

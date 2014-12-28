@@ -2,13 +2,14 @@
 %Präambel
 
 %Report für große Doukumente. Dieser ist in Kapitel (\chapter{}) aufgeteilt
-\documentclass[12pt, a4paper, ngerman]{report} 
+\documentclass[12pt, a4paper, twoside, openright,ngerman]{scrreprt} 
 
 %Article für normale Doumente
 %\documentclass[12pt, a4paper, ngerman]{article}
 
 %Deutsche Beschreibungen von generiertem Text (table of contents => Inhaltsverzeichnis)
 \usepackage[ngerman]{babel}
+%\AtBeginDocument{\renewcommand{\chaptername}{}} % Über einem neuen Kapitel steht so nicht mehr "Kapitel" 
 
 %Umlaute
 \usepackage[utf8]{inputenc}
