@@ -1,0 +1,16 @@
+\section{Abbildungen}
+%=============================
+
+\textit{Latex} unterstützt generell die Formate \textit{*.jpeg}, \textit{*.png} und \textit{*.pdf}.
+Handelt es sich z.B. um Strichgrafiken oder skalierbare Farbflächen, sollte \textit{*.pdf} die erste Wahl sein,
+da dieses Format sich ohne Qualitätsverlust skalieren lässt.
+
+\subsection{Eine erste Abbildung}
+
+\blindtext
+\begin{figure}[htbp] 
+  \centering
+     \includegraphics[width=0.7\textwidth]{Examples/example_5.png}
+  \caption{Erstes Bild, Völklinger Hütte}
+  \label{fig:Bild1}
+\end{figure}
