@@ -1,7 +1,23 @@
 \chapter{Architektur  \label{chap_archtitektur}}
-\todo{Auf jeden Fall noch in \cite{etsi302636-3} reinsehen}
+Dieses Kapitel beschreibt die Netzwerk Referenzarchitektur von \ac{ITS}. Diese Architektur umfasst sowohl die internen als auch die externen Netzwerke. Laut Standard \cite{etsi302636-3} sind dabei folgende externe Netzwerke erfasst:
+
+\begin{itemize}
+ 	\item ITS ad hoc network.
+	\item Access network (ITS access network, public access network, private access network).
+	\item Core network (e.g. the Internet).
+\end{itemize}
+
+Auf der Grafik \ref{fig:architektur_ueberblickNetzwerke} sind die verschiedenen Netzwerke visualisiert. Zusätzlich zu den hier beschriebenen Netzwerken kann eine \ac{ITS} Station ein eigenes Netzwerk, das die Teilkomponenten der \ac{ITS} Station verbindet, betreiben. Die verschiedenen Netzwerke werden benötigt, damit alle Dienste bedient werden können.
+
+\begin{figure}[h]
+	\includegraphics[width=0.99\textwidth]{content/images/02_architektur/uebersichtExterneNetzwerke.pdf}
+	\caption{Überblick über die externen Netzwerke \cite{etsi302636-3}}
+	\label{fig:architektur_ueberblickNetzwerke}
+\end{figure}
+
+In diesem Kapitel wird auf den Protokollstack der \ac{ITS} Station Protocol Architecure eingegangen.
+
 \section{ITS Station Reference Architecture}
-\todo{Evtl. kommt das in das Chapter Architektur}
 Um das folgende Kapitel zu verstehen muss die \ac{ITS} Station Reference Architecture betrachtet werden. Eine Referenzarchitektur beschreibt ein allgemeines Modell einer Architektur. Das bedeutet, dass basierend auf dieser Architektur verschiedene Implementierungen existieren können. 
 
 Die \ac{ITS} Station Reference Architecture unterscheidet sich grundlegend von bekannten Architekturen. Verglichen mit dem \ac{OSI} Modell kann man Gemeinsamkeiten erkennen:
