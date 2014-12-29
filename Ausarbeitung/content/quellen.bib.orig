@@ -2,13 +2,18 @@
 %% http://bibdesk.sourceforge.net/
 
 
+<<<<<<< HEAD
 %% Created for Christoph Drost at 2014-12-29 13:09:58 +0100 
+=======
+%% Created for deniz at 2014-12-29 15:18:43 +0100 
+>>>>>>> decea2453f9286d1739ad33235d677f64255bf41
 
 
 %% Saved with string encoding Unicode (UTF-8) 
 
 
 
+<<<<<<< HEAD
 @article{etsi302636-3,
 	Author = {{ETSI, EN}},
 	Date-Added = {2014-12-29 12:07:14 +0000},
@@ -19,7 +24,8 @@
 	Title = {{Intelligent Transport Systems (ITS); Vehicular Communications; GeoNetworking; Part 3: Network Architecture}},
 	Year = {2014}}
 
-<<<<<<< HEAD
+=======
+>>>>>>> decea2453f9286d1739ad33235d677f64255bf41
 @article{etsi102636-1,
 	Author = {ETSI, EN},
 	Date-Added = {2014-12-29 14:17:19 +0000},
@@ -36,8 +42,19 @@
 	Title = {Seminar Sommersemester 2009 Automotive Konzepte und Techniken},
 	Year = {2009}}
 
+<<<<<<< HEAD
+@article{etsi302636-3,
+	Author = {{ETSI, EN}},
+	Date-Added = {2014-12-29 12:07:14 +0000},
+	Date-Modified = {2014-12-29 12:09:53 +0000},
+	Edition = {v1.1.2 (2014-03)},
+	Journal = {{Intelligent Transport Systems (ITS)}},
+	Organization = {ETSI},
+	Title = {{Intelligent Transport Systems (ITS); Vehicular Communications; GeoNetworking; Part 3: Network Architecture}},
+	Year = {2014}}
+
 =======
->>>>>>> 19ba91579206fc9c3b97ec391955621764029f98
+>>>>>>> decea2453f9286d1739ad33235d677f64255bf41
 @article{etsi1027232,
 	Author = {ETSI, EN},
 	Date-Added = {2014-12-29 10:43:09 +0000},
