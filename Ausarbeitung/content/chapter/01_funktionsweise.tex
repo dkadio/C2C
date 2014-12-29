@@ -7,16 +7,77 @@
 \label{fig:funktionsweise_komponentenueberblick}
 \end{figure}
 
+\section{ITS Station Reference Architecture}
+\todo{Evtl. kommt das in das Chapter Architektur}
+Um das folgende Kapitel zu verstehen muss die \ac{ITS} Station Reference Architecture betrachtet werden. Eine Referenzarchitektur beschreibt ein allgemeines Modell einer Architektur. Das bedeutet, dass basierend auf dieser Architektur verschiedene Implementierungen existieren können. 
+
+Die \ac{ITS} Station Reference Architecture unterscheidet sich grundlegend von bekannten Architekturen. Verglichen mit dem \ac{OSI} Modell kann man Gemeinsamkeiten erkennen:
+\begin{itemize}
+	\item Trennung der einzelnen Layer
+	\item Definition von Service Primitiven zwischen den Layern
+\end{itemize}
+
+Bei der genaueren Beschreibung der Layer fällt auch auf, dass die Beschreibungen sich stellenweise auf das \ac{OSI} Modell beziehen. Der Hintergrund ist, dass die \ac{ITS} Station Reference Architecture an das \ac{OSI} Modell angelehnt ist. Es wurde aber um die Besonderheiten von \ac{ITS} erweitert.
+
+Es gibt jedoch einen gravierenden Unterschied: In der \ac{ITS} Station Reference Architecture sind Cross Layer vorgesehen. Das \ac{OSI} Referenzmodell ist wasserfallartig aufgebaut. Das bedeutet, dass die einzelnen Layer übereinander angeordnet sind. Jeder Layer hat jeweils nur zu dem direkt über- und unterliegenden Layer eine Schnittstelle. Cross Layer sind Layer, die in mehrere dieser Schichten Schnittstellen haben. Im Fall der \ac{ITS} Station Reference Architecture sind das die Layer \glqq Management\grqq~ und \glqq Security\grqq. Sie haben Schnittstellen, bzw. Primitiven in alle anderen Layer. 
+
+Möglichkeit Aufgaben dieser Layer sind:
+\subsection{Management Layer}
+Beschrieben in \cite{etsi1027232}
+\todo{Management Layer genauer beschreiben}
+
+\subsection{Security Layer}
+
+\subsection{Access}
+Der Access Layer entspricht den \ac{OSI} Layern 1 und 2. 
+
+\subsection{Networking \& Transporting}
+Der Networking \& Transporting Layer entspricht den \ac{OSI} Layern 3 und 4.
+
+\subsection{Facilities}
+Der Facilities Layer entspricht den \ac{OSI} Layern 5, 6 und 7
+
+\subsection{Applications}
+
+
+\begin{figure}
+\includegraphics[width=0.75\textwidth]{content/images/01_funktionsweise/stationReferenceArchitecture.pdf}
+\caption{Darstellung der ITS Station Reference Architecture \cite{etsi2010302}}
+\label{fig:funktionsweise_referenceArchitecture}
+\end{figure}
+
 \section{Untereinheiten}
 Die Untereinheiten sind sind in sich geschlossene Einheiten, die in den \ac{ITS} Komponenten vorhanden sind. Sie werden in diesem Abschnitt beschrieben. Zusätzlich werden die mindestens definierten Funktionalitäten genannt.
+
   
 \subsection{Roadside ITS-S Gateway}
+Die Funktionsweise des Roadside ITS-S Gateway ergibt sich aus der Grafik \ref{fig:funktionsweise_itsGateway}. Die Aufgabe ist die gleiche, wie bei den meisten Gateways. Es verbindet unterschiedliche Protokollstocks miteinander. In diesem Fall werden das \ac{ITS} interne Netzwerk und ein proprietäres Netzwerk miteinander verbunden. Das proprietäre Netzwerk kann beispielsweise ein IP basierendes Netzwerk sein.
+
+\begin{figure}[h]
+\includegraphics[width=0.75\textwidth]{content/images/01_funktionsweise/layer_gateway.pdf}
+\caption{Überblick über die Layer eines ITS Gateways \cite{etsi2010302}}
+\label{fig:funktionsweise_itsGateway}
+\end{figure}
+
 \subsection{ITS-S Host}
-Der ITS-S Host beinhaltet mindestens die ITS-S Anwendungen und die Funktionalität der ITS  Station Reference Architektur, die für die  ITS-S Anwendungen gebraucht wird. 
+Der ITS-S Host beinhaltet mindestens die ITS-S Anwendungen und die Funktionalität der ITS  Station Reference Architektur, die für die  ITS-S Anwendungen gebraucht wird. Konkret sind das der \ac{ITS} Network Layer und die Anwendungsebene. 
 
 
 \subsection{ITS-S Router}
+
+
+\begin{figure}
+\includegraphics[width=0.99\textwidth]{content/images/01_funktionsweise/layer_router.pdf}
+\caption{Überblick über die Layer eines ITS Hosts \cite{etsi2010302}}
+\label{fig:funktionsweise_layerHost}
+\end{figure}
+
 \subsection{ITS-S Border Router}
+\begin{figure}
+\includegraphics[width=0.99\textwidth]{content/images/01_funktionsweise/layer_borderRouter.pdf}
+\caption{Überblick über die Layer eines ITS Border Routers \cite{etsi2010302}}
+\label{fig:funktionsweise_borderRouter}
+\end{figure}
 
 \section{Personal subsystem and station}
 \ac{PSS} stellen die Funktionalitäten von \ac{ITS} in Geräten zur Verfügung, die in der Hand gehalten werden können. Der Standard nennt hierzu \ac{PDA} oder Mobiltelefone als Beispiel. Sie können als eigenständige Komponente dienen, oder als Teil einer anderen Komponente arbeiten.
