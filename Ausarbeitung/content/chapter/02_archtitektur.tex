@@ -72,20 +72,15 @@ Erkennbar ist in dieser Implementierung, dass sich für mobile Stations Ad Hoc N
 \section{ITS Station Reference Architecture}
 Eine Referenzarchitektur beschreibt ein allgemeines Modell einer Architektur. Das bedeutet, dass basierend auf dieser Architektur verschiedene Implementierungen existieren können. 
 
-Die \ac{ITS} Station Reference Architecture unterscheidet sich grundlegend von bekannten Architekturen. Da sie während der Entwicklung an das \ac{OSI} Modell angelehnt war, ergeben sich dennoch einige Parallelen:
+Die \ac{ITS} Station Reference Architecture unterscheidet sich grundlegend von bekannten Architekturen. Da sie während der Entwicklung an das \ac{OSI} Modell angelehnt war, ergeben sich einige Parallelen:
 \begin{itemize}
 	\item Trennung der einzelnen Layer
 	\item Definition von Service Primitiven zwischen den Layern
-	\item B
+	\item Die Standards beziehen die Layer auf die \ac{OSI} Layer. 
 \end{itemize}
 
-Bei der genaueren Beschreibung der Layer fällt auch auf, dass die Beschreibungen sich stellenweise auf das \ac{OSI} Modell beziehen. Der Hintergrund ist, dass die \ac{ITS} Station Reference Architecture an das \ac{OSI} Modell angelehnt ist. Es wurde aber um die Besonderheiten von \ac{ITS} erweitert.
 
-Es gibt jedoch einen gravierenden Unterschied: In der \ac{ITS} Station Reference Architecture sind Cross Layer vorgesehen. Das \ac{OSI} Referenzmodell ist wasserfallartig aufgebaut. Das bedeutet, dass die einzelnen Layer übereinander angeordnet sind. Jeder Layer hat jeweils nur zu dem direkt über- und unterliegenden Layer eine Schnittstelle. Cross Layer sind Layer, die in mehrere dieser Schichten Schnittstellen haben. Im Fall der \ac{ITS} Station Reference Architecture sind das die Layer \glqq Management\grqq~ und \glqq Security\grqq. Sie haben Schnittstellen, bzw. Primitiven in alle anderen Layer. 
-
-Möglichkeit Aufgaben dieser Layer sind:
-
-
+Obwohl das \ac{ITS} Station Reference Protocol bei der Entwicklung an das \ac{OSI} Modell angelehnt wurde gibt es jedoch einen gravierenden Unterschied: In der \ac{ITS} Station Reference Architecture sind Cross Layer vorgesehen. Das \ac{OSI} Referenzmodell ist wasserfallartig aufgebaut. Das bedeutet, dass die einzelnen Layer übereinander angeordnet sind. Jeder Layer hat jeweils nur zu dem direkt über- und unterliegenden Layer eine Schnittstelle. Cross Layer sind Layer, die in mehrere dieser Schichten Schnittstellen haben. Sie erweitern die vorhanden Layer in horizontaler Richtung. Im Fall der \ac{ITS} Station Reference Architecture sind das die Layer \glqq Management\grqq~ und \glqq Security\grqq. Sie haben Schnittstellen, bzw. Primitiven in alle anderen Layer. 
 
 \begin{figure}
 	\includegraphics[width=0.75\textwidth]{content/images/02_architektur/stationReferenceArchitecture.pdf}
@@ -94,6 +89,8 @@ Möglichkeit Aufgaben dieser Layer sind:
 \end{figure}
 
 \section{Wasserfall Layer}
+Dieser Abschnitt beschreibt die Layer, die klassisch übereinander angeordnet sind. 
+
 \subsection{Access}
 Der Access Layer entspricht den \ac{OSI} Layern 1 und 2. 
 
