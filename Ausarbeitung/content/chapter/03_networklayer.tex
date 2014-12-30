@@ -1,30 +1,34 @@
 \chapter{Network Layer\label{chap:networklayer}}
-\todo{Ausarbeitung von Felix Graf durchlesen, versch Georouting erklären, bilder einfügen. Auf Problemstellung eingehen}
-\section{Congestion Control\label{sec:congestioncontrol}}
-\section{Geo Routing\label{sec:georouting}}
-Da sich die Fahrzeuge andauernd mit hoher Geschwindigkeit bewegen und sich dadurch die Topologie des Netzes ständig ändert, sind verschiedene Addressierungsmethoden definiert. Diese sind als ETSI-Standart aufgeführt und umfasse die Folgenden Szenarien. 
-\begin{table}[h]
- \caption{Die Kommunikationsformen der Car to Car}
-\begin{tabular}{lcr}
-  Kommunikationsform  & Erklärung & Abbildung \\
-  Geo Unicast & ... & \autoref{fig:geounicast} \\
-  Geo Unicast & ... & \autoref{fig:tsc} \\
-  Geo Unicast & ... & \autoref{fig:gsb} \\
-\end{tabular}
-\end{table}
+Die Aufgabe des Networklayers ist es Nachrichten durch das Netz zu Routen. Ausserdem ist der Networklayer dazu zuständig Positionsinformationen des Fahrzeuges an seine Umgebung zu senden. Dieser Vorgang wird als beaconing bezeichnet. Dabei werden periodisch kleine Pakete an die Umgebung versendet. Diese Daten werden von jedem Fahrzeug in zwei Tabellen verwaltet. Eine dieser beiden Tabellen wird als neighbors table bezeichnet und enthält alle Informationen über die aktuellen Nachbarn. Die andere Tabelle heisst location table und verwaltet die Daten über Fahrzeuge die bekannt sind. Die Tabellen müssen andauernd aktualisiert werden was durch das beaconing erreicht wird.
 
-  
+\section{Congestion Control\label{sec:congestioncontrol}}
+\todo{Hier nochmal nachhacken ob es tatsächlich keine lösung gibt}
+Noch ungeklärt sind die Transport- und Überlastungskontrolle. Offen sind Fragen bzgl. fehlerfreiem Transport (single protocol/multiple protocols), Prioritäten von Datenpacketen, Datenaggregation und Payloadgröße. Ausfallsicherheit (connection-free/conncetion-less), Forwarding (end-to-end Prinzip), Transportarten (unicast/broadcast), Fairness, Komplexität, Multiplexing sowie Verzögerungen und Ortsgültigkeit sind auch zu klären.Es bleibt abzuwarten, wie mit den Problemen umgegangen wird. Auf Grund der vielen Anforderungen muss höchste Sorgfalt in die Entwicklung gelegt werden. Eine Herausforderung ist z.B. die Frage der Ortsgültigkeit. Unter Ortsgültigkeit ist zu verstehen, wie lange eine Nachricht in einer bestimmten Region bei der sich schnell ändernden Netzwerktopologie gültig bleibt, oder als veraltet verworfen wird.
+
+\section{Geo Routing\label{sec:georouting}}
+Da sich die Fahrzeuge andauernd mit hoher Geschwindigkeit bewegen und sich dadurch die Topologie des Netzes ständig ändert (Ad Hoc-Eigenschaft), sind verschiedene Adressierungsmethoden definiert damit ein Fahrzeug mit einem anderen Kommunizieren kann. Diese sind als ETSI-Standart aufgeführt und umfasse die Folgenden Adresserierungsarten. 
+
+\subsection{Geo Unicast}
+Um einen einzelnen Knoten zu Adressieren wird der Geo Unicast spezifiziert. Die Autos die zwischen Sender und der Empfangseinheit liegen dienen als Zwischenstationen. Über den Geo Unicast werden Nachrichten entweder über einen Hop an das Ziel gesendet oder über Zwischenstationen mit mehreren Hops. Die Nachricht kann bei den Zwischenstationen verändert werden. Das heisst zwei oder mehr Nachrichten werden zu einer zusammengefasst bevor sie weitergesendet werden. Dieser Vorgang ist auch umgekehrt durchführbar, sodass eine Nachricht aufgeteilt werden kann. Der Inhalt der Nachricht kann ebenfalls verändert oder Informationen hinzugefügt werden. 
+
 \begin{figure}
 \includegraphics[width=0.99\textwidth]{content/images/03_networklayer/GeoUnicast.jpg}
 \caption{Geo Unicast \cite{etsi102636-1}}
 \label{fig:geounicast}
 \end{figure}
 
+\subsection{Topologically-scoped broadcast}
+Der Topologically-scoped broadcast sendet einen Nachricht mit einem bestimmten Hop Count an alle um den Knoten erreichbaren Einheiten. Diese Nachricht wird dann von den Knoten empfangen, bei denen der Hop Count endet.
+
 \begin{figure}
 \includegraphics[width=0.99\textwidth]{content/images/03_networklayer/TSC.jpg}
-\caption{Topologically-scoped broadcast \cite{etsi102636-1}}
+\caption{Topologically-scoped broadcast mit Hop Count 2 \cite{etsi102636-1}}
 \label{fig:tsc}
 \end{figure}
+
+
+\subsection{Geographically-scoped broadcast}
+Über den Geographically-scoped broadcast ist es einem Knoten möglich, um sich herum oder in einer bestimmten Entfernung zu sich selbst eine definierte Region zu erreichen. 
 
 \begin{figure}
 \includegraphics[width=0.99\textwidth]{content/images/03_networklayer/GSB.jpg}
