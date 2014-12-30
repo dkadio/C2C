@@ -70,6 +70,7 @@ Erkennbar ist in dieser Implementierung, dass sich für mobile Stations Ad Hoc N
 
  
 \section{ITS Station Reference Architecture}
+\todo{komplette Section ITS Station Reference Architecture überarbeiten}
 Eine Referenzarchitektur beschreibt ein allgemeines Modell einer Architektur. Das bedeutet, dass basierend auf dieser Architektur verschiedene Implementierungen existieren können. 
 
 Die \ac{ITS} Station Reference Architecture unterscheidet sich grundlegend von bekannten Architekturen. Da sie während der Entwicklung an das \ac{OSI} Modell angelehnt war, ergeben sich einige Parallelen:
@@ -88,14 +89,50 @@ Obwohl das \ac{ITS} Station Reference Protocol bei der Entwicklung an das \ac{OS
 	\label{fig:funktionsweise_referenceArchitecture}
 \end{figure}
 
-\section{Wasserfall Layer}
-Dieser Abschnitt beschreibt die Layer, die klassisch übereinander angeordnet sind. 
+\section{Horizontal Layer}
+Dieser Abschnitt beschreibt die Layer, die klassisch übereinander angeordnet sind. Die Layer und ihre Funktionen entsprechen den Layern des \ac{OSI} Modells. Sie sind aber anders aufgeteilt.
 
 \subsection{Access}
-Der Access Layer entspricht den \ac{OSI} Layern 1 und 2. 
+Der Access Layer von ITS entspricht den \ac{OSI} Layern 1 und 2. Er besteht aus zwei Sublayern und hat drei Interfaces, bzw. \ac{SAP}. Die Sublayer sind der \glqq Data Link Layer (DLL)\grqq~und der \glqq Physical Layer (PHY)\grqq. Der DLL kann weiter in den \glqq Medium Access Control (MAC)\grqq~und den \glqq Logical Link Control (LLC)\grqq~Layer unterteilt werden. Die \ac{SAP} sind:
+\begin{itemize}
+	\item \textbf{SAP-IN: } Als \ac{SAP} zu dem nächst höheren Layer  Networking \& Transporting \ref{architektur_networkingTransporting}
+	\item \textbf{SAP-SI: } Als \ac{SAP} zu dem Cross Layer Security Layer \ref{architektur_securityLayer}
+	\item \textbf{SAP-MI: } Als \ac{SAP} zu dem Cross Layer Management Layer \label{architektur_managementLayer}
+\end{itemize}
+\todo{ISO 21217 finden - Scheinbar infos über die Layer}
 
-\subsection{Networking \& Transporting}
+\todo{mal in ETSI TS 102 723-10 reinsehen, ob da was interessantes zu den SAP drin steht}
+
+
+Der folgende Abschnitt beschreibt den Access Layer und legt G5 zugrunde.
+ 
+\begin{figure}
+	\includegraphics[width=0.75\textwidth]{content/images/02_architektur/accessLayer.pdf}
+	\caption{Darstellung des ITS G5 Access Layers \cite{etsi302663}}
+	\label{fig:architektur_accessLayer}
+\end{figure}
+
+Die Grafik \ref{fig:architektur_accessLayer} entspricht des untersten Layer der Grafik \ref{fig:funktionsweise_referenceArchitecture}. In der Grafik ist zu erkennen, dass der Access Layer zwei \ac{SAP} besitzt.
+
+
+
+
+Dieser Layer lässt sich in drei weitere Layer aufteilen:
+
+\subsubsection{Physical Layer (PHY)}
+Der Physical Layer von ITS G5 muss zu dem IEEE 802.11 Standard kompatibel sein. Dieser Standard basiert auf Ethernet und definiert Luftschnittstellen. Er ist auch als der Standard von \glqq Wireless LAN\grqq~bekannt. Ein Unterschied ist, dass bei ITS G5 sehr hohe Anforderungen an die Zuverlässigkeit und die Latenz der Schnittstelle gestellt werden. Aufgrund der hohen Anforderungen und der Kompatibilität zu IEEE 802.11 werden zusätzlich \ac{DCC} Methoden benötigt. Diese sind im ETSI Standard \cite{etsi102687} definiert und verhindern durch ihre Traffic Kontrolle dass das System instabil wird.
+
+ITS G5 ist 
+
+\subsubsection{Medium Access Control (MAC)}
+ETSI EN 302 636-3
+\subsubsection{Logical Link Control (LLC)}
+ETSI EN 302 636-3
+
+
+\subsection{Networking \& Transporting \label{architektur_networkingTransporting}}
 Der Networking \& Transporting Layer entspricht den \ac{OSI} Layern 3 und 4.
+
 
 \subsection{Facilities}
 Der Facilities Layer entspricht den \ac{OSI} Layern 5, 6 und 7
@@ -103,12 +140,22 @@ Der Facilities Layer entspricht den \ac{OSI} Layern 5, 6 und 7
 \subsection{Applications}
 
 
-\section{Cross Layer}
-\subsection{Management Layer}
+\section{Cross/Vertical Layer}
+\subsection{Management Layer \label{architektur_managementLayer}}
 Beschrieben in \cite{etsi102723-2}
 \todo{Management Layer genauer beschreiben}
+\todo{DCC genauer erklären und Text anpassen}
+\ac{DCC} erreicht seine Aufgaben durch die Nutzung des Management Layers \ref{architektur_managementLayer}. Dafür sind in der \ac{DCC} Architektur vier Komponenten definiert. Diese bedeuten jeweils eine Schnittstelle in die entsprechenden Layer. Dadurch müssen nicht, wie beispielsweise bei IEEE 802.11, Daten einfach abgeschnitten werden, sondern es besteht die Möglichkeit die Erzeuger zu bremsen. Auf diese Art sind die Anforderungen Latenz und Zuverlässigkeit vereinbar.  Dem Standard \cite{etsi102687} sind folgende Anforderungen an \ac{DCC} zu entnehmen:
+\begin{itemize}
+	\item Eine faire Verteilung von Ressourcen und ein fairer Kanalzugriff zwischen allen \ac{ITS} Stationen in der gleichen Kommunikationszone
+	\item Die Auslastung der Kanäle muss unter vordefinierten Werten bleiben. Dies muss durch eine periodische Messung sicher gestellt werden
+	\item Reservierung von Kommunikationsressourcen für das Verbreiten von hoch priorisieren ereignisgesteuerten Nachrichten
+	\item Schnelle Übernahme einer wechselnden Umgebung (busy / free radio channel)
+	\item Die Änderungen in den Kontrollschleifen müssen in den definierten Grenzen bleiben
+	\item Es muss den spezifischen Systemanforderungen, beispielsweise Zuverlässigkeit, entsprechen
+\end{itemize}
 
-\subsection{Security Layer}
+\subsection{Security Layer \label{architektur_securityLayer}}
 
 
 \section{Data Security}
