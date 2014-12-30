@@ -19,30 +19,64 @@ Zusätzlich zu den hier beschriebenen Netzwerken kann eine \ac{ITS} Station ein 
 \end{figure}
 
 \section{Übersicht über die verschiedenen Netzwerke}
-Dieser Abschnitt soll lediglich eine Übersicht über die verwendeten Netzwerke geben. Eine weitere Erklärung der Netzwerke findet an dieser Stelle nicht statt und ist nicht Gegenstand dieser Ausarbeitung.
+Dieser Abschnitt soll lediglich eine Übersicht über die verwendeten Netzwerke geben. Eine weitere Erklärung der Netzwerke findet an dieser Stelle nicht statt und ist nicht Gegenstand dieser Ausarbeitung. Die Netzwerke dürfen auch nicht isoliert betrachtet werden. Im Abschnitt \ref{funktionsweise_funktionaleKomponenten} wurden funktionale Komponenten mit Routingfunktionalitäten vorgestellt. Diese können die Netze und somit ihre Vorteile, bzw. ihre Dienste, miteinander verbinden.
 
-\subsection{ITS Ad Hoc Network}
+Selbstverständlich benötigen die \ac{ITS} Stations Zugang zu einem der im Folgenden aufgeführten Netze. Der Zugang zum Core Network \ref{achitektur_coreNetwork} erfolgt über eins der anderen Netze. 
+
+\subsection{ITS Ad Hoc Network\label{achitektur_adHocNetwork}}
 Das \ac{ITS} Ad Hoc Netzwerk ist das Netzwerk für die Kommunikation zwischen \ac{IRS}, \ac{IVS} und \ac{PSS}. Die Kommunikation findet über die Luftschnittstelle statt. Sie ist in ihrer Reichweite begrenzt, dafür ist sie mobil einsetzbar. Die Drahtlose Kommunikation wird im Normalfall über den Standard ITS-G5 ermöglicht.
 
 
-\subsection{ITS Access Network}
+\subsection{ITS Access Network \label{architektur_itsAccessNetwork}}
 \tocheck{Nicht die blasseste Ahnung ob das mit den Access Networks stimmt}
-ITS Access Network werden zur Vernetzung von \ac{ITS} Komponenten verwendet. Diese Netzwerke bieten 
+ITS Access Network werden zur Vernetzung von \ac{ITS} Komponenten verwendet. Diese Netzwerke bieten den Zugang für die entsprechenden \ac{ITS} Services. Sie werden als eigene Netzwerke realisiert. \ac{ITS} Stations werden durch Access Networks verbunden. Das bedeutet, dass \ac{IRS} untereinander über Access Networks verbunden sein können, es können aber auch Stations, die normalerweise Ad Hoc miteinander kommunizieren dieses Netz nutzen. 
 
 \subsection{Public Access Network}
+Ein Public Access Network ermöglicht den Zugang in öffentlich zugängliche Mehrzwecknetzwerke. Dieses Netzwerk kann beispielsweise dazu genutzt werden, um \ac{ITS} Stations mit dem Core Netzwerk zu verbinden. 
+
 \subsection{Private Access Network}
-\subsection{Core Network}
+Ein Private Access Network reguliert den Zugang durch die Teilnehmer. Die angebotenen Datendienste stehen nur einer bestimmten Gruppe von Nutzern zur Verfügung. Mit Private Access Networks besteht die Möglichkeit, eine gesicherte Verbindung in ein anderes Netzwerk aufzubauen. So kann beispielsweise ein \ac{IVS} auf das Intranet einer Firma zugreifen. 
+
+\subsection{Core Network \label{achitektur_coreNetwork}}
+Das Core Network ist ein Verbindungsnetz. Es hat keine \ac{ITS} Funktionalitäten und wird im Standard auch nicht weiter spezifiziert. Es wird in Verbindung mit den Public Access Network dazu genutzt, traditionelle Dienste, wie Internet oder Email, anzubieten.
+ 
+\begin{figure}
+	\includegraphics[width=0.75\textwidth]{content/images/02_architektur/netzwerkSzenario.pdf}
+	%\vspace{2cm}
+	\includegraphics[width=0.75\textwidth]{content/images/02_architektur/verbindungenNetzwerkSzenario.pdf}
+	\caption{Netzwerkszenario mit dazugehöriger Implementierung \cite{etsi302636-3}}
+	\label{fig:architektur_netzwerkSzenario}
+\end{figure}
+
+Die Grafik \ref{fig:architektur_netzwerkSzenario} stammt aus dem Standard \cite{etsi302636-3}. Dort ist im oberen Teil der Grafik ein Szenario beschrieben, welche Netzwerke miteinander verbunden sein können.  Zu erkennen ist, dass die Netzwerke ITS Ad Hoc Netzwerk \ref{achitektur_adHocNetwork}, ITS Access Network \ref{architektur_itsAccessNetwork} und das Core Network  \ref{achitektur_coreNetwork} miteinander verbunden sein sollen.
+
+Der untere Teil der Grafik zeigt eine Implementierungsmöglichkeit dieses Szenarios. Die hellen Rechtecke beschreiben die Komponenten, die in dieser Implementierung im System integriert sind, das dunkle Rechteck beschreibt die funktionale Komponente, die in diesem System beteiligt ist. Die Linien sind mit dem Typ des Netzwerks, welches sie repräsentieren beschriftet und zusätzlich mit dem Network Reference Point, den sie benutzen, beschriftet.
+\todo{Sollen wir hier noch was zum Thema Network Reference Point schreiben? Ich glaube aber, dass die noch in den Layern kommen}
 
 
+Auflistung und kurze Beschreibung der genutzten Network Reference Points:
+\begin{itemize}
+	\item \textbf{RA: } Reference Point zwischen \ac{IVS} über das ITS Ad Hoc Network
+	\item \textbf{RB: } Reference Point zwischen \ac{IVS} und \ac{IRS} über das ITS Ad Hoc Network
+	\item \textbf{RC: } Reference Point zwischen \ac{PSS} über das ITS Ad Hoc Network
+	\item \textbf{RD: } Reference Point zwischen \ac{PSS} und \ac{IRS} über das ITS Ad Hoc Network
+	\item \textbf{RE: } Reference Point zwischen \ac{IVS} und \ac{PSS} über das ITS Ad Hoc Network
+	\item \textbf{RF: } Reference Point zwischen \ac{IRS} über das ITS Access Network
+	\item \textbf{RG: } Reference Point zwischen \ac{IRS} und einem ITS-S Border Router \footnote{Der Border Router muss nicht explizit aufgeführt werden, da er als funktionale Komponente Teil einer Komponente ist. \label{ftn:borderRouter}} über das ITS Access Network 
+	\item \textbf{RH: } Reference Point zwischen \ac{ICS} und ITS-S Border Router \footref{ftn:borderRouter} über das Core Network		
+\end{itemize}
 
+Erkennbar ist in dieser Implementierung, dass sich für mobile Stations Ad Hoc Netzwerke verwendet wurden. Diese haben den Vorteil, dass sie bereits in der Spezifikation mit der Luftschnittstelle ITS-G5 ausgestattet sind, was eine Mobilität erst ermöglicht. Was auch erkennbar ist, ist, dass die reinen ITS Netzwerke durch einen Border Router vom Core Network getrennt sind. Auch wenn hier nicht explizit aufgeführt, die \ac{ICS} benötigt in diesem Fall auch einen Border Router.
 
+ 
 \section{ITS Station Reference Architecture}
-Um das folgende Kapitel zu verstehen muss die \ac{ITS} Station Reference Architecture betrachtet werden. Eine Referenzarchitektur beschreibt ein allgemeines Modell einer Architektur. Das bedeutet, dass basierend auf dieser Architektur verschiedene Implementierungen existieren können. 
+Eine Referenzarchitektur beschreibt ein allgemeines Modell einer Architektur. Das bedeutet, dass basierend auf dieser Architektur verschiedene Implementierungen existieren können. 
 
-Die \ac{ITS} Station Reference Architecture unterscheidet sich grundlegend von bekannten Architekturen. Verglichen mit dem \ac{OSI} Modell kann man Gemeinsamkeiten erkennen:
+Die \ac{ITS} Station Reference Architecture unterscheidet sich grundlegend von bekannten Architekturen. Da sie während der Entwicklung an das \ac{OSI} Modell angelehnt war, ergeben sich dennoch einige Parallelen:
 \begin{itemize}
 	\item Trennung der einzelnen Layer
 	\item Definition von Service Primitiven zwischen den Layern
+	\item B
 \end{itemize}
 
 Bei der genaueren Beschreibung der Layer fällt auch auf, dass die Beschreibungen sich stellenweise auf das \ac{OSI} Modell beziehen. Der Hintergrund ist, dass die \ac{ITS} Station Reference Architecture an das \ac{OSI} Modell angelehnt ist. Es wurde aber um die Besonderheiten von \ac{ITS} erweitert.
@@ -54,9 +88,9 @@ Möglichkeit Aufgaben dieser Layer sind:
 
 
 \begin{figure}
-\includegraphics[width=0.75\textwidth]{content/images/02_architektur/stationReferenceArchitecture.pdf}
-\caption{Darstellung der ITS Station Reference Architecture \cite{etsi2010302}}
-\label{fig:funktionsweise_referenceArchitecture}
+	\includegraphics[width=0.75\textwidth]{content/images/02_architektur/stationReferenceArchitecture.pdf}
+	\caption{Darstellung der ITS Station Reference Architecture \cite{etsi2010302}}
+	\label{fig:funktionsweise_referenceArchitecture}
 \end{figure}
 
 \section{Wasserfall Layer}
@@ -74,7 +108,7 @@ Der Facilities Layer entspricht den \ac{OSI} Layern 5, 6 und 7
 
 \section{Cross Layer}
 \subsection{Management Layer}
-Beschrieben in \cite{etsi1027232}
+Beschrieben in \cite{etsi102723-2}
 \todo{Management Layer genauer beschreiben}
 
 \subsection{Security Layer}
