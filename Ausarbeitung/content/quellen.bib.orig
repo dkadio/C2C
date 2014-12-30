@@ -1,0 +1,100 @@
+%% This BibTeX bibliography file was created using BibDesk.
+%% http://bibdesk.sourceforge.net/
+
+
+<<<<<<< HEAD
+%% Created for Christoph Drost at 2014-12-29 13:09:58 +0100 
+=======
+%% Created for deniz at 2014-12-29 15:18:43 +0100 
+>>>>>>> decea2453f9286d1739ad33235d677f64255bf41
+
+
+%% Saved with string encoding Unicode (UTF-8) 
+
+
+
+<<<<<<< HEAD
+@article{etsi302636-3,
+	Author = {{ETSI, EN}},
+	Date-Added = {2014-12-29 12:07:14 +0000},
+	Date-Modified = {2014-12-29 12:09:53 +0000},
+	Edition = {v1.1.2 (2014-03)},
+	Journal = {{Intelligent Transport Systems (ITS)}},
+	Organization = {ETSI},
+	Title = {{Intelligent Transport Systems (ITS); Vehicular Communications; GeoNetworking; Part 3: Network Architecture}},
+	Year = {2014}}
+
+=======
+>>>>>>> decea2453f9286d1739ad33235d677f64255bf41
+@article{etsi102636-1,
+	Author = {ETSI, EN},
+	Date-Added = {2014-12-29 14:17:19 +0000},
+	Date-Modified = {2014-12-29 14:18:43 +0000},
+	Month = {March},
+	Title = {102 636-1(V1.1.1)},
+	Year = {2010}}
+
+@article{cite-key,
+	Annote = {GeoRouting erkl{\"a}ren. Original Bilder aus ETSI TS 102 636-1 V1.1.1 (2010-03)},
+	Author = {Felix Graf},
+	Date-Added = {2014-12-29 13:22:32 +0000},
+	Date-Modified = {2014-12-29 13:23:00 +0000},
+	Title = {Seminar Sommersemester 2009 Automotive Konzepte und Techniken},
+	Year = {2009}}
+
+<<<<<<< HEAD
+@article{etsi302636-3,
+	Author = {{ETSI, EN}},
+	Date-Added = {2014-12-29 12:07:14 +0000},
+	Date-Modified = {2014-12-29 12:09:53 +0000},
+	Edition = {v1.1.2 (2014-03)},
+	Journal = {{Intelligent Transport Systems (ITS)}},
+	Organization = {ETSI},
+	Title = {{Intelligent Transport Systems (ITS); Vehicular Communications; GeoNetworking; Part 3: Network Architecture}},
+	Year = {2014}}
+
+=======
+>>>>>>> decea2453f9286d1739ad33235d677f64255bf41
+@article{etsi1027232,
+	Author = {ETSI, EN},
+	Date-Added = {2014-12-29 10:43:09 +0000},
+	Date-Modified = {2014-12-29 10:45:12 +0000},
+	Journal = {Intelligent Transport Systems (ITS)},
+	Title = {{Intelligent Transport Systems (ITS); OSI cross-layer topics; Part 2: Management information base}},
+	Year = {2012}}
+
+@url{bauteileUebersicht,
+	Author = {{CALM - Continuous Communication for Vehicles}},
+	Date-Added = {2014-12-29 08:24:33 +0000},
+	Date-Modified = {2014-12-29 08:27:19 +0000},
+	Howpublished = {\url{http://calm.its-standards.eu}},
+	Lastchecked = {{29.12.2014}},
+	Title = {{ITS Netzwerk {\"U}bersicht}},
+	Bdsk-File-1 = {YnBsaXN0MDDUAQIDBAUGJCVYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoKgHCBMUFRYaIVUkbnVsbNMJCgsMDxJXTlMua2V5c1pOUy5vYmplY3RzViRjbGFzc6INDoACgAOiEBGABIAFgAdccmVsYXRpdmVQYXRoWWFsaWFzRGF0YV8QN2ltYWdlcy8wMV9mdW5rdGlvbnN3ZWlzZS9Sb2Fkc2lkZUltcGxlbWVudGF0aW9uX3YwMS5wZGbSFwsYGVdOUy5kYXRhTxECZgAAAAACZgACAAAMTWFjaW50b3NoIEhEAAAAAAAAAAAAAAAAAAAAzpe500grAAAAkmzrHlJvYWRzaWRlSW1wbGVtZW50YXRpb25fdjAxLnBkZgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACSdX/Qxs9CAAAAAAAAAAAAAQAEAAAJIAAAAAAAAAAAAAAAAAAAABEwMV9mdW5rdGlvbnN3ZWlzZQAAEAAIAADOl6vDAAAAEQAIAADQxsEyAAAAAQAoAJJs6wCQSL8AkEi8AJBFagCQQ+UAc9ebAAup1AAI9xAACPcPAAJkjgACAIpNYWNpbnRvc2ggSEQ6VXNlcnM6AGNocmlzdG9waDoARG9jdW1lbnRzOgBIVFc6AFNFTTE6AEMyQzoAQXVzYXJiZWl0dW5nOgBjb250ZW50OgBpbWFnZXM6ADAxX2Z1bmt0aW9uc3dlaXNlOgBSb2Fkc2lkZUltcGxlbWVudGF0aW9uX3YwMS5wZGYADgA+AB4AUgBvAGEAZABzAGkAZABlAEkAbQBwAGwAZQBtAGUAbgB0AGEAdABpAG8AbgBfAHYAMAAxAC4AcABkAGYADwAaAAwATQBhAGMAaQBuAHQAbwBzAGgAIABIAEQAEgBzVXNlcnMvY2hyaXN0b3BoL0RvY3VtZW50cy9IVFcvU0VNMS9DMkMvQXVzYXJiZWl0dW5nL2NvbnRlbnQvaW1hZ2VzLzAxX2Z1bmt0aW9uc3dlaXNlL1JvYWRzaWRlSW1wbGVtZW50YXRpb25fdjAxLnBkZgAAEwABLwAAFQACABD//wAAgAbSGxwdHlokY2xhc3NuYW1lWCRjbGFzc2VzXU5TTXV0YWJsZURhdGGjHR8gVk5TRGF0YVhOU09iamVjdNIbHCIjXE5TRGljdGlvbmFyeaIiIF8QD05TS2V5ZWRBcmNoaXZlctEmJ1Ryb290gAEACAARABoAIwAtADIANwBAAEYATQBVAGAAZwBqAGwAbgBxAHMAdQB3AIQAjgDIAM0A1QM/A0EDRgNRA1oDaANsA3MDfAOBA44DkQOjA6YDqwAAAAAAAAIBAAAAAAAAACgAAAAAAAAAAAAAAAAAAAOt}}
+
+@misc{simtd-D12.1,
+	Author = {{Hagen St{\"u}bing -- Adam Opel GmbH (Editor), Marc Bechler -- BMW Group Forschung und Technik (Editor), Stephan Buchta -- Adam Opel GmbH (Editor), Bechir Allani -- Hochschule f{\"u}r Technik und Wirtschaft des Saarlandes, Thomas Baum -- Hochschule f{\"u}r Technik und Wirtschaft des Saarlandes, Thomas Biehle -- Volkswagen AG Norbert Bi{\ss}meyer -- Fraunhofer SIT, Murat Caliskan -- Volkswagen AG, Kurt Eckert -- Robert Bosch GmbH, J{\"o}rg Freudenstein -- Albrecht Consult GmbH, Manuel F{\"u}nfrocken -- Hochschule f{\"u}r Technik und Wirtschaft des Saarlandes, Martin Goralczyk -- Technische Universit{\"a}t Berlin, Matthias Haug -- Robert Bosch GmbH, Florian H{\"a}usler -- Technische Universit{\"a}t Berlin, Dieter Heussner -- Hessisches Landesamt f{\"u}r Stra{\ss}en- und Verkehrswesen, Andreas Hiller -- Daimler AG, Arno Hinsberger -- Hochschule f{\"u}r Technik und Wirtschaft des Saarlandes, Attila Jaeger -- Technische Universit{\"a}t Darmstadt, Josef Kaltwasser -- Albrecht Consult GmbH, Volker Kanngie{\ss}er -- Stadt Frankfurt am Main, Anselm Keil -- Continental Teves AG \& Co ohG, Carsten Kemper -- Gevas Software GmbH, Sascha Kilb -- T-Systems, GEI GmbH, Oliver Klages -- ICT Software Engineering Nord GmbH, Felix Klanner -- BMW Group Forschung und Technik, Jos{\'e} Luis Mateo -- T-Systems, GEI GmbH, Manuel Matthe{\ss} -- Fraunhofer SIT, Thomas May -- Robert Bosch GmbH, Marc Menzel -- Continental Teves AG \& Co ohG ,Karl Naab -- BMW AG, Carsten Neumann -- Fraunhofer FOKUS, Anastasia Petrou -- BMW Group Forschung und Technik, Ilja Radusch -- Technische Universit{\"a}t Berlin, Horst Rechner -- Fraunhofer FOKUS, Oliver Sawade -- Fraunhofer FOKUS, Gunter Schaaf -- Robert Bosch GmbH, Bj{\"o}rn Sch{\"u}nemann -- Technische Universit{\"a}t Berlin, Winfried Stephan -- T-Systems GEI GmbH, Markus Trauberg -- ICT Software Engineering Nord GmbH, Peter Vogel -- Robert Bosch GmbH, Jonas Vogt -- Hochschule f{\"u}r Technik und Wirtschaft des Saarlandes, Michael Wagner -- Adam Opel GmbH, Sebastian Weber -- Hochschule f{\"u}r Technik und Wirtschaft des Saarlandes, Peter Zahn -- BMW Group Forschung und Technik, Jens Zech -- TU Berlin }},
+	Date-Added = {2014-12-28 18:35:05 +0000},
+	Date-Modified = {2014-12-28 18:54:28 +0000},
+	Howpublished = {\url{http://www.simtd.de/index.dhtml/deDE/backup_publications/Projektergebnisse.html}},
+	Title = {{Projektergebnis: Validierungsziele}},
+	Year = {2009}}
+
+@article{baldessari2007car,
+	Author = {Baldessari, Roberto and B{\"o}dekker, Bert and Deegener, Matthias and Festag, Andreas and Franz, Walter and Kellum, C Christopher and Kosch, Timo and Kovacs, Andras and Lenardi, Massimiliano and Menig, Cornelius and others},
+	Date-Added = {2014-12-28 16:07:59 +0000},
+	Date-Modified = {2014-12-28 16:07:59 +0000},
+	Journal = {DLR Electronic Library [http://elib. dlr. de/perl/oai2](Germany)},
+	Number = {4},
+	Pages = {4},
+	Title = {Car-2-car communication consortium-manifesto},
+	Volume = {3},
+	Year = {2007}}
+
+@article{etsi2010302,
+	Author = {ETSI, EN},
+	Date-Added = {2014-12-28 16:07:21 +0000},
+	Date-Modified = {2014-12-28 16:07:21 +0000},
+	Journal = {Intelligent Transport Systems (ITS)},
+	Title = {302 665 (V1. 1.1),"},
+	Year = {2010}}
