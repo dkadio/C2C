@@ -93,6 +93,7 @@ Obwohl das \ac{ITS} Station Reference Protocol bei der Entwicklung an das \ac{OS
 Dieser Abschnitt beschreibt die Layer, die klassisch übereinander angeordnet sind. Die Layer und ihre Funktionen entsprechen den Layern des \ac{OSI} Modells. Sie sind aber anders aufgeteilt.
 
 \subsection{Access}
+\todo{Noch etwas über die Channel herausfinden und schreiben}
 Der Access Layer von ITS entspricht den \ac{OSI} Layern 1 und 2. Er besteht aus zwei Subaltern und hat drei Interfaces, bzw. \ac{SAP}. Die Sublayer sind der \glqq Data Link Layer (DLL)\grqq~und der \glqq Physical Layer (PHY)\grqq. Der DLL kann weiter in den \glqq Medium Access Control (MAC)\grqq~und den \glqq Logical Link Control (LLC)\grqq~Layer unterteilt werden. Zusätzlich zu den Subalayern hat der Access Layer ein Layer Management. Dieses verwaltet die Sublayer. Es arbeitet nur nur im Access Layer und darf nicht mit dem  Management Layer \ref{architektur_managementLayer} verwechselt werden.
 
 Die \ac{SAP} sind:
@@ -135,20 +136,79 @@ Der Data Link Sublayer kann wiederum in den Medium Access Control (MAC) Sublayer
 
 
 \subsection{Networking \& Transporting \label{architektur_networkingTransporting}}
-Der Networking \& Transporting Layer entspricht den \ac{OSI} Layern 3 und 4.
+Der Networking \& Transporting Layer enthält mehrere verschiedene Netzwerk und Transport Protokolle und entspricht den \ac{OSI} Layern 3 und 4. Die Aufgabe ist das Routing und der Ende zu Ende Transport von Daten. Er wird im Kapitel \ref{chap:networklayer} genauer beschrieben. 
 
 
 \subsection{Facilities}
-Der Facilities Layer entspricht den \ac{OSI} Layern 5, 6 und 7
+Der Facilities Layer entspricht den \ac{OSI} Layern 5, 6 und 7. Er bietet eine Sammlung von Funktionen, die die \ac{ITS} Anwendungen unterstützen. Der Layer bietet Datenstrukturen um verschiedene Date zu speichern, zu sammeln und zu verwalten. Er wird im Kapitel \ref{chap:facilitylayer} genauer erklärt.
 
 \subsection{Applications}
-
+Im Applications Layer werden die Use Cases realisiert. Ihnen steht der \ac{ITS} Protokoll Stack zu Verfügung. Eine genauere Beschreibung des Application Layers findet im Kapitel \ref{chap:applicationlayer} statt.
 
 \section{Cross/Vertical Layer}
+Die Cross Layer weichen stark vom \ac{OSI} Modell ab. Sie erweitern die traditionellen Layer, die jeweils nur ein Interface zum nächst höheren, bzw. tieferen Layer haben um Layer, die Interfaces zu allen anderen Layern haben. Durch die Interfaces zu allen Layern ergeben sich neue Möglichkeiten. So kann beispielsweise im Application Layer die genutzte Bandbreite an die im Physical Layer zur Verfügung stehende Bandbreite angepasst werden. Dadurch werden Überlastungen, die sich auf die Latenz auswirken oder zu fehlerhaften Übertragungen führen bereits im im Vorfeld vermieden.
+
 \subsection{Management Layer \label{architektur_managementLayer}}
+Der Management Layer übernimmt Alle Aufgaben, die mit der Verwaltung einer \ac{ITS} Station und deren Protokollstack zusammenzufassen sind. Vereinfacht gesagt verwaltet er im Protokollstack die Cross Layer Funktionalität. 
+
+
+\begin{figure}
+	\includegraphics[width=0.75\textwidth]{content/images/02_architektur/managementLayer.pdf}
+	\caption{Der Management Layer im Überblick \cite{etsi2010302}}
+	\label{fig:architektur_managementLayer}
+\end{figure}
+
+In der  \autoref{fig:architektur_managementLayer} ist der Management Layer mit seinen Interfaces und Untereinheiten dargestellt. Er hat zu jedem anderen Layer ein Interface. Die fünf Untereinheiten ergeben sich aus den definierten Funktionalitäten des Management Layers. Die folgende Auflistung der Funktionalitäten ist dem Standard \cite{etsi2010302} entnommen:
+
+\begin{itemize}
+	\item Cross-interface Management
+	\item Kommunikation zwischen Einheiten gem. ETSI TS 102 723-1
+	\item Netzwerkmanagement
+	\item Kommunikationsservice Management
+	\item \ac{ITS} Anwendungs Management
+	\item Station Management
+	\item Management der allgemeinen Congestion Control
+	\item Management des Service Advertisement
+	\item Management des Systemschutzes 
+	\item Eine alleine Informationsbasis
+	\item Die Möglichkeit die verschiedenen Layer zu verbinden
+\end{itemize}
+
+\subsubsection{ITS Service Advertisement}
+\ac{ITS} Service Adverticement ist der Mechanismus, mit dem eine \ac{ITS} Station \ac{ITS} Services erkennen kann. Bei diesem Mechanismus macht eine \ac{ITS} Station, in dem Fall der Service Provider, aktiv ihre Services anderen \ac{ITS} Stations, in dem Fall Service User, bekannt. Eine Möglichkeit, die Services bekannt zu machen ist das FAST Service Advertisement. Es ist im Standard ISO/IEC 24102 definiert und eignet sich für die Luftschnittstelle mit lediglich einem Hop. Beim FAST Service Advertisement wird ein Advertisement Manager benötigt. Dieser empfängt die Service Adverticements von den anderen Service Providern und sendet die Service Adverticements der eigenen \ac{ITS} Station in regelmäßigen Abständen aus.
+
+Für das Aussenden von Service Advertisements gibt es \ac{SAM}. \autoref{architektur_darstellungSAMHeader} zeigt den Aufbau einer \ac{SAM}. Sie besteht aus einem Header und einem Body. Der Header enthält die Elemente:
+\begin{itemize}
+	\item samID: Identifiziert die \ac{SAM}
+	\item Version: Die Versionsnummer der \ac{SAM}
+	\item stationID: Die ID des sendenden Service Providers
+\end{itemize}
+
+Der Body enthält die folgenden Elemente:
+\begin{itemize}
+	\item serviceList: Eine Liste mit den angebotenen Services. Sie sind nach dem Standard ISO 17419 eindeutig kodiert
+	\item channelList:  Eine Information, welche Channels für die Service Operation Phase genutzt werden
+	\item ipServList: Informationen über Services, die angeboten wurden und der Service Operation Phase IPv6 benötigen.
+\end{itemize} 
+
+
+\begin{figure}[h]
+	\begin{bytefield}{40}
+		\wordbox{1}{SAM} \\
+		\bitbox{16}{Header} & \bitbox{24}{Body} \\
+		\bitbox{4}{samID} & \bitbox{4}{Version} & \bitbox{8}{stationID} & \bitbox{8}{serviceList} & \bitbox{8}{channelList} & \bitbox{8}{ipServList}
+		\end{bytefield}
+	\label{architektur_darstellungSAMHeader}
+\end{figure}
+
+
 Beschrieben in \cite{etsi102723-2}
+
 \todo{Management Layer genauer beschreiben}
+
 \todo{DCC genauer erklären und Text anpassen}
+\subsubsection{Decentralizied Congestion Control}
+
 \ac{DCC} erreicht seine Aufgaben durch die Nutzung des Management Layers \ref{architektur_managementLayer}. Dafür sind in der \ac{DCC} Architektur vier Komponenten definiert. Diese bedeuten jeweils eine Schnittstelle in die entsprechenden Layer. Dadurch müssen nicht, wie beispielsweise bei IEEE 802.11, Daten einfach abgeschnitten werden, sondern es besteht die Möglichkeit die Erzeuger zu bremsen. Auf diese Art sind die Anforderungen Latenz und Zuverlässigkeit vereinbar.  Dem Standard \cite{etsi102687} sind folgende Anforderungen an \ac{DCC} zu entnehmen:
 \begin{itemize}
 	\item Eine faire Verteilung von Ressourcen und ein fairer Kanalzugriff zwischen allen \ac{ITS} Stationen in der gleichen Kommunikationszone
