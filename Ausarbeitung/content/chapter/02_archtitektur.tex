@@ -93,7 +93,9 @@ Obwohl das \ac{ITS} Station Reference Protocol bei der Entwicklung an das \ac{OS
 Dieser Abschnitt beschreibt die Layer, die klassisch übereinander angeordnet sind. Die Layer und ihre Funktionen entsprechen den Layern des \ac{OSI} Modells. Sie sind aber anders aufgeteilt.
 
 \subsection{Access}
-Der Access Layer von ITS entspricht den \ac{OSI} Layern 1 und 2. Er besteht aus zwei Sublayern und hat drei Interfaces, bzw. \ac{SAP}. Die Sublayer sind der \glqq Data Link Layer (DLL)\grqq~und der \glqq Physical Layer (PHY)\grqq. Der DLL kann weiter in den \glqq Medium Access Control (MAC)\grqq~und den \glqq Logical Link Control (LLC)\grqq~Layer unterteilt werden. Die \ac{SAP} sind:
+Der Access Layer von ITS entspricht den \ac{OSI} Layern 1 und 2. Er besteht aus zwei Subaltern und hat drei Interfaces, bzw. \ac{SAP}. Die Sublayer sind der \glqq Data Link Layer (DLL)\grqq~und der \glqq Physical Layer (PHY)\grqq. Der DLL kann weiter in den \glqq Medium Access Control (MAC)\grqq~und den \glqq Logical Link Control (LLC)\grqq~Layer unterteilt werden. Zusätzlich zu den Subalayern hat der Access Layer ein Layer Management. Dieses verwaltet die Sublayer. Es arbeitet nur nur im Access Layer und darf nicht mit dem  Management Layer \ref{architektur_managementLayer} verwechselt werden.
+
+Die \ac{SAP} sind:
 \begin{itemize}
 	\item \textbf{SAP-IN: } Als \ac{SAP} zu dem nächst höheren Layer  Networking \& Transporting \ref{architektur_networkingTransporting}
 	\item \textbf{SAP-SI: } Als \ac{SAP} zu dem Cross Layer Security Layer \ref{architektur_securityLayer}
@@ -103,11 +105,13 @@ Der Access Layer von ITS entspricht den \ac{OSI} Layern 1 und 2. Er besteht aus 
 
 \todo{mal in ETSI TS 102 723-10 reinsehen, ob da was interessantes zu den SAP drin steht}
 
+Der Access Layer ist nicht auf ein bestimmtes Übertragungsprotokoll festgelegt. Beispiele für ein Übertragungsprotokoll sind ITS-G5, WiFi, BlueTooth, Ethernet\dots In einer reinen \ac{C2C} Kommunikation bietet sich aber vor allem ITS-G5 an, für eine allgemeine \ac{ITS} Verbindung haben die anderen Übertragungsprotokolle aber auch ihre Berechtigung. Diese Übertragungsprotokolle müssen aber den \ac{ITS} Protokollstack transparent übertragen. 
 
 Der folgende Abschnitt beschreibt den Access Layer und legt G5 zugrunde.
  
 \begin{figure}
-	\includegraphics[width=0.75\textwidth]{content/images/02_architektur/accessLayer.pdf}
+	%\includegraphics[width=0.75\textwidth]{content/images/02_architektur/accessLayer.pdf}
+	\missingfigure{Access Layer Bild noch aus dem Standard 302 665 herauskopieren }
 	\caption{Darstellung des ITS G5 Access Layers \cite{etsi302663}}
 	\label{fig:architektur_accessLayer}
 \end{figure}
@@ -115,19 +119,19 @@ Der folgende Abschnitt beschreibt den Access Layer und legt G5 zugrunde.
 Die Grafik \ref{fig:architektur_accessLayer} entspricht des untersten Layer der Grafik \ref{fig:funktionsweise_referenceArchitecture}. In der Grafik ist zu erkennen, dass der Access Layer zwei \ac{SAP} besitzt.
 
 
+Im Access Layer finden eine Periodisierung und eine Aufteilung des Datenverkehrs in Logic Channels statt. Diese Aufgaben werden mit verschiedenen Ansätzen gelöst. Deswegen sind sie keinem Sublayer genau zuzuordnen, sondern müssen in der Beschreibung der Sublayer gesondert betrachtet werden.
 
-
-Dieser Layer lässt sich in drei weitere Layer aufteilen:
 
 \subsubsection{Physical Layer (PHY)}
-Der Physical Layer von ITS G5 muss zu dem IEEE 802.11 Standard kompatibel sein. Dieser Standard basiert auf Ethernet und definiert Luftschnittstellen. Er ist auch als der Standard von \glqq Wireless LAN\grqq~bekannt. Ein Unterschied ist, dass bei ITS G5 sehr hohe Anforderungen an die Zuverlässigkeit und die Latenz der Schnittstelle gestellt werden. Aufgrund der hohen Anforderungen und der Kompatibilität zu IEEE 802.11 werden zusätzlich \ac{DCC} Methoden benötigt. Diese sind im ETSI Standard \cite{etsi102687} definiert und verhindern durch ihre Traffic Kontrolle dass das System instabil wird.
+Der Physical Sublayer verbindet physikalisch zu dem Kommunikationsmedium.
 
-ITS G5 ist 
+\subsubsection{Data Link Layer (DLL)}
+Der Data Link Sublayer kann wiederum in den Medium Access Control (MAC) Sublayer und den Logical Link Control (LLC) Sublayer aufgeteilt werden. Der MAC Sublayer regelt den Zugriff auf das Kommunikationmeduim.
 
-\subsubsection{Medium Access Control (MAC)}
-ETSI EN 302 636-3
-\subsubsection{Logical Link Control (LLC)}
-ETSI EN 302 636-3
+
+\ac{ITS} bietet die Funktionalität von logischen Kanälen. 
+
+
 
 
 \subsection{Networking \& Transporting \label{architektur_networkingTransporting}}
