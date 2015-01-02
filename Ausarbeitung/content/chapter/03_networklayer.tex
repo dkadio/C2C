@@ -70,19 +70,79 @@ Noch ungeklärt sind die Transport- und Überlastungskontrolle. Offen sind Frage
 Um in der \acl{C2C} die richtigen Routen zu finden und die Ziele zu adressieren benötigt jeder Teilnehmer in dem Netzwerk eine einmalige Adresse. Diese ist als \acl{GNW} Adresse spezifiziert. 
 
 \subsection{Adressierung} 
-Die \acl{GNW} Adresse besteht aus acht Bytes die verschiedene Informationen repräsentieren. Die ersten zwei Bytes zeigen ob die Adresse manuell oder Automatisch konfiguriert wurde, um was es sich für ein Fahrzeug handelt und den ITS-S Country Code. Die restlichen sechs Bytes repräsentieren die MAC Adresse.
+Die \acl{GNW} Adresse besteht aus acht Bytes die verschiedene Informationen repräsentieren. Die ersten zwei Bytes zeigen ob die Adresse manuell oder Automatisch konfiguriert wurde, um was es sich für ein Fahrzeug handelt und den ITS-S Country Code. Die restlichen sechs Bytes repräsentieren die MAC Adresse.\cite{etsi302636-4-1}
+\begin{figure}
+\includegraphics[width=0.99\textwidth]{content/images/03_networklayer/gnwadress.jpg}
+\caption{Format der \acl{GNW} Adresse}
+\label{fig:formatgnwa}
+\end{figure}
+Die auf der \autoref{fig:formatgnwa} zu sehenden Felder sind in der nachfolgenden \autoref{tab:formatgnwa}noch einmal genauer erläutert.
+\begin{table}[h]
+\caption{Felder und Bedeutung der \acs{GNW} Adresse\cite{etsi302636-4-1}}
+\begin{tabular}{lll}
+Feld & Feldname & Bedeutung \\
+    1 & M       & wird auf 1 gesetzt wenn die Adresse manuell vergeben worden ist, andernfalls auf 0          \\
+    2 & ST    & Identifiziert um was es sich für eine ITS handelt       \\
+    3 & SCC   &   ITS-S Country Code        \\
+    4 & MID    &    erster Teil der MAC-Adresse       \\
+    5 & MID     &   zweiter Teil der MAC-Adresse        \\
+\end{tabular}
+\label{tab:formatgnwa}
+\end{table}
+
+Für das zweite Feld ST sind folgende Werte in \autoref{tab:typenspezi} spezifiziert.
+
+\begin{table}[h]
+\caption{Werte für Feld zwei der \acs{GNW} Adresse\cite{etsi302636-4-1}}
+\begin{tabular}{lll}
+Nummer & Bedeutung  \\
+    0 & Unknown \\
+    1 & Pedestrian \\
+    2 & Cyclist \\
+    3 & Moped \\
+    4 & Motorcycle \\
+    5 & Passenger Car \\
+    6 & Bus \\
+    7 & Light Truck \\
+    8 & Heavy Truck \\
+    9 & Trailer \\
+    10 & Special Vehicle \\
+    11 & Tram \\
+    15 & Road Side Unit \\
+\end{tabular}
+\label{tab:typenspezi}
+\end{table}
+
+
+ \begin{itemize}
+      	\item Geschwindigkeit
+	\item Heading
+	\item Geo. Position
+	\item Zeitstempel des Vektors
+	\item Genauigkeit des Vektors
+      \end{itemize}
 
 \subsubsection{Konfiguration der Adressen}
 \todo{siehe etsi Kapitel 9.2.1 duplicate address detection ist auch interessant}
+Um eine \acl{GNW} Adresse zu konfigurieren gibt es drei Vorgehensweisen. 
+
+\begin{enumerate}
+      	\item Auto-address configuration
+	\item Managed address configuration
+	\item Anonymous address configuration
+\end{enumerate}
+Für die beiden ersten Verfahren ist das Duplicate address detection verfahren vorgesehen um zu verhindern das Adressen mehrfach vorkommen.
+Bei dem ersten Verfahren wird die Adresse automatisch von dem Fahrzeug generiert und sollte im nachhinein nur noch bei Duplicate address detection geändert werden. 
+Managed address configuration stellt eine Anfrage an die ITS Networkung \& Transport Layer Management entity um seine Adresse zu konfigurieren. Hier darf die Adresse erneut von dem Fahrzeug angefordert werden oder die ITS Networkung \& Transport Layer Management entity sendet diesem eine neue. Das anonyme Verfahren erlaubt es dem Fahrzeug eine anonyme Adresse zu konfigurieren die von einer Sicherheitseinheit kontrolliert wird.\todo{wofür ist das anonyme verfahren? steht leider nix im etsi und soll man evtl noch was über die ITS Networkung \& Transport Layer Management entity schreiben?}
 
 \subsubsection{Duplicate address detection}
-Um zu gewährleisten das die \acl{GNW} Adresse tatsächlich einzigartig ist, kommt die Duplicate address detection zum Einsatz. Sobald ein Empfänger eine Nachricht erhält. Vergleicht er seine eigene \acl{GNW} Adresse mit der des Paketes und danach die beiden MAC Adressen. Bei Übereinstimmung fordert er eine neue MAC-Adresse an. Und teilt dem System mit das eine Doppelte Adresse vorgefunden wurde. 
+Um zu gewährleisten das die \acl{GNW} Adresse tatsächlich einzigartig ist, kommt die Duplicate address detection zum Einsatz. Sobald ein Empfänger eine Nachricht erhält. Vergleicht er seine eigene \acl{GNW} Adresse mit der des Paketes und danach die beiden MAC Adressen. Bei Übereinstimmung fordert er eine neue MAC-Adresse an. Und teilt dem System mit das eine Doppelte Adresse vorgefunden wurde. \cite{etsi302636-4-1}
 
 \subsection{Geo Unicast}
 Um einen einzelnen Knoten zu Adressieren wird der Geo Unicast spezifiziert. Die Autos die zwischen Sender und der Empfangseinheit liegen dienen als Zwischenstationen. Über den Geo Unicast werden Nachrichten entweder über einen Hop an das Ziel gesendet oder über Zwischenstationen mit mehreren Hops. Die Nachricht kann bei den Zwischenstationen verändert werden. Das heisst zwei oder mehr Nachrichten werden zu einer zusammengefasst bevor sie weitergesendet werden. Dieser Vorgang ist auch umgekehrt durchführbar, sodass eine Nachricht aufgeteilt werden kann. Der Inhalt der Nachricht kann ebenfalls verändert oder Informationen hinzugefügt werden. 
 
 \begin{figure}
-\includegraphics[width=0.99\textwidth]{content/images/03_networklayer/GeoUnicast.jpg}
+\includegraphics[width=0.99\textwidth]{content/images/03_networklayer/GeoUnicast.png}
 \caption{Geo Unicast \cite{etsi102636-1}}
 \label{fig:geounicast}
 \end{figure}
@@ -91,17 +151,26 @@ Um einen einzelnen Knoten zu Adressieren wird der Geo Unicast spezifiziert. Die 
 Der Topologically-scoped broadcast sendet einen Nachricht mit einem bestimmten Hop Count an alle um den Knoten erreichbaren Einheiten. Diese Nachricht wird dann von den Knoten empfangen, bei denen der Hop Count endet.
 
 \begin{figure}
-\includegraphics[width=0.99\textwidth]{content/images/03_networklayer/TSC.jpg}
+\includegraphics[width=0.99\textwidth]{content/images/03_networklayer/TSC.png}
 \caption{Topologically-scoped broadcast mit Hop Count 2 \cite{etsi102636-1}}
 \label{fig:tsc}
 \end{figure}
 
 
 \subsection{Geographically-scoped broadcast}
-Über den Geographically-scoped broadcast ist es einem Knoten möglich, um sich herum oder in einer bestimmten Entfernung zu sich selbst eine definierte Region zu erreichen. 
+Über den Geographically-scoped broadcast ist es einem Knoten möglich, um sich herum oder in einer bestimmten Entfernung zu sich selbst eine definierte Region zu erreichen. Dabei spielt die Anzahl der Hops keine Rolle und alle in dem Bereich liegenden Fahrzeuge sollen sich angesprochen fühlen.
 
 \begin{figure}
-\includegraphics[width=0.99\textwidth]{content/images/03_networklayer/GSB.jpg}
+\includegraphics[width=0.99\textwidth]{content/images/03_networklayer/GSB.png}
 \caption{geographically-scoped broadcast \cite{etsi102636-1}}
 \label{fig:gsb}
 \end{figure}
+
+\subsection{Geographical Scoped Anycast}
+Der Geographical Scoped Anycast ist ähnlich zu dem Geographically-scoped broadcast nur das hier die Nachricht nicht weitergeleitet wird sondern das Routing stoppt sobald ein Ziel innerhalb der Region die Nachricht empfangen hat.
+\begin{figure}
+\includegraphics[width=0.99\textwidth]{content/images/03_networklayer/GSA.png}
+\caption{geographically-scoped anycast \cite{etsi102636-1}}
+\label{fig:gsa}
+\end{figure}
+
