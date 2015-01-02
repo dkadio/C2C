@@ -4,9 +4,10 @@
 
 <<<<<<< HEAD
 %% Created for Christoph Drost at 2015-01-02 12:13:51 +0100 
-=======
 %% Created for deniz at 2015-01-02 13:14:35 +0100 
->>>>>>> Networklayer weiter gemacht
+=======
+%% Created for deniz at 2015-01-02 14:46:45 +0100 
+>>>>>>> manifest hinzugefügt
 
 
 %% Saved with string encoding Unicode (UTF-8) 
@@ -14,6 +15,13 @@
 
 
 <<<<<<< HEAD
+@article{etsi302636-4-1,
+	Author = {ETSI, EN},
+	Date-Added = {2015-01-02 12:13:49 +0000},
+	Date-Modified = {2015-01-02 12:14:32 +0000},
+	Title = {ETSI EN 302 636-4-1 V1.2.1},
+	Year = {2014}}
+
 @inproceedings{EURECOM+3205,
 	Address = {{K}yoto, {JAPON}},
 	Author = {{W}etterwald, {M}ichelle and {H}rizi, {F}atma and {C}ataldi, {P}asquale},
@@ -25,6 +33,14 @@
 	Url = {http://www.eurecom.fr/publication/3205},
 	Year = {2010},
 	Bdsk-Url-1 = {http://www.eurecom.fr/publication/3205}}
+=======
+@article{C2C-manifesto,
+	Author = {CAR 2 CAR Communication Consortium},
+	Date-Added = {2015-01-02 13:45:47 +0000},
+	Date-Modified = {2015-01-02 13:46:45 +0000},
+	Title = {Manifesto},
+	Year = {2007}}
+>>>>>>> manifest hinzugefügt
 
 @manual{etsi102687,
 	Author = {{ETSI, TS}},
@@ -43,14 +59,16 @@
 	Organization = {{European Telecommunications Standards Institute}},
 	Title = {{Intelligent Transport Systems (ITS); Access layer specification for Intelligent Transport Systems operating in the 5 GHz frequency band}},
 	Year = {2012}}
+<<<<<<< HEAD
 =======
+
 @article{etsi302636-4-1,
 	Author = {ETSI, EN},
 	Date-Added = {2015-01-02 12:13:49 +0000},
 	Date-Modified = {2015-01-02 12:14:32 +0000},
 	Title = {ETSI EN 302 636-4-1 V1.2.1},
 	Year = {2014}}
->>>>>>> Networklayer weiter gemacht
+>>>>>>> manifest hinzugefügt
 
 @manual{etsi102723-2,
 	Author = {{ETSI, TS}},
