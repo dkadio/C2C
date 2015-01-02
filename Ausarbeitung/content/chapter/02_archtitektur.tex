@@ -178,6 +178,7 @@ In der  \autoref{fig:architektur_managementLayer} ist der Management Layer mit s
 \ac{ITS} Service Adverticement ist der Mechanismus, mit dem eine \ac{ITS} Station \ac{ITS} Services erkennen kann. Bei diesem Mechanismus macht eine \ac{ITS} Station, in dem Fall der Service Provider, aktiv ihre Services anderen \ac{ITS} Stations, in dem Fall Service User, bekannt. Eine Möglichkeit, die Services bekannt zu machen ist das FAST Service Advertisement. Es ist im Standard ISO/IEC 24102 definiert und eignet sich für die Luftschnittstelle mit lediglich einem Hop. Beim FAST Service Advertisement wird ein Advertisement Manager benötigt. Dieser empfängt die Service Adverticements von den anderen Service Providern und sendet die Service Adverticements der eigenen \ac{ITS} Station in regelmäßigen Abständen aus.
 
 Für das Aussenden von Service Advertisements gibt es \ac{SAM}. \autoref{architektur_darstellungSAMHeader} zeigt den Aufbau einer \ac{SAM}. Sie besteht aus einem Header und einem Body. Der Header enthält die Elemente:
+
 \begin{itemize}
 	\item samID: Identifiziert die \ac{SAM}
 	\item Version: Die Versionsnummer der \ac{SAM}
@@ -194,13 +195,56 @@ Der Body enthält die folgenden Elemente:
 
 \begin{figure}[h]
 	\begin{bytefield}{40}
-		\wordbox{1}{SAM} \\
+		\wordbox{1}{Service Advertisement Message SAM} \\
 		\bitbox{16}{Header} & \bitbox{24}{Body} \\
 		\bitbox{4}{samID} & \bitbox{4}{Version} & \bitbox{8}{stationID} & \bitbox{8}{serviceList} & \bitbox{8}{channelList} & \bitbox{8}{ipServList}
 		\end{bytefield}
 	\label{architektur_darstellungSAMHeader}
 \end{figure}
 
+Der Service User beantwortet die \ac{SAM} mit einer \ac{CTX}. Die \ac{CTX} ist ähnlich aufgebaut wie die \ac{SAM}. In der \autoref{architektur_darstellungCTXHeader} ist eine \ac{CTX} dargestellt.
+
+\begin{figure}[h]
+	\begin{bytefield}{32}
+		\wordbox{1}{Context Message CTX} \\
+		\bitbox{16}{Header} & \bitbox{16}{Body} \\
+		\bitbox{4}{ctxID} & \bitbox{4}{Version} & \bitbox{8}{clientID} & \bitbox{8}{servContext\-List} & \bitbox{8}{ipContext\-List}
+		\end{bytefield}
+	\label{architektur_darstellungCTXHeader}
+\end{figure}
+
+Der Header der \ac{CTX} entspricht dem einer \ac{SAM}. Hier wird aber anstatt der \ac{ID} des Providers die \ac{ID} des Clients mitgesendet. Im Body unterscheiden sich die Nachrichten. 
+
+Die Body Inhalte einer \ac{CTX}:
+\begin{itemize}
+	\item servContextList: Informationen über den Service Kontext, der beim Service User verfügbar ist. Kann als Antwort auf einen angebotenen Service in der serviceList der \ac{SAM} vorliegen.
+	\item ipContextList: Informationen über Service Kontexte, die beim Service User verfügbar sind und IPv6 benötigen. Kann als Antwort auf einen Service, der in der ipServList der \ac{SAM} angeboten wurde vorliegen.
+\end{itemize}  
+
+Das Bekanntmachen von Services kann auf zwei Arten erfolgen. Die Möglichkeiten unterscheiden sich darin, dass bei der ersten Möglichkeit die \ac{SAM} vom Service User mit einer \ac{CTX} beantwortet wird. Bei der zweiten Möglichkeit wird die \ac{SAM} nicht beantwortet. Grundsätzlich laufen die Möglichkeiten aber gleich ab.  
+
+Die Kommunikation zwischen User und Provider kann man in zwei Phasen aufteilen. Die Service Initialization Phase und die Service Operation Phase.
+
+Der Zweck der Service Invitation Phase ist es die Session aufzubauen. Dabei wird der Service User mit einer \ac{SAM} eingeladen. Während der Service Invitation Phase wird zwischen den beschriebenen Möglichkeiten unterschieden. Ob eine \ac{SAM} von einer \ac{CTX} bestätigt wird, hängt davon ab, ob es sich beim Service User um eine \ac{ITS} application class oder eine \ac{ITS} application handelt. Der Unterschied zwischen \ac{ITS} Application Class und \ac{ITS} Application ist, dass von einem Application Objekt mehrere Kontexte existieren können. Jeder Kontext kann auf eine \ac{ITS} Application referenziert werden. Bei der Übertragung wird der Unterschied durch  den \ac{ASN.1} Typ \glqq DSRCapplicationEntityID\grqq~als Markierung deutlich gemacht. 
+
+Bei der Einladung von Application Classes wird die \ac{SAM} durch eine \ac{CTX} bestätigt. Bei Applications wird keine \ac{CTX} versendet. Die Service Invitation Phase wird als erfolgreich angesehen, sobald das erste \glqq REQUW\grqq~oder \glqq REQN\grqq~versendet wird. 
+
+Nach der erfolgreichen Service Invitation Phase folgt die Service Operation Phase. \todo{rausfinden, was in dieser Phase statt findet}
+\begin{figure} 
+  \centering 
+   \subfigure[Ohne Bestätigung durch CTX] {\includegraphics[width=0.45\textwidth]{content/images/02_architektur/serviceAdvertisementInit.pdf}}\qquad 
+   \subfigure[Mit Bestätigung durch CTX]{ \includegraphics[width=0.45\textwidth]{content/images/02_architektur/serviceAdvertisementInitCTX.pdf}}
+  \caption{Ablauf der Phasen des Fast Service Advertisement Protocol \cite{iso24102-5}} 
+  \label{fig:architektur_ablaufPhasen}
+\end{figure}
+\todo{Prüfen, warum die Pfeile bei den Verbindungen genau umgekehrt sind}
+
+In \autoref{fig:architektur_ablaufPhasen} wird der Ablauf der Phasen darstellt. Die einzelnen Schritte der Kommunikation bedeuten ausgeschrieben:
+\begin{itemize}
+	\item Request with no response expected (REQN)
+	\item Request with response expected (REQW)
+	\item Response to a request (RES)
+\end{itemize}
 
 Beschrieben in \cite{etsi102723-2}
 
@@ -225,6 +269,7 @@ Beschrieben in \cite{etsi102723-2}
 \section{Data Security}
 
 \section{Verwendete Protokolle}
+
 
 
 
