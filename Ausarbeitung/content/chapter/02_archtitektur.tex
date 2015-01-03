@@ -278,7 +278,11 @@ Aus diesen Anforderungen lässt sich herauslesen, dass das Vermeiden von Staus d
 
 Für die Kommunikation mit mehreren Layern sind in der  \ac{DCC} Architektur vier Komponenten definiert. Die Komponenten sind mit den \ac{DCC} Interfaces verbunden, die selber auf den Interfaces der Layer zugeordnet werden. Die Komponenten werden in den Layern erklärt, in denen sie liegen. 
 
-Die DCCmgmt Komponente ist im Management Layer angeordnet. Sie übernimmt hauptsächlich 
+Die DCCmgmt Komponente ist im Management Layer angeordnet. Sie übernimmt dort die Cross Funktionalität und steuert die anderen Komponenten. Dazu hat sie Unterkomponenten.
+
+Eine Unterkomponente der DCCmgmt Komponente ist die DCC\_CROSS\_Facilities. 
+
+\crap{Vergleiche die Bilder 101 612 S. 11 und \autoref{fig:architektur_dccArchitektur}}
 
 
 
