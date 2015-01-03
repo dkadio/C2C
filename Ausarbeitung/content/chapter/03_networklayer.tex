@@ -9,7 +9,7 @@ Da sich die Topologie des C2C-Netzes ständig ändert, da die Knoten sich nicht 
 Im folgenden werden die einzelnen Komponenten des Networklayers genauer erläutert. Dazu wird darauf eingegangen aus welchen Komponenten der Layer besteht und wie die einzelnen Komponenten arbeiten und welche Aufgaben sie erfüllen.
 \begin{figure}
 \includegraphics[width=0.99\textwidth]{content/images/03_networklayer/networklayer.jpg}
-\caption{Die Komponenten des Networklayers}
+\caption{Die Komponenten des Networklayers\cite{C2C-manifesto}}
 \label{fig:nwl}
 \end{figure}
 Wie auf \autoref{fig:nwl} zu sehen befindet sich der Networklayer zwischen dem Aplicationlayer und dem Logical Link Control oder MAC-Layer. Das Protokoll das auf dem MAC-Layer läuft ist das, in der WLAN-Technik häufig genutzte CSMA/CA, das als bekannt vorausgesetzt wird. Es wird verwendet da sich mehrere Kommunikationseinheiten das selbe Medium teilen und es daher zu Kollisionen kommen kann. 
@@ -63,6 +63,7 @@ Da die Paketdichte in einem C2C-Netz sehr hoch werden kann und es zu Überläufe
 
 \section{Congestion Control\label{sec:congestioncontrol}}
 \todo{Hier nochmal nachhacken ob es tatsächlich keine lösung gibt}
+\todo{Ja, die gibts, nennt sich \ac{DCC} und wird im Management Layer erklärt}
 Noch ungeklärt sind die Transport- und Überlastungskontrolle. Offen sind Fragen bzgl. fehlerfreiem Transport (single protocol/multiple protocols), Prioritäten von Datenpacketen, Datenaggregation und Payloadgröße. Ausfallsicherheit (connection-free/conncetion-less), Forwarding (end-to-end Prinzip), Transportarten (unicast/broadcast), Fairness, Komplexität, Multiplexing sowie Verzögerungen und Ortsgültigkeit sind auch zu klären.Es bleibt abzuwarten, wie mit den Problemen umgegangen wird. Auf Grund der vielen Anforderungen muss höchste Sorgfalt in die Entwicklung gelegt werden. Eine Herausforderung ist z.B. die Frage der Ortsgültigkeit. Unter Ortsgültigkeit ist zu verstehen, wie lange eine Nachricht in einer bestimmten Region bei der sich schnell ändernden Netzwerktopologie gültig bleibt, oder als veraltet verworfen wird.
 
 \section{Geo Routing\label{sec:georouting}}

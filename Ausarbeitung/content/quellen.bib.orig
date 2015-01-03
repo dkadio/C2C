@@ -3,10 +3,11 @@
 
 
 <<<<<<< HEAD
-%% Created for Christoph Drost at 2014-12-29 13:09:58 +0100 
+%% Created for Christoph Drost at 2015-01-02 12:13:51 +0100 
+%% Created for deniz at 2015-01-02 13:14:35 +0100 
 =======
-%% Created for deniz at 2014-12-29 15:18:43 +0100 
->>>>>>> decea2453f9286d1739ad33235d677f64255bf41
+%% Created for deniz at 2015-01-02 14:46:45 +0100 
+>>>>>>> manifest hinzugefügt
 
 
 %% Saved with string encoding Unicode (UTF-8) 
@@ -14,18 +15,87 @@
 
 
 <<<<<<< HEAD
-@article{etsi302636-3,
+@article{etsi302636-4-1,
+	Author = {ETSI, EN},
+	Date-Added = {2015-01-02 12:13:49 +0000},
+	Date-Modified = {2015-01-02 12:14:32 +0000},
+	Title = {ETSI EN 302 636-4-1 V1.2.1},
+	Year = {2014}}
+
+@inproceedings{EURECOM+3205,
+	Address = {{K}yoto, {JAPON}},
+	Author = {{W}etterwald, {M}ichelle and {H}rizi, {F}atma and {C}ataldi, {P}asquale},
+	Booktitle = {{ITST} 2010, 10th {IEEE} {I}nternational {C}onference on {ITS} {T}elecommunications, {N}ovember 9-11, {K}yoto, {J}apan},
+	Date-Added = {2015-01-02 10:57:28 +0000},
+	Date-Modified = {2015-01-02 10:57:28 +0000},
+	Month = {11},
+	Title = {{C}ross-layer identities management in {ITS} stations},
+	Url = {http://www.eurecom.fr/publication/3205},
+	Year = {2010},
+	Bdsk-Url-1 = {http://www.eurecom.fr/publication/3205}}
+=======
+@article{C2C-manifesto,
+	Author = {CAR 2 CAR Communication Consortium},
+	Date-Added = {2015-01-02 13:45:47 +0000},
+	Date-Modified = {2015-01-02 13:46:45 +0000},
+	Title = {Manifesto},
+	Year = {2007}}
+>>>>>>> manifest hinzugefügt
+
+@manual{etsi102687,
+	Author = {{ETSI, TS}},
+	Date-Added = {2014-12-30 20:30:46 +0000},
+	Date-Modified = {2014-12-30 20:31:45 +0000},
+	Month = {jul},
+	Organization = {{European Telecommunications Standards Institute}},
+	Title = {{Intelligent Transport Systems (ITS); Decentralized Congestion Control Mechanisms for Intelligent Transport Systems operating in the 5 GHz range; Access layer part}},
+	Year = {2011}}
+
+@manual{etsi302663,
 	Author = {{ETSI, EN}},
-	Date-Added = {2014-12-29 12:07:14 +0000},
-	Date-Modified = {2014-12-29 12:09:53 +0000},
-	Edition = {v1.1.2 (2014-03)},
-	Journal = {{Intelligent Transport Systems (ITS)}},
-	Organization = {ETSI},
+	Date-Added = {2014-12-30 20:06:16 +0000},
+	Date-Modified = {2014-12-30 20:07:30 +0000},
+	Month = {nov},
+	Organization = {{European Telecommunications Standards Institute}},
+	Title = {{Intelligent Transport Systems (ITS); Access layer specification for Intelligent Transport Systems operating in the 5 GHz frequency band}},
+	Year = {2012}}
+<<<<<<< HEAD
+=======
+
+@article{etsi302636-4-1,
+	Author = {ETSI, EN},
+	Date-Added = {2015-01-02 12:13:49 +0000},
+	Date-Modified = {2015-01-02 12:14:32 +0000},
+	Title = {ETSI EN 302 636-4-1 V1.2.1},
+	Year = {2014}}
+>>>>>>> manifest hinzugefügt
+
+@manual{etsi102723-2,
+	Author = {{ETSI, TS}},
+	Date-Added = {2014-12-30 08:13:11 +0000},
+	Date-Modified = {2014-12-30 08:14:19 +0000},
+	Month = {nov},
+	Organization = {{European Telecommunications Standards Institute}},
+	Title = {{Intelligent Transport Systems (ITS); OSI cross-layer topics; Part 2: Management information base}},
+	Year = {2012}}
+
+@manual{etsi102636-3,
+	Author = {{ETSI, TS}},
+	Date-Added = {2014-12-29 16:31:23 +0000},
+	Date-Modified = {2014-12-29 16:32:59 +0000},
+	Month = {March},
+	Organization = {{European Telecommunications Standards Institute}},
+	Title = {{Intelligent Transport Systems (ITS); Vehicular Communications; GeoNetworking; Part 3: Network architecture}},
+	Year = {2010}}
+
+@article{etsi302636-3,
+	Author = {ETSI, EN},
+	Date-Added = {2014-12-29 15:28:46 +0000},
+	Date-Modified = {2014-12-29 15:31:05 +0000},
+	Edition = {V1.1.2 (2014-03)},
 	Title = {{Intelligent Transport Systems (ITS); Vehicular Communications; GeoNetworking; Part 3: Network Architecture}},
 	Year = {2014}}
 
-=======
->>>>>>> decea2453f9286d1739ad33235d677f64255bf41
 @article{etsi102636-1,
 	Author = {ETSI, EN},
 	Date-Added = {2014-12-29 14:17:19 +0000},
@@ -42,23 +112,10 @@
 	Title = {Seminar Sommersemester 2009 Automotive Konzepte und Techniken},
 	Year = {2009}}
 
-<<<<<<< HEAD
-@article{etsi302636-3,
-	Author = {{ETSI, EN}},
-	Date-Added = {2014-12-29 12:07:14 +0000},
-	Date-Modified = {2014-12-29 12:09:53 +0000},
-	Edition = {v1.1.2 (2014-03)},
-	Journal = {{Intelligent Transport Systems (ITS)}},
-	Organization = {ETSI},
-	Title = {{Intelligent Transport Systems (ITS); Vehicular Communications; GeoNetworking; Part 3: Network Architecture}},
-	Year = {2014}}
-
-=======
->>>>>>> decea2453f9286d1739ad33235d677f64255bf41
-@article{etsi1027232,
+@article{etsi1026363,
 	Author = {ETSI, EN},
 	Date-Added = {2014-12-29 10:43:09 +0000},
-	Date-Modified = {2014-12-29 10:45:12 +0000},
+	Date-Modified = {2014-12-29 16:29:32 +0000},
 	Journal = {Intelligent Transport Systems (ITS)},
 	Title = {{Intelligent Transport Systems (ITS); OSI cross-layer topics; Part 2: Management information base}},
 	Year = {2012}}
