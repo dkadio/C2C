@@ -123,6 +123,8 @@ Die Grafik \ref{fig:architektur_accessLayer} entspricht des untersten Layer der 
 Im Access Layer finden eine Periodisierung und eine Aufteilung des Datenverkehrs in Logic Channels statt. Diese Aufgaben werden mit verschiedenen Ansätzen gelöst. Deswegen sind sie keinem Sublayer genau zuzuordnen, sondern müssen in der Beschreibung der Sublayer gesondert betrachtet werden.
 
 
+Eine Funktion des Access Layers ist das im Abschnitt \ref{architektur_dcc} beschriebene \ac{DCC}. Hier finden die Mechanismen Transmit Power Control (TPC), \ac{DCC} sensitivity control (DSC), Transit rate control (TRC), transmit datarate control (TDC) und DCC access control (TAC) statt. TPC regelt die Auslastung der Kanäle. Dazu werden Grenzen definiert, die TPC überwacht und einhält. TRC überwacht die Zeiten von Datenpaketen. Dazu gehören beispielsweise die Latenz eines Pakets aber auch die Intervalle zwischen Paketen. TDC überwacht die reine Datenrate eines Channels. Dabei wird nicht nur die maximale Datenrate überwacht, es wird auch beispielsweise die minimale Datenrate überwacht. DSC überwacht, ob der Sender bereit zum Senden ist. Dazu wird anhand von definierten Grenzwerten gemessen, ob der Sender am Senden ist oder nicht. TAC regelt den Kanalzugriff. \todo{Kanalzugriff erklären, wenn ich weiß, was Kanäle sind. Quelle für TAC: \cite{etsi102687}}
+
 \subsubsection{Physical Layer (PHY)}
 Der Physical Sublayer verbindet physikalisch zu dem Kommunikationsmedium.
 
@@ -199,6 +201,7 @@ Der Body enthält die folgenden Elemente:
 		\bitbox{16}{Header} & \bitbox{24}{Body} \\
 		\bitbox{4}{samID} & \bitbox{4}{Version} & \bitbox{8}{stationID} & \bitbox{8}{serviceList} & \bitbox{8}{channelList} & \bitbox{8}{ipServList}
 		\end{bytefield}
+	\caption{Darstellung eines SAM Pakets}
 	\label{architektur_darstellungSAMHeader}
 \end{figure}
 
@@ -210,6 +213,7 @@ Der Service User beantwortet die \ac{SAM} mit einer \ac{CTX}. Die \ac{CTX} ist �
 		\bitbox{16}{Header} & \bitbox{16}{Body} \\
 		\bitbox{4}{ctxID} & \bitbox{4}{Version} & \bitbox{8}{clientID} & \bitbox{8}{servContext\-List} & \bitbox{8}{ipContext\-List}
 		\end{bytefield}
+	\caption{Darstellung eines CTX Pakets}
 	\label{architektur_darstellungCTXHeader}
 \end{figure}
 
@@ -251,9 +255,9 @@ Beschrieben in \cite{etsi102723-2}
 \todo{Management Layer genauer beschreiben}
 
 \todo{DCC genauer erklären und Text anpassen}
-\subsubsection{Decentralizied Congestion Control}
 
-\ac{DCC} erreicht seine Aufgaben durch die Nutzung des Management Layers \ref{architektur_managementLayer}. Dafür sind in der \ac{DCC} Architektur vier Komponenten definiert. Diese bedeuten jeweils eine Schnittstelle in die entsprechenden Layer. Dadurch müssen nicht, wie beispielsweise bei IEEE 802.11, Daten einfach abgeschnitten werden, sondern es besteht die Möglichkeit die Erzeuger zu bremsen. Auf diese Art sind die Anforderungen Latenz und Zuverlässigkeit vereinbar.  Dem Standard \cite{etsi102687} sind folgende Anforderungen an \ac{DCC} zu entnehmen:
+\subsubsection{Decentralizied Congestion Control\label{architektur_dcc}}
+Congestion lässt sich aus dem Englischen mit Stau übersetzen. \ac{DCC} ist ein Mechanismus, der verhindern soll, dass Staus auftreten. Besonders bei \ac{ITS} Anwendungen kommt es auf zuverlässige und Übertragungswege an. Es werden hohe Anforderungen an die Verfügbarkeit und die Latenzen der Übertragungen gestellt. An Luftschnittstellen sind diese Anforderungen ohne eine Komponente wie \ac{DCC} kaum zu erfüllen. eine Der Standard \cite{etsi102687} definiert folgende Anforderungen an \ac{DCC}:
 \begin{itemize}
 	\item Eine faire Verteilung von Ressourcen und ein fairer Kanalzugriff zwischen allen \ac{ITS} Stationen in der gleichen Kommunikationszone
 	\item Die Auslastung der Kanäle muss unter vordefinierten Werten bleiben. Dies muss durch eine periodische Messung sicher gestellt werden
@@ -262,6 +266,21 @@ Beschrieben in \cite{etsi102723-2}
 	\item Die Änderungen in den Kontrollschleifen müssen in den definierten Grenzen bleiben
 	\item Es muss den spezifischen Systemanforderungen, beispielsweise Zuverlässigkeit, entsprechen
 \end{itemize}
+
+Aus diesen Anforderungen lässt sich herauslesen, dass das Vermeiden von Staus durch mehrere Mechanismen realisiert wird. Eine wichtige Eigenschaft von \ac{DCC} ist, dass es im Management Layer angesiedelt ist. Diese Tatsache ermöglicht es \ac{DCC} seine Aufgaben parallel in mehreren Layern zu realisieren. Die \ref{fig:architektur_dccArchitektur} zeigt die Architektur von \ac{DCC}. Die Abbildung zeigt den \ac{ITS} Protokoll Stack in den die \ac{DCC} Komponenten und Interfaces eingezeichnet sind. Der Vorteil dass die Layer vernetzt sind ist, dass der Stau wirklich vermieden werden kann und nicht nur die Auswirkungen des Staus behandelt werden müssen. Ein Beispiel dafür ist, dass \ac{DCC} das Trafficaufkommen bereits im Network Layer an das Medium anpassen und einzelne Dienste priorisieren kann. IEEE 802.11 beispielsweise muss bei einer Überlast, bzw. einem Pufferüberlauf, Frames verwerfen. Dieses Verwerfen muss durch Protokolle höherer Layer abgefangen werden und führt aufgrund von Retransmissions zu höheren Latenzen und einer ingesamt höheren Netzwerkauslastung. 
+\todo{Stimmt das mit dem Verwerfen eigentlich?}
+
+\begin{figure}
+	\includegraphics[width=0.75\textwidth]{content/images/02_architektur/dccArchitektur.pdf}
+	\caption{Die Architektur von DCC \cite{etsi102687}}
+	\label{fig:architektur_dccArchitektur}
+\end{figure}
+
+Für die Kommunikation mit mehreren Layern sind in der  \ac{DCC} Architektur vier Komponenten definiert. Die Komponenten sind mit den \ac{DCC} Interfaces verbunden, die selber auf den Interfaces der Layer zugeordnet werden. Die Komponenten werden in den Layern erklärt, in denen sie liegen. 
+
+Die DCCmgmt Komponente ist im Management Layer angeordnet. \todo{In jeden Layer was zu DCC schreiben}
+
+
 
 \subsection{Security Layer \label{architektur_securityLayer}}
 
