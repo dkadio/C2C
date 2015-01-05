@@ -118,13 +118,13 @@ Der Access Layer ist nicht auf ein bestimmtes Übertragungsprotokoll festgelegt.
 Der folgende Abschnitt beschreibt den Access Layer und legt G5 zugrunde.
  
 \begin{figure}
-	%\includegraphics[width=0.75\textwidth]{content/images/02_architektur/accessLayer.pdf}
-	\missingfigure{Access Layer Bild noch aus dem Standard 302 665 herauskopieren }
-	\caption{Darstellung des ITS G5 Access Layers \cite{etsi302663}}
+	\includegraphics[width=0.75\textwidth]{content/images/02_architektur/accessLayer.pdf}
+	%\missingfigure{Access Layer Bild noch aus dem Standard 302 665 herauskopieren }
+	\caption{Darstellung des ITS G5 Access Layers \\cite{en302665}}
 	\label{fig:architektur_accessLayer}
 \end{figure}
 
-Die Grafik \ref{fig:architektur_accessLayer} entspricht des untersten Layer der Grafik \ref{fig:funktionsweise_referenceArchitecture}. In der Grafik ist zu erkennen, dass der Access Layer zwei \ac{SAP} besitzt.
+Die Grafik \ref{fig:architektur_accessLayer} entspricht des untersten Layer der Grafik \ref{fig:funktionsweise_referenceArchitecture}. In der Grafik ist zu erkennen, dass der Access Layer drei Interfaces besitzt. Er hat Interfaces zu den Cross Layern und dem Network \& Transport Layer.
 
 
 Im Access Layer finden eine Periodisierung und eine Aufteilung des Datenverkehrs in Logic Channels statt. Diese Aufgaben werden mit verschiedenen Ansätzen gelöst. Deswegen sind sie keinem Sublayer genau zuzuordnen, sondern müssen in der Beschreibung der Sublayer gesondert betrachtet werden.
@@ -385,7 +385,7 @@ Allow remote activation and deactivation of ITS-S & ITS-S Remote Management Repo
  \end{longtable}
 \autoref{tab:architektur_tabelleSicherheitsmassnahmen} stammt aus dem Standard \cite{ts102731}. Dort werden die Maßnahmen zusammengefasst, die benötigt werden um sie zu erreichen. \glqq First Level\grqq~sind die Security Services, die direkt von den Anwendungen oder anderen Komponenten aufgerufen werden.  \glqq Lower Level\grqq~Services sind die, die von anderen Security Services aufgerufen werden.
 
-\subsection{ITS Authoritative Hierarchy}
+\subsection{ITS Authoritative Hierarchy \label{architektur_itsAuthoriativeHierarchy}}
 Die ITS Authoritative Hierarchy beschreibt, wer eine Rolle bei der Verwaltung der Sicherheit übernehmen kann. 
 
 Die Hersteller von \ac{ITS} Stations unterstützen die regionalen Autorisierungsstellen indem sie die Identitäten der \ac{ITS} Stations verwalten. Dazu sollen sie ihnen während der Fertigung eine weltweite einzigartige Identität geben. Diese Identität soll  in Form eines Oktett Strings sein. Sie soll während der gesamten Lebensdauer gültig sein.\todo{Was will man da mit einem Oktett? Das sind 256 ITS Stations....  Original in ts 102 731: During the manufacturing process an ITS-S shall receive a globally unique canonical identity in the form of an octet string. It shall persist for the operational lifetime of the ITS-S.}
@@ -423,7 +423,16 @@ Bei den in \ac{ITS} versendeten Nachrichten müssen aus Sicht der Sicherheit dre
 
 Der erste Typ ist die \glqq Individual public message\grqq~Dieser Typ wird per Broadcast an andere \ac{ITS} Stations versendet. Da es sich um eine Broadcast Nachricht handelt, ist eine Verschlüsselung nicht nötig. Um zu verhindern, dass mit dieser Nachricht Fehlinformationen übertragen werden muss sie lediglich signiert werden. Der Standard \cite{ts102731} nennt für diesen Typ von Nachricht die Schlagwörter: authorization, authentication und integrity. Damit wird ausgedrückt, dass die sendende \ac{iTS} Station im System legitimiert sein muss, die Nachricht wird als Schutz gegen Verfälschungen und fehlerhafte Nachrichten von Angreifern aber signiert.
 
-   
+Der zweite Typ ist die \glqq    Individual private message\grqq~. Sie wird an eine bestimmte \ac{ITS} Station verschickt. Da hier kein Broadcast vorliegt, macht es auch Sinn diese Nachricht zu verschlüsseln. Der Standard nennt zu diesem Nachrichtentyp die Schlüsselwörter require authorization, authentication, integrity, privacy und confidentiality. Diese Schlüsselwörter erweitern die Schlüsselwörter der \glqq Individual public message\grqq~um den Faktor, dass der Inhalt von Dritten nicht mitgelesen darf. Aus diesem Grund findet zusätzlich eine Verschlüsselung der Nachricht statt.
+
+Als drittes sind die \glqq Security Associations\grqq zu nennen. Sie werden zwischen zwei oder mehreren \ac{ITS} Stations aufgebaut und beinhalten einen Satz von Krypto Algorithmen, Schlüsseln und andere private und öffentliche Parameter. Sie werden genutzt um eine Ende zu Ende Verbindung aufzubauen.  Der Standard nennt die Schlüsselwörter confidentiality, authentication und integrity.  Diese entsprechen prinzipiell den Schlüsselwörtern der \glqq    Individual private message\grqq. Diese Verbindungen können auf andere autorisierte Teilnehmer dupliziert werden. Jeder Teilnehmer kann mehrere sichere Verbindungen haben. Wenn de sichere Verbindung aufgebaut wird, sollen die Zertifikate und die Kryptowerkzeuge die mit den sicheren Verbindungen verknüpft sind genutzt werden. Die sichere Verbindung soll ab und zu neu verhandelt werden. 
+
+Die beschriebenen Nachrichtentypen benötigen Zertifikate. In \ac{ITS} sind zwei verschiedne Sorten von Zertifikaten definiert. Es gibt ein \glqq  authorization ticket\grqq. Es ist als ein Datenobjekt beschrieben, dass bestätigt, dass der gültige Inhaber berechtigt ist, verschiedene Aktionen auszuführen. Es wird von der ITS Autorisierungsstelle\ref{architektur_itsAuthoriativeHierarchy} ausgestellt. Die zweite Sorte Zertifikat ist das \glqq enrolment credential\grqq. Es wird als ein Datenobjekt das im Nachrichtenaustausch zwischen \ac{ITS} Stationen und Security Einheiten genutzt und beweist, dass der gültige Inhaber berechtigt ist, authorization tickets anzufragen. Es wird von der Zertifikatsstelle ausgestellt. Die folgenden Abschnitte erläutern wie die Verarbeitung der Zertifikate statt findet.
+
+\subsubsection{Enrolment Credentials}
+Enrolment Credentials können ausgestellt, erneuert und gelöscht werden. 
+
+
 
 \section{Verwendete Protokolle}
 
