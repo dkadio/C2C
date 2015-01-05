@@ -18,7 +18,7 @@ Zusätzlich zu den hier beschriebenen Netzwerken kann eine \ac{ITS} Station ein 
 	\label{fig:architektur_ueberblickNetzwerke}
 \end{figure}
 
-\section{Übersicht über die verschiedenen Netzwerke}
+\section{Übersicht über die verschiedenen Netzwerke \label{architektur_ueberblickNetzwerke}}
 Dieser Abschnitt soll lediglich eine Übersicht über die verwendeten Netzwerke geben. Eine weitere Erklärung der Netzwerke findet an dieser Stelle nicht statt und ist nicht Gegenstand dieser Ausarbeitung. Die Netzwerke dürfen auch nicht isoliert betrachtet werden. Im Abschnitt \ref{funktionsweise_funktionaleKomponenten} wurden funktionale Komponenten mit Routingfunktionalitäten vorgestellt. Diese können die Netze und somit ihre Vorteile, bzw. ihre Dienste, miteinander verbinden.
 
 Selbstverständlich benötigen die \ac{ITS} Stations Zugang zu einem der im Folgenden aufgeführten Netze. Der Zugang zum Core Network \ref{achitektur_coreNetwork} erfolgt über eins der anderen Netze. 
@@ -80,6 +80,13 @@ Die \ac{ITS} Station Reference Architecture unterscheidet sich grundlegend von b
 	\item Die Standards beziehen die Layer auf die \ac{OSI} Layer. 
 \end{itemize}
 
+Der direkte Vergleich mit dem \ac{OSI} Modell und die Zuordnung der Layer wird in \autoref{fig:architektur_vergleichItsOsi} deutlich.
+
+\begin{figure}[h]
+	\includegraphics[width=0.99\textwidth]{content/images/02_architektur/vergleichITS-OSI.pdf}
+	\caption{Der Vergleich zwischen ITS und OSI \cite{ts102940}}
+	\label{fig:architektur_vergleichItsOsi}
+\end{figure}
 
 Obwohl das \ac{ITS} Station Reference Protocol bei der Entwicklung an das \ac{OSI} Modell angelehnt wurde gibt es jedoch einen gravierenden Unterschied: In der \ac{ITS} Station Reference Architecture sind Cross Layer vorgesehen. Das \ac{OSI} Referenzmodell ist wasserfallartig aufgebaut. Das bedeutet, dass die einzelnen Layer übereinander angeordnet sind. Jeder Layer hat jeweils nur zu dem direkt über- und unterliegenden Layer eine Schnittstelle. Cross Layer sind Layer, die in mehrere dieser Schichten Schnittstellen haben. Sie erweitern die vorhanden Layer in horizontaler Richtung. Im Fall der \ac{ITS} Station Reference Architecture sind das die Layer \glqq Management\grqq~ und \glqq Security\grqq. Sie haben Schnittstellen, bzw. Primitiven in alle anderen Layer. 
 
@@ -278,14 +285,138 @@ Aus diesen Anforderungen lässt sich herauslesen, dass das Vermeiden von Staus d
 
 Für die Kommunikation mit mehreren Layern sind in der  \ac{DCC} Architektur vier Komponenten definiert. Die Komponenten sind mit den \ac{DCC} Interfaces verbunden, die selber auf den Interfaces der Layer zugeordnet werden. Die Komponenten werden in den Layern erklärt, in denen sie liegen. 
 
-Die DCCmgmt Komponente ist im Management Layer angeordnet. \todo{In jeden Layer was zu DCC schreiben}
+Die DCCmgmt Komponente ist im Management Layer angeordnet. Sie übernimmt dort die Cross Funktionalität und steuert die anderen Komponenten. Dazu hat sie Unterkomponenten.
+
+Eine Unterkomponente der DCCmgmt Komponente ist die DCC\_CROSS\_Facilities. 
+
+\crap{Vergleiche die Bilder 101 612 S. 11 und \autoref{fig:architektur_dccArchitektur}}
 
 
 
 \subsection{Security Layer \label{architektur_securityLayer}}
+Der Security Layer ist ein Cross Layer der \ac{ITS} Architektur. Er sorgt für die Sicherheit im \ac{ITS} System. Er hat Interfaces in alle anderen Layer. 	\todo{Noch schreiben was der Security Layer genau macht} 
 
+\section{Data Security\label{architektur_dataSecurity}}
+Der Begriff Security umfasst in \ac{ITS} verschiedene Bereiche der Sicherheit. Im \ac{ITS} Netz muss sichergestellt werden, dass die Nachrichten für die berechtigten Teilnehmer lesbar sind, für den unberechtigten Teilnehmer aber nicht. Dabei ist zu beachten, dass über \ac{ITS} sensible Daten verbreitet werden. Es muss neben dem Schutz gegen unbefugtes Lesen auch ein Mechanismus implementiert sein, der verhindert, dass falsche Informationen übertragen werden. Da die \ac{ITS} Architektur verschiedene Netzwerktypen \autoref{architektur_ueberblickNetzwerke} beinhaltet muss die Architektur auch ein Data Security Konzept beinhalten. Der Standard \cite{ts102940} spezifiziert dieses Konzept.  
 
-\section{Data Security}
+\subsection{Angebotene Services}
+ \begin{longtable}{| p{0.24\linewidth} | p{0.24\linewidth} | p{0.24\linewidth} |p{0.24\linewidth}|}
+ \hline
+ \textbf{Maßnahme} & & \textbf{Security Services} &  \\
+ \cline{2-4}
+ &\textbf{ First Level} & \textbf{Lower Level} & \textbf{Data Accessed}\\
+ \hline
+Include pseudonym in all V2V messages & Pseudonym Validation & & \\
+ \hline
+ Require an ITS-S to be authorized by an ITS authority before its messages are accepted by the ITS system & Obtain Enrolment Credentials & & Security Parameters (Authentication Keys)\\
+ \hline
+ Limit message traffic to V2I/I2V where possible & Obtain Enrolment Credentials & & Security Parameters (Authentication Keys) \\ 
+ \cline{3-4}
+ & & Authorization & Policy Database, Security Parameters (Authorization Ticket) \\
+ \cline{3-4}
+& & Establish Security Association & Security Parameters (Pseudonym, Encryption Keys) \\
+ \cline{2-4}
+ & Send Secured Message & Encrypt Outgoing Message & Security Parameters (Pseudonym, Encryption Key) \\
+  \cline{3-4}
+ &  & Authenticate Outgoing Message & Security Parameters (Pseudonym, Authentication Key) \\
+ \cline{2-4}
+ & Receive Secured Message & Decrypt Incoming Message & Security Parameters (Encryption Key) \\
+  \cline{3-4}
+ & & Validate Authentication on Incoming Message & Security Parameters (Pseudonym, Authentication Key) \\
+ \cline{2-4}
+ & Update Security Association & Remove Security Association & Security Parameters (Pseudonym, Encryption Key) \\
+ \cline{3-4}
+ & & Establish Security Association & Security Parameters (Pseudonym, Encryption Key) \\
+ \cline{2-4}
+ & Remove Enrolment Credentials & Authorization & Policy Database, Security Parameters (Authorization Ticket) \\
+ \cline{3-4}
+ & & Remove Security Association & Security Parameters (Pseudonym, Encryption Key) \\
+ \hline
+ Implement plausibility validation on incoming information & Validate Data Plausibility & Validate Dynamic Parameters & LDM \\
+ \cline{3-4}
+ & & Validate Timestamp & \\
+ \cline{3-4}
+ & & Validate Sequence Number &  \\
+ \hline
+ Include a non cryptographic checksum of the message in each message sent  & Insert Check Value & Calculate Check Value & \\
+ \cline{2-4}
+ & Validate Check Value & Calculate Check Value &  \\
+ \hline
+ Use broadcast time (Universal Coordinated Time - UTC - or GPS) to timestamp all messages & & Timestamp Message & \\
+ \cline{3-4}
+ & & Validate Timestamp & \\
+ \hline
+ Include a sequence number in each new message & & Insert Sequence Number & \\
+  \cline{3-4}
+ & & Validate Sequence Number & \\
+ \hline
+ Include an authoritative identity in each message and authenticate it & Validate pseudonym & & Security Parameters (Authentication Keys) \\
+ \hline
+Encrypt the transmission of personal and private data &  Send Encrypted Data & Encrypt Outgoing Message & Security Parameters (Encryption Keys) \\
+\cline{2-4}
+& Process Received Encrypted Data & Decrypt Incoming Message & Security Parameters (Encryption Keys) \\
+\hline
+Add an audit log to ITS stations to store the type and content of each message sent to and from an ITS-S &  Update Audit Log & Record Incoming ITS Messages& Audit Logs\\ \cline{3-4}
+& & Record Outgoing ITS Messages & Audit Logs \\
+\hline
+Digitally sign each message using a Kerberos/PKI-like token & Sign Outgoing Message & Generate Signature & Security Parameters (Certificate, Keys) \\ 
+\cline{3-4}
+& &  Authorization & Policy database, Security Parameters (Authorization Ticket) \\
+\cline{2-4}
+& Verify Incoming Signed Message & Verify Signature & Security Parameters (Certificate, Keys) \\
+\cline{3-4}
+& & Authorization  & Policy database, Security Parameters (Certificate Status Information) \\
+\hline
+Use a pseudonym that cannot be linked to the true identity of either the user or the user's vehicle & Obtain Enrolment Credentials & Identification (authoritative identity provider) & Security Parameters (Pseudonym, Encryption Key) \\
+\cline{2-4}
+& remove Enrolment Credentials & Identification (authoritative identity provider) & Security Parameters (Pseudonym, Encryption Key)\\
+\hline
+Allow remote activation and deactivation of ITS-S & ITS-S Remote Management Report Misbehaving ITS-S & Authorization & Policy Database \\
+\cline{3-4}
+ & & Deactivate ITS Transmission & Security Parameters (Authorization Ticket) \\
+ \cline{3-4}
+& &  Activate ITS Transmission & Security Parameters (Authorization Ticket) \\
+\cline{3-4}
+& & Report Misbehaviour & Security Parameters (Authorization Ticket) \\
+\hline 
+\caption{Tabelle mit den Sicherheitsmaßnahmen \cite{ts102731}}
+\label{tab:architektur_tabelleSicherheitsmassnahmen}
+ 
+ \end{longtable}
+\autoref{tab:architektur_tabelleSicherheitsmassnahmen} stammt aus dem Standard \cite{ts102731}. Dort werden die Maßnahmen zusammengefasst, die benötigt werden um sie zu erreichen. \glqq First Level\grqq~sind die Security Services, die direkt von den Anwendungen oder anderen Komponenten aufgerufen werden.  \glqq Lower Level\grqq~Services sind die, die von anderen Security Services aufgerufen werden.
+
+\subsection{ITS Authoritative Hierarchy}
+Die ITS Authoritative Hierarchy beschreibt, wer eine Rolle bei der Verwaltung der Sicherheit übernehmen kann. 
+
+Die Hersteller von \ac{ITS} Stations unterstützen die regionalen Autorisierungsstellen indem sie die Identitäten der \ac{ITS} Stations verwalten. Dazu sollen sie ihnen während der Fertigung eine weltweite einzigartige Identität geben. Diese Identität soll  in Form eines Oktett Strings sein. Sie soll während der gesamten Lebensdauer gültig sein.\todo{Was will man da mit einem Oktett? Das sind 256 ITS Stations....  Original in ts 102 731: During the manufacturing process an ITS-S shall receive a globally unique canonical identity in the form of an octet string. It shall persist for the operational lifetime of the ITS-S.}
+Neben der \ac{ID} müssen die \ac{ITS} Stations die Fähigkeit besitzen, die Verbindung mit mindestens einer Zertifikatsstelle und mindestens einer Autorisierungsstelle zu überprüfen.  Außerdem muss sie in der Lage sein, weitere Zertifikats- und Autorisierungsstelle hinzuzufügen.
+
+Die Zertifikatsstelle, ist eine Einheit, die die Verwaltung der Zulassungszertifikate verantwortlich ist. Die Zertifikatsstelle werden verwendet um in Nachrichten zwischen \ac{ITS} Station und einer Security Management Einheit die \ac{ITS} Station als zugangsberechtigt auszuweisen. Das beinhaltet auch die Prüfung der Identität. Die Informationen zu der \ac{ITS} Station entnimmt die Zertifikatsstelle dem Zulassungszertifikat. Sie erstellt ein neues Zertifikat, und sendet es an die \ac{ITS} Station. Dieses Zertifikat bestätigt die Identität der \ac{ITS} Station und die der Zertifikatsstelle. Es findet lediglich die Bestätigung einer gültigen Identität statt,  auf die Identität selber können mit diesem Zertifikat keine Rückschlüsse gezogen werden.
+
+Die Autorisierungsstelle regelt den Zugang zu allgemeinen und speziellen Diensten. Um die Dienste der Autorisierungsstelle nutzen zu können muss die die Identität der \ac{ITS} Station durch ein Zertifikat einer Zulassungsstelle nachgewiesen werden. Die \ac{ITS} Station fragt bei der Autorisierungsstelle wegen der spezifischen Berechtigungen an. Die Anfragen werden 
+
+\subsection{Trust and Privacy Management}
+
+Ein Aspekt der Data Security ist das Trust and Privacy Management. Der Standard \cite{ts102941} definiert für  den Begriff Privacy vier Schlüsselattribute:
+\begin{itemize}
+	\item Anonymity
+	\item Pseudonymity
+	\item Unlinkability
+	\item Unobservability
+\end{itemize}
+
+Der Begriff anonymity bedeutet übersetzt Anonymität und erklärt sich von alleine. Der Begriff bedeutet, dass jemand anonymes keine Identität zugeordnet werden kann. Ein Bespiel hierfür ist eine völlig zufällige Nummer, die anstelle der Identität angegeben wird. Ihr kann keine Identität zugeordnet werden. Da einigen Services der \ac{ITS} Architektur eine Authentifizierung zu Grunde liegt ist eine vollständige Anonymisierung nicht möglich. Aus diesem Grund gibt es die drei anderen Schlüsselwörter. 
+
+Pseudonymity bedeutet übersetzt Pseudonymisierung.  Pseudonymisierung wird oft mit Anonymisierung verwechselt, bedeutet aber etwas Anderes. Hinter etwas pseudonymisiertem steht eine Identität, die durch das  pseudonymisierte ersetzt wurde. Ein Beispiel hierfür ist die Matrikelnummer eines Studenten. Einem Angreifer, ohne die Möglichkeit, die Matrikelnummer dem Namen eines Studenten zuzuordnen, ist der Student gegenüber anonym. Besteht die Möglichkeit jedoch kann der Matrikelnummer sehr wohl eine Identität zugeordnet werden. Der Nachteil von Pseudonymen ist, dass sie wertlos sind, sobald ein Teil des Systems kompromittiert wurde. In \ac{ITS} wird die  Psyeudonymität erreicht, indem nur temporäre Kennungen von \ac{ITS} Stations verwendet werden.
+
+Ein weiterer Nachteil von Pseudonymen ist, dass mit der erfassten Datenmenge die Chance steigt, von ihnen auf eine Identität zu schließen. Wird die Nutzung eines Pseudonyms verfolgt können die Aktivitäten miteinander Verlinkt werden. Dadurch kann aus dem Pseudonym eine neue Identität werden, von der Rückschlüsse auf die Identität hinter dem Pseudonym getroffen werden können. Es kann aber auch die Identität aus dem Verhalten ermittelt werden. Um bei dem Beispiel mit dem Studenten zu bleiben, kann über ihn, bzw. seine Matrikelnummer, ein Bewegungsprofil erstellt werden, das  einzigartig ist. Wird die Matrikelnummer für das Einschreiben in Kurse genutzt kann nach genug Einschreibungen das Studienfach und das Studiensemester ermittelt werden. Diese Sammlung nennt man Verkettung von Daten. Das Schlüsselwort unlinkability fordert, dass eine \ac{ITS} Station nicht verkettbar ist. In \ac{ITS} wird die Verkettbarkeit verhindert, indem die Verwendung von nicht, oder kaum, veränderter Informationen. Damit kann Verbindungen von \ac{ITS} Stations nicht anderen Verbindungen zugeordnet werden.
+
+Unobservability bedeutet, dass der Nutzer eine Ressource nutzen kann, ohne dass andere Nutzer, oder Dritte, feststellen können, dass dieser Dienst genutzt wird.
+
+Durch die Beachtung dieser Schlüsselwörter bei der weiteren Spezifikation und der Implementierung von \ac{ITS} wird der Datenschutz bereits im Vorfeld beachtet. 
+
+Neben dem Datenschutz muss im \ac{ITS} System aber auch eine Zugangskontrolle realisiert werden. Die Zugangskontrolle teilt sich in zwei Bereiche auf: Die Berechtigung, das \ac{ITS} System als Ganzes zu nutzen und die Berechtigung, einzelne Services und Anwendungen zu nutzen. Die Prüfung der Identitäten wird über Zertifikate und Public-Key Verfahren realisiert. Zur Verteilung der Berechtigungen werden im Standard \cite{ts102731} definiert.
+
 
 \section{Verwendete Protokolle}
 
