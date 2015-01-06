@@ -2,23 +2,27 @@
 \begin{figure}[htbp]
 \includegraphics[width=0.99\textwidth]{content/images/04_facilitylayer/facility_layer_model.pdf}
 \caption{Die Komponenten der \acl{C2C}}
-\label{fig:komponentenderc2x}
+\label{fig:komponentenfacility}
 \end{figure}
 Der Facility Layer liegt unterhalb des Applicationlayer und teilt sich in drei Hauptkomponenten auf. Er bietet verschiedene allgemeine Services an die von den Anwendungen des Application Layer verwendet werden können.
-\subsection{Application Support}
 
-The application support is the kernel of common functions supporting the applications. This consists of
-station lifecycle management, automatic services discovery, download and initialization of new services,
-HMI generic capabilities, and many others. A key concept in ITS is the ability of transport entities
-(vehicles, roadside infrastructure, pedestrians, etc.) to collect knowledge of their local environment, from
-a range of sensor equipment, and to share that knowledge in order to make more intelligent use of the
-transport infrastructure. This is described in the term "co-operative awareness". 
+\subsection{Application Support}
+Der Application Support stellt die Grundfunktionalität für die Anwendungen zur verfügung. Darunter fällt das station lifecycle management, das automatische erkennen von Services sowie das downloaden und initialisieren von neuen Services und noch weitere. Die einzelne Komponenten des Application Support, die auf der \autoref{fig:komponentenfacility} zu sehen sind, werden im folgenden genauer erläutert. 
+
 \subsubsection{Station positioning}
+Dieser teil des Application Support verarbeitet die Informationen die aus den verschiedenen Datensammler gewonnen werden wie aus GNSS oder aus Fahrzeugsensoren um die Position des Station zu gewinnen. 
+Da diese Angaben sehr genau sein müssen werden die Daten in 3D Position gemessen (latitude, longitude, altitude). Dies können, durch beispielsweise GPS, in Echtzeit zur verfügung stehen. Da es jdeoch Sicherheitsbedingte Anwendungen gibt bei denen bereits über 0.5m Abweichung eine fatale Auswirkung haben kann, werden die Standortinformationen noch einmal über weitere Einheiten verbessert. Dazu gehören z.b. odometer oder gyroskop.
+
 \subsubsection{Mobile station dynamic monitoring}
+
 \subsubsection{Station state monitoring}
+
 \subsubsection{Services management }
+
 \subsubsection{LDM management }
+
 \subsubsection{Messages management}
+
 \subsubsection{Security access management}
 \subsubsection{Time management}
 \subsubsection{Time management}
