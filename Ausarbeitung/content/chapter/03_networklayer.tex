@@ -8,10 +8,11 @@ Da sich die Topologie des C2C-Netzes ständig ändert, da die Knoten sich nicht 
 \subsection{Komponenten}
 Im folgenden werden die einzelnen Komponenten des Networklayers genauer erläutert. Dazu wird darauf eingegangen aus welchen Komponenten der Layer besteht und wie die einzelnen Komponenten arbeiten und welche Aufgaben sie erfüllen.
 \begin{figure}
-\includegraphics[width=0.99\textwidth]{content/images/03_networklayer/networklayer.jpg}
+\includegraphics[width=0.99\textwidth]{content/images/03_networklayer/networklayer.png}
 \caption{Die Komponenten des Networklayers\cite{C2C-manifesto}}
 \label{fig:nwl}
 \end{figure}
+ \todo{Dateiendung von jpg zu png geändert}
 Wie auf \autoref{fig:nwl} zu sehen befindet sich der Networklayer zwischen dem Aplicationlayer und dem Logical Link Control oder MAC-Layer. Das Protokoll das auf dem MAC-Layer läuft ist das, in der WLAN-Technik häufig genutzte CSMA/CA, das als bekannt vorausgesetzt wird. Es wird verwendet da sich mehrere Kommunikationseinheiten das selbe Medium teilen und es daher zu Kollisionen kommen kann. 
 
 \subsubsection{Location Table}
@@ -77,8 +78,8 @@ Die \acl{GNW} Adresse besteht aus acht Bytes die verschiedene Informationen repr
 \label{fig:formatgnwa}
 \end{figure}
 Die auf der \autoref{fig:formatgnwa} zu sehenden Felder sind in der nachfolgenden \autoref{tab:formatgnwa}noch einmal genauer erläutert.
+
 \begin{table}[h]
-\caption{Felder und Bedeutung der \acs{GNW} Adresse\cite{etsi302636-4-1}}
 \begin{tabular}{lll}
 Feld & Feldname & Bedeutung \\
     1 & M       & wird auf 1 gesetzt wenn die Adresse manuell vergeben worden ist, andernfalls auf 0          \\
@@ -87,13 +88,13 @@ Feld & Feldname & Bedeutung \\
     4 & MID    &    erster Teil der MAC-Adresse       \\
     5 & MID     &   zweiter Teil der MAC-Adresse        \\
 \end{tabular}
+\caption{Felder und Bedeutung der \acs{GNW} Adresse\cite{etsi302636-4-1}}
 \label{tab:formatgnwa}
 \end{table}
 
 Für das zweite Feld ST sind folgende Werte in \autoref{tab:typenspezi} spezifiziert.
 
 \begin{table}[h]
-\caption{Werte für Feld zwei der \acs{GNW} Adresse\cite{etsi302636-4-1}}
 \begin{tabular}{lll}
 Nummer & Bedeutung  \\
     0 & Unknown \\
@@ -110,6 +111,7 @@ Nummer & Bedeutung  \\
     11 & Tram \\
     15 & Road Side Unit \\
 \end{tabular}
+\caption{Werte für Feld zwei der \acs{GNW} Adresse\cite{etsi302636-4-1}}
 \label{tab:typenspezi}
 \end{table}
 
@@ -120,7 +122,7 @@ Nummer & Bedeutung  \\
 	\item Geo. Position
 	\item Zeitstempel des Vektors
 	\item Genauigkeit des Vektors
-      \end{itemize}
+\end{itemize}
 
 \subsubsection{Konfiguration der Adressen}
 \todo{siehe etsi Kapitel 9.2.1 duplicate address detection ist auch interessant}
@@ -142,18 +144,18 @@ Um zu gewährleisten das die \acl{GNW} Adresse tatsächlich einzigartig ist, kom
 Um einen einzelnen Knoten zu Adressieren wird der Geo Unicast spezifiziert. Die Autos die zwischen Sender und der Empfangseinheit liegen dienen als Zwischenstationen. Über den Geo Unicast werden Nachrichten entweder über einen Hop an das Ziel gesendet oder über Zwischenstationen mit mehreren Hops. Die Nachricht kann bei den Zwischenstationen verändert werden. Das heisst zwei oder mehr Nachrichten werden zu einer zusammengefasst bevor sie weitergesendet werden. Dieser Vorgang ist auch umgekehrt durchführbar, sodass eine Nachricht aufgeteilt werden kann. Der Inhalt der Nachricht kann ebenfalls verändert oder Informationen hinzugefügt werden. 
 
 \begin{figure}
-\includegraphics[width=0.99\textwidth]{content/images/03_networklayer/GeoUnicast.png}
-\caption{Geo Unicast \cite{etsi102636-1}}
-\label{fig:geounicast}
+	\includegraphics[width=0.99\textwidth]{content/images/03_networklayer/GeoUnicast.png}
+	\caption{Geo Unicast \cite{etsi102636-1}}
+	\label{fig:geounicast}
 \end{figure}
 
 \subsection{Topologically-scoped broadcast}
 Der Topologically-scoped broadcast sendet einen Nachricht mit einem bestimmten Hop Count an alle um den Knoten erreichbaren Einheiten. Diese Nachricht wird dann von den Knoten empfangen, bei denen der Hop Count endet.
 
 \begin{figure}
-\includegraphics[width=0.99\textwidth]{content/images/03_networklayer/TSC.png}
-\caption{Topologically-scoped broadcast mit Hop Count 2 \cite{etsi102636-1}}
-\label{fig:tsc}
+	\includegraphics[width=0.99\textwidth]{content/images/03_networklayer/TSC.png}
+	\caption{Topologically-scoped broadcast mit Hop Count 2 \cite{etsi102636-1}}
+	\label{fig:tsc}
 \end{figure}
 
 
@@ -161,16 +163,17 @@ Der Topologically-scoped broadcast sendet einen Nachricht mit einem bestimmten H
 Über den Geographically-scoped broadcast ist es einem Knoten möglich, um sich herum oder in einer bestimmten Entfernung zu sich selbst eine definierte Region zu erreichen. Dabei spielt die Anzahl der Hops keine Rolle und alle in dem Bereich liegenden Fahrzeuge sollen sich angesprochen fühlen.
 
 \begin{figure}
-\includegraphics[width=0.99\textwidth]{content/images/03_networklayer/GSB.png}
-\caption{geographically-scoped broadcast \cite{etsi102636-1}}
-\label{fig:gsb}
+	\includegraphics[width=0.99\textwidth]{content/images/03_networklayer/GSB.png}
+	\caption{geographically-scoped broadcast \cite{etsi102636-1}}
+	\label{fig:gsb}
 \end{figure}
 
 \subsection{Geographical Scoped Anycast}
 Der Geographical Scoped Anycast ist ähnlich zu dem Geographically-scoped broadcast nur das hier die Nachricht nicht weitergeleitet wird sondern das Routing stoppt sobald ein Ziel innerhalb der Region die Nachricht empfangen hat.
+
 \begin{figure}
-\includegraphics[width=0.99\textwidth]{content/images/03_networklayer/GSA.png}
-\caption{geographically-scoped anycast \cite{etsi102636-1}}
-\label{fig:gsa}
+	\includegraphics[width=0.99\textwidth]{content/images/03_networklayer/GSA.png}
+	\caption{geographically-scoped anycast \cite{etsi102636-1}}
+	\label{fig:gsa}
 \end{figure}
 
