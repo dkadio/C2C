@@ -11,9 +11,17 @@ Der Application Support stellt die Grundfunktionalität für die Anwendungen zur
 
 \subsubsection{Station positioning}
 Dieser teil des Application Support verarbeitet die Informationen die aus den verschiedenen Datensammler gewonnen werden wie aus GNSS oder aus Fahrzeugsensoren um die Position des Station zu gewinnen. 
-Da diese Angaben sehr genau sein müssen werden die Daten in 3D Position gemessen (latitude, longitude, altitude). Dies können, durch beispielsweise GPS, in Echtzeit zur verfügung stehen. Da es jdeoch Sicherheitsbedingte Anwendungen gibt bei denen bereits über 0.5m Abweichung eine fatale Auswirkung haben kann, werden die Standortinformationen noch einmal über weitere Einheiten verbessert. Dazu gehören z.b. odometer oder gyroskop.
+Da diese Angaben sehr genau sein müssen werden die Daten in 3D Position gemessen (latitude, longitude, altitude). Dies können, durch beispielsweise GPS, in Echtzeit zur verfügung stehen. Da es jdeoch Sicherheitsbedingte Anwendungen gibt bei denen bereits über 0.5m Abweichung eine fatale Auswirkung haben kann, werden die Standortinformationen noch einmal über weitere Einheiten verbessert. Dazu gehören z.b. Odometer oder Gyroskop.
+Damit diese Support facility ihren Aufgaben Nachkommen kann, ist im \cite{etsi102638} folgende Vorraussetzungen definiert.
+
+\begin{itemize}
+\item Benötigt Verbindung zwischen ITS station und einem GNSS system. Bei kurzfristigen Ausfall der Verbindung übernehmen interne mechanische Fahrzeugsensoren wie das Gyroskop oder das Odometer.
+\item Benötigt dauerhafte Verbindung zu den Fahrzeugsensoren (direkte Verbindung oder über einen Bus).
+\item Benötigt genug Rechenleistung um 3D Positions Angaben sicher zu Verwalten und zu Berechnen.
+\end{itemize}
 
 \subsubsection{Mobile station dynamic monitoring}
+This application support facility is only applicable to ITS vehicle stations. This facility is monitoring a certain number of the vehicle functions characteristics of its real time kinematics' evolution. Furthermore, the facility maintains updated relevant variables to be used by several applications and other facilities, in particular the Messages management facility. This application support facility monitors permanently the real time evolutions of relevant vehicle electronic information either directly or through some in vehicle network. This facility further filters necessary variables allowing the update of the vehicle dynamic parameters.
 
 \subsubsection{Station state monitoring}
 
