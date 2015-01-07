@@ -92,7 +92,7 @@ Obwohl das \ac{ITS} Station Reference Protocol bei der Entwicklung an das \ac{OS
 
 \begin{figure}
 	\includegraphics[width=0.75\textwidth]{content/images/02_architektur/stationReferenceArchitecture.pdf}
-	\caption{Darstellung der ITS Station Reference Architecture \cite{etsi2010302}}
+	\caption{Darstellung der ITS Station Reference Architecture \cite{ts102940}}
 	\label{fig:funktionsweise_referenceArchitecture}
 \end{figure}
 
@@ -107,7 +107,7 @@ Die \ac{SAP} sind:
 \begin{itemize}
 	\item \textbf{SAP-IN: } Als \ac{SAP} zu dem nächst höheren Layer  Networking \& Transporting \ref{architektur_networkingTransporting}
 	\item \textbf{SAP-SI: } Als \ac{SAP} zu dem Cross Layer Security Layer \ref{architektur_securityLayer}
-	\item \textbf{SAP-MI: } Als \ac{SAP} zu dem Cross Layer Management Layer \label{architektur_managementLayer}
+	\item \textbf{SAP-MI: } Als \ac{SAP} zu dem Cross Layer Management Layer \ref{architektur_managementLayer}
 \end{itemize}
 \todo{ISO 21217 finden - Scheinbar infos über die Layer}
 
@@ -289,12 +289,28 @@ Die DCCmgmt Komponente ist im Management Layer angeordnet. Sie übernimmt dort d
 
 Eine Unterkomponente der DCCmgmt Komponente ist die DCC\_CROSS\_Facilities. 
 
-\crap{Vergleiche die Bilder 101 612 S. 11 und \autoref{fig:architektur_dccArchitektur}}
 
 
+\subsubsection{CI/ITS-S application mapping}
+\todo{Noch etwas über Application mapping schreiben}
 
 \subsection{Security Layer \label{architektur_securityLayer}}
 Der Security Layer ist ein Cross Layer der \ac{ITS} Architektur. Er sorgt für die Sicherheit im \ac{ITS} System. Er hat Interfaces in alle anderen Layer. 	\todo{Noch schreiben was der Security Layer genau macht} 
+Der Standard \cite{en302665} beschreibt für den den Security Layer folgende Funktionalitäten:
+\begin{itemize}
+	\item Firewall und Angriff Management
+	\item Authentifizierung, Autorisierung und Profilverwaltung
+	\item Identitäts-, Krypto Schlüssel und Zertifikatsmanagement
+	\item Eine allgemeine Sicherheit Informationsbasis (SIB)
+	\item Hardware Security Module (HSM)
+	\item Bereitstellung von Interfaces zu den anderen Layern, indem ihen Security Services angeboten werden
+\end{itemize} 
+
+\begin{figure}
+	\includegraphics[width=0.75\textwidth]{content/images/02_architektur/securityLayer.pdf}
+	\caption{Darstellung des Security Layers \cite{en302665}}
+	\label{fig:architektur_securityLayer}
+\end{figure}
 
 \section{Data Security\label{architektur_dataSecurity}}
 Der Begriff Security umfasst in \ac{ITS} verschiedene Bereiche der Sicherheit. Im \ac{ITS} Netz muss sichergestellt werden, dass die Nachrichten für die berechtigten Teilnehmer lesbar sind, für den unberechtigten Teilnehmer aber nicht. Dabei ist zu beachten, dass über \ac{ITS} sensible Daten verbreitet werden. Es muss neben dem Schutz gegen unbefugtes Lesen auch ein Mechanismus implementiert sein, der verhindert, dass falsche Informationen übertragen werden. Da die \ac{ITS} Architektur verschiedene Netzwerktypen \autoref{architektur_ueberblickNetzwerke} beinhaltet muss die Architektur auch ein Data Security Konzept beinhalten. Der Standard \cite{ts102940} spezifiziert dieses Konzept.  
@@ -432,7 +448,15 @@ Die beschriebenen Nachrichtentypen benötigen Zertifikate. In \ac{ITS} sind zwei
 \subsubsection{Enrolment Credentials}
 Enrolment Credentials können ausgestellt, erneuert und gelöscht werden. 
 
+Das Anfordern eines enrolement credentials geschieht in zwei Schritten. Der erste Schritt ist, dass eine \ac{ITS} Staion merkt, dass sie sich an der \ac{ITS} Infrastruktur anmelden muss. Dieser Schritt löst die Anmeldungsanfrage an die \ac{ITS} Infrastruktur aus.
+\todo{Ausformulieren}
 
+\todo{Evtl. noch Abschnitt über die Interfaces zu den anderen Layern 302 665 Informative Quellen}
+
+
+
+
+\subsection{Access Control}
 
 \section{Verwendete Protokolle}
 
