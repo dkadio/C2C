@@ -120,7 +120,7 @@ Der folgende Abschnitt beschreibt den Access Layer und legt G5 zugrunde.
 \begin{figure}
 	\includegraphics[width=0.75\textwidth]{content/images/02_architektur/accessLayer.pdf}
 	%\missingfigure{Access Layer Bild noch aus dem Standard 302 665 herauskopieren }
-	\caption{Darstellung des ITS G5 Access Layers \\cite{en302665}}
+	\caption{Darstellung des ITS G5 Access Layers \cite{en302665}}
 	\label{fig:architektur_accessLayer}
 \end{figure}
 
@@ -446,7 +446,25 @@ Als drittes sind die \glqq Security Associations\grqq zu nennen. Sie werden zwis
 Die beschriebenen Nachrichtentypen benötigen Zertifikate. In \ac{ITS} sind zwei verschiedne Sorten von Zertifikaten definiert. Es gibt ein \glqq  authorization ticket\grqq. Es ist als ein Datenobjekt beschrieben, dass bestätigt, dass der gültige Inhaber berechtigt ist, verschiedene Aktionen auszuführen. Es wird von der ITS Autorisierungsstelle\ref{architektur_itsAuthoriativeHierarchy} ausgestellt. Die zweite Sorte Zertifikat ist das \glqq enrolment credential\grqq. Es wird als ein Datenobjekt das im Nachrichtenaustausch zwischen \ac{ITS-S} und Security Einheiten genutzt und beweist, dass der gültige Inhaber berechtigt ist, authorization tickets anzufragen. Es wird von der Zertifikatsstelle ausgestellt. Die folgenden Abschnitte erläutern wie die Verarbeitung der Zertifikate statt findet.
 
 \subsubsection{Enrolment Credentials}
-Enrolment Credentials können ausgestellt, erneuert und gelöscht werden. 
+Enrolment Credentials können ausgestellt, erneuert und gelöscht werden. An diesen Tätigkeiten sind eine \ac{ITS-S} und die \ac{ITS} Infrastruktur beteiligt. Die \ac{ITS} Infrastruktur besteht in dem Fall aus einer Zertifikatsstelle und einer Autorisierungsstelle. Die \autoref{fig:architektur_enrolementFunktionalModel} beschreibt das funktionale Modell der Enrolement Credentials. Dessen Elemente werden im Standard \cite{ts102731} folgendermaßen beschrieben:
+
+\begin{figure}[h]
+	\includegraphics[width=0.75\textwidth]{content/images/02_architektur/enrolementFunktionaleKomponenten.pdf}
+	\caption{Das funktionale Modell der Enrolement Credentials \cite{ts102731}}
+	\label{fig:architektur_enrolementFunktionalModel}
+\end{figure}
+
+Invoke Enrolment: Dieses funktionale Element entdeckt das Bedürfnis einer \ac{ITS-S}, dass sie sich an der \ac{ITS} Infrastruktur anmelden muss und initiiert die Anmeldungsprozedur.
+
+Enrolment Request: Dieses funktionale Element liefert die Anmeldungsanfrage für einer \ac{ITS-S} an die \ac{ITS} Infrastruktur. Anschließend empfängt es die entsprechende Antwort und speichert die geheimen Kommunikationsparameter in der \ac{ITS-S}.
+
+
+Enrolement Station: Dieses funktionale Element empfängt eine Anmeldungsanfrage einer \ac{ITS-S}. Nach dieser Anfrage beginnt es den Benutzer zu authentisieren. Wenn diese Authentisieren erfolgreich war sendet es eine positive Antwort mit den Parametern, die für eine laufende sichere Kommunikation nötig sind, an die \ac{ITS-S}. Die Enrolement Station entspricht der Zertifikatsstelle. In diesem Fall ist sie als funktionales Element beschrieben. Das bedeutet, dass es in diesem Modell nur dieses eine Element gibt. 
+
+Authenticate Station: Dieses funktionale Element validiert die Identitätsinformationen, die von dem funktionalen Element Enrol Station empfangen werden. Hierbei handelt es sich um die bereits beschriebene Autorisierungsstelle. Sie ist aber als funktionales Element beschrieben.
+
+Process Authentication:
+
 
 Das Anfordern eines enrolement credentials geschieht in zwei Schritten. Der erste Schritt ist, dass eine \ac{ITS-S} merkt, dass sie sich an der \ac{ITS} Infrastruktur anmelden muss. Dieser Schritt löst die Anmeldungsanfrage an die \ac{ITS} Infrastruktur aus.
 \todo{Ausformulieren}
