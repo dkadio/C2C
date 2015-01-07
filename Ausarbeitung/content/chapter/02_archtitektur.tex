@@ -412,7 +412,7 @@ Die Zertifikatsstelle, ist eine Einheit, die die Verwaltung der Zulassungszertif
 Die Autorisierungsstelle regelt den Zugang zu allgemeinen und speziellen Diensten. Um die Dienste der Autorisierungsstelle nutzen zu können muss die die Identität der \ac{ITS-S} durch ein Zertifikat einer Zulassungsstelle nachgewiesen werden. Die \ac{ITS-S} fragt bei der Autorisierungsstelle wegen der spezifischen Berechtigungen an. Die Anfragen werden \todo{An Authorization Authority weiterschreiben} Erkennt die Autorisierungsstelle, dass eine \ac{ITS-S} kompromittiert ist, so informiert sie die Zertifikatsstelle, von der die \ac{ITS-S} ihr Zertifikat hat. Ihr werden keine weiteren Tickets mehr mitgeteilt. Zusätzlich wird werden alle anderen \ac{ITS-S} informiert, dass die Zertifikate ungültig sind.  
 
 
-\subsection{Trust and Privacy Management}
+\subsection{Trust and Privacy Management \label{architektur_TrustAndPrivacyManagement}}
 
 Ein Aspekt der Data Security ist das Trust and Privacy Management. Der Standard \cite{ts102941} definiert für  den Begriff Privacy vier Schlüsselattribute:
 \begin{itemize}
@@ -459,14 +459,28 @@ Invoke Enrolment: Dieses funktionale Element entdeckt das Bedürfnis einer \ac{I
 Enrolment Request: Dieses funktionale Element liefert die Anmeldungsanfrage für einer \ac{ITS-S} an die \ac{ITS} Infrastruktur. Anschließend empfängt es die entsprechende Antwort und speichert die geheimen Kommunikationsparameter in der \ac{ITS-S}.
 
 
-Enrolement Station: Dieses funktionale Element empfängt eine Anmeldungsanfrage einer \ac{ITS-S}. Nach dieser Anfrage beginnt es den Benutzer zu authentisieren. Wenn diese Authentisieren erfolgreich war sendet es eine positive Antwort mit den Parametern, die für eine laufende sichere Kommunikation nötig sind, an die \ac{ITS-S}. Die Enrolement Station entspricht der Zertifikatsstelle. In diesem Fall ist sie als funktionales Element beschrieben. Das bedeutet, dass es in diesem Modell nur dieses eine Element gibt. 
+Enrole Station: Dieses funktionale Element empfängt eine Anmeldungsanfrage einer \ac{ITS-S}. Nach dieser Anfrage beginnt es den Benutzer zu authentisieren. Wenn diese Authentisieren erfolgreich war sendet es eine positive Antwort mit den Parametern, die für eine laufende sichere Kommunikation nötig sind, an die \ac{ITS-S}. Die Enrolement Station entspricht der Zertifikatsstelle. In diesem Fall ist sie als funktionales Element beschrieben. Das bedeutet, dass es in diesem Modell nur dieses eine Element gibt. 
 
 Authenticate Station: Dieses funktionale Element validiert die Identitätsinformationen, die von dem funktionalen Element Enrol Station empfangen werden. Hierbei handelt es sich um die bereits beschriebene Autorisierungsstelle. Sie ist aber als funktionales Element beschrieben.
 
-Process Authentication:
+Process Authentication: Dieses funktionale Element enthält die Antwort auf die Abfrage des funktionalen Elements  Authenticate Station.
 
+\begin{figure}[h]
+	\includegraphics[width=0.75\textwidth]{content/images/02_architektur/enrolementFlowDiagramm.pdf}
+	\caption{Darstellung des Informationsflusses beim Anmelden einer \ac{ITS-S} \cite{ts102731}}
+	\label{fig:architektur_enrolementInformationFlow}
+\end{figure}
 
-Das Anfordern eines enrolement credentials geschieht in zwei Schritten. Der erste Schritt ist, dass eine \ac{ITS-S} merkt, dass sie sich an der \ac{ITS} Infrastruktur anmelden muss. Dieser Schritt löst die Anmeldungsanfrage an die \ac{ITS} Infrastruktur aus.
+\autoref{fig:architektur_enrolementInformationFlow} zeigt den Informationsfluss beim Anmelden an die \ac{ITS} Infrastruktur. Dieser Prozess wird exemplarisch für die anderen Enrolement Prozesse, also erneuern und widerrufen, beschrieben. Diese laufen sehr ähnlich ab und können bei Bedarf dem Standard \cite{ts102731} entnommen werden. Die beschriebenen Informationen der Request und Confirm sind jeweils Mindestinformationen. 
+\todo{Die versendeten Informationen erklären, falls nötig und nicht schon geschehen z. B. ITS-S Key}
+Der erste Schritt ist das Enrol(Request). Er wird vom Invoke Enrolment ausgelöst und stellt einen Request an den Enrolment Request dar. Dadurch wird aus dem Zertifikatsbedürfnis eine konkrete Zertifikatsanfrage. Das Enrol(Request) enthält die Canonical Identify und den \ac{ITS-S} key der \ac{ITS-S}.  
+
+Der Enrolment Request sendet einen Enrolement Request(Request) an die Enrol Station. Dies ist die erste Kommunikation zwischen \ac{ITS-S} und \ac{ITS} Netzwerk. Er wird von der \ac{ITS-S} genutzt um ihre Identität zu bestätigen und ihre temporären Identitäten anzufordern (vgl. \autoref{architektur_TrustAndPrivacyManagement}). Dieser Request enthält die Canonical Identity, den \ac{ITS-S} Key und die Network challenge der \ac{ITS-S}. 
+
+In der Enrol Station wird durch den Empfang des Enrolement Request(Request) ein Authentication Request (Request) ausgelöst. Dieser wird an die Authenticate Station gesendet und enthält die Daten, die die Enrol Station von der \ac{ITS-S} erhalten hat. Der Authentication Request (Request) wird genutzt um die Identität der \ac{ITS-S} zu bestätigen.
+
+Die Authenticate Station löst nach dem Empfang des Authentication Request (Request) eine Enrolment Challenge(Request) aus. Diese \\\\\\\\\\\\\\
+
 \todo{Ausformulieren}
 
 \todo{Evtl. noch Abschnitt über die Interfaces zu den anderen Layern 302 665 Informative Quellen}
