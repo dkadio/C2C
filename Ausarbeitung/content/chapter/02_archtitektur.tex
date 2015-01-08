@@ -466,7 +466,7 @@ Authenticate Station: Dieses funktionale Element validiert die Identitätsinform
 Process Authentication: Dieses funktionale Element enthält die Antwort auf die Abfrage des funktionalen Elements  Authenticate Station.
 
 \begin{figure}[h]
-	\includegraphics[width=0.75\textwidth]{content/images/02_architektur/enrolementFlowDiagramm.pdf}
+	\includegraphics[width=0.95\textwidth]{content/images/02_architektur/enrolementFlowDiagramm.pdf}
 	\caption{Darstellung des Informationsflusses beim Anmelden einer \ac{ITS-S} \cite{ts102731}}
 	\label{fig:architektur_enrolementInformationFlow}
 \end{figure}
@@ -481,7 +481,13 @@ In der Enrol Station wird durch den Empfang des Enrolement Request(Request) ein 
 
 Die Authenticate Station löst nach dem Empfang des Authentication Request (Request) eine Enrolment Challenge(Request) aus. Die Enrolement Challenge ist ein  bestätigter Informationsfluss, der Authentication Challenges austauscht und bestätigt.  Diese Nachricht enthält den network idenzifier  und die Network challenge response, die das Ergebnis der kryptographischen Verarbeitung der empfangenen Network Challenge enthält. Weiterhin enthält die Nachricht die Vehicle Challenge, die eine zufällig genierte  Zeichenkette enthält.
 
-Im Process Authentication wird 
+Im Process Authentication wird der Enrolment Challenge(Request) verarbeitet und als Enrolment Challenge(Confirm) zurückgesendet. Möglich sind in dieser Nachricht die Zustände Successful und und Failed. Die  Enrolment Challenge(Confirm) hat als Inhalt die Canonical Identity, den Network Identifier, die Vehicle challenge response und das Registration result. Im Fehlerfall kann sie noch  ein Cause of failure enthalten.
+
+Wenn die Authenticate Station die Enrolment Challenge(Confirm) erhalten hat sendet sie an den Enrolment Request einen Enrolement Request(Accepted). Er enthält den Canonical Identity, den Network Identifier und das Registration result. Abhängig vom Ergebnis der Registrierung sind in der Nachricht zusätzlich eine Liste mit Zertifikaten oder ein Ablehnungsgrund enthalten.
+
+Der Enrolment Request sendet an den Invoke Enrolement ein Enrol(Confirm). Er enthält das Ergebnis der Anmeldung. Zusätzlich enthält er, je nach Ausgang der Anmeldung, eine Liste mit Zertifikaten oder einen Ablehnungsgrund.
+
+
 \todo{Ausformulieren}
 
 \todo{Evtl. noch Abschnitt über die Interfaces zu den anderen Layern 302 665 Informative Quellen}
