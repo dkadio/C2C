@@ -479,8 +479,9 @@ Der Enrolment Request sendet einen Enrolement Request(Request) an die Enrol Stat
 
 In der Enrol Station wird durch den Empfang des Enrolement Request(Request) ein Authentication Request (Request) ausgelöst. Dieser wird an die Authenticate Station gesendet und enthält die Daten, die die Enrol Station von der \ac{ITS-S} erhalten hat. Der Authentication Request (Request) wird genutzt um die Identität der \ac{ITS-S} zu bestätigen.
 
-Die Authenticate Station löst nach dem Empfang des Authentication Request (Request) eine Enrolment Challenge(Request) aus. Diese \\\\\\\\\\\\\\
+Die Authenticate Station löst nach dem Empfang des Authentication Request (Request) eine Enrolment Challenge(Request) aus. Die Enrolement Challenge ist ein  bestätigter Informationsfluss, der Authentication Challenges austauscht und bestätigt.  Diese Nachricht enthält den network idenzifier  und die Network challenge response, die das Ergebnis der kryptographischen Verarbeitung der empfangenen Network Challenge enthält. Weiterhin enthält die Nachricht die Vehicle Challenge, die eine zufällig genierte  Zeichenkette enthält.
 
+Im Process Authentication wird 
 \todo{Ausformulieren}
 
 \todo{Evtl. noch Abschnitt über die Interfaces zu den anderen Layern 302 665 Informative Quellen}
