@@ -17,12 +17,12 @@ Auf die einzelnen Layer der Komponenten wird im Kapitel \ref{chap_archtitektur} 
 Die einzelnen funktionalen Komponenten müssen nicht physikalisch getrennt werden. Es reicht eine logische Trennung.  
 
 \subsection{ITS-S Host \label{funktionsweise_ITSHost}}
-Der ITS-S Host beinhaltet mindestens die ITS-S Anwendungen und die Funktionalität der ITS  Station Reference Architektur, die für die  ITS-S Anwendungen gebraucht wird. Konkret sind das der \ac{ITS} Network Layer und die Anwendungsebene. 
+Der \ac{ITS-S} Host beinhaltet mindestens die \ac{ITS-S} Anwendungen und die Funktionalität der ITS  Station Reference Architektur, die für die  \ac{ITS-S} Anwendungen gebraucht wird. Konkret sind das der \ac{ITS} Network Layer und die Anwendungsebene. 
 
-Die Funktionalitäten des ITS-S Host werden im Standard \cite{etsi302636-3} der \ac{AU} zugesprochen. Sämtliche andere Funktionalitäten sind auf die \ac{CCU} ausgelagert. Diese Aufteilung hängt aber von der zu implementierenden Komponente ab, ein Skalieren muss möglich sein.
+Die Funktionalitäten des \ac{ITS-S} Host werden im Standard \cite{etsi302636-3} der \ac{AU} zugesprochen. Sämtliche andere Funktionalitäten sind auf die \ac{CCU} ausgelagert. Diese Aufteilung hängt aber von der zu implementierenden Komponente ab, ein Skalieren muss möglich sein.
 
 \subsection{Roadside ITS-S Gateway \label{funktionsweise_RoadsideITSGateway}}
-Die Funktionsweise des Roadside ITS-S Gateway ergibt sich aus der Grafik \ref{fig:funktionsweise_itsGateway}. Die Aufgabe ist die gleiche, wie bei den meisten Gateways. Es verbindet unterschiedliche Protokollstacks miteinander. In diesem Fall werden das \ac{ITS} interne Netzwerk und ein proprietäres Netzwerk miteinander verbunden. Das proprietäre Netzwerk kann beispielsweise ein IP basierendes Netzwerk sein.
+Die Funktionsweise des Roadside \ac{ITS-S} Gateway ergibt sich aus der Grafik \ref{fig:funktionsweise_itsGateway}. Die Aufgabe ist die gleiche, wie bei den meisten Gateways. Es verbindet unterschiedliche Protokollstacks miteinander. In diesem Fall werden das \ac{ITS} interne Netzwerk und ein proprietäres Netzwerk miteinander verbunden. Das proprietäre Netzwerk kann beispielsweise ein IP basierendes Netzwerk sein.
 
 \begin{figure}[h]
 	\includegraphics[width=0.75\textwidth]{content/images/01_funktionsweise/layer_gateway.pdf}
@@ -63,9 +63,9 @@ Die \ac{ICS}, oder Central \ac{ITS} subsystem and station ist eine zentrale Komp
 
 Die mindesten funktionalen Komponenten der \ac{ICS} sind:
 \begin{itemize}
-	\item ITS-S Gateway \ref{funktionsweise_RoadsideITSGateway}
-	\item ITS-S Host \ref{funktionsweise_ITSHost}
-	\item ITS-S Border Router \ref{funktionsweise_ITSBorderRouter}
+	\item \ac{ITS-S} Gateway \ref{funktionsweise_RoadsideITSGateway}
+	\item \ac{ITS-S} Host \ref{funktionsweise_ITSHost}
+	\item \ac{ITS-S} Border Router \ref{funktionsweise_ITSBorderRouter}
 \end{itemize}
 
 
@@ -81,10 +81,10 @@ Die \ac{IRS} beherrscht zwei grundlegend unterschiedliche Verbindungsprotokolle.
 
 Normalerweise besteht eine \ac{IRS} aus den funktionalen Komponenten: 
 \begin{itemize}
-	\item  ITS-S Gateway \ref{funktionsweise_RoadsideITSGateway}
-	\item ITS-S Host \ref{funktionsweise_ITSHost}
-	\item ITS-S Router \ref{funktionsweise_router}
-	\item ITS-S Border Router \ref{funktionsweise_ITSBorderRouter}
+	\item  \ac{ITS-S} Gateway \ref{funktionsweise_RoadsideITSGateway}
+	\item \ac{ITS-S} Host \ref{funktionsweise_ITSHost}
+	\item \ac{ITS-S} Router \ref{funktionsweise_router}
+	\item \ac{ITS-S} Border Router \ref{funktionsweise_ITSBorderRouter}
 \end{itemize}
 
 Neben der Funktion als reine Schnittstelle zwischen \ac{IRS} und \ac{IVS} kann die \ac{IRS} die empfangenen Daten aufbereiten, bzw. ein FunctionFramework zur Verfügung stellen, auf dem Applikationen ausgeführt werden können. Die Funktionen des FunctionFramework sind in der Beschreibung des Hosts \ref{funktionsweise_ITSHost} definiert.  
@@ -107,9 +107,9 @@ Diese Beispiele sind aus einem Projektergebnis von \ac{SIMTD} entnommen (\cite{s
 \section{ITS Vehicle Station}
 Das \ac{IVS} ist eine mobile Komponente von \ac{ITS}. Es hat als Mindestanforderung lediglich Schnittstellen in das \ac{ITS} Netzwerk. Es besteht mindestens aus folgenden funktionalen Komponenten:
 \begin{itemize}
-	\item  ITS-S Gateway \ref{funktionsweise_RoadsideITSGateway}
-	\item ITS-S Host \ref{funktionsweise_ITSHost}
-	\item ITS-S Router \ref{funktionsweise_router} 
+	\item  \ac{ITS-S} Gateway \ref{funktionsweise_RoadsideITSGateway}
+	\item \ac{ITS-S} Host \ref{funktionsweise_ITSHost}
+	\item \ac{ITS-S} Router \ref{funktionsweise_router} 
 \end{itemize}
 
 \todo{Noch was über IVS schreiben}

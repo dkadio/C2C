@@ -22,7 +22,23 @@ Damit diese Support facility ihren Aufgaben Nachkommen kann, ist im \cite{etsi10
 \end{itemize}
 
 \subsubsection{Mobile station dynamic monitoring}
-This application support facility is only applicable to ITS vehicle stations. This facility is monitoring a certain number of the vehicle functions characteristics of its real time kinematics' evolution. Furthermore, the facility maintains updated relevant variables to be used by several applications and other facilities, in particular the Messages management facility. This application support facility monitors permanently the real time evolutions of relevant vehicle electronic information either directly or through some in vehicle network. This facility further filters necessary variables allowing the update of the vehicle dynamic parameters.
+Das Mobile station dynamic monitoring ist nur für die \acs{VS} verfügbar. Diese Einheit des Facility Layer verwaltet eine große Anzahl an Fahrzeugspezifischen Daten die von den Applicationen und anderen Komponenten des Facility Layers verwendet werden. Sie ist dafür verantwortlich diese Daten immer auf dem neueste  Stand zu halten. 
+
+\begin{itemize}
+\item Benötigt zugriff auf Fahrzeug Funktionen wie das Bremssystem, Reifendruck, Stabilitätskontrolle, Geschwindigkeitsregelung etc.
+\item Benötigt 
+\item Benötigt genug Rechenleistung um 3D Positions Angaben sicher zu Verwalten und zu Berechnen.
+\end{itemize}Diese Einheit benötigt die folgenden Vorraussetzungen.
+
+
+
+This support facility requires access to vehicle functions according to selected options (e.g. braking system,
+steering system, tyre pressure monitoring system, stability control system, speed control, etc.).
+• This support facility requires capabilities to filter the selected parameters being needed by applications and
+other facilities (e.g. master cylinder pressure, steering wheel angle, steering wheel angle rate of change,
+programmed speed control value, stability control status, yaw rate, vehicle speed, acceleration control, etc.).
+• This support facility requires capabilities to update parameters values being used for CAM. 
+
 
 \subsubsection{Station state monitoring}
 
@@ -62,5 +78,7 @@ the applications.
 
 
 \section{SPaT\label{sec:spat}}
+\ac{SPaT} ist eine Nachricht, die den Zustand einer Straßenkreuzung beschreibt. Die Beschreibung enthält Staus Informationen der \ac{VBA}. Diese enthalten allgemeine Betriebszustände,  
+
 
 \section{TOPO\label{sec:topo}}
