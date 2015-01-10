@@ -73,12 +73,15 @@ cooperate with the transport and network layer to achieve the various communicat
 the applications. 
 
 \section{CAM\label{sec:cam}}
+Aus ts 102 724:
+The CAM (Cooperative Awareness Message) is sent periodically in the ITS G5A CCH (Control Channel) at a defined repetition rate of up to 10 Hz. Depending on the decentralized congestion state (DCC state) of the CCH the repetition rate and the TX power of the CAM transmission will be adjusted for minimizing the potential congestion of the channel. If the channel is in a highly congested situation it may occur that older CAMs will be discarded from the transmission queues of the ITS-Stations. The CAM message is generated in the facility layer based on the available information and actual needs. In this case the facility layer will chose the required DP as part of the communication profile. A typical maximum rate of CAM transmission will be 10 Hz. The chosen CAM rate at the facility layer will depend on the speed of the vehicle and the congestion state of the CCH and the SCH1. The required information will be delivered by the DCC\_Management entity.
+The proposed DP for the CAM is a DP2.
 
 \section{DEN\label{sec:den}}
 
 
 \section{SPaT\label{sec:spat}}
-\ac{SPaT} ist eine Nachricht, die den Zustand einer Straßenkreuzung beschreibt. Die Beschreibung enthält Staus Informationen der \ac{VBA}. Diese enthalten allgemeine Betriebszustände,  
+\ac{SPaT} ist eine Nachricht, die den Zustand einer Straßenkreuzung beschreibt. Die Beschreibung enthält Staus Informationen der \ac{VBA} und Informationen über die Kreuzung selber. \ac{SPaT} ist noch nicht von der \ac{ETSI}, bzw. \ac{ISO} standardisiert. Aus diesem Grund stammen die folgenden Informationen hauptsächlich aus den U.S. amerikanischen Quellen \cite{usSpat} und \cite{usCaliforniaSpat}. 
 
 Für \ac{SPaT} gibt es zwei grundsätzliche Betriebsarten. Die erste Betriebsart ist eine feste \ac{VBA} Schaltung. Diese wird den \ac{IVS} über \ac{SPaT} Nachrichten mitgeteilt. Anhand dieser Informationen kann das \ac{IVS} selber die Ampelzeiten berechnen und benötigt keine  weiteren \ac{SPaT} Nachrichten. Die zweite Betriebsart ist, dass die Ampelzeiten aufgrund externer Ereignisse beeinflusst werden können. Externe Ereignisse sind beispielsweise Fußgänger, verkehrsabhängige Schaltungen oder periodisierte \ac{IVS}, wie z.B. Rettungswagen. Bei der zweiten Betriebsart muss beachtet werden, dass zu schnelle Änderungen vermieden werden müssen. Die \ac{IVS} benötigen eine bestimmte Zeit zur Reaktion, so benötigt beispielsweise ein Auto die Reaktionszeit des Fahrers und einen Bremsweg. Wird die Fahrspur dieses Autos gesperrt und andere Fahrspuren dafür freigegeben, wenn das Auto sich schon fast vor der Haltelinie befindet, so ist eine Bremsung vor der Kreuzung nicht mehr möglich. Daraus resultiert ein Sicherheitsrisiko, da die andere Fahrspur nicht für die anderen Fahrzeuge garantiert frei ist. \todo{Rausfinden, ob die \ac{IRS} die Position des \ac{IVS} verwertet und daraus die Zeiten generiert. S.29 US Department.. -> Ich glaube die verwendet die Daten}
 
@@ -91,13 +94,14 @@ Die Bevorzugung von Fahrzeugen bietet sich für die Empfehlung \cite{usSpat} fü
 Inhalt einer \ac{SPaT}:
 \begin{longtable}{|c|c|}
  \hline
-Datenelemente & Typ/Größe\\
+\textbf{Datenelemente} & \textbf{Typ/Größe}\\
+ \hline
  \hline
 Object ID & Unsigned 8 Bit Integer\\
  \hline
  Object Size& Unsigned 8 Bit Integer\\
  \hline
- Apptoach ID& Unsigned 8 Bit Integer\\
+ Apptoach ID & Unsigned 8 Bit Integer\\
  \hline
  Signal Phase Indication &  32 Bit Bitmask \\
  \hline
@@ -110,5 +114,14 @@ Object ID & Unsigned 8 Bit Integer\\
  \caption{Inhalt einer SPaT Nachricht \cite{usSpat}}
  \label{tab:facilitylayer_inhaltSpatNachricht}
  \end{longtable}
+ 
+\todo{Werte der Tabelle beschreiben oder den Mist löschen}
+\begin{figure}[htbp]
+	\includegraphics[width=0.60\textwidth]{content/images/04_facilitylayer/spatKreuzung-Anfahrtsstreifen.pdf}
+	\caption{Kreuzung mit Darstellung der Approach ID \cite{usSpat}}
+	\label{fig:komponentenfacility}
+\end{figure}
+
+
 
 \section{TOPO\label{sec:topo}}
