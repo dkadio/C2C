@@ -108,6 +108,23 @@ Das Nennen des vollständigen Inhalts einer \ac{CAM} würde den Rahmen dieser Au
 \section{DEN\label{sec:den}}
 \ac{DEN} ist definiert um die \ac{RHW} Anwendungsfälle zu unterstützen.	Die \ac{RHW} Anwendung ist auf \ac{IVS} und \ac{ITS} verteilt. Sie ist eine aktive Straßensicherheit Anwendung. Sie verteilt Informationen über die Straßenverkehrsverhältnisse. Um die \ac{DEN} Informationen zu verteilen gibt es \ac{DENM}. Diese enthalten die relevanten Informationen und informieren die andren \ac{ITS-S}. Sie werden beim Eintreffen eines \ac{RHW} relevanten Ereignisses an alle \ac{ITS-S} verteilt, die durch dieses Ereignis betroffen sind. Während das Ereignis anhält, werden die \ac{DENM} verteilt. Das Verteilen endet nach einer festgelegten Zeit oder durch eine weitere \ac{DENM}, die eine andere beendet. In einer \ac{ITS-S}, die eine \ac{DENM} empfängt, wird geprüft, ob die Information für den Benutzer relevant ist. Abhängig der Relevanz wird sie angezeigt oder nicht. Ein Beispiel für eine \ac{DENM}, die nach einer festen Zeit ungültig wird, ist eine Notbremsung eines \ac{IVS}. Durch die Bremsung entsteht eine temporäre Gefahr. 
 
+\begin{figure}[htbp]
+	\includegraphics[width=0.75\textwidth]{content/images/04_facilitylayer/denServices.pdf}
+	\caption{Service Komponenten von DEN \cite{ts102637-3}}
+	\label{fig:darstellungDenServices}
+\end{figure}
+
+Auf der \autoref{fig:darstellungDenServices} sind die Komponenten von \ac{DEN} dargestellt. Darauf zu erkennen ist, dass der \ac{DEN} Basic Service aus das \ac{DEN} Management und die \ac{LDM} besteht. Die restlichen Komponenten unterstützen den Service. 
+
+Das \ac{DEN} Management  ist für das Steuern der \ac{DENM} Übertragung verantwortlich. Dazu gehören das Gerieren, das Aktualisieren und das Beenden der Übertragung. Es regelt das \ac{DENM} Protokoll. Das schließt die Einhaltung des korrekten Nachrichtenformats und der korrekten Semantik ein. Zum erstellen von \ac{DENM} hat das \ac{DEN} Management Interfaces zu den \ac{RHW} Anwendungen und den anderen Facilities. Die \ac{DENM} werden in diesem Services auch aktuell gehalten. Veraltete \ac{DENM} werden gelöscht, bzw. für ungültig erklärt. 
+
+
+
+
+
+Neben der Nutzung von \ac{DENM} für Anwendungen der Verkersicherheit können sie auch für Verkehreffizienzanwendungen genutzt werden. In diesem Fall müssen die \ac{DENM} von den \ac{IVS} auch über lange Distanzen zu den \ac{ICS} geroutet und transportiert werden.
+
+
 
 \section{SPaT\label{sec:spat}}
 \ac{SPaT} ist eine Nachricht, die den Zustand einer Straßenkreuzung beschreibt. Die Beschreibung enthält Staus Informationen der \ac{VBA} und Informationen über die Kreuzung selber. \ac{SPaT} ist noch nicht von der \ac{ETSI}, bzw. \ac{ISO} standardisiert. Aus diesem Grund stammen die folgenden Informationen hauptsächlich aus den U.S. amerikanischen Quellen \cite{usSpat} und \cite{usCaliforniaSpat}. 
