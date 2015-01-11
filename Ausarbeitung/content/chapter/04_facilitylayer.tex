@@ -40,19 +40,22 @@ programmed speed control value, stability control status, yaw rate, vehicle spee
 • This support facility requires capabilities to update parameters values being used for CAM. 
 
 
-\subsubsection{Station state monitoring}
-
-\subsubsection{Services management }
-
-\subsubsection{LDM management }
-
-\subsubsection{Messages management}
-
-\subsubsection{Security access management}
+\subsubsection{Station state monitoring \label{facilitylayer_StationStateMonitoring}}
+tr 102 638
+\subsubsection{Services management \label{facilitylayer_ServicesManagement} }
+tr 102 638
+\subsubsection{LDM management \label{facilitylayer_LDMManagement}}
+tr 102 638
+\subsubsection{Messages management \label{facilitylayer_MessagesManagement}}
+tr 102 638
+\subsubsection{Security access management \label{facilitylayer_AccessManagement}}
+tr 102 638
+\subsubsection{Time management \label{facilitylayer_TimeManagement}}
+tr 102 638
 \subsubsection{Time management}
+tr 102 638
 \subsubsection{Time management}
-\subsubsection{Time management}
-
+tr 102 638
 \subsection{Information Support}
 The information support covers the presentation layer of the OSI reference model and holds the role of
 data management. In any ITS system, there will be an abundance of data sources, both mobile and static
@@ -73,11 +76,37 @@ cooperate with the transport and network layer to achieve the various communicat
 the applications. 
 
 \section{CAM\label{sec:cam}}
-Aus ts 102 724:
-The CAM (Cooperative Awareness Message) is sent periodically in the ITS G5A CCH (Control Channel) at a defined repetition rate of up to 10 Hz. Depending on the decentralized congestion state (DCC state) of the CCH the repetition rate and the TX power of the CAM transmission will be adjusted for minimizing the potential congestion of the channel. If the channel is in a highly congested situation it may occur that older CAMs will be discarded from the transmission queues of the ITS-Stations. The CAM message is generated in the facility layer based on the available information and actual needs. In this case the facility layer will chose the required DP as part of the communication profile. A typical maximum rate of CAM transmission will be 10 Hz. The chosen CAM rate at the facility layer will depend on the speed of the vehicle and the congestion state of the CCH and the SCH1. The required information will be delivered by the DCC\_Management entity.
-The proposed DP for the CAM is a DP2.
+\ac{ITS} bietet die Möglichkeit, dass \ac{ITS-S} untereinander Statusinformationen austauschen. Für den Austausch von Statusinformationen werden \ac{CAM} versandt. Diese beinhalten Informationen über die Anwesenheit allgemein, über die Position und den grundsätzlichen Status. Gemäß Standard \cite{ts102637-2} soll jede \ac{ITS-S} den Umgang mit diesen Nachrichten beherrschen. Das beinhaltet das Senden, das Empfangen und das Generieren dieser Nachrichten. So kennt jede \ac{ITS-S} ihre aktuellen Nachbarn inklusive ihrer Positionen, Bezwungen und den grundlegenden Sensorinformationen. Die \ac{CAM} werden über den Standard \ac{ITS-G5} übertragen. \ac{CAM} werden mit einer Kadenz zwischen 1 und 10 Hz übertragen, das bedeutet, dass mindestens jede Sekunde eine \ac{CAM} generiert und versendet wird, maximal werden aber 10 \ac{CAM} pro Sekunde generiert und versendet. Der Versand erfolgt über ein Single Hop Broadcast. \ac{CAM} spielen besonders für \ac{IVS} eine Rolle.
+
+Die Verwaltung der \ac{CAM} findet im \ac{CAM} Management statt. Es hat Interfaces zu den anderen Facilities:
+\begin{itemize}
+	\item Station State Monitoring, \autoref{facilitylayer_StationStateMonitoring} (Bietet den aktuellen Staus der \ac{ITS-S} an)
+	\item Mobile Station Dynamic Monitoring (Bietet Echtzeitkinematik der \ac{ITS-S} an)
+	\item Time Management, \autoref{facilitylayer_TimeManagement} (Bietet eine global gültige Zeitreferenz für das markieren von Nachrichten an)
+	\item Local Dynamic Map Management, \autoref{facilitylayer_LDMManagement}
+\end{itemize}
+
+Die anderen Facilities sind in der \autoref{fig:komponentenfacility} eingezeichnet. 
+
+Das Nennen des vollständigen Inhalts einer \ac{CAM} würde den Rahmen dieser Ausarbeitung sprengen. Im Folgenden werden dennoch einige interessante Datenelemente aufgezählt. Sie entstammen dem Standard \cite{ts102637-2}. Dort können auch die Restlichen nachlesen werden.
+
+\begin{itemize}
+	\item \textbf{stationCharacteristics: } Dieses Datenelement besteht laut der \ac{ASN.1} Beschreibung aus mindestens drei weiteren Datenelemten:
+	\begin{itemize}
+		\item mobileItsStation: Kann die \ac{ITS-S} ihre Station ändern?
+		\item privateItsStation: Die \ac{ITS-S} wird von keiner Behörde betrieben.
+		\item physicalRelevantItsStation: Kann eine andere \ac{ITS-S} diese \ac{ITS-S} rammen?
+	\end{itemize}
+	\item \textbf{AmbientAirTemperature: } Die Außentemperatur, die die \ac{ITS-S} misst.
+	\item \textbf{CrashStatus: } Dieses Datenelement enthält Informationen über einen Unfall, der eine Weiterfahrt verhindert. Beispiele dafür sind das Auslösen der Airbags oder ein Überschlag.
+	\item \textbf{CurvatureChange: } Dieses Datenelement beschriebt die Änderung der Kurvenrichtung. Ein positiver Wert bedeutet, dass das \ac{IVS} nach rechts abbiegt.
+	\item  \textbf{DangerousGoods: } Dieses Datenelement beschreibt, ob und welches Gefahrgut  das \ac{IVS} transportiert.
+	\item \textbf{StationWidth: } Dieses Element beschreibt die zulässige Gesamtbreite der \ac{ITS-S}. Die Breite ist mit einer Feinheit von 0,01m aufgelöst.
+\end{itemize}
+
 
 \section{DEN\label{sec:den}}
+	
 
 
 \section{SPaT\label{sec:spat}}
@@ -119,8 +148,9 @@ Object ID & Unsigned 8 Bit Integer\\
 \begin{figure}[htbp]
 	\includegraphics[width=0.60\textwidth]{content/images/04_facilitylayer/spatKreuzung-Anfahrtsstreifen.pdf}
 	\caption{Kreuzung mit Darstellung der Approach ID \cite{usSpat}}
-	\label{fig:komponentenfacility}
+	\label{fig:darstellungKreuzung}
 \end{figure}
+
 
 
 
