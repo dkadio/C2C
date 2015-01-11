@@ -40,19 +40,22 @@ programmed speed control value, stability control status, yaw rate, vehicle spee
 • This support facility requires capabilities to update parameters values being used for CAM. 
 
 
-\subsubsection{Station state monitoring}
-
-\subsubsection{Services management }
-
-\subsubsection{LDM management }
-
-\subsubsection{Messages management}
-
-\subsubsection{Security access management}
+\subsubsection{Station state monitoring \label{facilitylayer_StationStateMonitoring}}
+tr 102 638
+\subsubsection{Services management \label{facilitylayer_ServicesManagement} }
+tr 102 638
+\subsubsection{LDM management \label{facilitylayer_LDMManagement}}
+tr 102 638
+\subsubsection{Messages management \label{facilitylayer_MessagesManagement}}
+tr 102 638
+\subsubsection{Security access management \label{facilitylayer_AccessManagement}}
+tr 102 638
+\subsubsection{Time management \label{facilitylayer_TimeManagement}}
+tr 102 638
 \subsubsection{Time management}
+tr 102 638
 \subsubsection{Time management}
-\subsubsection{Time management}
-
+tr 102 638
 \subsection{Information Support}
 The information support covers the presentation layer of the OSI reference model and holds the role of
 data management. In any ITS system, there will be an abundance of data sources, both mobile and static
@@ -73,10 +76,99 @@ cooperate with the transport and network layer to achieve the various communicat
 the applications. 
 
 \section{CAM\label{sec:cam}}
+\ac{ITS} bietet die Möglichkeit, dass \ac{ITS-S} untereinander Statusinformationen austauschen. Für den Austausch von Statusinformationen werden \ac{CAM} versandt. Diese beinhalten Informationen über die Anwesenheit allgemein, über die Position und den grundsätzlichen Status. Gemäß Standard \cite{ts102637-2} soll jede \ac{ITS-S} den Umgang mit diesen Nachrichten beherrschen. Das beinhaltet das Senden, das Empfangen und das Generieren dieser Nachrichten. So kennt jede \ac{ITS-S} ihre aktuellen Nachbarn inklusive ihrer Positionen, Bezwungen und den grundlegenden Sensorinformationen. Die \ac{CAM} werden über den Standard \ac{ITS-G5} übertragen. \ac{CAM} werden mit einer Kadenz zwischen 1 und 10 Hz übertragen, das bedeutet, dass mindestens jede Sekunde eine \ac{CAM} generiert und versendet wird, maximal werden aber 10 \ac{CAM} pro Sekunde generiert und versendet. Der Versand erfolgt über ein Single Hop Broadcast. \ac{CAM} spielen besonders für \ac{IVS} eine Rolle.
+
+Die Verwaltung der \ac{CAM} findet im \ac{CAM} Management statt. Es hat Interfaces zu den anderen Facilities:
+\begin{itemize}
+	\item Station State Monitoring, \autoref{facilitylayer_StationStateMonitoring} (Bietet den aktuellen Staus der \ac{ITS-S} an)
+	\item Mobile Station Dynamic Monitoring (Bietet Echtzeitkinematik der \ac{ITS-S} an)
+	\item Time Management, \autoref{facilitylayer_TimeManagement} (Bietet eine global gültige Zeitreferenz für das markieren von Nachrichten an)
+	\item Local Dynamic Map Management, \autoref{facilitylayer_LDMManagement}
+\end{itemize}
+
+Die anderen Facilities sind in der \autoref{fig:komponentenfacility} eingezeichnet. 
+
+Das Nennen des vollständigen Inhalts einer \ac{CAM} würde den Rahmen dieser Ausarbeitung sprengen. Im Folgenden werden dennoch einige interessante Datenelemente aufgezählt. Sie entstammen dem Standard \cite{ts102637-2}. Dort können auch die Restlichen nachlesen werden.
+
+\begin{itemize}
+	\item \textbf{stationCharacteristics: } Dieses Datenelement besteht laut der \ac{ASN.1} Beschreibung aus mindestens drei weiteren Datenelemten:
+	\begin{itemize}
+		\item mobileItsStation: Kann die \ac{ITS-S} ihre Station ändern?
+		\item privateItsStation: Die \ac{ITS-S} wird von keiner Behörde betrieben.
+		\item physicalRelevantItsStation: Kann eine andere \ac{ITS-S} diese \ac{ITS-S} rammen?
+	\end{itemize}
+	\item \textbf{AmbientAirTemperature: } Die Außentemperatur, die die \ac{ITS-S} misst.
+	\item \textbf{CrashStatus: } Dieses Datenelement enthält Informationen über einen Unfall, der eine Weiterfahrt verhindert. Beispiele dafür sind das Auslösen der Airbags oder ein Überschlag.
+	\item \textbf{CurvatureChange: } Dieses Datenelement beschriebt die Änderung der Kurvenrichtung. Ein positiver Wert bedeutet, dass das \ac{IVS} nach rechts abbiegt.
+	\item  \textbf{DangerousGoods: } Dieses Datenelement beschreibt, ob und welches Gefahrgut  das \ac{IVS} transportiert.
+	\item \textbf{StationWidth: } Dieses Element beschreibt die zulässige Gesamtbreite der \ac{ITS-S}. Die Breite ist mit einer Feinheit von 0,01m aufgelöst.
+\end{itemize}
+
 
 \section{DEN\label{sec:den}}
+\ac{DEN} ist definiert um die \ac{RHW} Anwendungsfälle zu unterstützen.	Die \ac{RHW} Anwendung ist auf \ac{IVS} und \ac{ITS} verteilt. Sie ist eine aktive Straßensicherheit Anwendung. Sie verteilt Informationen über die Straßenverkehrsverhältnisse. Um die \ac{DEN} Informationen zu verteilen gibt es \ac{DENM}. Diese enthalten die relevanten Informationen und informieren die andren \ac{ITS-S}. Sie werden beim Eintreffen eines \ac{RHW} relevanten Ereignisses an alle \ac{ITS-S} verteilt, die durch dieses Ereignis betroffen sind. Während das Ereignis anhält, werden die \ac{DENM} verteilt. Das Verteilen endet nach einer festgelegten Zeit oder durch eine weitere \ac{DENM}, die eine andere beendet. In einer \ac{ITS-S}, die eine \ac{DENM} empfängt, wird geprüft, ob die Information für den Benutzer relevant ist. Abhängig der Relevanz wird sie angezeigt oder nicht. Ein Beispiel für eine \ac{DENM}, die nach einer festen Zeit ungültig wird, ist eine Notbremsung eines \ac{IVS}. Durch die Bremsung entsteht eine temporäre Gefahr. 
+
+\begin{figure}[htbp]
+	\includegraphics[width=0.75\textwidth]{content/images/04_facilitylayer/denServices.pdf}
+	\caption{Service Komponenten von DEN \cite{ts102637-3}}
+	\label{fig:darstellungDenServices}
+\end{figure}
+
+Auf der \autoref{fig:darstellungDenServices} sind die Komponenten von \ac{DEN} dargestellt. Darauf zu erkennen ist, dass der \ac{DEN} Basic Service aus das \ac{DEN} Management und die \ac{LDM} besteht. Die restlichen Komponenten unterstützen den Service. 
+
+Das \ac{DEN} Management  ist für das Steuern der \ac{DENM} Übertragung verantwortlich. Dazu gehören das Gerieren, das Aktualisieren und das Beenden der Übertragung. Es regelt das \ac{DENM} Protokoll. Das schließt die Einhaltung des korrekten Nachrichtenformats und der korrekten Semantik ein. Zum erstellen von \ac{DENM} hat das \ac{DEN} Management Interfaces zu den \ac{RHW} Anwendungen und den anderen Facilities. Die \ac{DENM} werden in diesem Services auch aktuell gehalten. Veraltete \ac{DENM} werden gelöscht, bzw. für ungültig erklärt. 
+
+
+
+
+
+Neben der Nutzung von \ac{DENM} für Anwendungen der Verkersicherheit können sie auch für Verkehreffizienzanwendungen genutzt werden. In diesem Fall müssen die \ac{DENM} von den \ac{IVS} auch über lange Distanzen zu den \ac{ICS} geroutet und transportiert werden.
+
 
 
 \section{SPaT\label{sec:spat}}
+\ac{SPaT} ist eine Nachricht, die den Zustand einer Straßenkreuzung beschreibt. Die Beschreibung enthält Staus Informationen der \ac{VBA} und Informationen über die Kreuzung selber. \ac{SPaT} ist noch nicht von der \ac{ETSI}, bzw. \ac{ISO} standardisiert. Aus diesem Grund stammen die folgenden Informationen hauptsächlich aus den U.S. amerikanischen Quellen \cite{usSpat} und \cite{usCaliforniaSpat}. 
+
+Für \ac{SPaT} gibt es zwei grundsätzliche Betriebsarten. Die erste Betriebsart ist eine feste \ac{VBA} Schaltung. Diese wird den \ac{IVS} über \ac{SPaT} Nachrichten mitgeteilt. Anhand dieser Informationen kann das \ac{IVS} selber die Ampelzeiten berechnen und benötigt keine  weiteren \ac{SPaT} Nachrichten. Die zweite Betriebsart ist, dass die Ampelzeiten aufgrund externer Ereignisse beeinflusst werden können. Externe Ereignisse sind beispielsweise Fußgänger, verkehrsabhängige Schaltungen oder periodisierte \ac{IVS}, wie z.B. Rettungswagen. Bei der zweiten Betriebsart muss beachtet werden, dass zu schnelle Änderungen vermieden werden müssen. Die \ac{IVS} benötigen eine bestimmte Zeit zur Reaktion, so benötigt beispielsweise ein Auto die Reaktionszeit des Fahrers und einen Bremsweg. Wird die Fahrspur dieses Autos gesperrt und andere Fahrspuren dafür freigegeben, wenn das Auto sich schon fast vor der Haltelinie befindet, so ist eine Bremsung vor der Kreuzung nicht mehr möglich. Daraus resultiert ein Sicherheitsrisiko, da die andere Fahrspur nicht für die anderen Fahrzeuge garantiert frei ist. \todo{Rausfinden, ob die \ac{IRS} die Position des \ac{IVS} verwertet und daraus die Zeiten generiert. S.29 US Department.. -> Ich glaube die verwendet die Daten}
+
+Auf dieser Grundlage können weitere Dienste angeboten werden. So können Abbiegeassistent Systeme oder Vorzugsschaltungen realisiert werden. 
+
+ Abbiegeassistent Systeme unterstützen \ac{IVS} beim Abbiegen in Kreuzungen. Anhand der Positions- und Geschwindigkeitsdaten der \ac{IVS} kann die \ac{IRS} berechnen, ob ein Abbiegen nach rechts oder nach links sicher ist. Neben der Positionsdaten können auch Erfassungssysteme genutzt werden, die in die Infrastruktur integriert sind. Beispiele hierfür können \ac{Radar} oder \ac{Lidar} Systeme genutzt werden. Der Nachteil von rein \ac{ITS} basierten Systemen ist, dass nicht \ac{ITS} kompatible Fahrzeuge nicht erkannt werden. Das bedeutet, dass die \ac{IRS} eine freie Kreuzung erkennt und meldet, obwohl nicht \ac{ITS} basierende Fahrzeuge über die Kreuzung fahren. 
+ 
+Die Bevorzugung von Fahrzeugen bietet sich für die Empfehlung \cite{usSpat} für Notfallfahrzeuge, für Fahrzeuge des Nahverkehrs und für den Frachtverkehr an. Durch die Bevorzugung können diese \ac{IVS} eine grüne Welle erreichen. Das bedeutet, dass entweder Grünphasen verlängert werden oder Rotphasen unterbrochen werden. Sofern nicht bereits durch andere Nachrichten, wie \ac{CAM} geschehen, fordert das \ac{IVS} bei der \ac{IRS} eine Bevorrangung an, wenn anhand der \ac{SPaT} erkennt, dass die Kreuzung nicht frei ist. Die \ac{IVS} beantwortet diese Anfrage im positiven Fall mit einer weiteren \ac{SPaT} Nachricht, die eine freie Kreuzung signalisiert.   
+
+Inhalt einer \ac{SPaT}:
+\begin{longtable}{|c|c|}
+ \hline
+\textbf{Datenelemente} & \textbf{Typ/Größe}\\
+ \hline
+ \hline
+Object ID & Unsigned 8 Bit Integer\\
+ \hline
+ Object Size& Unsigned 8 Bit Integer\\
+ \hline
+ Apptoach ID & Unsigned 8 Bit Integer\\
+ \hline
+ Signal Phase Indication &  32 Bit Bitmask \\
+ \hline
+ Countdown Timer Confidence & 32 Bit Bitmask \\
+ \hline
+ Time to Signal Phase Change (Countdown Time) & Unsigned 16 Bit Integer \\
+ \hline
+ Yellow Duration & Unsigned 8 Bit Integer\\
+ \hline
+ \caption{Inhalt einer SPaT Nachricht \cite{usSpat}}
+ \label{tab:facilitylayer_inhaltSpatNachricht}
+ \end{longtable}
+ 
+\todo{Werte der Tabelle beschreiben oder den Mist löschen}
+\begin{figure}[htbp]
+	\includegraphics[width=0.60\textwidth]{content/images/04_facilitylayer/spatKreuzung-Anfahrtsstreifen.pdf}
+	\caption{Kreuzung mit Darstellung der Approach ID \cite{usSpat}}
+	\label{fig:darstellungKreuzung}
+\end{figure}
+
+
+
 
 \section{TOPO\label{sec:topo}}
