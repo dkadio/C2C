@@ -23,25 +23,23 @@ Damit diese Support facility ihren Aufgaben Nachkommen kann, ist im \cite{etsi10
 
 \subsubsection{Mobile station dynamic monitoring}
 Das Mobile station dynamic monitoring ist nur für die \acs{VS} verfügbar. Diese Einheit des Facility Layer verwaltet eine große Anzahl an Fahrzeugspezifischen Daten die von den Applicationen und anderen Komponenten des Facility Layers verwendet werden. Sie ist dafür verantwortlich diese Daten immer auf dem neueste  Stand zu halten. 
+Diese Einheit benötigt die folgenden Vorraussetzungen.
 
 \begin{itemize}
 \item Benötigt zugriff auf Fahrzeug Funktionen wie das Bremssystem, Reifendruck, Stabilitätskontrolle, Geschwindigkeitsregelung etc.
-\item Benötigt 
-\item Benötigt genug Rechenleistung um 3D Positions Angaben sicher zu Verwalten und zu Berechnen.
-\end{itemize}Diese Einheit benötigt die folgenden Vorraussetzungen.
-
-
-
-This support facility requires access to vehicle functions according to selected options (e.g. braking system,
-steering system, tyre pressure monitoring system, stability control system, speed control, etc.).
-• This support facility requires capabilities to filter the selected parameters being needed by applications and
-other facilities (e.g. master cylinder pressure, steering wheel angle, steering wheel angle rate of change,
-programmed speed control value, stability control status, yaw rate, vehicle speed, acceleration control, etc.).
-• This support facility requires capabilities to update parameters values being used for CAM. 
-
+\item Muss verschiedne Parameter filtern können, die für die Applications benötigt werden (z.b Hauptzylinderdruck, Lenkradwinkel, Lenkradwinkeländerungsrate, Gierrate, Fahrzeuggeschwindigkeit oder Beschleunigungssteuerung).
+\item Muss über die Möglichkeit besitzen die verschiedene Werte zu aktualisieren, die für die \acl{CAM} benötigt werden.
+\end{itemize}
 
 \subsubsection{Station state monitoring \label{facilitylayer_StationStateMonitoring}}
-tr 102 638
+Die Station state monitoring facility überwacht dauerhaft den aktuellen Zustand eines Fahrzeuges. Diese können sich je nach Typ des Fahrzeuges unterscheiden. Bei einem Motorrad würde neben Lichtkontrolle, der Neigungswinkel interessant sein, wobei bei einem Rettungswagen der Status der Sirene mehr Sinn ergibt. Über diese Facility können solche Daten dauerhaft abgerufen werden. 
+Dazu benötigt diese die folgenden Punkte.
+\begin{itemize}
+\item Benötigt Zugriff auf die verschiedene Funktionen die überwacht werden sollen (Motor / Antriebsstrang, Cockpit, Scheibenwischer, Lichtsteuerung, etc.).
+\item Muss über die Möglichkeit verfügen diese Funktionen die von den Applications verwendet werden nach aktivität zu filtern.
+\item Muss über die Möglichkeit besitzen die verschiedene Werte zu aktualisieren, die für die \acl{CAM} benötigt werden.
+\end{itemize}
+
 \subsubsection{Services management \label{facilitylayer_ServicesManagement} }
 tr 102 638
 \subsubsection{LDM management \label{facilitylayer_LDMManagement}}
