@@ -102,9 +102,15 @@ Das Nennen des vollständigen Inhalts einer \ac{CAM} würde den Rahmen dieser Au
 	\item \textbf{StationWidth: } Dieses Element beschreibt die zulässige Gesamtbreite der \ac{ITS-S}. Die Breite ist mit einer Feinheit von 0,01m aufgelöst.
 \end{itemize}
 
+\subsection{Aufbau der CAM}
+Eine \ac{CAM} besteht aus verschiedenen Containern, die wiederum Container enthalten. Ein Container ist...\todo{Aufbau CAM beschreiben}
 
 \section{DEN\label{sec:den}}
+\subsection{Beschreibung von DEN \label{facilityLayer_beschreibungDEN}}
 \ac{DEN} ist definiert um die \ac{RHW} Anwendungsfälle zu unterstützen.	Die \ac{RHW} Anwendung ist auf \ac{IVS} und \ac{ITS} verteilt. Sie ist eine aktive Straßensicherheit Anwendung. Sie verteilt Informationen über die Straßenverkehrsverhältnisse. Um die \ac{DEN} Informationen zu verteilen gibt es \ac{DENM}. Diese enthalten die relevanten Informationen und informieren die andren \ac{ITS-S}. Sie werden beim Eintreffen eines \ac{RHW} relevanten Ereignisses an alle \ac{ITS-S} verteilt, die durch dieses Ereignis betroffen sind. Während das Ereignis anhält, werden die \ac{DENM} verteilt. Das Verteilen endet nach einer festgelegten Zeit oder durch eine weitere \ac{DENM}, die eine andere beendet. In einer \ac{ITS-S}, die eine \ac{DENM} empfängt, wird geprüft, ob die Information für den Benutzer relevant ist. Abhängig der Relevanz wird sie angezeigt oder nicht. Ein Beispiel für eine \ac{DENM}, die nach einer festen Zeit ungültig wird, ist eine Notbremsung eines \ac{IVS}. Durch die Bremsung entsteht eine temporäre Gefahr. 
+
+\subsection{DEN Management}
+Auf der \autoref{fig:darstellungDenServices} sind die Komponenten von \ac{DEN} dargestellt. Darauf zu erkennen ist, dass der \ac{DEN} Basic Service aus das \ac{DEN} Management und die \ac{LDM} besteht. Die restlichen Komponenten unterstützen den Service. 
 
 \begin{figure}[htbp]
 	\includegraphics[width=0.75\textwidth]{content/images/04_facilitylayer/denServices.pdf}
@@ -112,15 +118,32 @@ Das Nennen des vollständigen Inhalts einer \ac{CAM} würde den Rahmen dieser Au
 	\label{fig:darstellungDenServices}
 \end{figure}
 
-Auf der \autoref{fig:darstellungDenServices} sind die Komponenten von \ac{DEN} dargestellt. Darauf zu erkennen ist, dass der \ac{DEN} Basic Service aus das \ac{DEN} Management und die \ac{LDM} besteht. Die restlichen Komponenten unterstützen den Service. 
 
-Das \ac{DEN} Management  ist für das Steuern der \ac{DENM} Übertragung verantwortlich. Dazu gehören das Gerieren, das Aktualisieren und das Beenden der Übertragung. Es regelt das \ac{DENM} Protokoll. Das schließt die Einhaltung des korrekten Nachrichtenformats und der korrekten Semantik ein. Zum erstellen von \ac{DENM} hat das \ac{DEN} Management Interfaces zu den \ac{RHW} Anwendungen und den anderen Facilities. Die \ac{DENM} werden in diesem Services auch aktuell gehalten. Veraltete \ac{DENM} werden gelöscht, bzw. für ungültig erklärt. 
+Das \ac{DEN} Management  ist für das Steuern der \ac{DENM} Übertragung verantwortlich. Dazu gehören das Gerieren, das Aktualisieren und das Beenden der Übertragung. Es regelt das \ac{DENM} Protokoll. Das schließt die Einhaltung des korrekten Nachrichtenformats und der korrekten Semantik ein. Zum erstellen von \ac{DENM} hat das \ac{DEN} Management Interfaces zu den \ac{RHW} Anwendungen und den anderen Facilities. Die \ac{DENM} werden in diesem Services auch aktuell gehalten. Veraltete \ac{DENM} werden gelöscht, bzw. für ungültig erklärt. Eine \ac{DENM}, die im \ac{DEN} Management erzeugt wird, muss mindestens den Typ des entdeckten Events und dessen Position enthalten. Zusätzlich muss sie die Eintrittszeit des Events und die voraussichtliche Dauer des Events enthalten. Kann keine voraussichtliche Dauer genannt werden, muss sie geschätzt werden. Das betroffene Gebiet muss auch genannt werden. Bei dem Gebiet, bzw. relevante area, handelt es sich um einen oder mehrere Straßenabschnitte, in denen sich die \ac{ITS-S} befinden die von dem Event betroffen werden. Ein Gebiet kann aber auch eine Richtung sein.
+
+\subsection{Verbreitung der DENM}
+Eine \ac{DENM} soll an so viele \ac{ITS-S} des gleichen Gebiets wie möglich verteilt werden. Das schließt auch \ac{ITS-S} ein, die während der Eventdauer das Gebiet erreichen. Auch wenn eine \ac{ITS-S} keine direkte Verbindung zu der auslösenden \ac{ITS-S} hat, soll sie die \ac{DENM} empfangen. Deswegen werden einige Parameter von der \ac{RHW} Applikation selber definiert. Die Liste dieser Parameter beginnt mit dem Zeitintervall zwischen den \ac{DENM}, die von der gleichen \ac{ITS-S} ausgesendet werden. Neben der Frequenz wird auch die maximale Latenz definiert, die für das Senden der \ac{DENM} benötigt wird und die Priorität der \ac{DENM}. Die Latenz beschreibt die Zeit, die \ac{DENM} vom Facility Layer der aussendenden \ac{ITS-S} zum Networking and Transport Layer der empfangenden \ac{ITS-S} zu senden. Die Priorität wird nicht in der \ac{DENM} selber festgelegt, da sie von unteren Layern übertragen wird. Das Zielgebiet für die \ac{DENM} wird auch von der \ac{RHW} Application festgelegt.
+
+\subsection{Die Beendung des Events}
+Bereits im \autoref{facilityLayer_beschreibungDEN} wurde beschrieben, dass ein Event entweder durch den Ablauf einer Zeit oder durch eine \ac{DENM}, die das Event beendet, beendet werden. Eine beendende \ac{DENM} kann entweder eine Annullierende oder eine Negierende sein. 
+
+Die annullierende \ac{DENM} wird von der \ac{ITS-S} versendet, die das Ereignis ursprünglich bekannt gemacht hat. Sie wird versendet, wenn die \ac{ITS-S} feststellt, dass das Event beendet wurde.  Die annullierende \ac{DENM} ist eine \ac{DENM} mit einer speziellen Datenversion.
+
+Die Negierende \ac{DENM} wird von \ac{ITS-S} gesendet, die das Event ursprünglich nicht angekündigt haben. Sie haben bereits \ac{DENM} zu dem Event empfangen und festgestellt, dass das Event nicht weiter existiert. Eine negierende \ac{DENM} enthält ein Negationsflag. 
+
+Wenn eine beendende \ac{DENM} aus einer vertrauenswürdigen Quelle empfangen wurde, löscht das \ac{DEN} Management der empfangenden \ac{ITS-S} alle anderen \ac{DENM} zu dem gleichen Event. Die beendende \ac{DENM} muss, genau wie die Ankündigenden, eine Zeit lang weiter verteilt werden. Diese Zeit wird von der \ac{RHW} Application bestimmt.
+
+\subsection{Aufbau der DEMN}
+Eine \ac{DENM} besteht aus mehren Containern. Die Container sind in einer festen Reihenfolge angeordnet.   
+
+\begin{figure}[htbp]
+	\includegraphics[width=0.75\textwidth]{content/images/04_facilitylayer/denmAufbau.pdf}
+	\caption{Aufbau einer DENM \cite{ts102637-3}}
+	\label{fig:darstellungdenmAufbau}
+\end{figure}
 
 
-
-
-
-Neben der Nutzung von \ac{DENM} für Anwendungen der Verkersicherheit können sie auch für Verkehreffizienzanwendungen genutzt werden. In diesem Fall müssen die \ac{DENM} von den \ac{IVS} auch über lange Distanzen zu den \ac{ICS} geroutet und transportiert werden.
+Neben der Nutzung von \ac{DENM} für Anwendungen der Verkersicherheit können sie auch für Verkehreffizienzanwendungen genutzt werden. In diesem Fall müssen die \ac{DENM} von den \ac{IVS} auch über lange Distanzen zu den \ac{ICS} geroutet und transportiert werden. 
 
 
 
