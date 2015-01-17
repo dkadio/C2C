@@ -126,6 +126,8 @@ Das \ac{DEN} Management  ist für das Steuern der \ac{DENM} Übertragung verantw
 Der \ac{DEN} Basic Service ist für die Verarbeitung von \ac{DENM} verantwortlich. Die Verarbeitung beinhaltet auf der sendenden Seite das Auslösen von \ac{DENM} und auf die der empfangenden Seite das Empfangen der \ac{DENM}, sowie deren Bereitstellen für die Benutzung in den \ac{ITS-S} Anwendungen. Das Auslösen kann in mehrere Tätigkeiten unterteilt werden und wird im Folgenden genauer erklärt. Der \ac{DENM} Basic Service kann auch die Funktionalität des Weiterleitens von \ac{DENM} anbieten. Der \ac{DEN} Basic Service besteht wiederum aus fünf weiteren Komponenten. Er hat fünf Interfaces. Die Komponenten und Interfaces sind in der \autoref{fig:darstellungDenBasicServiceKomponenten} abgebildet.
 
 \subsubsection{Interfaces}
+Mithilfe der Interfaces stellt der \ac{DEN} Basic Service seine Informationen zur Verfügung. Interfaces haben allgemein den Vorteil, dass die Funktionalitäten oder Layer nicht aufeinander abgestimmt werden müssen, sondern nur klar definierte Übergabepunkte implementieren müssen. Dadurch kann sich beispielsweise die Funktionalität des \ac{DENM} Versenden völlig ändern, ohne dass die Applications angepasst werden müssen. 
+
 \todo{Interfaces vom DENM Basic Service beschreiben}
 
 \subsubsection{Komponenten}
@@ -154,7 +156,9 @@ Das Empfangsmanagement stellt die Funktionalitäten des \ac{DENM} Empfangs berei
 Das \ac{DENM} reception management stellt stellt die die Daten der empfangen \ac{DENM} den anderen Komponenten des Facility Layers und den Anwendungen zur Verfügung.
 
 \paragraph{DENM Keep Alive Forwarding}
-Das Keep Alive Forwaring implementiert die das \ac{DENM} Forwarding Protokoll zu
+Das Keep Alive Forwaring implementiert das im \ac{DENM} Protokoll beschriebene Verfahren zum Weiterleiten dass die \ac{ITS-S} \ac{DENM} weiterleitet. Der Standard \cite{en302637-3} bezeichnet diese Komponente als optional. Ein genaues Protokoll zum Weiterleiten der \ac{DENM} ist noch nicht definiert.
+
+
 
 
 \begin{figure}[htbp]
