@@ -56,31 +56,37 @@ Die LDM management facility analysiert dauerhaft die Nachrichten die von dem App
 \item Die facility muss die einkommenden Nachrichten analysieren können und mit den relevanten Daten in Echtzeit die Datenbank aktualisieren.
 \item Es muss eine leistungsfähige Datenbanksoftware zum Einsatz kommen die eine sehr große Menge an Daten verwalten kann und mit Zugriff von vielen Applications zurecht kommen muss.
 \item Für Safety Applications muss gewährleistet sein das die relevanten Daten für die Application schnell selektiert werden können.
-\item Muss die Daten für alle Anwendungen, die den Zugriff auf die LDM database unterstüzen, freigeben.
+\item Muss die Daten für alle Anwendungen, die den Zugriff auf die LDM database benötigen, freigeben.
 \end{itemize}
 
 \subsubsection{Messages management \label{facilitylayer_MessagesManagement}}
-tr 102 638
+Diese facility ist dafür da Nachrichten zu generieren, formatieren und zu strukturieren. Dies alles geschieht nach dem Europäischen Standart für diese Nachrichtentypen. Darunter zählen aktuell CAN und DENM, die in \autoref{sec:cam} und \autoref{sec:den} genauer erläutert werden. Darüber hinaus analysiert die facility die einkommenden Nachrichten und leitet deren wichtigen Inhalt an die anfordernden Applications weiter. Allerdings auch an andere lokale facilitys wie z.b. an die LDM management facility. Damit die Nachrichten richtig manipuliert werden können, sind in \cite{etsi102638} folgende Punkte aufgeführt.
+\begin{itemize}
+\item Nachrichten erstellen nach dem Europäischen Standart. 
+\item Nachrichten erstellen die nach zukünftigen Europäischen Standart definiert sind.
+\item Muss Nachrichten senden, stoppen oder weiterleiten, je nach Applicationanforderung.
+\end{itemize}
+
 \subsubsection{Security access management \label{facilitylayer_AccessManagement}}
-tr 102 638
+Die Security access management facility als Kommunikationspartner für die Security Entity. Auf \autoref{fig:komponentenfacility} ist der SF-SAP erkennbar. Über diesen Access Point kommunizieren die beiden Layer miteinander und tauschen hier Informationen aus die für die Security wichtig sind. \todo{hier eventuell noch bischen mehr schreiben.}
+
 \subsubsection{Time management \label{facilitylayer_TimeManagement}}
-tr 102 638
-\subsubsection{Time management}
-tr 102 638
-\subsubsection{Time management}
-tr 102 638
+Um im gesamten System eine einheitliche Zeitreferenz zu besitzen, stellt die Time management facility diese zur verfügung. Diese Referenzzeit wird für Zeitstempel benutzt und kann von jeder Schicht abgerufen werden. Desweiteren  berechnet die Time management facility die maximale Latenzzeit einer Übertragung. Diese Information ist vor allem für zeitkritische Anwendungen von Interesse.
+Damit die Facility richtig Arbeiten kann sind nachfolgende Anforderungen gestellt.
+\begin{itemize}
+\item Muss die Latenzzeit berechnen können, die benötigt wird bis eine Nachricht bei dem Networklayer ankommt. 
+\item Die facility muss jeder Anwendung die sagen können, wie lange es dauert bis der Networklayer erreicht ist. 
+\end{itemize}
+
 \subsection{Information Support}
-The information support covers the presentation layer of the OSI reference model and holds the role of
-data management. In any ITS system, there will be an abundance of data sources, both mobile and static
-ones. These data will mostly be location referenced, time specific and attached with life time value and
-with accuracy and reliability parameters. Therefore, fusing data and keeping the information up to date is
-one of the challenges of information support. Main entity that supports this is Local Dynamic
-Map (LDM) that is able to take data both from different sources and from received ITS messages to build
-a data model of the local environment. Furthermore, the information support takes on many functions of
-the OSI Presentation Layer. 
+Der Information Support stellt die Präsentationsebene des \acs{ISO} \acs{OSI} Modells dar. Sie ist für die Datenverwaltung verantwortlich. Dazu gehören statische wie dynamische Daten, die meistens Gebiets- und Zeitabhängig sind und über eine Time to Live verfügen, also nicht für immer gültig sind. Um all diese Daten zu verarbeiten und immer auf dem aktuellen Stand zu halten ist im gesamten der Information Support verantwortlich. Die wichtigste Komponente hierbei ist die \acl{LDM}. Im folgenden wird auf alle einzelnen Komponenten des Information Support eingegangen. 
+
 \subsubsection{LDM database \label{facilitylayer_ldmdatabase}}
+
 \subsubsection{Data presentation}
+
 \subsubsection{Location referecing}
+
 \subsubsection{Station type/capabilities}
 
 \subsection{Communication Support}
