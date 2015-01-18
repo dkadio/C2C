@@ -41,9 +41,24 @@ Dazu benötigt diese die folgenden Punkte.
 \end{itemize}
 
 \subsubsection{Services management \label{facilitylayer_ServicesManagement} }
-tr 102 638
+Da davon auszugehen ist das die verschiedenen Services im laufe der Zeit immer weiterentwickelt werden, muss es eine Einrichtung geben, über die die Services aktuell gehalten werden. 
+Also is die Services management facility dafür da die Services auf dem neusten Stand zu halten, zu entfernen oder neue anzubieten. Die einzelnen Services werden von Services provisioning servers angeboten und können über eine spezielle Software direkt auf die ITS geladen werden. Damit dieser Vorgang durchgeführt werden kann, sind folgende Vorraussetzungen zu erfüllen.
+\begin{itemize}
+\item Die Services provisioning servers müssen die Fähigkeit besitzen für einzelne Services zu werben und die Lizenzbedingungen zu übermitteln. Der Zugang kann direkt über ein eigenes Globales Netzwerk geschehen oder indirekt über eine Roadstation bzw. einen Hotspot.
+\item Die angebotenen Services werden über Nachrichten gesendet, diese müssen empfangen und analysiert werden können.
+\item Um mit dem Benutzer zu interagieren müssen die ausgewählten Services an den Applicationlayer weitergegeben werden können um diese dem Benutzer zu präsentieren und dieser dann die Auswahl treffen kann.
+\item Die Anwendunge müssen aktualisierbar sein um Bugs oder Fehler zu beheben.  
+\end{itemize}
+
 \subsubsection{LDM management \label{facilitylayer_LDMManagement}}
-tr 102 638
+Die LDM management facility analysiert dauerhaft die Nachrichten die von dem Applicationlayer gesendet werden. Diese Änderungen werden in der LDM Database gespeichert und aktualisiert. Die LDM Database wird in \autoref{facilitylayer_ldmdatabase} genauer erläutert. Das heisst das alle Nachrichten die im gesamten C2X Netzwerk empfangen werden ausgewertet werden. Unter diesem befinden sich nicht nur Fahrbahninformationen über beispielsweise Kurven, Radwege oder Ampelsteuerungen sondern auch Informationen über die Objekte die über die Sensoren erkannt werden. Das führt zu einer sehr hohen Datenmenge die in der LDM Database verwaltet werden muss. Damit die LDM management dies tun kann sind folgende Voraussetzungen zu erfüllen.
+\begin{itemize}
+\item Die facility muss die einkommenden Nachrichten analysieren können und mit den relevanten Daten in Echtzeit die Datenbank aktualisieren.
+\item Es muss eine leistungsfähige Datenbanksoftware zum Einsatz kommen die eine sehr große Menge an Daten verwalten kann und mit Zugriff von vielen Applications zurecht kommen muss.
+\item Für Safety Applications muss gewährleistet sein das die relevanten Daten für die Application schnell selektiert werden können.
+\item Muss die Daten für alle Anwendungen, die den Zugriff auf die LDM database unterstüzen, freigeben.
+\end{itemize}
+
 \subsubsection{Messages management \label{facilitylayer_MessagesManagement}}
 tr 102 638
 \subsubsection{Security access management \label{facilitylayer_AccessManagement}}
@@ -63,7 +78,7 @@ one of the challenges of information support. Main entity that supports this is 
 Map (LDM) that is able to take data both from different sources and from received ITS messages to build
 a data model of the local environment. Furthermore, the information support takes on many functions of
 the OSI Presentation Layer. 
-\subsubsection{LDM database}
+\subsubsection{LDM database \label{facilitylayer_ldmdatabase}}
 \subsubsection{Data presentation}
 \subsubsection{Location referecing}
 \subsubsection{Station type/capabilities}
