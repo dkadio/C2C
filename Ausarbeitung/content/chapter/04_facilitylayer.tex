@@ -123,6 +123,9 @@ Das Nennen des vollständigen Inhalts einer \ac{CAM} würde den Rahmen dieser Au
 	\item \textbf{StationWidth: } Dieses Element beschreibt die zulässige Gesamtbreite der \ac{ITS-S}. Die Breite ist mit einer Feinheit von 0,01m aufgelöst.
 \end{itemize}
 
+\subsection{PDU Header \label{facilitylayer_PduHeader}}
+\todo{Was zum PDU header schreiben}The ITS PDU header shall be as specified in ETSI TS 102 894-2 [5]. Detailed data presentation rules of the ITS PDU header in the context of DENM shall be as specified in clause B.1.
+
 \subsection{Aufbau der CAM}
 Eine \ac{CAM} besteht aus verschiedenen Containern, die wiederum Container enthalten. Ein Container ist...\todo{Aufbau CAM beschreiben}
 
@@ -135,7 +138,7 @@ Eine \ac{CAM} besteht aus verschiedenen Containern, die wiederum Container entha
 Auf der \autoref{fig:darstellungDenServices} sind die Komponenten von \ac{DEN} dargestellt. Darauf zu erkennen ist, dass der \ac{DEN} Basic Service aus das \ac{DEN} Management und die \ac{LDM} besteht. Die restlichen Komponenten unterstützen den Service. 
 
 \begin{figure}[htbp]
-	\includegraphics[width=0.75\textwidth]{content/images/04_facilitylayer/denServices.pdf}
+	\includegraphics[width=0.95\textwidth]{content/images/04_facilitylayer/denServices.pdf}
 	\caption{Service Komponenten von DEN \cite{ts102637-3}}
 	\label{fig:darstellungDenServices}
 \end{figure}
@@ -149,7 +152,20 @@ Der \ac{DEN} Basic Service ist für die Verarbeitung von \ac{DENM} verantwortlic
 \subsubsection{Interfaces}
 Mithilfe der Interfaces stellt der \ac{DEN} Basic Service seine Informationen zur Verfügung. Interfaces haben allgemein den Vorteil, dass die Funktionalitäten oder Layer nicht aufeinander abgestimmt werden müssen, sondern nur klar definierte Übergabepunkte implementieren müssen. Dadurch kann sich beispielsweise die Funktionalität des \ac{DENM} Versenden völlig ändern, ohne dass die Applications angepasst werden müssen. 
 
-\todo{Interfaces vom DENM Basic Service beschreiben}
+Der \ac{DEN} Basic Service hat fünf Interfaces. Davon bieten drei Interfaces Schnittstellen zu anderen Layern, zwei sind reine Daten Interfaces. Die Interfaces werden im Folgenden genannt und kurz erläutert. Die genaue Beschreibung und die Auflistung der zu übertragenden Daten  kann dem Standard \cite{en302637-3} entnommen werden.
+
+\paragraph{IF.N\&T}
+Das Interface IF.N\&T ist  eine Schnittstelle zum Network und Transport Layer. Als sendende \ac{ITS-S} übergibt der \ac{DEN} Basic Service über dieses Interface die \ac{DEMN} um sie zu versenden. Als Empfangender empfängt er die \ac{DENM} über dieses Interface. Wenn die \ac{DENM} versendet werden muss mindesten die \ac{DENM} selber sowie die Destiantion Area und das Repetition Interval übergeben werden. Die beiden Werte bestimmen, wohin die \ac{DENM} versendet werden soll und wie oft das Senden wiederholt werden soll. Wird eine \ac{DENM} empfangen, muss mindestens die empfangene  \ac{DENM} über das Interface übergeben werden.
+
+\paragraph{IF.SEC}
+Der Standard \cite{en302637-3} beschreibt zu diesem Interface lediglich, dass es Informationen zu dem Security Layer überträgt.  
+\paragraph{IF.Mng}
+Der Standard \cite{en302637-3} beschreibt zu diesem Interface lediglich, dass es Informationen zu dem Management Layer überträgt. 
+\paragraph{IF.DEN.1}
+Das Interface IF.DEN.1 wird vom Application Layer genutzt. Damit werden Anforderungen für \ac{DENM} übertragen. Möglich sind die Anforderungen AppDENM\_trigger, AppDENM\_update, AppDENM\_termination. Sie entsprechen dem Anfordern, dem Aktualisieren oder dem Beenden von \ac{DENM} und werden vom Application Layer an den \ac{DEN} Basic Service übertragen. Die übertragenen Daten sind im Standard \cite{en302637-3} definiert. Die Anfragen vom Application Layer werden vom \ac{DEN} Basic Service mit der actionId der bearbeiteten \ac{DENM} oder einer Fehlerbenachrichtigung quittiert.
+\paragraph{IF.DEN.2}
+Das Interface IF.DEN.2 wird genutzt um die empfangen Daten vom \ac{DEN} Basic Service in den Application Layer zu transportieren. Dabei werden ganze \ac{DENM} transportiert.
+
 
 \subsubsection{Komponenten}
 Die Komponenten des \ac{DENM} Basic Service erfüllen die Aufgaben des Basic Service.
@@ -201,9 +217,12 @@ Eine \ac{DENM} soll an so viele \ac{ITS-S} des gleichen Gebiets wie möglich ver
 Die \autoref{fig:darstellungDenVerteilenLayer} zeigt, wie sich eine \ac{DENM} über die verschiednen Layer ausbreitet. In diesem Prozess sind drei \ac{ITS-S} beteiligt. Es gibt eine sendende \ac{ITS-S}, eine Empfangende und eine, die nur weiterleitet. Zu sehen ist, dass die Verarbeitung der \ac{DENM} im Application Layer beginnt und endet. Am Weiterleiten sind nur die unteren Layer, bis einschließlich der Facilities Layer beteiligt. Die Entscheidung, ob und wie weitergeleitet wird wird im \ac{DEN} Basic Service getroffen. 
 
 \subsection{Die Aktualisierung von DENM}
+Wenn sich ein Event, zu dem es bereits \ac{DENM} gibt, ändert, müssen die \ac{DENM} aktualisiert werden. Dazu gibt es das \ac{DENM} update.Das \ac{DENM} Update wird vom Application Layer angefordert und in \ac{DEN} Basic Service erstellt. Dieser Prozess wird von der \ac{ITS-S} angestoßen, die die \ac{DENM} ursprünglich versendet hat. Bei einem Update wird die referenceTime der \ac{DENM} aktualisiert, die actionID bleibt unverändert. 
+
 \todo{DENM Update schreiben} 
  
 \subsection{Die Beendung des Events}
+\todo{Prüfen, ob die Wörter Cancellation und Negation genutzt werden. Wenn nicht $\Rightarrow$ eintragen.}
 Bereits im \autoref{facilityLayer_beschreibungDEN} wurde beschrieben, dass ein Event entweder durch den Ablauf einer Zeit oder durch eine \ac{DENM}, die das Event beendet, beendet werden. Eine beendende \ac{DENM} kann entweder eine Annullierende oder eine Negierende sein. 
 
 Die annullierende \ac{DENM} wird von der \ac{ITS-S} versendet, die das Ereignis ursprünglich bekannt gemacht hat. Sie wird versendet, wenn die \ac{ITS-S} feststellt, dass das Event beendet wurde.  Die annullierende \ac{DENM} ist eine \ac{DENM} mit einer speziellen Datenversion.
@@ -212,17 +231,52 @@ Die Negierende \ac{DENM} wird von \ac{ITS-S} gesendet, die das Event ursprüngli
 
 Wenn eine beendende \ac{DENM} aus einer vertrauenswürdigen Quelle empfangen wurde, löscht das \ac{DEN} Management der empfangenden \ac{ITS-S} alle anderen \ac{DENM} zu dem gleichen Event. Die beendende \ac{DENM} muss, genau wie die Ankündigenden, eine Zeit lang weiter verteilt werden. Diese Zeit wird von der \ac{RHW} Application bestimmt.
 
+
 \subsection{Aufbau der DEMN}
-Eine \ac{DENM} besteht aus mehren Containern. Die Container sind in einer festen Reihenfolge angeordnet.   
+Eine \ac{DENM} besteht aus mehren Containern. Die Container sind in einer festen Reihenfolge angeordnet.  Vor den Containern befindet sich ein \ac{ITS} PDU Header, vgl. \autoref{facilitylayer_PduHeader}. Soweit der Aufbau der Datentypen beschrieben ist, werden sie beschrieben. Auffällig ist, dass der Standard \cite{en302637-3} wegen dem Aufbau der Datentypen auf den Standard \cite{ts102894-2} referenziert. Dieser beschreibt die Datenelement aber nicht immer.
 
 \begin{figure}[htbp]
 	\includegraphics[width=0.95\textwidth]{content/images/04_facilitylayer/denmAufbau.pdf}
-	\caption{Aufbau einer DENM \cite{ts102637-3}}
+	\caption{Aufbau einer DENM \cite{en302637-3}}
 	\label{fig:darstellungdenmAufbau}
 \end{figure}
 
 \subsubsection{Management Container}
-Der Management Container enthält Management Daten des entdeckten Events.
+Der Management Container enthält Management Daten des entdeckten Events und Informationen zum \ac{DENM} Protokoll. Er enthält die folgenden Daten:
+\paragraph{actionID}
+Die actionID identifiziert ein Event. Sie soll das Event einzigartig beschreiben und wird für jedes Event neu generiert und diesem zugewiesen. Sie besteht aus der \ac{ITS-S} \ac{ID} der erstellenden \ac{ITS-S} und einer Sequenzummer, die noch nicht benutzt wurde. Falls mehrere \ac{ITS-S} eine \ac{DENM} zu dem gleichen Event erstellen, müssen sich die actionID der \ac{DENM} unterscheiden. 
+
+Die actionID einer \ac{DENM} ändert sich nicht mehr. Auch nicht, wenn die \ac{DENM} weitergeleitet oder aktualisiert wird. Anhand der actionID können die \ac{ITS-S} \ac{DENM} voneinander unterscheiden, die von unterschiedlichen \ac{ITS-S} zu einem gleichen Event erstellt wurden.
+
+\paragraph{detectionTime \label{facilitylayer_referenceTime}}
+Die detectionTime ist die Zeit, zu der das Event von der sendenden \ac{ITS-S} entdeckt wurde. Diese Zeit wird geändert, wenn eine \ac{DENM} aktualisiert wird, oder wenn das Event beendet wird. Gemäß Standard \cite{ts102894-2} ist die Zeit als die Millisekunden seit 00:00:00.000 01. Januar 2004 \ac{UTC} definiert.
+
+\paragraph{referenceTime}
+Die referenceTime ist die Zeit, zu der die \ac{DENM} erstellt wurde. Sie ändert sich bei Updates und Cancel \ac{DENM}. Der Darstellungstyp der Referenzen wurde im \autoref{facilitylayer_referenceTime} beschrieben.
+
+\paragraph{termination}
+Dieses Datenelement bestimmt, ob die generierte \ac{DENM} ein Cancellation oder eine Negation \ac{DENM} ist. Es wird nur mitgesendet, wenn die \ac{DENM} eine Cancellation oder eine Negation \ac{DENM} ist. 
+
+\paragraph{eventPosition}
+Dieses Element beschreibt die geographische Position des entdeckten Events. Die Position wird von der entdeckenden \ac{ITS-S} bestimmt. Wenn die meldende \ac{ITS-S} ein \ac{IVS} ist, soll als Position die Position gewählt werden, zu der sich das \ac{IVS} zum Zeitpunkt befand, als es das Event entdeckt hat. Im Standard \cite{ts102894-2} beinhaltet die ReferencePosition den Breitengrad, den Längengrad, die Höhe und die positionConfidenceEllipse. Letztere beschreibt die horizontale Genauigkeit.
+
+
+\paragraph{relevanceDistance}
+Dieses Element beschreibt den Umkreis, wie weit das gemeldete Event Einfluss auf \ac{ITS-S} hat. Dieses Element ist optional. 
+
+\paragraph{relevanceTrafficDirection}
+Dieses Element beschreibt die Fahrtrichtung, in der das Event für \ac{ITS-S} interessant ist. Dieses Element ist optional. 
+
+\paragraph{validityDuration}
+Dieses Datenelemet   beschreibt, wie lange die \ac{DENM} gültig ist, bzw. das Event dauert. Anhand dieses Elements wird die \ac{DENM} aus dem \ac{DEN} Basic Service gelöscht. Wenn die Dauer des Events nicht bestimmt werden kann, wird ein Defaultwert gesetzt. Die \ac{ITS-S}, die das Event gemeldet hat, kann die Zeit verlängern.  
+
+\paragraph{transmissionInterval}
+Dieses Datenelement beschreibt, in welchem Intervall das \ac{DENM} Senden wiederholt werden soll. Es wird von der meldenden \ac{ITS-S} gesetzt. Wenn es nicht gesetzt wurde, leiten die anderen \ac{ITS-S} die \ac{DENM} nicht weiter. 
+
+\paragraph{stationType}
+Dieses Datenelement beschreibt den Typ der sendenden \ac{ITS-S}. Die vordefinierten Typen sind für \ac{IVS} ausgelegt. Der Wert wird als Ganzzahl übertragen. Im Standard \cite{ts102894-2} sind  16 Werte vorbelegt, die Zahl kann maximal den Wert 255 annehmen.
+
+
 
 \subsubsection{Situation Container}
 Der Situation Container enthält Daten zu dem entdeckten Event.
