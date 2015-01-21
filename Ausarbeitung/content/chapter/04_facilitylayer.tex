@@ -277,9 +277,32 @@ Dieses Datenelement beschreibt, in welchem Intervall das \ac{DENM} Senden wieder
 Dieses Datenelement beschreibt den Typ der sendenden \ac{ITS-S}. Die vordefinierten Typen sind für \ac{IVS} ausgelegt. Der Wert wird als Ganzzahl übertragen. Im Standard \cite{ts102894-2} sind  16 Werte vorbelegt, die Zahl kann maximal den Wert 255 annehmen.
 
 
-
 \subsubsection{Situation Container}
-Der Situation Container enthält Daten zu dem entdeckten Event.
+Der Situation Container enthält Daten zu dem entdeckten Event. Er muss mindestens die Datenelemente informationQuality und eventType beinhalten. Darüber hinaus kann er aber noch weitere Elemente enthalten. Die Informationen, die hier übertragen werden, werden vom Application Layer bereit gestellt.
+
+\paragraph{informationQuality}
+Dieses Datenelement beschreibt die Wahrscheinlichkeit, ob das entdeckte Event wirklich passiert ist. Es wird von der entdeckenden Application gesetzt. Dieses Element ist eine Ganzzahl und kann acht Werte annehmen, wobei 0 unbekannt bedeutet, der niedrigste Wert ist 1 und der höchste Wert ist 7.
+
+\paragraph{eventType \label{facilitylayer_eventType}}
+Der eventType beschreibt das Event, das entdeckt wurde. Der eventType besteht wiederum aus mehreren Werten. Der erste Wert ist nennt sich causeCodeType und enthält den Grund des Events. Beispiele hierfür sind accident,  wrongWayDriving oder vehicleBreakdown. Er ist als Ganzzahl codiert und besitzt einen Zahlenraum von 256. Der zweite Wert des eventTypes ist der SubCauseCodeType. Er ist auch eine Anzahl mit dem Wertebereich 0..255. Der subCauseCode beschreibt den causeCode genauer, eine genauere Beschreibung ist zum gegenwärtigen Zeitpunkt nicht in den \ac{ETSI} Dokumenten zu finden.
+
+\paragraph{linkedCause}
+Dieses Datenelement beschreibt ein verknüpftes Event. Es enthält die gleichen Werte wie der eventType, vgl.  \ref{facilitylayer_eventType}. Ein Beispiel für ein verknüpftes Event ist ein vehicleBreakdown, das der linkedCause für ein dangerousEndOfQueue ist.  
+
+
+
+\paragraph{eventHistory}
+Dieses Datenelement beschreibt eine Liste von Event Positionen. Es kann verwendet werden, um ein weiträumiges Event, wie z.B. 9 Hazardous location - Surface condition, genauer zu beschrieben. Dazu können bus zu 40 Punkte des gleichen Events beschrieben werden, an denen das \ac{IVS} vorbeigekommen ist.
+
+
+\begin{figure}[htbp]
+	\includegraphics[width=0.95\textwidth]{content/images/04_facilitylayer/denmCauseCodeBeispiel.pdf}
+	\caption{Beispieldaten für Cause Codes \cite{en302637-3}}
+	\label{fig:causeCodeBeispiele}
+\end{figure}
+
+
+Die \autoref{fig:causeCodeBeispiele} zeigt einen Ausschnitt aus dem Standard   \cite{en302637-3}. Darin ist eine Zuordnung von causeCode und subCauseCode beschrieben. Das vorliegende Beispiel zeigt den causeCode 91, also ein defektes Fahrzeug. Zu diesem causeCode sind neun subCauseCodes aufgelistet, die den Grund des Defekts beschreiben, wie z.B. der subCauseCode 3, Motorprobleme.  
 
 \subsubsection{Location Container}
 Der Location Container enthält die Informationen zur Position des entdeckten Events.
