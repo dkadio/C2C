@@ -305,12 +305,28 @@ Dieses Datenelement beschreibt eine Liste von Event Positionen. Es kann verwende
 Die \autoref{fig:causeCodeBeispiele} zeigt einen Ausschnitt aus dem Standard   \cite{en302637-3}. Darin ist eine Zuordnung von causeCode und subCauseCode beschrieben. Das vorliegende Beispiel zeigt den causeCode 91, also ein defektes Fahrzeug. Zu diesem causeCode sind neun subCauseCodes aufgelistet, die den Grund des Defekts beschreiben, wie z.B. der subCauseCode 3, Motorprobleme.  
 
 \subsubsection{Location Container}
-Der Location Container enthält die Informationen zur Position des entdeckten Events.
+Der Location Container enthält die Informationen zur Position des entdeckten Events. Neben der reinen Position des Events kann er auch andere Datenfelder enthalten.
+
+\paragraph{eventSpeed}
+Dieses Datenelement beschreibt die Geschwindigkeit des entdeckten Events. Zusätzlich wird die genau der Geschwindigkeitsmeldung mitgesendet. 
+
+Die Genauigkeit wird in in 127 Wegen codiert, wobei der Wert 1 \glqq withinOneCentimeterPerSec\grqq~bedeutet und der Wert 126 \glqq outOfRange\grqq~bedeutet. 
+
+Die Geschwindigkeit selber wird von \glqq standstill(0)\grqq~über\glqq oneCentimeterPerSec(1)\grqq~bis \glqq unavailable (16383)\glqq~kodiert. Die Einheit ist $0,01 \frac{m}{s}$.
+
+\paragraph{eventPositionHeading}
+Dieses Datenelement beschreibt die Fahrtrichtung des Events und die Genauigkeit dieser Information. 
+
+Die Fahrtrichtung wird als Gradzahl beschrieben, die vom in WGS84 definierten Norden abhängt. Die Auflösung der Richtung ist 0,1 Grad. Norden entspricht 0 Grad, Süden entspricht dem dem Wert 1800.
+
+Die Genauigkeit der Richtung wird mit einem Wert zwischen 0 und 127 beschrieben. 0 entspricht \glqq withinZeroPointOneDegree (0)\geqq~und der Wert entspricht \glqq unavailable (127)\grqq.
+
+\paragraph{traces}
+Das Datenelement traces beinhaltet mehrere Wegpunkte. Sie bilden zusammen eine Wegbeschreibung zu dem Event. Eine \ac{DENM} kann mehre Trasse enthalten. Dadurch können verschiedene Wege zu dem Event beschrieben werden. Ein \ac{IVS} kann seine eigene Route mit den empfangen Trasse vergleichen und feststellen, ob es auf dem Weg zum Event ist. Aktuell darf eine \ac{DENM} bis zu sieben traces enthalten.
 
 
-
-Neben der Nutzung von \ac{DENM} für Anwendungen der Verkersicherheit können sie auch für Verkehreffizienzanwendungen genutzt werden. In diesem Fall müssen die \ac{DENM} von den \ac{IVS} auch über lange Distanzen zu den \ac{ICS} geroutet und transportiert werden. 
-
+\paragraph{roadType}
+Das Datenelement roadtype beschreibt den typ der Straße. Möglich sind vier Werte, es wird unterschieden, ob die Fahrspuren getrennt sind und ob es eine städtische Straße ist oder nicht. 
 
 
 \section{SPaT\label{sec:spat}}
