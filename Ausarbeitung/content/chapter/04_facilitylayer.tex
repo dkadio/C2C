@@ -97,15 +97,6 @@ the applications.
 \section{CAM\label{sec:cam}}
 \ac{ITS} bietet die Möglichkeit, dass \ac{ITS-S} untereinander Statusinformationen austauschen. Für den Austausch von Statusinformationen werden \ac{CAM} versandt. Diese beinhalten Informationen über die Anwesenheit allgemein, über die Position und den grundsätzlichen Status. Gemäß Standard \cite{ts102637-2} soll jede \ac{ITS-S} den Umgang mit diesen Nachrichten beherrschen. Das beinhaltet das Senden, das Empfangen und das Generieren dieser Nachrichten. So kennt jede \ac{ITS-S} ihre aktuellen Nachbarn inklusive ihrer Positionen, Bezwungen und den grundlegenden Sensorinformationen. Die \ac{CAM} werden über den Standard \ac{ITS-G5} übertragen. \ac{CAM} werden mit einer Kadenz zwischen 1 und 10 Hz übertragen, das bedeutet, dass mindestens jede Sekunde eine \ac{CAM} generiert und versendet wird, maximal werden aber 10 \ac{CAM} pro Sekunde generiert und versendet. Der Versand erfolgt über ein Single Hop Broadcast. \ac{CAM} spielen besonders für \ac{IVS} eine Rolle.
 
-Die Verwaltung der \ac{CAM} findet im \ac{CAM} Management statt. Es hat Interfaces zu den anderen Facilities:
-\begin{itemize}
-	\item Station State Monitoring, \autoref{facilitylayer_StationStateMonitoring} (Bietet den aktuellen Staus der \ac{ITS-S} an)
-	\item Mobile Station Dynamic Monitoring (Bietet Echtzeitkinematik der \ac{ITS-S} an)
-	\item Time Management, \autoref{facilitylayer_TimeManagement} (Bietet eine global gültige Zeitreferenz für das markieren von Nachrichten an)
-	\item Local Dynamic Map Management, \autoref{facilitylayer_LDMManagement}
-\end{itemize}
-
-Die anderen Facilities sind in der \autoref{fig:komponentenfacility} eingezeichnet. 
 
 Das Nennen des vollständigen Inhalts einer \ac{CAM} würde den Rahmen dieser Ausarbeitung sprengen. Im Folgenden werden dennoch einige interessante Datenelemente aufgezählt. Sie entstammen dem Standard \cite{ts102637-2}. Dort können auch die Restlichen nachlesen werden.
 
@@ -122,6 +113,80 @@ Das Nennen des vollständigen Inhalts einer \ac{CAM} würde den Rahmen dieser Au
 	\item  \textbf{DangerousGoods: } Dieses Datenelement beschreibt, ob und welches Gefahrgut  das \ac{IVS} transportiert.
 	\item \textbf{StationWidth: } Dieses Element beschreibt die zulässige Gesamtbreite der \ac{ITS-S}. Die Breite ist mit einer Feinheit von 0,01m aufgelöst.
 \end{itemize}
+
+\subsection{Cooperative Awareness Management}
+Das \ac{CA} Management ist im Facilitylayer angesiedelt. Eine der Aufgaben den \ac{CA} Management ist die Bearbeitung von \ac{CAM}. Die \ac{CAM} werden erstellt und versendet, empfangen, aber auch weitergeleitet. Der Austausch zu den anderen Layern geschieht über die Interfaces, die im \autoref{facilitylayer_cam_interfaces} genauer beschrieben werden.  
+
+\begin{figure}[htbp]
+	\includegraphics[width=0.95\textwidth]{content/images/04_facilitylayer/caManagementLAyerUebersicht.pdf}
+	\caption{Funktionale Darstellung des Cooperative Awareness Management}
+	\label{fig:darstellungCAManagement}
+\end{figure}
+
+\subsubsection{Funktionalitäten}
+Das \ac{CA} Management besteht selber aus mehreren Funktionalitäten. Die haben jeweils eigene Aufgaben und sind voneinander getrennt. In der \autoref{fig:darstellungCAManagement} ist der \ac{CA} Basic Service darlegt. Dort sind die einzelnen funktionalen Elemente und die Interfaces zu erkennen.
+
+\paragraph{CAM transmission management}
+Diese Funktionalität beinhaltet die Protokoll Funktionalitäten. Sie werden für die die \ac{ITS-S} benötigt, die \ac{CAM} aussenden. Diese Funktionalitäten beinhalten im Einzelnen:
+\begin{itemize}
+	\item Aktivierung und Beendung der \ac{CAM} Übertragung
+	\item Festlegung der \ac{CAM} Generierungsfrequenz 
+	\item Steuerung der Erzeugung von \ac{CAM}
+\end{itemize}
+
+\paragraph{CAM reception management}
+Diese Funktionalität beinhaltet die Protokoll Funktionalitäten, die zum Empfangen von \ac{CAM} benötigt werden. Diese Funktionalitäten beinhalten im Einzelnen:
+\begin{itemize}
+	\item Steuerung der Decodierung der \ac{CAM}
+	\item Verteilung der empfangen \ac{CAM} an das \ac{LDM} (\ref{facilitylayer_LDMManagement}) oder an den Application Layer der empfangenen \ac{ITS-S}.
+	\item Optional findet eine Überprüfung der Informationen der empfangenen \ac{CAM} statt.
+\end{itemize}
+
+\paragraph{Encode CAM}
+Diese Funktionalität erstellt die \ac{CAM} nach den Regeln, die im Standard \cite{en302637-2} beschrieben sind. Dabei sollen die wichtigsten Daten der \ac{IVS} in der \ac{CAM} enthalten sein.
+
+\paragraph{Decode CAM}
+Diese Funktionalität dekodiert die empfangenen \ac{CAM}.
+
+
+\subsubsection{Interfaces \label{facilitylayer_cam_interfaces}}
+Zur externen Kommunikation nutzt das \ac{CA} Management Interfaces. Diese Interfaces sind auch in der  \autoref{fig:darstellungCAManagement} dargestellt. 
+
+\paragraph{IF.CAM}
+Das Interface IF.CAM ist das Interface, das zum Application Layer und zu den \ac{LDM}. 
+
+\paragraph{IF.FAC}
+Zum Generieren der \ac{CAM} ist der Facilitylayer auf Informationen der anderen Layer angewiesen. Das Interface IF.FAC ist zum Austausch der benötigten Daten gedacht. Eine genaue Beschreibung dieses Interfaces sieht der Standard \cite{en302637-2} zum aktuellen Zeitpunkt nicht vor. 
+
+\paragraph{IF.N\&T}
+Das Interface IF.N\&T bietet die Schnittstelle zu dem Networking \& Transport Layer, vgl. \autoref{chap:networklayer}. Es dient vor allem dazu, die im \ac{CA} Management generierten \ac{CAM} zu versenden und \ac{CAM} zu empfangen. 
+
+\paragraph{IF.Mng}
+Das Interface IF.Mng bietet die Schnittstelle zum Management Layer, vgl. \ref{architektur_managementLayer}. Der Management Layer bestimmt beispielsweise das Intervall zum Versenden von \ac{CAM}.
+
+\paragraph{IF.Sec}
+Das Interface IF.Sec bietet die Schnittstelle zum Security Layer, vgl. \ref{architektur_securityLayer}.
+
+
+\iffalse
+\begin{itemize}
+	\item Station State Monitoring, \autoref{facilitylayer_StationStateMonitoring} (Bietet den aktuellen Staus der \ac{ITS-S} an)
+	\item Mobile Station Dynamic Monitoring (Bietet Echtzeitkinematik der \ac{ITS-S} an)
+	\item Time Management, \autoref{facilitylayer_TimeManagement} (Bietet eine global gültige Zeitreferenz für das markieren von Nachrichten an)
+	\item Local Dynamic Map Management, \autoref{facilitylayer_LDMManagement}
+\end{itemize}
+
+Die anderen Facilities sind in der \autoref{fig:komponentenfacility} eingezeichnet. 
+\fi
+
+\subsection{Verbreitung der CAM}
+\ac{CAM} werden als Point-Mulitipoint Nachrichten verteilt. Sie sollen nicht weitergeleitet werden, sie sind also single hop Nachrichten und werden nur von den umliegenden \ac{ITS-S} empfangen. \ac{CAM} werden nur versendet, wenn die \ac{ITS-S} aktiv ist. \ac{CAM} machen nur für \ac{IVS} Sinn, der Standard \cite{en302637-2} bezieht sich auch nur auf \ac{IVS}. 
+
+Die Senderate der \ac{CAM} wird vom sendenden \ac{IVS} gesteuert. Die ist zwischen einem und zehn Herz definiert und hängt sowohl von der Kanalauslastung als auch von DNAmik der \ac{IVS} ab. \todo{Rausfinden, was in em Fall Dynamik sein soll.}
+
+Die \ac{CAM} werden im \ac{CA} Management generiert und durch die darunter liegenden Layer übertragen.
+
+\todo{Bei Security CAM weitermachen}
 
 \subsection{PDU Header \label{facilitylayer_PduHeader}}
 \todo{Was zum PDU header schreiben}The ITS PDU header shall be as specified in ETSI TS 102 894-2 [5]. Detailed data presentation rules of the ITS PDU header in the context of DENM shall be as specified in clause B.1.
@@ -319,7 +384,7 @@ Dieses Datenelement beschreibt die Fahrtrichtung des Events und die Genauigkeit 
 
 Die Fahrtrichtung wird als Gradzahl beschrieben, die vom in WGS84 definierten Norden abhängt. Die Auflösung der Richtung ist 0,1 Grad. Norden entspricht 0 Grad, Süden entspricht dem dem Wert 1800.
 
-Die Genauigkeit der Richtung wird mit einem Wert zwischen 0 und 127 beschrieben. 0 entspricht \glqq withinZeroPointOneDegree (0)\geqq~und der Wert entspricht \glqq unavailable (127)\grqq.
+Die Genauigkeit der Richtung wird mit einem Wert zwischen 0 und 127 beschrieben. 0 entspricht \glqq withinZeroPointOneDegree (0)\grqq~und der Wert entspricht \glqq unavailable (127)\grqq.
 
 \paragraph{traces}
 Das Datenelement traces beinhaltet mehrere Wegpunkte. Sie bilden zusammen eine Wegbeschreibung zu dem Event. Eine \ac{DENM} kann mehre Trasse enthalten. Dadurch können verschiedene Wege zu dem Event beschrieben werden. Ein \ac{IVS} kann seine eigene Route mit den empfangen Trasse vergleichen und feststellen, ob es auf dem Weg zum Event ist. Aktuell darf eine \ac{DENM} bis zu sieben traces enthalten.
