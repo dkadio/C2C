@@ -186,14 +186,33 @@ Die Senderate der \ac{CAM} wird vom sendenden \ac{IVS} gesteuert. Die ist zwisch
 
 Die \ac{CAM} werden im \ac{CA} Management generiert und durch die darunter liegenden Layer übertragen.
 
-\todo{Bei Security CAM weitermachen}
+\subsection{Security}
+Die Sicherheit des \ac{CA} Basic Service wird im Security Layer, vgl. \autoref{{architektur_securityLayer}} geregelt. Die Zertifikate, die dort verarbeitet werden enthalten die Berechtigung der \ac{ITS-S}. 
+ 
+\subsection{Aufbau der CAM}
+Eine \ac{CAM} besteht einem \ac{ITS} \ac{PDU} Header und aus verschiedenen Containern. Die \autoref{fig:aufbauCam} verdeutlicht den Aufbau von \ac{CAM}. Darin ist zu erkennen, dass die \ac{CAM} aus vier verschiedenen Typen von Containern besteht, die wiederum verschiedene Container beinhalten. Basic Container und High Frequency Container werden mit jeder \ac{CAM} versendet. Die anderen Container werden nur jede halbe Sekunde versendet. Die Bestandteile der \ac{CAM} werden im Folgenden genauer erklärt.
 
-\subsection{PDU Header \label{facilitylayer_PduHeader}}
+\begin{figure}[htbp]
+	\includegraphics[width=0.95\textwidth]{content/images/04_facilitylayer/camAufbau.pdf}
+	\caption{Der Aufbau von CAM \cite{en302637-2}}
+	\label{fig:aufbauCam}
+\end{figure}
+
+\subsubsection{PDU Header \label{facilitylayer_PduHeader}}
 \todo{Was zum PDU header schreiben}The ITS PDU header shall be as specified in ETSI TS 102 894-2 [5]. Detailed data presentation rules of the ITS PDU header in the context of DENM shall be as specified in clause B.1.
 
-\subsection{Aufbau der CAM}
-Eine \ac{CAM} besteht aus verschiedenen Containern, die wiederum Container enthalten. Ein Container ist...\todo{Aufbau CAM beschreiben}
+\subsubsection{Basic Container}
+Der Basic Container enthält grundlegende Informationen über die \ac{ITS-S}, die die \ac{CAM} versendet. Die grundlegenden Informationen sind der Typ der \ac{ITS-S} und die letzte Position der \ac{ITS-S}. Der Basic Container muss bei jeder \ac{CAM} mitgesendet werden.
 
+\subsubsection{High Frequency Conatiner}
+Der high frequency Container wird bei jeder \ac{CAM} mitgesendet. Aktuell ist für diesen Container der Untercontainer hf vehicle Container definiert. Dieser kann beispielsweise die Geschwindigkeit einer \ac{IVS} enthalten.
+
+
+\subsubsection{Low Frequency Container}
+Der low frequency container ist in der aktuellen Version des Standards \cite{en302637-2} noch nicht definiert. Es ist lediglich der vehicle low frequency container definiert. Er kann bespielsweise den Status der Lichter der \ac{IVS} beschreiben. Dieser kann beispielsweise der public transport contrainer sein, der beschreibt, dass die aussendende \ac{IVS} ein Fahrzeug um öffentlichen Transport ist.
+
+\subsubsection{Special vehicle Container}
+Wenn ein \ac{IVS} eine spezielle Rolle im Straßenverkehr hat, kann es den special vehicle Container mit den \ac{CAM} versenden. Dieser enthält wiederum einen Container, der diese Rolle genauer beschriebt. 
 \section{DEN\label{sec:den}}
 \subsection{Beschreibung von DEN \label{facilityLayer_beschreibungDEN}}
 \ac{DEN} ist definiert um die \ac{RHW} Anwendungsfälle zu unterstützen.	Die \ac{RHW} Anwendung ist auf \ac{IVS} und \ac{ITS} verteilt. Sie ist eine aktive Straßensicherheit Anwendung. Sie verteilt Informationen über die Straßenverkehrsverhältnisse. Um die \ac{DEN} Informationen zu verteilen gibt es \ac{DENM}. Diese enthalten die relevanten Informationen und informieren die andren \ac{ITS-S}. Sie werden beim Eintreffen eines \ac{RHW} relevanten Ereignisses an alle \ac{ITS-S} verteilt, die durch dieses Ereignis betroffen sind. Während das Ereignis anhält, werden die \ac{DENM} verteilt. Das Verteilen endet nach einer festgelegten Zeit oder durch eine weitere \ac{DENM}, die eine andere beendet. In einer \ac{ITS-S}, die eine \ac{DENM} empfängt, wird geprüft, ob die Information für den Benutzer relevant ist. Abhängig der Relevanz wird sie angezeigt oder nicht. Ein Beispiel für eine \ac{DENM}, die nach einer festen Zeit ungültig wird, ist eine Notbremsung eines \ac{IVS}. Durch die Bremsung entsteht eine temporäre Gefahr. 
