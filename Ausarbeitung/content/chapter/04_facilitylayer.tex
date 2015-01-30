@@ -79,9 +79,36 @@ Damit die Facility richtig Arbeiten kann sind nachfolgende Anforderungen gestell
 \end{itemize}
 
 \subsection{Information Support}
-Der Information Support stellt die Präsentationsebene des \acs{ISO} \acs{OSI} Modells dar. Sie ist für die Datenverwaltung verantwortlich. Dazu gehören statische wie dynamische Daten, die meistens Gebiets- und Zeitabhängig sind und über eine Time to Live verfügen, also nicht für immer gültig sind. Um all diese Daten zu verarbeiten und immer auf dem aktuellen Stand zu halten ist im gesamten der Information Support verantwortlich. Die wichtigste Komponente hierbei ist die \acl{LDM}. Im folgenden wird auf alle einzelnen Komponenten des Information Support eingegangen. 
+Der Information Support stellt die Präsentationsebene des \ac{ISO} \ac{OSI} Modells dar. Sie ist für die Datenverwaltung verantwortlich. Dazu gehören statische wie dynamische Daten, die meistens gebiets- und zeitabhängig sind und über eine Time to Live verfügen, also nicht für immer gültig sind. Um all diese Daten zu verarbeiten und immer auf dem aktuellen Stand zu halten ist im Gesamten der Information Support verantwortlich. Die wichtigste Komponente hierbei ist die \ac{LDM}. Im folgenden wird auf alle einzelnen Komponenten des Information Support eingegangen. 
 
 \subsubsection{LDM database \label{facilitylayer_ldmdatabase}}
+Die \ac{LDM} Database ist eine Sammlung von Informationen für Facilities und Anwendungen. Facilities können der beispielsweise der \ac{CA}, \autoref{sec:cam} oder der \ac{DEN}, \autoref{sec:den} sein. Ihnen wird durch die \ac{LDM} eine Möglichkeit gegeben, ihre Daten zu speichern. Neben der Speicherung wird eine Rechtevergabe für die Daten angeboten. Dadurch kann der Zugriff auf autorisierte Anwendungen beschränkt werden. Die gespeicherten Daten werden von der  \ac{LDM} nicht verändert.
+
+Die \ac{LDM} befindet sich im Facility Layer. Auf der \autoref{fig:ldmZwischenLayern} ist die \ac{LDM} dargestellt. Auf dieser Abbildung ist zu erkennen, dass die anderen Services des Facility Layers einer Verbindung zur \ac{LDM} haben. Die \ac{LDM} besitzt weiterhin Interfaces in andere Layer.
+
+\begin{figure}[htbp]
+	\includegraphics[width=0.75\textwidth]{content/images/04_facilitylayer/ldmLayer.pdf}
+	\caption{Darstellung der LDM zwischen den Layern \cite{en302895}}
+	\label{fig:ldmZwischenLayern}
+\end{figure}
+
+\paragraph{Interfaces}
+Die Interfaces sind auf der \autoref{fig:ldmZwischenLayern} zu erkennen. Auf der Abbildung \autoref{fig:ldmInterfaces} sind diese Interfaces funktional dargestellt. Der Unterschied in der Beschreibung ist, dass diese Interfaces nicht dadurch beschrieben werden, wohin sie die Schnittstelle bieten, sondern welche Funktionen sie anbieten.
+
+Neben den Interfaces sind Zero Hauptkomponenten beschrieben. Der \ac{LDM} Service bietet die Funktionalitäten autorisierten \ac{LDM} Data Providern an. Data Provider sind Komponenten, die die Daten bearbeiten. Bearbeiten kann neue Daten hinzufügen sein, vorhandene Daten modifizieren oder vorhandene Daten löschen. Sie können aber auch einen direkten Zugriff auf die Daten haben und sie zur Verfügung stellen. Der \ac{LDM} Service bietet auch Funktionalitäten an um Data Provider, bzw. Data Consumer anzumelden oder abzumelden. 
+
+Die \ac{LDM} Maintenance Komponente verwaltet die Daten 
+
+\begin{figure}[htbp]
+	\includegraphics[width=0.95\textwidth]{content/images/04_facilitylayer/ldmFunktionelleInterfaces.pdf}
+	\caption{Darstellung der Interfaces des LDM \cite{en302895}}
+	\label{fig:ldmInterfaces}
+\end{figure}
+
+\paragraph{Abrufen der Daten}
+
+\paragraph{Funktionen der LDM}
+Data Objects und so
 
 \subsubsection{Data presentation}
 
