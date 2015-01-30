@@ -199,13 +199,14 @@ Eine \ac{CAM} besteht einem \ac{ITS} \ac{PDU} Header und aus verschiedenen Conta
 \end{figure}
 
 \subsubsection{PDU Header \label{facilitylayer_PduHeader}}
-\todo{Was zum PDU header schreiben}The ITS PDU header shall be as specified in ETSI TS 102 894-2 [5]. Detailed data presentation rules of the ITS PDU header in the context of DENM shall be as specified in clause B.1.
+Der \ac{ITS} \ac{PDU} Header beschreibt grundlegende Inhalte der Nachricht. Darin sind Informationen über die Protokoll Version, den Nachrichtentyp und die \ac{ITS-S} \ac{ID} enthalten. Der Nachrichtentyp kann auch als Nachrichten \ac{ID} definiert werden. 
+
 
 \subsubsection{Basic Container}
 Der Basic Container enthält grundlegende Informationen über die \ac{ITS-S}, die die \ac{CAM} versendet. Die grundlegenden Informationen sind der Typ der \ac{ITS-S} und die letzte Position der \ac{ITS-S}. Der Basic Container muss bei jeder \ac{CAM} mitgesendet werden.
 
 \subsubsection{High Frequency Conatiner}
-Der high frequency Container wird bei jeder \ac{CAM} mitgesendet. Aktuell ist für diesen Container der Untercontainer hf vehicle Container definiert. Dieser kann beispielsweise die Geschwindigkeit einer \ac{IVS} enthalten.
+Der high frequency Container wird bei jeder \ac{CAM} mitgesendet. Aktuell ist für diesen Container der Untercontainer hf vehicle Container definiert. Dieser kann beispielsweise die Geschwindigkeit einer \ac{IVS} enthalten. 
 
 
 \subsubsection{Low Frequency Container}
