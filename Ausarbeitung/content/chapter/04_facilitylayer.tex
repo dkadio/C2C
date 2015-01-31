@@ -51,7 +51,7 @@ Also is die Services management facility dafür da die Services auf dem neusten 
 \end{itemize}
 
 \subsubsection{LDM management \label{facilitylayer_LDMManagement}}
-Die LDM management facility analysiert dauerhaft die Nachrichten die von dem Applicationlayer gesendet werden. Diese Änderungen werden in der LDM Database gespeichert und aktualisiert. Die LDM Database wird in \autoref{facilitylayer_ldmdatabase} genauer erläutert. Das heisst das alle Nachrichten die im gesamten C2X Netzwerk empfangen werden ausgewertet werden. Unter diesem befinden sich nicht nur Fahrbahninformationen über beispielsweise Kurven, Radwege oder Ampelsteuerungen sondern auch Informationen über die Objekte die über die Sensoren erkannt werden. Das führt zu einer sehr hohen Datenmenge die in der LDM Database verwaltet werden muss. Damit die LDM management dies tun kann sind folgende Voraussetzungen zu erfüllen.
+Die \ac{LDM} management facility analysiert dauerhaft die Nachrichten die von dem Applicationlayer gesendet werden. Diese Änderungen werden in der \ac{LDM} Database gespeichert und aktualisiert. Die LDM Database wird in \autoref{facilitylayer_ldmdatabase} genauer erläutert. Das heisst das alle Nachrichten die im gesamten \ac{C2X} Netzwerk empfangen werden ausgewertet werden. Unter diesem befinden sich nicht nur Fahrbahninformationen über beispielsweise Kurven, Radwege oder Ampelsteuerungen sondern auch Informationen über die Objekte die über die Sensoren erkannt werden. Das führt zu einer sehr hohen Datenmenge die in der \ac{LDM} Database verwaltet werden muss. Damit die \ac{LDM} management dies tun kann sind folgende Voraussetzungen zu erfüllen.
 \begin{itemize}
 \item Die facility muss die einkommenden Nachrichten analysieren können und mit den relevanten Daten in Echtzeit die Datenbank aktualisieren.
 \item Es muss eine leistungsfähige Datenbanksoftware zum Einsatz kommen die eine sehr große Menge an Daten verwalten kann und mit Zugriff von vielen Applications zurecht kommen muss.
@@ -82,8 +82,9 @@ Damit die Facility richtig Arbeiten kann sind nachfolgende Anforderungen gestell
 Der Information Support stellt die Präsentationsebene des \ac{ISO} \ac{OSI} Modells dar. Sie ist für die Datenverwaltung verantwortlich. Dazu gehören statische wie dynamische Daten, die meistens gebiets- und zeitabhängig sind und über eine Time to Live verfügen, also nicht für immer gültig sind. Um all diese Daten zu verarbeiten und immer auf dem aktuellen Stand zu halten ist im Gesamten der Information Support verantwortlich. Die wichtigste Komponente hierbei ist die \ac{LDM}. Im folgenden wird auf alle einzelnen Komponenten des Information Support eingegangen. 
 
 \subsubsection{LDM database \label{facilitylayer_ldmdatabase}}
-Die \ac{LDM} Database ist eine Sammlung von Informationen für Facilities und Anwendungen. Facilities können der beispielsweise der \ac{CA}, \autoref{sec:cam} oder der \ac{DEN}, \autoref{sec:den} sein. Ihnen wird durch die \ac{LDM} eine Möglichkeit gegeben, ihre Daten zu speichern. Neben der Speicherung wird eine Rechtevergabe für die Daten angeboten. Dadurch kann der Zugriff auf autorisierte Anwendungen beschränkt werden. Die gespeicherten Daten werden von der  \ac{LDM} nicht verändert.
-
+Die \ac{LDM} Database ist eine Sammlung von Informationen für Facilities und Anwendungen. Facilities können der beispielsweise der \ac{CA}, \autoref{sec:cam} oder der \ac{DEN}, \autoref{sec:den} sein. Ihnen wird durch die \ac{LDM} eine Möglichkeit gegeben, ihre Daten zu speichern. Neben der Speicherung wird eine Rechtevergabe für die Daten angeboten. Dadurch kann der Zugriff auf autorisierte Anwendungen beschränkt werden. Die gespeicherten Daten entsprechen den Daten, die von den anderen Facilities, bzw. Applications, genutzt werden und  werden von der  \ac{LDM} nicht verändert. Sie werden \ac{LDM} data object genannt. 
+\todo{Keine Ahnung, wie die genau aussehen. \glqq LDM data object: instance of a data frame or data element such as defined in TS 102 894-2 [4]
+\grqq}
 Die \ac{LDM} befindet sich im Facility Layer. Auf der \autoref{fig:ldmZwischenLayern} ist die \ac{LDM} dargestellt. Auf dieser Abbildung ist zu erkennen, dass die anderen Services des Facility Layers einer Verbindung zur \ac{LDM} haben. Die \ac{LDM} besitzt weiterhin Interfaces in andere Layer.
 
 \begin{figure}[htbp]
@@ -95,9 +96,28 @@ Die \ac{LDM} befindet sich im Facility Layer. Auf der \autoref{fig:ldmZwischenLa
 \paragraph{Interfaces}
 Die Interfaces sind auf der \autoref{fig:ldmZwischenLayern} zu erkennen. Auf der Abbildung \autoref{fig:ldmInterfaces} sind diese Interfaces funktional dargestellt. Der Unterschied in der Beschreibung ist, dass diese Interfaces nicht dadurch beschrieben werden, wohin sie die Schnittstelle bieten, sondern welche Funktionen sie anbieten.
 
-Neben den Interfaces sind Zero Hauptkomponenten beschrieben. Der \ac{LDM} Service bietet die Funktionalitäten autorisierten \ac{LDM} Data Providern an. Data Provider sind Komponenten, die die Daten bearbeiten. Bearbeiten kann neue Daten hinzufügen sein, vorhandene Daten modifizieren oder vorhandene Daten löschen. Sie können aber auch einen direkten Zugriff auf die Daten haben und sie zur Verfügung stellen. Der \ac{LDM} Service bietet auch Funktionalitäten an um Data Provider, bzw. Data Consumer anzumelden oder abzumelden. 
+Es gibt vier Interfaces. In \autoref{tab:facilityLayer_Beschreibung_Interfaces} werden die Interfaces beschrieben. Die erste Spalte beschreibt den Namen des Interfaces. Dieser findet sich auch in der \autoref{fig:ldmInterfaces} wieder. Die zweite Spalte beschriebt, ob \ac{LDM} etwas anbietet (\textbf{P}rovided) oder ob es Funktionen benötigt, die es über dieses Interface erhält (\textbf{R}equired). Die dritte Spalte beschreibt, zu welchen Komponenten das Interface verbindet. Im Falle von IF:LDM.1 und IF.LDM.2 ist die Verbindung zur \autoref{fig:ldmZwischenLayern} offensichtlich. Die letzten Spalten verbinden zu den Data Providern, bzw. Data Consumern. Im Bezug auf die \autoref{fig:ldmZwischenLayern} sind das der Application Layer, sowie die anderen Komponenten des Facility Layers. 
 
-Die \ac{LDM} Maintenance Komponente verwaltet die Daten 
+ \begin{longtable}{| p{0.15\linewidth} | p{0.15\linewidth} | p{0.24\linewidth} |p{0.24\linewidth}| p{0.15\linewidth}|}
+ \hline
+ \textbf{IF ID} & \textbf{IF Type} & \textbf{Connected Component} &  \textbf{Message Type}&\textbf{Direction} \\
+IF:LDM.1 & R & Management Layer & MF-SAP & IN \& OUT \\
+\hline
+IF.LDM.2 & R & Security Layer & SF-SAP & IN \& OUT \\
+\hline
+IF.LDM.3 & P & LDM Data Providers & CAM, DENM, other & IN \\
+\hline
+IF.LDM.4 & P & LDM Data Consumers & CAM, DENM, other & OUT \\
+\hline 
+\caption{Beschreibung der LDM Interfaces \cite{en302895}}
+\label{tab:facilityLayer_Beschreibung_Interfaces}
+\end{longtable}
+
+Neben den Interfaces sind zwei Hauptkomponenten beschrieben. 
+
+Der \ac{LDM} Service bietet die Funktionalitäten autorisierten \ac{LDM} Data Providern an. Data Provider sind Komponenten, die die Daten bearbeiten. Bearbeiten kann neue Daten hinzufügen sein, vorhandene Daten modifizieren oder vorhandene Daten löschen. Sie können aber auch einen direkten Zugriff auf die Daten haben und sie zur Verfügung stellen. Der \ac{LDM} Service bietet auch Funktionalitäten an um Data Provider, bzw. Data Consumer anzumelden oder abzumelden. 
+
+Die \ac{LDM} Maintenance Komponente verwaltet die Daten, die von registrierten und autorisierten Data Providern gespeichert wurden. Er prüft, ob die Datenobjekte korrekt sind. Bei dieser Prüfung werden die Zeiten des Datenobjekts geprüft. Mit dem Erstellungs Timestamp und der Gültigkeitsdauer  kann die Gültigkeit überprüft werden. 
 
 \begin{figure}[htbp]
 	\includegraphics[width=0.95\textwidth]{content/images/04_facilitylayer/ldmFunktionelleInterfaces.pdf}
@@ -105,10 +125,19 @@ Die \ac{LDM} Maintenance Komponente verwaltet die Daten
 	\label{fig:ldmInterfaces}
 \end{figure}
 
-\paragraph{Abrufen der Daten}
+
 
 \paragraph{Funktionen der LDM}
-Data Objects und so
+Der Standard \cite{en302895} beschriebt folgende Funktionen der \ac{LDM}:
+\begin{itemize}
+	\item Empfangen von Informationen, wie beispielsweise dekodierte \ac{CAM} oder \ac{DENM}
+	\item Speichern und schützen  von Informationen nach den Regeln des Zeit- und Wartungsbereichs
+	\item Autorisierten Anwendungen Informationen anbieten. 
+	\item Periodisierung von Datenanfragen
+	\item Anbieten eines Mechanismus für das An- und Abmelden als Datenprovider
+	\item Anbieten eines Mechanismus für das An- und Abmelden als Datenconsumer
+	\item Sicherstellen dass der Datenzugriffs durch \ac{LDM} Datenprovider und \ac{LDM} Datenconsumer autorisiert ist
+\end{itemize}
 
 \subsubsection{Data presentation}
 
