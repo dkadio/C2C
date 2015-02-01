@@ -8,6 +8,7 @@
 \caption{Die Komponenten der \acl{C2C}}
 \label{fig:komponentenderc2x}
 \end{figure}
+\todo{Quelle angeben}
 Die \acl{C2C} bietet eine große Vielfalt an verschiedenen Einsatzmöglichkeiten. Da es sich bei dem gesamten Projekt nicht nur darum handelt das Fahrzeuge untereinander kommunizieren, sondern wie auf \autoref{fig:komponentenderc2x} zu sehen auch andere Verkehrskomponenten. Um das Zusammenspiel der Komponenten besser zu verstehen und zu sehen wie groß das Potential der \acl{C2C} ist, werden im folgenden mehrere Szenarien aufgezählt und erklärt. 
 
 \section{Use cases}
@@ -28,6 +29,7 @@ Such co-operation is achieved to avoid accident either through driver assistance
 \caption{Cooperative Forward Collision Warning Use Case}
 \label{fig:cfcw}
 \end{figure}
+\todo{Quelle angeben}
 \textbf{Main requirements}
 \begin{itemize}
 \item Capability for a vehicle to broadcast V2X co-operative awareness messages.
@@ -46,7 +48,7 @@ Natürlich können nicht alle Unfälle durch die Cooperative Forward Collision W
 \caption{Pre-Crash Sensing/Warning Use Case}
 \label{fig:pcs}
 \end{figure}
-
+\todo{Quelle angeben}
 \subsubsection{Hazardous Location C2C Notification}
 Die Hazardous Location C2C Notification soll dafür sorgen das gefährliche Fahrpassagen weitergegeben werden. Das heisst das System warnt nachkommende Fahrzeuge vor glatten Straßen oder Schlaglöchern. Die Schwierigkeit hierbei ist die Gewinnung der Informationen. Als Beispiel wird genannt das ein Fahrzeug das auf einer glatten Straße fährt und das ESP einsetzt, speichert an welcher stelle, Geschwindigkeit etc. eingetreten ist und diese Nachricht dann weiter sendet. Fahrzeuge die diese Warnnachricht erhalten können dann auf den Umstand mit Verbesserung der Sicherheitsmaßnahmen reagieren oder zumindest dem Fahrer darüber Informieren. 
 \begin{figure}[htbp]
@@ -54,7 +56,7 @@ Die Hazardous Location C2C Notification soll dafür sorgen das gefährliche Fahr
 \caption{Hazardous Location C2C Notification Use Case}
 \label{fig:hln}
 \end{figure}
-
+\todo{Quelle angeben}
 \subsection{Verkehrseffizienz}
 Die Effizienz zu des Verkehrs zu steuern ist der ursprüngliche Sinn der \acl{C2C}. Durch die bessere Leitung des Verkehrs entstehen weniger Staus auf den Straßen, was zu verminderten Stresssituationen für Fahrer führt. Dadurch entstehen verkürzte Wartezeiten für die Teilnehmer am Verkehr und geringere Wartungskosten für die Straßen. Ausserdem kann dadurch die Umwelt mehr geschont werden und die Energiekosten sinken. 
 
@@ -65,7 +67,7 @@ Navigation ist ein großes Thema das bereits über Navigationssysteme stark verb
 \caption{Enhanced Route Guidance and Navigation Use Case}
 \label{fig:ergn}
 \end{figure}
-
+\todo{Quelle angeben}
 \subsubsection{Green Light Optimal Speed Advisory}
 Green Light Optimal Speed Advisory beschäftigt sich mit der optimalen Geschwindigkeit zwischen Ampeln. Damit Fahrzeuge zwischen Ampelabschnitten nicht die Geschwindigkeit reduzieren und nach Möglichkeit nicht immer wieder neu Anfahren müssen, kann durch eine Kreuzung die an der \acl{C2C} teilnimmt Informationen über die Rot-Grün Schaltzeit eingeholt werden. Über den bekannten Abstand zum vorherfahrenden Auto kann die optimale Geschwindigkeit berechnet werden, die das Fahrzeug sich vorwärts bewegen sollte um während einer Grünphase der Ampel dort einzutreffen. Dadurch wird der Verkehrsfluss verbessert und schont die Tankfüllung eines Autos.
 \begin{figure}[htbp]
@@ -73,7 +75,7 @@ Green Light Optimal Speed Advisory beschäftigt sich mit der optimalen Geschwind
 \caption{Green Light Optimal Speed Advisory Use Case}
 \label{fig:glos}
 \end{figure}
-
+\todo{Quelle angeben}
 \subsubsection{C2C Merging Assistance}
 Bei einfahren in den Verkehr von kann es vorkommen das ein Fahrzeug den fliesenden Verkehr stört. Dadurch entstehen nicht selten Rückstaus die im schlimmsten Fall zu Auffahrunfällen führen. Dies soll über C2C Merging Assistance bereits beim einfahren in den fliesenden Verkehr verhindert werden, in dem das Fahrzeug das in den Verkehr einfliesen möchte die betroffenen Fahrzeuge darüber informiert. Die Fahrzeuge die betroffen sind sollen ihre ihre Geschwindigkeit automatisch reduzieren oder zumindest sollen die Fahrer darüber Informiert werden wie sie sich am besten Verhalten sollen. Dadurch kann der Verkehr weiter sauber fliesen ohne das es im Nachhinein zu einem stillstand kommt. 
 \begin{figure}[htbp]
@@ -81,7 +83,7 @@ Bei einfahren in den Verkehr von kann es vorkommen das ein Fahrzeug den fliesend
 \caption{C2C Merging Assistance Use Case}
 \label{fig:mergingassistance}
 \end{figure}
-
+\todo{Quelle angeben}
 \subsection{Infotainment und andere}
 Hier werden die Anwendungsfälle aufgeführt die nicht zur Sicherheit oder Verkehrseffizienz beitragen aber dennoch über die \acl{C2C} realisiert werden. Dazu gehören allgemeine Informationen, Entertainment oder Fahrzeugdaten wie der Verbrauch reduziert werden kann. 
 
@@ -95,7 +97,7 @@ Dieser Anwendungsfall ist besonders für Kommerzielle Werbezwecke interessant. H
 \caption{Point of Interest Notification Use Case}
 \label{fig:poin}
 \end{figure}
-
+\todo{Quelle angeben}
 \subsubsection{Remote Diagnostics}
 Der Remote Diagnostics Anwendungsfall beschreibt ein Szenario zum Warten des Autos ohne dafür in eine Werkstatt fahren zu müssen. Dadurch können Informationen über das Fahrzeug abgerufen werden und mit Hilfe der Problembeschreibung des Fahrers kann schnell festgestellt werden um was es sich handelt. Die Daten über Werkstattbesuche und was an dem Auto angefallen ist soll alles in eine Datenbank geschrieben werden sodass die Werkstatt die das Fahrzeug wartet immer weiss was gemacht worden ist. So wird die Zeit die für die Wartung eines Fahrzeuges reduziert und damit auch die Länge des Besuches in der Werkstatt für den Kunden. Um die Software eines Autos aktuell zu halten wird überhaupt kein Werkstattbesuch mehr benötigt, da das update direkt beispielsweise über das Internet geladen werden kann.
 \begin{figure}[htbp]
@@ -103,3 +105,4 @@ Der Remote Diagnostics Anwendungsfall beschreibt ein Szenario zum Warten des Aut
 \caption{Remote Diagnostics}
 \label{fig:redia}
 \end{figure}
+\todo{Quelle angeben}
