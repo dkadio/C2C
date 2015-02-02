@@ -23,7 +23,7 @@ Damit diese Support facility ihren Aufgaben Nachkommen kann, ist im \cite{etsi10
 \end{itemize}
 
 \subsubsection{Mobile station dynamic monitoring}
-Das Mobile station dynamic monitoring ist nur für die \acs{VS} verfügbar. Diese Einheit des Facility Layer verwaltet eine große Anzahl an Fahrzeugspezifischen Daten die von den Applicationen und anderen Komponenten des Facility Layers verwendet werden. Sie ist dafür verantwortlich diese Daten immer auf dem neueste  Stand zu halten. 
+Das Mobile station dynamic monitoring ist nur für die \acs{VS} verfügbar. Diese Einheit des Facility Layer verwaltet eine große Anzahl an Fahrzeugspezifischen Daten, die von den Applicationen und anderen Komponenten des Facility Layers verwendet werden. Sie ist dafür verantwortlich diese Daten immer auf dem neueste  Stand zu halten. 
 Diese Einheit benötigt die folgenden Vorraussetzungen.
 
 \begin{itemize}
@@ -80,7 +80,12 @@ Damit die Facility richtig Arbeiten kann sind nachfolgende Anforderungen gestell
 \end{itemize}
 
 \subsection{Information Support}
-Der Information Support stellt die Präsentationsebene des \ac{ISO} \ac{OSI} Modells dar. Sie ist für die Datenverwaltung verantwortlich. Dazu gehören statische wie dynamische Daten, die meistens gebiets- und zeitabhängig sind und über eine Time to Live verfügen, also nicht für immer gültig sind. Um all diese Daten zu verarbeiten und immer auf dem aktuellen Stand zu halten ist im Gesamten der Information Support verantwortlich. Die wichtigste Komponente hierbei ist die \ac{LDM}. Im folgenden wird auf alle einzelnen Komponenten des Information Support eingegangen. 
+Der Information Support stellt die Präsentationsebene des \ac{ISO} \ac{OSI} Modells dar. Sie ist für die Datenverwaltung verantwortlich. Dazu gehören statische wie dynamische Daten, die meistens gebiets- und zeitabhängig sind und über eine Time to Live verfügen, also nicht für immer gültig sind. Um all diese Daten zu verarbeiten und immer auf dem aktuellen Stand zu halten ist im Gesamten der Information Support verantwortlich. Die wichtigste Komponente hierbei ist die \ac{LDM}. Im folgenden wird werden kurz die einzelnen Komponenten erläutert und genauer auf die LDM eingegangen.
+\begin{itemize}
+\item Data presentation - Dient zum Codieren und Decodieren von Daten, die über formale Sprachen erstellt sind (z.b. ASN1)
+\item Location referecing - Bietet die Möglichkeit bewegliche oder statische Objekte in der LDM zu positionieren. \todo{hier noch mal nachschaun, hab in dem etsi nix brauchbares gefunden}
+\item Station type/capabilities - Hierzu gehören einige statische wie dynamische Informationen über die ITS, wie die Art der ITS (also um was es sich für ein Fahrzeug handelt), die größe dieses Fahrzeuges oder welche die nächste RSU ist. Dazu kommen noch Informationen die die Services der ITS betreffen, also z.b. welche verfügbar sind.
+\end{itemize}
 
 \subsubsection{LDM database \label{facilitylayer_ldmdatabase}}
 Die \ac{LDM} Database ist eine Sammlung von Informationen für Facilities und Anwendungen. Facilities können der beispielsweise der \ac{CA}, \autoref{sec:cam} oder der \ac{DEN}, \autoref{sec:den} sein. Ihnen wird durch die \ac{LDM} eine Möglichkeit gegeben, ihre Daten zu speichern. Neben der Speicherung wird eine Rechtevergabe für die Daten angeboten. Dadurch kann der Zugriff auf autorisierte Anwendungen beschränkt werden. Die gespeicherten Daten entsprechen den Daten, die von den anderen Facilities, bzw. Applications, genutzt werden und  werden von der  \ac{LDM} nicht verändert. Sie werden \ac{LDM} data object genannt. 
@@ -140,16 +145,10 @@ Der Standard \cite{en302895} beschriebt folgende Funktionen der \ac{LDM}:
 	\item Sicherstellen dass der Datenzugriffs durch \ac{LDM} Datenprovider und \ac{LDM} Datenconsumer autorisiert ist
 \end{itemize}
 
-\subsubsection{Data presentation}
 
-\subsubsection{Location referecing}
-
-\subsubsection{Station type/capabilities}
 
 \subsection{Communication Support}
-The communication support, which includes the session layer of the OSI Reference model. It will
-cooperate with the transport and network layer to achieve the various communication modes required by
-the applications. 
+Der Communication Support hilft dabei die verschiedenen Kommunikationsarten zu verwalten und dem Application layer diese anzubieten. Darunter gehören unter anderem das Georouting. Diese Einheit arbeitet mit dem Networklayer zusammen und hilft dabei die Fahrzeuge zu adressieren, ins Internet zu Routen und auch die Pakete aus dem Internet zu empfangen während sich das Fahrzeug bewegt. 
 
 \section{CAM\label{sec:cam}}
 \ac{ITS} bietet die Möglichkeit, dass \ac{ITS-S} untereinander Statusinformationen austauschen. Für den Austausch von Statusinformationen werden \ac{CAM} versandt. Diese beinhalten Informationen über die Anwesenheit allgemein, über die Position und den grundsätzlichen Status. Gemäß Standard \cite{ts102637-2} soll jede \ac{ITS-S} den Umgang mit diesen Nachrichten beherrschen. Das beinhaltet das Senden, das Empfangen und das Generieren dieser Nachrichten. So kennt jede \ac{ITS-S} ihre aktuellen Nachbarn inklusive ihrer Positionen, Bezwungen und den grundlegenden Sensorinformationen. Die \ac{CAM} werden über den Standard \ac{ITS-G5} übertragen. \ac{CAM} werden mit einer Kadenz zwischen 1 und 10 Hz übertragen, das bedeutet, dass mindestens jede Sekunde eine \ac{CAM} generiert und versendet wird, maximal werden aber 10 \ac{CAM} pro Sekunde generiert und versendet. Der Versand erfolgt über ein Single Hop Broadcast. \ac{CAM} spielen besonders für \ac{IVS} eine Rolle.
