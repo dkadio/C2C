@@ -306,14 +306,36 @@ Der Standard \cite{en302665} beschreibt für den den Security Layer folgende Fun
 	\item Bereitstellung von Interfaces zu den anderen Layern, indem ihen Security Services angeboten werden
 \end{itemize} 
 
+
+
+\section{Data Security\label{architektur_dataSecurity}}
+Der Begriff Security umfasst in \ac{ITS} verschiedene Bereiche der Sicherheit. Im \ac{ITS} Netz muss sichergestellt werden, dass die Nachrichten für die berechtigten Teilnehmer lesbar sind, für den unberechtigten Teilnehmer aber nicht. Dabei ist zu beachten, dass über \ac{ITS} sensible Daten verbreitet werden. Es muss neben dem Schutz gegen unbefugtes Lesen auch ein Mechanismus implementiert sein, der verhindert, dass falsche Informationen übertragen werden. Da die \ac{ITS} Architektur verschiedene Netzwerktypen \autoref{architektur_ueberblickNetzwerke} beinhaltet muss die Architektur auch ein Data Security Konzept beinhalten. Der Standard \cite{ts102940} spezifiziert dieses Konzept.  
+
 \begin{figure}
 	\includegraphics[width=0.75\textwidth]{content/images/02_architektur/securityLayer.pdf}
 	\caption{Darstellung des Security Layers \cite{en302665}}
 	\label{fig:architektur_securityLayer}
 \end{figure}
 
-\section{Data Security\label{architektur_dataSecurity}}
-Der Begriff Security umfasst in \ac{ITS} verschiedene Bereiche der Sicherheit. Im \ac{ITS} Netz muss sichergestellt werden, dass die Nachrichten für die berechtigten Teilnehmer lesbar sind, für den unberechtigten Teilnehmer aber nicht. Dabei ist zu beachten, dass über \ac{ITS} sensible Daten verbreitet werden. Es muss neben dem Schutz gegen unbefugtes Lesen auch ein Mechanismus implementiert sein, der verhindert, dass falsche Informationen übertragen werden. Da die \ac{ITS} Architektur verschiedene Netzwerktypen \autoref{architektur_ueberblickNetzwerke} beinhaltet muss die Architektur auch ein Data Security Konzept beinhalten. Der Standard \cite{ts102940} spezifiziert dieses Konzept.  
+
+Die \autoref{fig:architektur_securityLayer}  beschreibt die \ac{ITS-S} Architektur. Dabei wird besonders der Security Layer hervorgehoben und genauer beschrieben. Dabei sind die Interfaces des Security Layers abgebildet. Es Ist auch zu erkennen, dass der Security Layer in weitere vier Untermodule, bzw. Funktionalitäten aufgeteilt ist. Diese Funktionen werden im Folgenden weiter erläutert.
+
+\subsection{Firewall and Intrusion Management}
+\todo{Firewall and Intrusion Management schreiben}
+
+\subsection{Authentication, Authorisation, Profile Management}
+\todo{Authentication, Authorisation, Profile Management schreiben}
+
+\subsection{Security Information Base}
+\todo{Security Information Base schreiben}
+Mit Identity, Cryptokey and Certificate management
+
+\subsection{Hardware Security}
+\todo{Hardware Security beschreiben}
+
+\todo{ETSI TS 102 943 V1.1.1 Confidentiality services lesen}
+\subsection{Interfaces}
+Der Security Layer besitzt Interfaces in alle anderen Layer. Diese Interfaces stellen die Kommunikationsschnittstellen dar. Die genaue Spezifizierung dieser Interfaces findet zum aktuellen Zeitpunkt noch statt. Die Standards, die die  Interfaces genauer beschreiben sind noch im  \glqq Draft\grqq , bzw. \glqq early Draft\grqq , Zustand und damit nicht verfügbar. 
 
 \subsection{Angebotene Services}
  \begin{longtable}{| p{0.24\linewidth} | p{0.24\linewidth} | p{0.24\linewidth} |p{0.24\linewidth}|}
@@ -400,6 +422,8 @@ Allow remote activation and deactivation of ITS-S & ITS-S Remote Management Repo
  
  \end{longtable}
 \autoref{tab:architektur_tabelleSicherheitsmassnahmen} stammt aus dem Standard \cite{ts102731}. Dort werden die Maßnahmen zusammengefasst, die benötigt werden um sie zu erreichen. \glqq First Level\grqq~sind die Security Services, die direkt von den Anwendungen oder anderen Komponenten aufgerufen werden.  \glqq Lower Level\grqq~Services sind die, die von anderen Security Services aufgerufen werden.
+
+
 
 \subsection{ITS Authoritative Hierarchy \label{architektur_itsAuthoriativeHierarchy}}
 Die ITS Authoritative Hierarchy beschreibt, wer eine Rolle bei der Verwaltung der Sicherheit übernehmen kann. 
