@@ -318,20 +318,74 @@ Der Begriff Security umfasst in \ac{ITS} verschiedene Bereiche der Sicherheit. I
 \end{figure}
 
 
-Die \autoref{fig:architektur_securityLayer}  beschreibt die \ac{ITS-S} Architektur. Dabei wird besonders der Security Layer hervorgehoben und genauer beschrieben. Dabei sind die Interfaces des Security Layers abgebildet. Es Ist auch zu erkennen, dass der Security Layer in weitere vier Untermodule, bzw. Funktionalitäten aufgeteilt ist. Diese Funktionen werden im Folgenden weiter erläutert.
+Die \autoref{fig:architektur_securityLayer}  beschreibt die \ac{ITS-S} Architektur. Dabei wird besonders der Security Layer hervorgehoben und genauer beschrieben. Dabei sind die Interfaces des Security Layers abgebildet. Es Ist auch zu erkennen, dass der Security Layer in weitere vier Untermodule, bzw. Funktionalitäten aufgeteilt ist. Diese Funktionen sind im Standard \cite{ts102940} mit den \todo{Spagat zwischen den Grafiken finden}
 
-\subsection{Firewall and Intrusion Management}
-\todo{Firewall and Intrusion Management schreiben}
+\begin{figure}
+	\includegraphics[width=0.99\textwidth]{content/images/02_architektur/securityDienste.pdf}
+	\caption{Die ITS Layer mit Diensten, die Security nutzen \cite{ts102940}}
+	\label{fig:architektur_securityDienste}
+\end{figure}
 
-\subsection{Authentication, Authorisation, Profile Management}
-\todo{Authentication, Authorisation, Profile Management schreiben}
+\subsection{Enrolement}
+Die Funktion Enrolement authentisiert eine \ac{ITS-S} und gibt den Zugriff auf das  \ac{ITS} System.  Das bedeutet, dass die Identität der \ac{ITS-S} dem System gegenüber bestätigt wird. Dieser Zugriff ist noch keine Genehmigung, bestimmt Dienste nutzen zu können. Diese wird erst nach einer Autorisation, vgl. \autoref{architektur_authorization}, erteilt. Zuständig für die Regelung des Zugangs ins \ac{ITS} Netz ist eine Enrolment Authority.
 
-\subsection{Security Information Base}
-\todo{Security Information Base schreiben}
-Mit Identity, Cryptokey and Certificate management
+Der Zugang wird durch Enrplement Authorities gewährt. Sie verteilen  enrolement credentials. Enrolement credentials lassen sich mit \glqq Registrierungs Zeugnis\grqq übersetzen. Sie können als digitale Zertifikate, die  mit kryptographischen Prüfsummen gesichert sind, ausgeteilt werden. Anhand dieser Zertifikate kann sich die \ac{ITS-S} als gültiger Teilnehmer des \ac{ITS} Systems ausweisen. So kann beispielsweise beim Versenden von \ac{CAM}, vgl. \autoref{sec:cam}, bewiesen werden, dass die sendende \ac{ITS-S} dazu berechtig ist und dass ihr vertraut werden kann. 
 
-\subsection{Hardware Security}
-\todo{Hardware Security beschreiben}
+\subsubsection{Ausgetauschte Daten}
+Um eine Registrierung zu ermöglichen muss die Enrolement Authority Daten von er \ac{ITS-S} erhalten. Hierbei sind nur die Daten aufgeführt, die relevant für das Verständnis des Systems sind. Steuerdaten, wie z.B. der Grund eines Fehlers sind hier nicht aufgeführt. Der Austausch dieser Daten geschieht bereits verschlüsselt. 
+
+\paragraph{Canonical Identity} Bei der Canonical Identity handelt es sich um eine weltweit eindeutige Kennung einer \ac{ITS-S}. Diese ist während der gesamten Produktlaufzeit gültig und kann zu einer Enrolement Authority gesendet werden, wenn die \ac{ITS-S} Enrolement Credentials anfordert. Die Cabonical Identity soll als Oktett String dargestellt werden, also einer Sequenz von Bytes.
+
+\paragraph{ITS-S Key}
+Hierbei handelt es sich um einen Schlüssel. Der Key kann ein öffentlicher oder ein symmetrischer Schlüssel sein. 
+
+\paragraph{List of enrolement credentials}
+Diese Liste enthält die ausgestellten Enrolement Credentials. 
+
+Es gibt verschiedene grundlegende Operationen auf die Enrolment Credentials. Diese stellen die Oberbegriffe für weitere Operationen da. 
+
+
+ 
+\subsubsection{Obtain Enrolement Credentials \label{architektur_obtainEnrolementCredentials}}
+Die Operation Obtain Enrolement Credentials bedeutet, dass eine \ac{ITS-S} die Credentials von einer Enrolement Authority erhält. 
+
+Sie beginnt damit, dass die \ac{ITS-S} feststellt, dass sich für die \ac{ITS} Dienste anmelden muss. Aus diesem Bedürfnis wird ein Enrolement Request. Bei dem Enrolement Request handelt es sich um eine Anfrage an eine Enrolement Authority. Diese fragt bei einer Authenticate Authority an, ob die \ac{ITS-S} für die \ac{ITS} Dienste berechtigt ist und stellt der \ac{ITS-S} im positiven Fall einen Satz Enrolement Credentials aus und übermittelt diese an die \ac{ITS-S} .  
+
+\begin{figure}[h]
+	\includegraphics[width=0.75\textwidth]{content/images/02_architektur/enrolementFunktionaleKomponenten.pdf}
+	\caption{Das funktionale Modell der Enrolement Credentials \cite{ts102731}}
+	\label{fig:architektur_enrolementFunktionalModel}
+\end{figure}
+
+Die \autoref{fig:architektur_enrolementFunktionalModel} beschreibt den Prozess Obtain Enrolement Credentials mit einem erfolgreichen Ausgang. Sie steht stellvertretend für die anderen Prozesse, deren Abläufe sich kaum ändern. In der Abbildung sind funktionale Elemente definiert. Sie werden folgendermaßen beschrieben:
+\paragraph{Invoke Enrolment} Dieses funktionale Element entdeckt das Bedürfnis einer \ac{ITS-S}, dass sie sich an der \ac{ITS} Infrastruktur anmelden muss und initiiert die Anmeldungsprozedur.
+
+\paragraph{Enrolment Request} Dieses funktionale Element liefert die Anmeldungsanfrage für einer \ac{ITS-S} an die \ac{ITS} Infrastruktur. Anschließend empfängt es die entsprechende Antwort und speichert die geheimen Kommunikationsparameter in der \ac{ITS-S}.
+
+
+\paragraph{Enrole Station} Dieses funktionale Element empfängt eine Anmeldungsanfrage einer \ac{ITS-S}. Nach dieser Anfrage beginnt es den Benutzer zu authentisieren. Wenn diese Authentisieren erfolgreich war sendet es eine positive Antwort mit den Parametern, die für eine laufende sichere Kommunikation nötig sind, an die \ac{ITS-S}. Die Enrolement Station entspricht der Zertifikatsstelle. In diesem Fall ist sie als funktionales Element beschrieben. Das bedeutet, dass es in diesem Modell nur dieses eine Element gibt. 
+
+\paragraph{Authenticate Station} Dieses funktionale Element validiert die Identitätsinformationen, die von dem funktionalen Element Enrol Station empfangen werden. Hierbei handelt es sich um die bereits beschriebene Autorisierungsstelle. Sie ist aber als funktionales Element beschrieben.
+
+\paragraph{Process Authentication} Dieses funktionale Element enthält die Antwort auf die Abfrage des funktionalen Elements  Authenticate Station.
+ 
+ 
+\subsubsection{Update Enrolment Credentials}
+Die Enrolement Credentials können aktualisiert werden. Dies geschieht auf die Anfrage einer \ac{ITS-S}. Initiiert wird die Aktualisierung, wenn die \ac{ITS-S}  einen Bedarf feststellt. Der weitere Prozess entspricht dem Anfordern von Enrolement Credentials, vgl. \autoref{architektur_obtainEnrolementCredentials}.
+
+\subsubsection{Remove Enrolment Credentials}
+Der \ac{ITS-S} Service kann einer \ac{ITS-S} die Enrolement Credentials wieder entziehen, bzw. diese Enrolement Credentials für ungültig erklären. Dadurch werden alle Informationen, die die \ac{ITS-S} verteilt, auch ungültig. Damit dieses Verfahren effektiv ist, müssen die Enrolement Authority und die Authorization Authority miteinander kommunizieren. Dadurch wird sichergestellt, dass korrekte Autorisierung Status Updates verteilt werden. 
+
+Der Prozess beginnt, wenn die Enrolement Authority feststellt, dass das die Liste mit den Enrolement Credentials aktualisiert werden muss, beginnt der Prozess.  \todo{Remote Enrolement Credentials fertig schreiben. TS 102 731, S. 30}
+
+
+\subsection{Authorization \label{architektur_authorization}}
+
+\subsection{Security Associations management}
+
+\subsection{Integrity services}
+
+
 
 \todo{ETSI TS 102 943 V1.1.1 Confidentiality services lesen}
 \subsection{Interfaces}
@@ -472,11 +526,7 @@ Die beschriebenen Nachrichtentypen benötigen Zertifikate. In \ac{ITS} sind zwei
 \subsubsection{Enrolment Credentials}
 Enrolment Credentials können ausgestellt, erneuert und gelöscht werden. An diesen Tätigkeiten sind eine \ac{ITS-S} und die \ac{ITS} Infrastruktur beteiligt. Die \ac{ITS} Infrastruktur besteht in dem Fall aus einer Zertifikatsstelle und einer Autorisierungsstelle. Die \autoref{fig:architektur_enrolementFunktionalModel} beschreibt das funktionale Modell der Enrolement Credentials. Dessen Elemente werden im Standard \cite{ts102731} folgendermaßen beschrieben:
 
-\begin{figure}[h]
-	\includegraphics[width=0.75\textwidth]{content/images/02_architektur/enrolementFunktionaleKomponenten.pdf}
-	\caption{Das funktionale Modell der Enrolement Credentials \cite{ts102731}}
-	\label{fig:architektur_enrolementFunktionalModel}
-\end{figure}
+
 
 Invoke Enrolment: Dieses funktionale Element entdeckt das Bedürfnis einer \ac{ITS-S}, dass sie sich an der \ac{ITS} Infrastruktur anmelden muss und initiiert die Anmeldungsprozedur.
 
@@ -492,7 +542,7 @@ Process Authentication: Dieses funktionale Element enthält die Antwort auf die 
 \begin{figure}[h]
 	\includegraphics[width=0.95\textwidth]{content/images/02_architektur/enrolementFlowDiagramm.pdf}
 	\caption{Darstellung des Informationsflusses beim Anmelden einer \ac{ITS-S} \cite{ts102731}}
-	\label{fig:architektur_enrolementInformationFlow}
+	%\label{fig:architektur_enrolementInformationFlow}
 \end{figure}
 
 \autoref{fig:architektur_enrolementInformationFlow} zeigt den Informationsfluss beim Anmelden an die \ac{ITS} Infrastruktur. Dieser Prozess wird exemplarisch für die anderen Enrolement Prozesse, also erneuern und widerrufen, beschrieben. Diese laufen sehr ähnlich ab und können bei Bedarf dem Standard \cite{ts102731} entnommen werden. Die beschriebenen Informationen der Request und Confirm sind jeweils Mindestinformationen. 
