@@ -242,8 +242,17 @@ Die Senderate der \ac{CAM} wird vom sendenden \ac{IVS} gesteuert. Die ist zwisch
 
 Die \ac{CAM} werden im \ac{CA} Management generiert und durch die darunter liegenden Layer übertragen.
 
-\subsection{Security}
-Die Sicherheit des \ac{CA} Basic Service wird im Security Layer, vgl. \autoref{{architektur_securityLayer}} geregelt. Die Zertifikate, die dort verarbeitet werden enthalten die Berechtigung der \ac{ITS-S}. 
+\subsection{Security \label{facilitylayer_CAM-Security}}
+Die Sicherheit des \ac{CA} Basic Service wird im Security Layer, vgl. \autoref{architektur_securityLayer} geregelt. Die Zertifikate, die dort verarbeitet werden enthalten die Berechtigung der \ac{ITS-S}. Diese Berechtigungen enthalten, welche Informationen über die \ac{CAM} versendet werden. Sie sind in vier Level eingeteilt:
+\begin{itemize}
+	\item Basic \ac{CAM} authorization: Sie wird allen \ac{ITS-S} erteilt, die das \ac{ITS} System nutzen dürfen. Hiermit darf eine \ac{ITS-S} Basisinformationen, wie beispielsweise Länge, Breite, Geschwindigkeit oder Beschleunigung, verteilen. 
+	\item Advanced \ac{CAM} authorization: Sie wird den \ac{ITS-S} erteilt, die dazu in der Lage sind. Ob eine \ac{ITS-S} dazu in der Lage ist, hängt beispielsweise vom implementierten Kryptoalgorithmus oder den vorhandenen Sensoren ab. Mit advanced \ac{CAM} authorization kann eine \ac{ITS-S} \ac{CAM} versenden, die das Linksabbieger unterstützen, das Einfädeln in den Verkehr unterstützen.
+	\item Authorization to claim priority rights for emergency vehicles: Dieser Level verleiht den \ac{ITS-S} die Rechte von Einsatzfahrzeugen. Er wird nur \ac{ITS-S} vergeben, Notfall Einsatzfahrzeuge sind oder Fahrzeuge des öffentlichen Verkehrs sind. Die genaue Vergabe regelt die  nationale Gesetzgebung.  Dabei können auch Abstufungen in der Periodisierung gemacht werden. Die Autorisierung wird von Regierungsstellen oder deren authorisierte Stellvertreter vergeben. Die Priorisierung ist  auf konkrete Einsätze beschränkt, sie gilt nicht permanent.
+	\item Authorization to state regulatory orders such as speed limits and road closures: Diese Autorisierung stellt die höchste Stufe der Autorisierung da. Mit ihr dürfen beispielsweise Geschwindigkeitsbeschränkungen geändert werden oder Straßen gesperrt werden. Sie soll nur an speziell authorisierte \ac{ITS-S}, wie \ac{IRS} oder Polizeifahrzeuge vergeben werden. Die Autorisierung erfolgt durch Regierungsstellen oder deren authorisierte Stellvertreter. 
+\end{itemize}
+ 
+\ac{CAM} unterliegen keiner Vertraulichkeit, dürfen aber keiner konkreten \ac{ITS-S} zugeordnet werden. Diese Anforderungen werden vom Security Layer, \autoref{architektur_securityLayer}, sichergestellt. 
+
  
 \subsection{Aufbau der CAM}
 Eine \ac{CAM} besteht einem \ac{ITS} \ac{PDU} Header und aus verschiedenen Containern. Die \autoref{fig:aufbauCam} verdeutlicht den Aufbau von \ac{CAM}. Darin ist zu erkennen, dass die \ac{CAM} aus vier verschiedenen Typen von Containern besteht, die wiederum verschiedene Container beinhalten. Basic Container und High Frequency Container werden mit jeder \ac{CAM} versendet. Die anderen Container werden nur jede halbe Sekunde versendet. Die Bestandteile der \ac{CAM} werden im Folgenden genauer erklärt.
@@ -372,6 +381,8 @@ Die Negierende \ac{DENM} wird von \ac{ITS-S} gesendet, die das Event ursprüngli
 
 Wenn eine beendende \ac{DENM} aus einer vertrauenswürdigen Quelle empfangen wurde, löscht das \ac{DEN} Management der empfangenden \ac{ITS-S} alle anderen \ac{DENM} zu dem gleichen Event. Die beendende \ac{DENM} muss, genau wie die Ankündigenden, eine Zeit lang weiter verteilt werden. Diese Zeit wird von der \ac{RHW} Application bestimmt.
 
+\subsection{Security}
+Die Autorisierung der \ac{DENM} ist wie die der \ac{CAM}, vgl. \label{facilitylayer_CAM-Security}, unterteilt. Wie \ac{CAM} werden \ac{DENM} gebroadcastet und unterliegen keiner Vertraulichkeit. Die Identität der sendenden \ac{ITS-S} muss geschützt bleiben.
 
 \subsection{Aufbau der DEMN}
 Eine \ac{DENM} besteht aus mehren Containern. Die Container sind in einer festen Reihenfolge angeordnet.  Vor den Containern befindet sich ein \ac{ITS} PDU Header, vgl. \autoref{facilitylayer_PduHeader}. Soweit der Aufbau der Datentypen beschrieben ist, werden sie beschrieben. Auffällig ist, dass der Standard \cite{en302637-3} wegen dem Aufbau der Datentypen auf den Standard \cite{ts102894-2} referenziert. Dieser beschreibt die Datenelement aber nicht immer.
