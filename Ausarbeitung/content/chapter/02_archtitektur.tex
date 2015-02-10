@@ -326,7 +326,17 @@ Die \autoref{fig:architektur_securityLayer}  beschreibt die \ac{ITS-S} Architekt
 	\label{fig:architektur_securityDienste}
 \end{figure}
 
-\subsection{Enrolement}
+\subsection{Privacy}
+\todo{Privacy beschreiben}
+\subsubsection{Anonymity}
+\subsubsection{Pseudonymity}
+\subsubsection{Unlinkability}
+\subsubsection{Unobservability}
+
+
+
+
+\subsection{Enrolement \label{architektur_enrolement}}
 Die Funktion Enrolement authentisiert eine \ac{ITS-S} und gibt den Zugriff auf das  \ac{ITS} System.  Das bedeutet, dass die Identität der \ac{ITS-S} dem System gegenüber bestätigt wird. Dieser Zugriff ist noch keine Genehmigung, bestimmt Dienste nutzen zu können. Diese wird erst nach einer Autorisation, vgl. \autoref{architektur_authorization}, erteilt. Zuständig für die Regelung des Zugangs ins \ac{ITS} Netz ist eine Enrolment Authority.
 
 Der Zugang wird durch Enrplement Authorities gewährt. Sie verteilen  enrolement credentials. Enrolement credentials lassen sich mit \glqq Registrierungs Zeugnis\grqq übersetzen. Sie können als digitale Zertifikate, die  mit kryptographischen Prüfsummen gesichert sind, ausgeteilt werden. Anhand dieser Zertifikate kann sich die \ac{ITS-S} als gültiger Teilnehmer des \ac{ITS} Systems ausweisen. So kann beispielsweise beim Versenden von \ac{CAM}, vgl. \autoref{sec:cam}, bewiesen werden, dass die sendende \ac{ITS-S} dazu berechtig ist und dass ihr vertraut werden kann. 
@@ -376,10 +386,30 @@ Die Enrolement Credentials können aktualisiert werden. Dies geschieht auf die A
 \subsubsection{Remove Enrolment Credentials}
 Der \ac{ITS-S} Service kann einer \ac{ITS-S} die Enrolement Credentials wieder entziehen, bzw. diese Enrolement Credentials für ungültig erklären. Dadurch werden alle Informationen, die die \ac{ITS-S} verteilt, auch ungültig. Damit dieses Verfahren effektiv ist, müssen die Enrolement Authority und die Authorization Authority miteinander kommunizieren. Dadurch wird sichergestellt, dass korrekte Autorisierung Status Updates verteilt werden. 
 
-Der Prozess beginnt, wenn die Enrolement Authority feststellt, dass das die Liste mit den Enrolement Credentials aktualisiert werden muss, beginnt der Prozess.  \todo{Remote Enrolement Credentials fertig schreiben. TS 102 731, S. 30}
+Der Prozess beginnt, wenn die Enrolement Authority feststellt, dass das die Liste mit den Enrolement Credentials aktualisiert werden muss, beginnt der Prozess. Dabei wird die Enrolement Credentials aus dem gesamten \ac{ITS} Netzwerk entfernt. Das Entfernen beginnt bei der  Enrolement Authority, sie entfernt die Credentials aus ihrer Liste. Anschließend macht sie bei den    Authorization Authority bekannt, dass die entsprechenden Credentials ungültig sind und broadcastet an alle Teilnehmer im \ac{ITS-S} Netz, dass die Credentials ungültig sind.
 
 
 \subsection{Authorization \label{architektur_authorization}}
+Autorisieren bedeutet, dass Rechte eingeräumt werden. Im Sinne von \ac{ITS-S} bedeutet es, dass eine \ac{ITS-S} durch die Autorisierung bestimmte Services nutzen darf. Die Voraussetzung für eine Autorisierung ist eine Authentisierung, vgl. \autoref{architektur_enrolement}. 
+
+Die Autorisierungen werden von den Authorization Authority verwaltet. Diese sollen hierarchisch aufgebaut und für verschiedene Kontexte verfügbar sein. Ein Kontext Grenze sich durch die  Applications, die er autorisiert, eine Zeitdauer, eine geographische Region oder andere  kodierbare Gründe ab. Die Applications können sehr granulär sein, es können beispielsweise für die einzelnen Einträge von \ac{CAM} (\autoref{sec:cam}) unterschiedliche Authorization Authority zuständig sein. Der hierarchische Aufbau bedeutet, dass Authorization Authorities wiederum andere Authorization Authorities autorisieren können.
+
+\subsubsection{Obtain Authorization Tickets \label{architektur_obtain-authorisation-tickets}}
+Obtain Authorization Tickets beschreibt das Empfangen von Authorisation Tickets. Dieser Prozess wird von den \ac{ITS-S} ausgelöst. Dazu fragt die \ac{ITS-S} einer Authorization Authoritiy wegen einem Authorisation Ticket an. Diese Anfrage beinhaltet bereits die Enrolement Credentials der \ac{ITS-S}. Diese überprüft anhand der Enrolement Credentials die Identität der \ac{ITS-S} und beantwortet die Anfrage. Die Antwort kann entweder  Authorization Tickets oder den Grund, warum die \ac{ITS-S} keine bekommt, enthalten.
+
+
+\subsubsection{Update Authorization Tickets}
+Autorisation Tickets haben nur eine begrenzte Lebensdauer. Diese Lebensdauer ist von der Application abhängig. Aus diesem Grund müssen sie regelmäßig erneuert werden. Wenn der Bedarf besteht, die Authorization Tickets zu aktualisieren, fordert die \ac{ITS-S} von einer Authorisation Authory eine Aktualisierung an. Die benötigten Daten entsprechen dem Anfordern von Tickets, vgl. \autoref{architektur_obtain-authorisation-tickets}.
+
+\subsubsection{Publish Authorization Status}
+Der Authorisation Status wird versendet, wenn das Versenden explizit von einer \ac{ITS-S} oder einer Authorisation Authory angefordert wird. Der Grund hierfür kann sein, dass einer \ac{ITS-S} Berechtigungen entzogen werden sollen. Dabei können einzelne Berechtigungen oder alle temporär oder dauerhaft entzogen werden.
+
+\subsubsection{Update Local Authorization Status Repository}
+Fall eine \ac{ITS-S} keinen Zugang zu der Infrastruktur hat, nutzt sie einen lokalen Autorisierungsspeicher um die Athorisierungsinformationen von anderen \ac{ITS-S} zu überprüfen. Sobald die \ac{ITS-S} wieder Zugang zur \ac{ITS-S} Infrastruktur hat, wird der Speicher aktualisiert.  
+
+
+
+
 
 \subsection{Security Associations management}
 
