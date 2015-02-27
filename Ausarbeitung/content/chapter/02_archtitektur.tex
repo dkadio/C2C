@@ -70,8 +70,7 @@ Erkennbar ist in dieser Implementierung, dass sich für mobile Stations Ad Hoc N
 
  
 \section{ITS Station Reference Architecture}
-\todo{komplette Section ITS Station Reference Architecture überarbeiten}
-Eine Referenzarchitektur beschreibt ein allgemeines Modell einer Architektur. Das bedeutet, dass basierend auf dieser Architektur verschiedene Implementierungen existieren können. 
+Eine Referenzarchitektur beschreibt ein allgemeines Modell einer Architektur. Modelle können untereinander verglichen werden. Eine Architektur ist abstrakt beschrieben. Durch die Beschreibung einer Architektur kann das Verhalten und die Anforderungen an das System beschrieben werden. Die Implementierung der Funktionalitäten ist nicht vorgegeben. 
 
 Die \ac{ITS-S} Reference Architecture unterscheidet sich grundlegend von bekannten Architekturen. Da sie während der Entwicklung an das \ac{OSI} Modell angelehnt war, ergeben sich einige Parallelen:
 \begin{itemize}
@@ -80,7 +79,7 @@ Die \ac{ITS-S} Reference Architecture unterscheidet sich grundlegend von bekannt
 	\item Die Standards beziehen die Layer auf die \ac{OSI} Layer. 
 \end{itemize}
 
-Der direkte Vergleich mit dem \ac{OSI} Modell und die Zuordnung der Layer wird in \autoref{fig:architektur_vergleichItsOsi} deutlich.
+Der direkte Vergleich mit dem \ac{OSI} Modell und die Zuordnung der Layer wird in \autoref{fig:architektur_vergleichItsOsi} deutlich. Diese Grafik enthält die Layer von \ac{ITS} und die Layer des \ac{OSI} Modells und beinhaltet vier Säulen. Von links nach rechts beschrieben stellen die Säulen den Management Layer  (\autoref{architektur_managementLayer}), die \ac{ITS} horizontal Layer (\autoref{architektur_horzontalLayer}), die \ac{OSI} Layer und den Security Layer(\autoref{architektur_securityLayer}). Die \ac{ITS} Layer werden im Folgenden genauer beschrieben. 
 
 \begin{figure}[h]
 	\includegraphics[width=0.99\textwidth]{content/images/02_architektur/vergleichITS-OSI.pdf}
@@ -88,7 +87,7 @@ Der direkte Vergleich mit dem \ac{OSI} Modell und die Zuordnung der Layer wird i
 	\label{fig:architektur_vergleichItsOsi}
 \end{figure}
 
-Obwohl das \ac{ITS-S} Reference Protocol bei der Entwicklung an das \ac{OSI} Modell angelehnt wurde gibt es jedoch einen gravierenden Unterschied: In der \ac{ITS-S} Reference Architecture sind Cross Layer vorgesehen. Das \ac{OSI} Referenzmodell ist wasserfallartig aufgebaut. Das bedeutet, dass die einzelnen Layer übereinander angeordnet sind. Jeder Layer hat jeweils nur zu dem direkt über- und unterliegenden Layer eine Schnittstelle. Cross Layer sind Layer, die in mehrere dieser Schichten Schnittstellen haben. Sie erweitern die vorhanden Layer in horizontaler Richtung. Im Fall der \ac{ITS-S} Reference Architecture sind das die Layer \glqq Management\grqq~ und \glqq Security\grqq. Sie haben Schnittstellen, bzw. Primitiven in alle anderen Layer. 
+Obwohl das \ac{ITS-S} Reference Protocol bei der Entwicklung an das \ac{OSI} Modell angelehnt wurde gibt es jedoch einen gravierenden Unterschied: In der \ac{ITS-S} Reference Architecture sind Cross Layer vorgesehen. Das \ac{OSI} Referenzmodell ist wasserfallartig aufgebaut. Das bedeutet, dass die einzelnen Layer übereinander angeordnet sind. Jeder Layer hat jeweils nur zu dem direkt über- und unterliegenden Layer eine Schnittstelle. Cross Layer sind Layer, die in mehrere dieser Schichten Schnittstellen haben. Sie erweitern die vorhanden Layer in horizontaler Richtung. Im Fall der \ac{ITS} Reference Architecture sind das die Layer \glqq Management\grqq~ und \glqq Security\grqq. Sie haben Schnittstellen, bzw. Primitiven in alle anderen Layer. 
 
 \begin{figure}
 	\includegraphics[width=0.75\textwidth]{content/images/02_architektur/stationReferenceArchitecture.pdf}
@@ -96,24 +95,55 @@ Obwohl das \ac{ITS-S} Reference Protocol bei der Entwicklung an das \ac{OSI} Mod
 	\label{fig:funktionsweise_referenceArchitecture}
 \end{figure}
 
-\section{Horizontal Layer}
-Dieser Abschnitt beschreibt die Layer, die klassisch übereinander angeordnet sind. Die Layer und ihre Funktionen entsprechen den Layern des \ac{OSI} Modells. Sie sind aber anders aufgeteilt.
+\section{Horizontal Layer \label{architektur_horzontalLayer}}
+Dieser Abschnitt beschreibt die Layer, die klassisch übereinander angeordnet sind. Die Layer und ihre Funktionen entsprechen im Groben den Layern des \ac{OSI} Modells. Ihre Aufteilung und Aufgabenverteilung unterscheidet sich aber. Sofern eine direkte Zuordnung zwischen \ac{ITS} und \ac{OSI} treffbar ist, wird diese gemacht.
 
 \subsection{Access}
 \todo{Noch etwas über die Channel herausfinden und schreiben}
-Der Access Layer von ITS entspricht den \ac{OSI} Layern 1 und 2. Er besteht aus zwei Subaltern und hat drei Interfaces, bzw. \ac{SAP}. Die Sublayer sind der \glqq Data Link Layer (DLL)\grqq~und der \glqq Physical Layer (PHY)\grqq. Der DLL kann weiter in den \glqq Medium Access Control (MAC)\grqq~und den \glqq Logical Link Control (LLC)\grqq~Layer unterteilt werden. Zusätzlich zu den Subalayern hat der Access Layer ein Layer Management. Dieses verwaltet die Sublayer. Es arbeitet nur nur im Access Layer und darf nicht mit dem  Management Layer \ref{architektur_managementLayer} verwechselt werden.
+Der Access Layer von ITS entspricht den \ac{OSI} Layern 1 und 2. Er besteht aus zwei Sublayern und hat drei Interfaces, bzw. \ac{SAP}. Die Interfaces dienen der Kommunikation mit den anderen Layern.
 
-Die \ac{SAP} sind:
 \begin{itemize}
 	\item \textbf{SAP-IN: } Als \ac{SAP} zu dem nächst höheren Layer  Networking \& Transporting \ref{architektur_networkingTransporting}
 	\item \textbf{SAP-SI: } Als \ac{SAP} zu dem Cross Layer Security Layer \ref{architektur_securityLayer}
 	\item \textbf{SAP-MI: } Als \ac{SAP} zu dem Cross Layer Management Layer \ref{architektur_managementLayer}
 \end{itemize}
+
+Der Access Layer übernimmt die Übertagung der Daten, ist aber nicht auf ein bestimmtes Übertragungsprotokoll festgelegt. Beispiele für ein Übertragungsprotokoll sind ITS-G5, WiFi, BlueTooth, Ethernet\dots In \ac{C2C} Anwendungen kommen Dedicated Short Range Communication Protokolle zum Einsatz. Diese sind in unterschiedlichen Ländern, bzw. Kontinenten anders genormt und haben andere Namen. Im europäischen Raum wird \ac{ITS-G5} eingesetzt. \ac{ITS-G5} ist vom \ac{IEEE} als \ac{IEEE} 802.11 p genormt. Dabei handelt sich um einen Funkstandard, der im Bereich von 5 GHz arbeitet. Eine genaue Beschreibung dieses Funkstandards findet sich in \cite{en302663} wieder und würde an dieser Stelle zu weit führen. \ac{ITS-G5} unterscheidet sich von den klassischen 802.11 Standards. Ein Vergleich ist in der \autoref{fig:architektur_vergleich-G5-802} abgebildet. 
+
+\todo{Wenn noch Zeit, ein bisschen was über den Vergleich schreiben}  
+
+\begin{figure}
+	\includegraphics[width=0.75\textwidth]{content/images/02_architektur/unterschiede-G5-Wlan.pdf}
+	\caption{Vergleich zwischen G5 und klassische 802.11 Standards}
+	\label{fig:architektur_vergleich-G5-802}
+\end{figure}
+
+\subsubsection{Data Link Layer (DLL)}
+
+\paragraph{Medium Access Control (MAC)}
+Das Medium Access Control steuert, wer übertragen darf. Diese Berechtigung wird in Abhängigkeit der Belegung der Schnittstelle vergeben. Bekannte Protokolle für die Zugriffskontrolle auf das Medium sind beispielsweise Token-Ring oder CSMA/CD. 
+
+In \ac{ITS-G5} wird das Verfahren \ac{EDCA} verwendet. Es baut auf einem CSMA/CA Algorithmus auf, erweitert die klassischen Algorithmen aber um \ac{QOS} Elemente. 
+\todo{Hier weitermachen}
+
+\paragraph{Logical Link Control (LLC)}
+
+\subsubsection{Physical Layer (PHY)}
+Der Physical Layer verbindet physikalisch mit dem Übertragungsmedium. Prinzipiell kann \ac{ITS} mit fast jedem Medium durchgeführt werden, für die mobilen Anwendungen bietet sich aber eine Übertragung über die Luftschnittstelle besonders an. Mit  \ac{ITS-G5} wurde ein besonders für dieses Zweck geeigneter Standard entworfen. Im PHY werden die physikalischen Channels verwaltet. Ein physikalischer Channel entspricht einem Frequenzbereich. 
+
+Im Fall von \ac{ITS-G5} teilt der Physical Layer die gesamte Bandbreite in 52 Unterkanäle (subcarriers) ein. Sie sind alle in der Bandbreite beschränkt. Der Physical Layer regelt weiterhin das verwendete Modulationsverfahren und die Übertragungsrate. Gemäß \cite{en302663} muss er mindestens die Transferraten 3 Mbit/s, 6 Mbit/s, und 12 Mbit/s beherrschen. 
+
+\subsubsection{Layer Management des Access Layer}
+
+
+
+
+Der DLL kann weiter in den \glqq Medium Access Control (MAC)\grqq~und den \glqq Logical Link Control (LLC)\grqq~Layer unterteilt werden. Zusätzlich zu den Subalayern hat der Access Layer ein Layer Management. Dieses verwaltet die Sublayer. Es arbeitet nur nur im Access Layer und darf nicht mit dem  Management Layer \ref{architektur_managementLayer} verwechselt werden.
+
+
 \todo{ISO 21217 finden - Scheinbar infos über die Layer}
 
 \todo{mal in ETSI TS 102 723-10 reinsehen, ob da was interessantes zu den SAP drin steht}
-
-Der Access Layer ist nicht auf ein bestimmtes Übertragungsprotokoll festgelegt. Beispiele für ein Übertragungsprotokoll sind ITS-G5, WiFi, BlueTooth, Ethernet\dots In einer reinen \ac{C2C} Kommunikation bietet sich aber vor allem ITS-G5 an, für eine allgemeine \ac{ITS} Verbindung haben die anderen Übertragungsprotokolle aber auch ihre Berechtigung. Diese Übertragungsprotokolle müssen aber den \ac{ITS} Protokollstack transparent übertragen. 
 
 Der folgende Abschnitt beschreibt den Access Layer und legt G5 zugrunde.
  
@@ -131,17 +161,6 @@ Im Access Layer finden eine Periodisierung und eine Aufteilung des Datenverkehrs
 
 
 Eine Funktion des Access Layers ist das im Abschnitt \ref{architektur_dcc} beschriebene \ac{DCC}. Hier finden die Mechanismen Transmit Power Control (TPC), \ac{DCC} sensitivity control (DSC), Transit rate control (TRC), transmit datarate control (TDC) und DCC access control (TAC) statt. TPC regelt die Auslastung der Kanäle. Dazu werden Grenzen definiert, die TPC überwacht und einhält. TRC überwacht die Zeiten von Datenpaketen. Dazu gehören beispielsweise die Latenz eines Pakets aber auch die Intervalle zwischen Paketen. TDC überwacht die reine Datenrate eines Channels. Dabei wird nicht nur die maximale Datenrate überwacht, es wird auch beispielsweise die minimale Datenrate überwacht. DSC überwacht, ob der Sender bereit zum Senden ist. Dazu wird anhand von definierten Grenzwerten gemessen, ob der Sender am Senden ist oder nicht. TAC regelt den Kanalzugriff. \todo{Kanalzugriff erklären, wenn ich weiß, was Kanäle sind. Quelle für TAC: \cite{etsi102687}}
-
-\subsubsection{Physical Layer (PHY)}
-Der Physical Sublayer verbindet physikalisch zu dem Kommunikationsmedium.
-
-\subsubsection{Data Link Layer (DLL)}
-Der Data Link Sublayer kann wiederum in den Medium Access Control (MAC) Sublayer und den Logical Link Control (LLC) Sublayer aufgeteilt werden. Der MAC Sublayer regelt den Zugriff auf das Kommunikationmeduim.
-
-
-\ac{ITS} bietet die Funktionalität von logischen Kanälen. 
-
-
 
 
 \subsection{Networking \& Transporting \label{architektur_networkingTransporting}}
