@@ -28,7 +28,6 @@ Das \ac{ITS} Ad Hoc Netzwerk ist das Netzwerk für die Kommunikation zwischen \a
 
 
 \subsection{ITS Access Network \label{architektur_itsAccessNetwork}}
-\tocheck{Nicht die blasseste Ahnung ob das mit den Access Networks stimmt}
 ITS Access Network werden zur Vernetzung von \ac{ITS} Komponenten verwendet. Diese Netzwerke bieten den Zugang für die entsprechenden \ac{ITS} Services. Sie werden als eigene Netzwerke realisiert. \ac{ITS-S} werden durch Access Networks verbunden. Das bedeutet, dass \ac{IRS} untereinander über Access Networks verbunden sein können, es können aber auch Stations, die normalerweise Ad Hoc miteinander kommunizieren dieses Netz nutzen. 
 
 \subsection{Public Access Network}
@@ -98,7 +97,7 @@ Obwohl das \ac{ITS-S} Reference Protocol bei der Entwicklung an das \ac{OSI} Mod
 \section{Horizontal Layer \label{architektur_horzontalLayer}}
 Dieser Abschnitt beschreibt die Layer, die klassisch übereinander angeordnet sind. Die Layer und ihre Funktionen entsprechen im Groben den Layern des \ac{OSI} Modells. Ihre Aufteilung und Aufgabenverteilung unterscheidet sich aber. Sofern eine direkte Zuordnung zwischen \ac{ITS} und \ac{OSI} treffbar ist, wird diese gemacht.
 
-\subsection{Access}
+\subsection{Access Layer}
 \todo{Noch etwas über die Channel herausfinden und schreiben}
 Der Access Layer von ITS entspricht den \ac{OSI} Layern 1 und 2. Er besteht aus zwei Sublayern und hat drei Interfaces, bzw. \ac{SAP}. Die Interfaces dienen der Kommunikation mit den anderen Layern.
 
@@ -113,39 +112,25 @@ Der Access Layer übernimmt die Übertagung der Daten, ist aber nicht auf ein be
 \todo{Wenn noch Zeit, ein bisschen was über den Vergleich schreiben}  
 
 \begin{figure}
-	\includegraphics[width=0.75\textwidth]{content/images/02_architektur/unterschiede-G5-Wlan.pdf}
+	\includegraphics[width=0.95\textwidth]{content/images/02_architektur/unterschiede-G5-Wlan.pdf}
 	\caption{Vergleich zwischen G5 und klassische 802.11 Standards}
 	\label{fig:architektur_vergleich-G5-802}
 \end{figure}
 
 \subsubsection{Data Link Layer (DLL)}
-
+Der Data Link Layer besteht wiederum aus zwei Sublayern. Sie übernehmen auch Funktionalitäten von \ac{DCC}. \ac{DCC} ist im \autoref{architektur_dcc} genauer beschrieben. 
 \paragraph{Medium Access Control (MAC)}
 Das Medium Access Control steuert, wer übertragen darf. Diese Berechtigung wird in Abhängigkeit der Belegung der Schnittstelle vergeben. Bekannte Protokolle für die Zugriffskontrolle auf das Medium sind beispielsweise Token-Ring oder CSMA/CD. 
 
 In \ac{ITS-G5} wird das Verfahren \ac{EDCA} verwendet. Es baut auf einem CSMA/CA Algorithmus auf, erweitert die klassischen Algorithmen aber um \ac{QOS} Elemente. 
-\todo{Hier weitermachen}
 
 \paragraph{Logical Link Control (LLC)}
+Der Logic Link Control ist im Standard ANSI/IEEE Std. 802.2 definiert. Dieser ist  proprietär und lag uns nicht vor.
 
 \subsubsection{Physical Layer (PHY)}
 Der Physical Layer verbindet physikalisch mit dem Übertragungsmedium. Prinzipiell kann \ac{ITS} mit fast jedem Medium durchgeführt werden, für die mobilen Anwendungen bietet sich aber eine Übertragung über die Luftschnittstelle besonders an. Mit  \ac{ITS-G5} wurde ein besonders für dieses Zweck geeigneter Standard entworfen. Im PHY werden die physikalischen Channels verwaltet. Ein physikalischer Channel entspricht einem Frequenzbereich. 
 
 Im Fall von \ac{ITS-G5} teilt der Physical Layer die gesamte Bandbreite in 52 Unterkanäle (subcarriers) ein. Sie sind alle in der Bandbreite beschränkt. Der Physical Layer regelt weiterhin das verwendete Modulationsverfahren und die Übertragungsrate. Gemäß \cite{en302663} muss er mindestens die Transferraten 3 Mbit/s, 6 Mbit/s, und 12 Mbit/s beherrschen. 
-
-\subsubsection{Layer Management des Access Layer}
-
-
-
-
-Der DLL kann weiter in den \glqq Medium Access Control (MAC)\grqq~und den \glqq Logical Link Control (LLC)\grqq~Layer unterteilt werden. Zusätzlich zu den Subalayern hat der Access Layer ein Layer Management. Dieses verwaltet die Sublayer. Es arbeitet nur nur im Access Layer und darf nicht mit dem  Management Layer \ref{architektur_managementLayer} verwechselt werden.
-
-
-\todo{ISO 21217 finden - Scheinbar infos über die Layer}
-
-\todo{mal in ETSI TS 102 723-10 reinsehen, ob da was interessantes zu den SAP drin steht}
-
-Der folgende Abschnitt beschreibt den Access Layer und legt G5 zugrunde.
  
 \begin{figure}
 	\includegraphics[width=0.75\textwidth]{content/images/02_architektur/accessLayer.pdf}
@@ -153,14 +138,6 @@ Der folgende Abschnitt beschreibt den Access Layer und legt G5 zugrunde.
 	\caption{Darstellung des ITS G5 Access Layers \cite{en302665}}
 	\label{fig:architektur_accessLayer}
 \end{figure}
-
-Die Grafik \ref{fig:architektur_accessLayer} entspricht des untersten Layer der Grafik \ref{fig:funktionsweise_referenceArchitecture}. In der Grafik ist zu erkennen, dass der Access Layer drei Interfaces besitzt. Er hat Interfaces zu den Cross Layern und dem Network \& Transport Layer.
-
-
-Im Access Layer finden eine Periodisierung und eine Aufteilung des Datenverkehrs in Logic Channels statt. Diese Aufgaben werden mit verschiedenen Ansätzen gelöst. Deswegen sind sie keinem Sublayer genau zuzuordnen, sondern müssen in der Beschreibung der Sublayer gesondert betrachtet werden.
-
-
-Eine Funktion des Access Layers ist das im Abschnitt \ref{architektur_dcc} beschriebene \ac{DCC}. Hier finden die Mechanismen Transmit Power Control (TPC), \ac{DCC} sensitivity control (DSC), Transit rate control (TRC), transmit datarate control (TDC) und DCC access control (TAC) statt. TPC regelt die Auslastung der Kanäle. Dazu werden Grenzen definiert, die TPC überwacht und einhält. TRC überwacht die Zeiten von Datenpaketen. Dazu gehören beispielsweise die Latenz eines Pakets aber auch die Intervalle zwischen Paketen. TDC überwacht die reine Datenrate eines Channels. Dabei wird nicht nur die maximale Datenrate überwacht, es wird auch beispielsweise die minimale Datenrate überwacht. DSC überwacht, ob der Sender bereit zum Senden ist. Dazu wird anhand von definierten Grenzwerten gemessen, ob der Sender am Senden ist oder nicht. TAC regelt den Kanalzugriff. \todo{Kanalzugriff erklären, wenn ich weiß, was Kanäle sind. Quelle für TAC: \cite{etsi102687}}
 
 
 \subsection{Networking \& Transporting \label{architektur_networkingTransporting}}
@@ -171,7 +148,7 @@ Der Networking \& Transporting Layer enthält mehrere verschiedene Netzwerk und 
 Der Facilities Layer entspricht den \ac{OSI} Layern 5, 6 und 7. Er bietet eine Sammlung von Funktionen, die die \ac{ITS} Anwendungen unterstützen. Der Layer bietet Datenstrukturen um verschiedene Date zu speichern, zu sammeln und zu verwalten. Er wird im Kapitel \ref{chap:facilitylayer} genauer erklärt.
 
 \subsection{Applications}
-Im Applications Layer werden die Use Cases realisiert. Ihnen steht der \ac{ITS} Protokoll Stack zu Verfügung. Eine genauere Beschreibung des Application Layers findet im Kapitel \ref{chap:applicationlayer} statt.
+Im Applications Layer werden die Use Cases realisiert. Ihnen steht der \ac{ITS} Protokoll Stack zu Verfügung. Eine genauere Beschreibung des Application Layers findet im Kapitel \ref{chap:applicationlayer} statt. \todo{Link flicken, oder Applications genauer erklären}
 
 \section{Cross/Vertical Layer}
 Die Cross Layer weichen stark vom \ac{OSI} Modell ab. Sie erweitern die traditionellen Layer, die jeweils nur ein Interface zum nächst höheren, bzw. tieferen Layer haben um Layer, die Interfaces zu allen anderen Layern haben. Durch die Interfaces zu allen Layern ergeben sich neue Möglichkeiten. So kann beispielsweise im Application Layer die genutzte Bandbreite an die im Physical Layer zur Verfügung stehende Bandbreite angepasst werden. Dadurch werden Überlastungen, die sich auf die Latenz auswirken oder zu fehlerhaften Übertragungen führen bereits im im Vorfeld vermieden.
@@ -185,8 +162,8 @@ Der Management Layer übernimmt Alle Aufgaben, die mit der Verwaltung einer \ac{
 	\caption{Der Management Layer im Überblick \cite{etsi2010302}}
 	\label{fig:architektur_managementLayer}
 \end{figure}
-\todo{Einzelne Untereinheiten der Grafik erklären, schreiben wo die beschriebenen Dienste angesiedelt sind}
-In der  \autoref{fig:architektur_managementLayer} ist der Management Layer mit seinen Interfaces und Untereinheiten dargestellt. Er hat zu jedem anderen Layer ein Interface. Die fünf Untereinheiten ergeben sich aus den definierten Funktionalitäten des Management Layers. Die folgende Auflistung der Funktionalitäten ist dem Standard \cite{etsi2010302} entnommen:
+
+In der  \autoref{fig:architektur_managementLayer} ist der Management Layer mit seinen Interfaces und Untereinheiten dargestellt. Er hat zu jedem anderen Layer ein Interface. Die fünf Untereinheiten ergeben sich aus den definierten Funktionalitäten des Management Layers. In der aktuellen Version der Standards sind die Untereinheiten der Layers noch nicht exakt definiert. Die folgende Auflistung der Funktionalitäten ist dem Standard \cite{etsi2010302} entnommen.
 
 \begin{itemize}
 	\item Cross-interface Management
@@ -201,6 +178,11 @@ In der  \autoref{fig:architektur_managementLayer} ist der Management Layer mit s
 	\item Eine alleine Informationsbasis
 	\item Die Möglichkeit die verschiedenen Layer zu verbinden
 \end{itemize}
+
+\subsubsection{Management Information Base}
+Die Management Information Base verwaltet die Dienste, die im Netzwerk angeboten werden. \ac{ITS} verwendet das Simple Network Management Protocol in der Version 2. Mit diesem Protokoll können Komponenten im Netzwerk zentral überwacht und gesteuert werden. Da die Komponenten unterschiedliche Services anbieten, werden die Komponenten mit ihren angebotenen Services in der Management Information Base gespeichert.
+Laut Standard \cite{ts102723-2} wird es für \ac{ITS} keine besondere Management Information Base geben, es werden die aktuell verfügbaren \ac{ASN.1} Elemente genutzt. 
+
 
 \subsubsection{ITS Service Advertisement}
 \ac{ITS} Service Adverticement ist der Mechanismus, mit dem eine \ac{ITS-S} \ac{ITS} Services erkennen kann. Bei diesem Mechanismus macht eine \ac{ITS-S}, in dem Fall der Service Provider, aktiv ihre Services anderen \ac{ITS-S}, in dem Fall Service User, bekannt. Eine Möglichkeit, die Services bekannt zu machen ist das FAST Service Advertisement. Es ist im Standard ISO/IEC 24102 definiert und eignet sich für die Luftschnittstelle mit lediglich einem Hop. Beim FAST Service Advertisement wird ein Advertisement Manager benötigt. Dieser empfängt die Service Adverticements von den anderen Service Providern und sendet die Service Adverticements der eigenen \ac{ITS-S} in regelmäßigen Abständen aus.
@@ -294,7 +276,6 @@ Congestion lässt sich aus dem Englischen mit Stau übersetzen. \ac{DCC} ist ein
 \end{itemize}
 
 Aus diesen Anforderungen lässt sich herauslesen, dass das Vermeiden von Staus durch mehrere Mechanismen realisiert wird. Eine wichtige Eigenschaft von \ac{DCC} ist, dass es im Management Layer angesiedelt ist. Diese Tatsache ermöglicht es \ac{DCC} seine Aufgaben parallel in mehreren Layern zu realisieren. Die \ref{fig:architektur_dccArchitektur} zeigt die Architektur von \ac{DCC}. Die Abbildung zeigt den \ac{ITS} Protokoll Stack in den die \ac{DCC} Komponenten und Interfaces eingezeichnet sind. Der Vorteil dass die Layer vernetzt sind ist, dass der Stau wirklich vermieden werden kann und nicht nur die Auswirkungen des Staus behandelt werden müssen. Ein Beispiel dafür ist, dass \ac{DCC} das Trafficaufkommen bereits im Network Layer an das Medium anpassen und einzelne Dienste priorisieren kann. IEEE 802.11 beispielsweise muss bei einer Überlast, bzw. einem Pufferüberlauf, Frames verwerfen. Dieses Verwerfen muss durch Protokolle höherer Layer abgefangen werden und führt aufgrund von Retransmissions zu höheren Latenzen und einer ingesamt höheren Netzwerkauslastung. 
-\todo{Stimmt das mit dem Verwerfen eigentlich?}
 
 \begin{figure}
 	\includegraphics[width=0.75\textwidth]{content/images/02_architektur/dccArchitektur.pdf}
@@ -311,7 +292,8 @@ Eine Unterkomponente der DCCmgmt Komponente ist die DCC\_CROSS\_Facilities.
 
 
 \subsubsection{CI/ITS-S application mapping}
-\todo{Noch etwas über Application mapping schreiben}
+Das CI/ITS-S application mapping weist Anwendungen ein Kommunikationsinterface zu. Die Zuordnung geschieht durch einen Application Mapping Manager. Für eine  Zuordnung benötigt er verschiedene Angaben. Die wichtigsten Angaben sind welche Anforderungen die Application hat und welche Interfaces verfügbar sind, bzw. welche Eigenschaften und welchen Status sie haben. Zusätzlich muss bekannt sein, was die anwendbaren Regeln sind. 
+
 
 \subsection{Security Layer \label{architektur_securityLayer}}
 Der Security Layer ist ein Cross Layer der \ac{ITS} Architektur. Er sorgt für die Sicherheit im \ac{ITS} System. Er hat Interfaces in alle anderen Layer. 	\todo{Noch schreiben was der Security Layer genau macht} 
@@ -345,12 +327,30 @@ Die \autoref{fig:architektur_securityLayer}  beschreibt die \ac{ITS-S} Architekt
 	\label{fig:architektur_securityDienste}
 \end{figure}
 
-\subsection{Privacy}
-\todo{Privacy beschreiben}
+\subsection{Trust and Privacy Management \label{architektur_TrustAndPrivacyManagement}}
+Privacy beschreibt im Allgeinen den Privatsphäre. Da \ac{ITS} auch zum Zwecke der Datenerhebung entwickelt wurde, mussten bereits am Anfang Konzepte entwickelt werden, die die eigentlich widersprüchlichen Forderungen von Datenerhebung und Datenschutz vereinbaren. Um zu verstehen, wie sie funktionieren muss der Begriff Privatsphäre unterteilt und genauer beschrieben werden. Die im Folgenden Begriffe sind im Standard berücksichtigt. 
+
 \subsubsection{Anonymity}
+Der Begriff anonymity bedeutet übersetzt Anonymität und erklärt sich von alleine. Der Begriff bedeutet, dass jemand anonymes keine Identität zugeordnet werden kann. Ein Bespiel hierfür ist eine völlig zufällige Nummer, die anstelle der Identität angegeben wird. Ihr kann keine Identität zugeordnet werden. Da einigen Services der \ac{ITS} Architektur eine Authentifizierung zu Grunde liegt ist eine vollständige Anonymisierung nicht möglich. Aus diesem Grund gibt es die drei anderen Schlüsselwörter.
+
 \subsubsection{Pseudonymity}
+Pseudonymity bedeutet übersetzt Pseudonymisierung.  Pseudonymisierung wird oft mit Anonymisierung verwechselt, bedeutet aber etwas Anderes. Hinter etwas pseudonymisiertem steht eine Identität, die durch ein Pseudonym ersetzt wurde. Ein Beispiel hierfür ist die Matrikelnummer eines Studenten. Einem Angreifer, ohne die Möglichkeit, die Matrikelnummer dem Namen eines Studenten zuzuordnen, ist der Student gegenüber anonym. Besteht die Möglichkeit jedoch kann der Matrikelnummer sehr wohl eine Identität zugeordnet werden. Der Nachteil von Pseudonymen ist, dass sie wertlos sind, sobald ein Teil des Systems kompromittiert wurde. In \ac{ITS} wird die  Psyeudonymität erreicht, indem nur temporäre Kennungen von \ac{ITS-S} verwendet werden.
+
+
 \subsubsection{Unlinkability}
+Ein weiterer Nachteil von Pseudonymen ist, dass mit der erfassten Datenmenge die Chance steigt, von ihnen auf eine Identität zu schließen. Wird die Nutzung eines Pseudonyms verfolgt können die Aktivitäten miteinander Verlinkt werden. Dadurch kann aus dem Pseudonym eine neue Identität werden, von der Rückschlüsse auf die Identität hinter dem Pseudonym getroffen werden können. Es kann aber auch die Identität aus dem Verhalten ermittelt werden. Um bei dem Beispiel mit dem Studenten zu bleiben, kann über ihn, bzw. seine Matrikelnummer, ein Bewegungsprofil erstellt werden, das  einzigartig ist. Wird die Matrikelnummer für das Einschreiben in Kurse genutzt kann nach genug Einschreibungen das Studienfach und das Studiensemester ermittelt werden. Diese Sammlung nennt man Verkettung von Daten. Das Schlüsselwort unlinkability fordert, dass eine \ac{ITS-S} nicht verkettbar ist. In \ac{ITS} wird die Verkettbarkeit verhindert, indem die Verwendung von nicht, oder kaum, veränderter Informationen. Damit kann Verbindungen von \ac{ITS-S} nicht anderen Verbindungen zugeordnet werden.
+
 \subsubsection{Unobservability}
+Unobservability bedeutet, dass der Nutzer eine Ressource nutzen kann, ohne dass andere Nutzer, oder Dritte, feststellen können, dass dieser Dienst genutzt wird.
+
+
+
+Neben dem Datenschutz muss im \ac{ITS} System aber auch eine Zugangskontrolle realisiert werden. Die Zugangskontrolle teilt sich in zwei Bereiche auf: Die Berechtigung, das \ac{ITS} System als Ganzes zu nutzen und die Berechtigung, einzelne Services und Anwendungen zu nutzen. Die Prüfung der Identitäten wird über Zertifikate und Public-Key Verfahren realisiert. Zur Verteilung der Berechtigungen werden im Standard \cite{ts102731} definiert.
+
+
+
+
+
 
 
 
@@ -531,7 +531,8 @@ Allow remote activation and deactivation of ITS-S & ITS-S Remote Management Repo
 \subsection{ITS Authoritative Hierarchy \label{architektur_itsAuthoriativeHierarchy}}
 Die ITS Authoritative Hierarchy beschreibt, wer eine Rolle bei der Verwaltung der Sicherheit übernehmen kann. 
 
-Die Hersteller von \ac{ITS-S} unterstützen die regionalen Autorisierungsstellen indem sie die Identitäten der \ac{ITS-S} verwalten. Dazu sollen sie ihnen während der Fertigung eine weltweite einzigartige Identität geben. Diese Identität soll  in Form eines Oktett Strings sein. Sie soll während der gesamten Lebensdauer gültig sein.\todo{Was will man da mit einem Oktett? Das sind 256 ITS Stations....  Original in ts 102 731: During the manufacturing process an ITS-S shall receive a globally unique canonical identity in the form of an octet string. It shall persist for the operational lifetime of the ITS-S.}
+Die Hersteller von \ac{ITS-S} unterstützen die regionalen Autorisierungsstellen indem sie die Identitäten der \ac{ITS-S} verwalten. Dazu sollen sie ihnen während der Fertigung eine weltweite einzigartige Identität geben. Diese Identität soll  gemäß \cite{ts102731} in Form eines Oktett Strings sein. Sie soll während der gesamten Lebensdauer gültig sein.
+
 Neben der \ac{ID} müssen die \ac{ITS-S} die Fähigkeit besitzen, die Verbindung mit mindestens einer Zertifikatsstelle und mindestens einer Autorisierungsstelle zu überprüfen.  Außerdem muss sie in der Lage sein, weitere Zertifikats- und Autorisierungsstelle hinzuzufügen.
 
 Die Zertifikatsstelle, ist eine Einheit, die die Verwaltung der Zulassungszertifikate verantwortlich ist. Die Zertifikatsstelle werden verwendet um in Nachrichten zwischen \ac{ITS-S} und einer Security Management Einheit die \ac{ITS-S} als zugangsberechtigt auszuweisen. Das beinhaltet auch die Prüfung der Identität. Die Informationen zu der \ac{ITS-S} entnimmt die Zertifikatsstelle dem Zulassungszertifikat. Sie erstellt ein neues Zertifikat, und sendet es an die \ac{ITS-S}. Dieses Zertifikat bestätigt die Identität der \ac{ITS-S} und die der Zertifikatsstelle. Es findet lediglich die Bestätigung einer gültigen Identität statt,  auf die Identität selber können mit diesem Zertifikat keine Rückschlüsse gezogen werden. Wird eine \ac{ITS-S} als kompromittiert erkannt, informiert die Zertifikatsstelle die anderen Zertifikatsstellen. Dazu wird die eideutige \ac{ID} der \ac{ITS-S} den anderen Zertifikatsstellen mitgeteilt. Die \ac{ITS-S} bekommt so lange keine neuen Zertifikate, solange sie als kompromittiert bekannt ist.  
@@ -539,27 +540,6 @@ Die Zertifikatsstelle, ist eine Einheit, die die Verwaltung der Zulassungszertif
 Die Autorisierungsstelle regelt den Zugang zu allgemeinen und speziellen Diensten. Um die Dienste der Autorisierungsstelle nutzen zu können muss die die Identität der \ac{ITS-S} durch ein Zertifikat einer Zulassungsstelle nachgewiesen werden. Die \ac{ITS-S} fragt bei der Autorisierungsstelle wegen der spezifischen Berechtigungen an. Die Anfragen werden \todo{An Authorization Authority weiterschreiben} Erkennt die Autorisierungsstelle, dass eine \ac{ITS-S} kompromittiert ist, so informiert sie die Zertifikatsstelle, von der die \ac{ITS-S} ihr Zertifikat hat. Ihr werden keine weiteren Tickets mehr mitgeteilt. Zusätzlich wird werden alle anderen \ac{ITS-S} informiert, dass die Zertifikate ungültig sind.  
 
 
-\subsection{Trust and Privacy Management \label{architektur_TrustAndPrivacyManagement}}
-
-Ein Aspekt der Data Security ist das Trust and Privacy Management. Der Standard \cite{ts102941} definiert für  den Begriff Privacy vier Schlüsselattribute:
-\begin{itemize}
-	\item Anonymity
-	\item Pseudonymity
-	\item Unlinkability
-	\item Unobservability
-\end{itemize}
-
-Der Begriff anonymity bedeutet übersetzt Anonymität und erklärt sich von alleine. Der Begriff bedeutet, dass jemand anonymes keine Identität zugeordnet werden kann. Ein Bespiel hierfür ist eine völlig zufällige Nummer, die anstelle der Identität angegeben wird. Ihr kann keine Identität zugeordnet werden. Da einigen Services der \ac{ITS} Architektur eine Authentifizierung zu Grunde liegt ist eine vollständige Anonymisierung nicht möglich. Aus diesem Grund gibt es die drei anderen Schlüsselwörter. 
-
-Pseudonymity bedeutet übersetzt Pseudonymisierung.  Pseudonymisierung wird oft mit Anonymisierung verwechselt, bedeutet aber etwas Anderes. Hinter etwas pseudonymisiertem steht eine Identität, die durch das  pseudonymisierte ersetzt wurde. Ein Beispiel hierfür ist die Matrikelnummer eines Studenten. Einem Angreifer, ohne die Möglichkeit, die Matrikelnummer dem Namen eines Studenten zuzuordnen, ist der Student gegenüber anonym. Besteht die Möglichkeit jedoch kann der Matrikelnummer sehr wohl eine Identität zugeordnet werden. Der Nachteil von Pseudonymen ist, dass sie wertlos sind, sobald ein Teil des Systems kompromittiert wurde. In \ac{ITS} wird die  Psyeudonymität erreicht, indem nur temporäre Kennungen von \ac{ITS-S} verwendet werden.
-
-Ein weiterer Nachteil von Pseudonymen ist, dass mit der erfassten Datenmenge die Chance steigt, von ihnen auf eine Identität zu schließen. Wird die Nutzung eines Pseudonyms verfolgt können die Aktivitäten miteinander Verlinkt werden. Dadurch kann aus dem Pseudonym eine neue Identität werden, von der Rückschlüsse auf die Identität hinter dem Pseudonym getroffen werden können. Es kann aber auch die Identität aus dem Verhalten ermittelt werden. Um bei dem Beispiel mit dem Studenten zu bleiben, kann über ihn, bzw. seine Matrikelnummer, ein Bewegungsprofil erstellt werden, das  einzigartig ist. Wird die Matrikelnummer für das Einschreiben in Kurse genutzt kann nach genug Einschreibungen das Studienfach und das Studiensemester ermittelt werden. Diese Sammlung nennt man Verkettung von Daten. Das Schlüsselwort unlinkability fordert, dass eine \ac{ITS-S} nicht verkettbar ist. In \ac{ITS} wird die Verkettbarkeit verhindert, indem die Verwendung von nicht, oder kaum, veränderter Informationen. Damit kann Verbindungen von \ac{ITS-S} nicht anderen Verbindungen zugeordnet werden.
-
-Unobservability bedeutet, dass der Nutzer eine Ressource nutzen kann, ohne dass andere Nutzer, oder Dritte, feststellen können, dass dieser Dienst genutzt wird.
-
-Durch die Beachtung dieser Schlüsselwörter bei der weiteren Spezifikation und der Implementierung von \ac{ITS} wird der Datenschutz bereits im Vorfeld beachtet. 
-
-Neben dem Datenschutz muss im \ac{ITS} System aber auch eine Zugangskontrolle realisiert werden. Die Zugangskontrolle teilt sich in zwei Bereiche auf: Die Berechtigung, das \ac{ITS} System als Ganzes zu nutzen und die Berechtigung, einzelne Services und Anwendungen zu nutzen. Die Prüfung der Identitäten wird über Zertifikate und Public-Key Verfahren realisiert. Zur Verteilung der Berechtigungen werden im Standard \cite{ts102731} definiert.
 
 \subsection{ITS Security Serivces}
 Bei den in \ac{ITS} versendeten Nachrichten müssen aus Sicht der Sicherheit drei verschiedene Typen betrachtet werden. 

@@ -10,11 +10,11 @@
 
 
 \section{Funktionale Komponenten von ITS \label{funktionsweise_funktionaleKomponenten}}
-Die funktionalen Komponenten sind sind in sich geschlossene Einheiten, die in den \ac{ITS} Untersystemenen vorhanden sind. Sie werden in diesem Abschnitt beschrieben. Zusätzlich werden die mindestens definierten Funktionalitäten genannt.
+Die funktionalen Komponenten sind sind in sich geschlossene Einheiten, die in den \ac{ITS} Subsystems vorhanden sind. Sie werden anhand ihrer Aufgaben und Funktionen getrennt. Dabei muss nicht zwangsläufig eine physikalische Trennung stattfinden, prinzipiell können auch alle Subsystems in ein Gerät implementiert werden. Eine genaue Vorschrift der Implementierung sieht der Standard nicht vor, diese Entscheidung liegt bei den \ac{OEM}. 
 
-Auf die einzelnen Layer der Komponenten wird im Kapitel \ref{chap_archtitektur} eingegangen.   
+Neben den Subsystems selber wird auch beschrieben, welche von ihnen als Mindestanforderung in einer \ac{ITS-S} vorhanden sein müssen.
 
-Die einzelnen funktionalen Komponenten müssen nicht physikalisch getrennt werden. Es reicht eine logische Trennung.  
+Auf die einzelnen Layer der Komponenten wird im \autoref{chap_archtitektur} eingegangen.   
 
 \subsection{ITS-S Host \label{funktionsweise_ITSHost}}
 Der \ac{ITS-S} Host beinhaltet mindestens die \ac{ITS-S} Anwendungen und die Funktionalität der ITS  Station Reference Architektur, die für die  \ac{ITS-S} Anwendungen gebraucht wird. Konkret sind das der \ac{ITS} Network Layer und die Anwendungsebene. 
@@ -68,10 +68,9 @@ Die mindesten funktionalen Komponenten der \ac{ICS} sind:
 	\item \ac{ITS-S} Border Router \ref{funktionsweise_ITSBorderRouter}
 \end{itemize}
 
+Die \ac{ICS} hat mehrere Aufgaben. Sie wird als Netzwerkknoten eingesetzt. Das bedeutet, dass die Daten, die von den \ac{IRS} empfangen wurden, zusammenführt. Sie kann aber auch die \ac{IRS} an das Core Network anbinden.
 
-Core component of the architecture is the ITS station, which has two main roles: in its first role, the ITS station is a network node and acts as a communication source or sink. Likewise an ITS station can be a forwarder of data, e.g. in the ITS ad hoc network. In its second role, the ITS station is placed at the network edge and connect the different networks via an ITS station internal network (see Figure 1). \cite{etsi302636-3}
-
-\todo{Noch was zur ICS finden}
+Eine weitere mögliche Funktion der \ac{ICS} ist die Funktion als Verkehrsleitzentrale. Dazu kann sie Applications hosten, die für die Steuerung des Verkehrsflusses verantwortlich sind. Vom baulichen her, kann sie auch die entsprechenden Arbeitsplätze für die Operatoren zur Verfügung stellen. 
 	
 	
 \section{ITS Roadside Station}
@@ -112,5 +111,4 @@ Das \ac{IVS} ist eine mobile Komponente von \ac{ITS}. Es hat als Mindestanforder
 	\item \ac{ITS-S} Router \ref{funktionsweise_router} 
 \end{itemize}
 
-\todo{Noch was über IVS schreiben}
-
+Eine \ac{IVS} wird in der Regel ein Fahrzeug sein. Die \ac{IVS} sind die Hauptteilnehmer des \ac{C2C}. Sie erfassen die Daten und übermitteln sie sich gegenseitig oder in das \ac{ITS} Netz. 
