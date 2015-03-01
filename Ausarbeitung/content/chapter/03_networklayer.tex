@@ -1,5 +1,4 @@
 \chapter{Network Layer\label{chap:networklayer}}
-\todo{Noch was zu Geonetworking schreiben}
 Der Networklayer in der \acl{C2C}, übernimmt die Aufgabe Nachrichten durch das Netz zu Routen. Er bietet also seine Transportdienste dem Applicationlayer an. Darüber hinaus ist er für die Koordination des Netzwerkes zuständig.
 Das bedeutete im genauen das er dafür Sorge trägt, dass die Nachrichten auch wirklich ankommen. Dafür beachtet er die Anforderungen der verschiedenen Anwendungen, wie z.b. das senden von Zeitkritischen Nachrichten einer Safety Application. Um bei einem Netzwerk wie es in der \acl{C2C} zu finden ist die Kommunikation zu steuern stellen sich einige Anforderungen und Herausforderungen. Vor allem bei der Adressierung der richtigen Knoten.
 
@@ -13,11 +12,9 @@ Im folgenden werden die einzelnen Komponenten des Networklayers genauer erläute
 \caption{Die Komponenten des Networklayers\cite{C2C-manifesto}}
 \label{fig:nwl}
 \end{figure}
- \todo{Dateiendung von jpg zu png geändert}
 Wie auf \autoref{fig:nwl} zu sehen befindet sich der Networklayer zwischen dem Aplicationlayer und dem Logical Link Control oder MAC-Layer. Das Protokoll das auf dem MAC-Layer läuft ist das, in der WLAN-Technik häufig genutzte CSMA/CA, das als bekannt vorausgesetzt wird. Es wird verwendet da sich mehrere Kommunikationseinheiten das selbe Medium teilen und es daher zu Kollisionen kommen kann. 
 
 \subsubsection{Location Table}
-\todo{neighbor tabelle hier mit einbeziehen etsi 7.1 da steht was da alles drin ist}
 Jedes Fahrzeug verfügt über einen Location Table. In dieser Tabelle werden Informationen über die naheliegenden Knoten, also andere Fahrzeuge die C2C unterstützen, gespeichert. Diese Tabelle ist für das Forwarding notwendig da hier unter anderem die Adressen und Positionen der zu erreichenden Fahrzeuge gespeichert sind. 
 Im Folgenden werden einige der Informationen aufgeführt die in einer solchen Tabelle enthalten sind. Jedoch können noch weitere Informationen dort gespeichert werden. Das genaue Format der Datensätze ist nicht spezifiziert und kann somit von diesem Dokument abweichen. Die Daten die in dem Location Table gespeichert sind sind nur zeitweise korrekt, daher sind sie mit einem Timestamp versehen und werden nach einer gewissen zeit verworfen. Die Informationen des Positionsvektors sollten mindestens über die unten aufgeführten Informationen verfügen. 
 \begin{enumerate}
@@ -64,8 +61,7 @@ Da sich beim versenden von Paketen die eigenen Positionsangaben sowie die Hops o
 Da die Paketdichte in einem C2C-Netz sehr hoch werden kann und es zu Überläufen oder Paketstaus kommen kann, muss in extremen Situationen das Netz reguliert werden. Hierauf wird in \autoref{sec:congestioncontrol} genauer eingegangen.
 
 \section{Congestion Control\label{sec:congestioncontrol}}
-\todo{Hier nochmal nachhacken ob es tatsächlich keine lösung gibt}
-\todo{Ja, die gibts, nennt sich \ac{DCC} und wird im Management Layer erklärt}
+\todo{ \ac{DCC} dann raus holen}
 Noch ungeklärt sind die Transport- und Überlastungskontrolle. Offen sind Fragen bzgl. fehlerfreiem Transport (single protocol/multiple protocols), Prioritäten von Datenpacketen, Datenaggregation und Payloadgröße. Ausfallsicherheit (connection-free/conncetion-less), Forwarding (end-to-end Prinzip), Transportarten (unicast/broadcast), Fairness, Komplexität, Multiplexing sowie Verzögerungen und Ortsgültigkeit sind auch zu klären.Es bleibt abzuwarten, wie mit den Problemen umgegangen wird. Auf Grund der vielen Anforderungen muss höchste Sorgfalt in die Entwicklung gelegt werden. Eine Herausforderung ist z.B. die Frage der Ortsgültigkeit. Unter Ortsgültigkeit ist zu verstehen, wie lange eine Nachricht in einer bestimmten Region bei der sich schnell ändernden Netzwerktopologie gültig bleibt, oder als veraltet verworfen wird.
 
 \section{Geo Routing\label{sec:georouting}}
@@ -126,7 +122,6 @@ Nummer & Bedeutung  \\
 \end{itemize}
 
 \subsubsection{Konfiguration der Adressen}
-\todo{siehe etsi Kapitel 9.2.1 duplicate address detection ist auch interessant}
 Um eine \acl{GNW} Adresse zu konfigurieren gibt es drei Vorgehensweisen. 
 
 \begin{enumerate}
