@@ -1,5 +1,5 @@
 \chapter{Architektur  \label{chap_archtitektur}}
-Die Netzwerkarchitektur von \ac{ITS-S} umfasst sowohl interne als auch externe Netzwerke. Laut Standard \cite{etsi302636-3}, bzw. Standard \cite{etsi102636-3} sind dabei folgende externe Netzwerke erfasst:
+Die Netzwerkarchitektur von \ac{ITS} umfasst sowohl interne als auch externe Netzwerke. Laut Standard \cite{etsi302636-3}, bzw. Standard \cite{etsi102636-3} sind dabei folgende externe Netzwerke erfasst:
 
 \begin{itemize}
  	\item ITS ad hoc network.
@@ -28,7 +28,7 @@ Das \ac{ITS} Ad Hoc Netzwerk ist das Netzwerk für die Kommunikation zwischen \a
 
 
 \subsection{ITS Access Network \label{architektur_itsAccessNetwork}}
-ITS Access Network werden zur Vernetzung von \ac{ITS} Komponenten verwendet. Diese Netzwerke bieten den Zugang für die entsprechenden \ac{ITS} Services. Sie werden als eigene Netzwerke realisiert. \ac{ITS-S} werden durch Access Networks verbunden. Das bedeutet, dass \ac{IRS} untereinander über Access Networks verbunden sein können, es können aber auch Stations, die normalerweise Ad Hoc miteinander kommunizieren dieses Netz nutzen. 
+ITS Access Networks werden zur Vernetzung von \ac{ITS} Komponenten verwendet. Diese Netzwerke bieten den Zugang für die entsprechenden \ac{ITS} Services. Sie werden als eigene Netzwerke realisiert. \ac{ITS-S} werden durch Access Networks verbunden. Das bedeutet, dass \ac{IRS} untereinander über Access Networks verbunden sein können, es können aber auch Stations, die normalerweise Ad Hoc miteinander kommunizieren dieses Netz nutzen. 
 
 \subsection{Public Access Network}
 Ein Public Access Network ermöglicht den Zugang in öffentlich zugängliche Mehrzwecknetzwerke. Dieses Netzwerk kann beispielsweise dazu genutzt werden, um \ac{ITS-S} mit dem Core Netzwerk zu verbinden. 
@@ -49,7 +49,7 @@ Das Core Network ist ein Verbindungsnetz. Es hat keine \ac{ITS} Funktionalitäte
 
 Die Grafik \ref{fig:architektur_netzwerkSzenario} stammt aus dem Standard \cite{etsi302636-3}. Dort ist im oberen Teil der Grafik ein Szenario beschrieben, welche Netzwerke miteinander verbunden sein können.  Zu erkennen ist, dass die Netzwerke ITS Ad Hoc Netzwerk \ref{achitektur_adHocNetwork}, ITS Access Network \ref{architektur_itsAccessNetwork} und das Core Network  \ref{achitektur_coreNetwork} miteinander verbunden sein sollen.
 
-Der untere Teil der Grafik zeigt eine Implementierungsmöglichkeit dieses Szenarios. Die hellen Rechtecke beschreiben die Komponenten, die in dieser Implementierung im System integriert sind, das dunkle Rechteck beschreibt die funktionale Komponente, die in diesem System beteiligt ist. Die Linien sind mit dem Typ des Netzwerks, welches sie repräsentieren beschriftet und zusätzlich mit dem Network Reference Point, den sie benutzen, beschriftet.
+Der untere Teil der Grafik zeigt eine Implementierungsmöglichkeit dieses Szenarios. Die hellen Rechtecke beschreiben die Komponenten, die in dieser Implementierung im System integriert sind, das dunkle Rechteck beschreibt die funktionale Komponente, die in diesem System beteiligt ist. Die Linien sind mit dem Typ des Netzwerks, welches sie repräsentieren, beschriftet und zusätzlich mit dem Network Reference Point, den sie benutzen, beschriftet.
 
 Auflistung und kurze Beschreibung der genutzten Network Reference Points:
 \begin{itemize}
@@ -67,7 +67,7 @@ Erkennbar ist in dieser Implementierung, dass sich für mobile Stations Ad Hoc N
 
  
 \section{ITS Station Reference Architecture}
-Eine Referenzarchitektur beschreibt ein allgemeines Modell einer Architektur. Modelle können untereinander verglichen werden. Eine Architektur ist abstrakt beschrieben. Durch die Beschreibung einer Architektur kann das Verhalten und die Anforderungen an das System beschrieben werden. Die Implementierung der Funktionalitäten ist nicht vorgegeben. 
+Eine Referenzarchitektur beschreibt ein allgemeines Modell einer Architektur. Modelle können untereinander verglichen werden. Eine Architektur ist abstrakt beschrieben. Durch die Beschreibung einer Architektur können das Verhalten und die Anforderungen an das System beschrieben werden. Die Implementierung der Funktionalitäten ist nicht vorgegeben. 
 
 Die \ac{ITS-S} Reference Architecture unterscheidet sich grundlegend von bekannten Architekturen. Da sie während der Entwicklung an das \ac{OSI} Modell angelehnt war, ergeben sich einige Parallelen:
 \begin{itemize}
@@ -76,7 +76,7 @@ Die \ac{ITS-S} Reference Architecture unterscheidet sich grundlegend von bekannt
 	\item Die Standards beziehen die Layer auf die \ac{OSI} Layer. 
 \end{itemize}
 
-Der direkte Vergleich mit dem \ac{OSI} Modell und die Zuordnung der Layer wird in \autoref{fig:architektur_vergleichItsOsi} deutlich. Diese Grafik enthält die Layer von \ac{ITS} und die Layer des \ac{OSI} Modells und beinhaltet vier Säulen. Von links nach rechts beschrieben stellen die Säulen den Management Layer  (\autoref{architektur_managementLayer}), die \ac{ITS} horizontal Layer (\autoref{architektur_horzontalLayer}), die \ac{OSI} Layer und den Security Layer(\autoref{architektur_securityLayer}). Die \ac{ITS} Layer werden im Folgenden genauer beschrieben. 
+Der direkte Vergleich mit dem \ac{OSI} Modell und die Zuordnung der Layer wird in \autoref{fig:architektur_vergleichItsOsi} deutlich. Diese Grafik enthält sowohl die Layer von \ac{ITS} als auch die Layer des \ac{OSI} Modells. In der Grafik sind  vier Säulen enthalten. Von links nach rechts beschrieben stellen die Säulen den Management Layer  (\autoref{architektur_managementLayer}), die \ac{ITS} horizontal Layer (\autoref{architektur_horzontalLayer}), die \ac{OSI} Layer und den Security Layer(\autoref{architektur_securityLayer}) dar. Die \ac{ITS} Layer werden im Folgenden genauer beschrieben. 
 
 \begin{figure}[h]
 	\includegraphics[width=0.99\textwidth]{content/images/02_architektur/vergleichITS-OSI.pdf}
@@ -84,7 +84,7 @@ Der direkte Vergleich mit dem \ac{OSI} Modell und die Zuordnung der Layer wird i
 	\label{fig:architektur_vergleichItsOsi}
 \end{figure}
 
-Obwohl das \ac{ITS-S} Reference Protocol bei der Entwicklung an das \ac{OSI} Modell angelehnt wurde gibt es jedoch einen gravierenden Unterschied: In der \ac{ITS-S} Reference Architecture sind Cross Layer vorgesehen. Das \ac{OSI} Referenzmodell ist wasserfallartig aufgebaut. Das bedeutet, dass die einzelnen Layer übereinander angeordnet sind. Jeder Layer hat jeweils nur zu dem direkt über- und unterliegenden Layer eine Schnittstelle. Cross Layer sind Layer, die in mehrere dieser Schichten Schnittstellen haben. Sie erweitern die vorhanden Layer in horizontaler Richtung. Im Fall der \ac{ITS} Reference Architecture sind das die Layer \glqq Management\grqq~ und \glqq Security\grqq. Sie haben Schnittstellen, bzw. Primitiven in alle anderen Layer. 
+Obwohl das \ac{ITS-S} Reference Protocol bei der Entwicklung an das \ac{OSI} Modell angelehnt wurde gibt es jedoch einen gravierenden Unterschied: In der \ac{ITS-S} Reference Architecture sind Cross Layer vorgesehen. Das \ac{OSI} Referenzmodell ist wasserfallartig aufgebaut. Das bedeutet, dass die einzelnen Layer übereinander angeordnet sind. Jeder Layer hat jeweils nur zu dem direkt darüber- und darunterliegenden Layer eine Schnittstelle. Cross Layer sind Layer, die in mehrere dieser Schichten Schnittstellen haben. Sie erweitern die vorhanden Layer in horizontaler Richtung. Im Fall der \ac{ITS} Reference Architecture sind das die Layer \glqq Management\grqq~ und \glqq Security\grqq. Sie haben Schnittstellen, bzw. Primitiven in alle anderen Layer. 
 
 \begin{figure}
 	\includegraphics[width=0.75\textwidth]{content/images/02_architektur/stationReferenceArchitecture.pdf}
