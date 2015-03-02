@@ -2,7 +2,7 @@
 %Präambel
 
 %Report für große Doukumente. Dieser ist in Kapitel (\chapter{}) aufgeteilt
-\documentclass[12pt, a4paper, twoside, openright,ngerman]{scrreprt} 
+\documentclass[12pt, a4paper, twoside, openright,ngerman, bibtotoc, toc=listof]{scrreprt} 
 
 %Article für normale Doumente
 %\documentclass[12pt, a4paper, ngerman]{article}
@@ -138,9 +138,9 @@
 \listoftodos
 
 %Inhaltsverzeichnis auf eigener Seite
+\cleardoublepage
 \tableofcontents
-\newpage 
-
+ 
 %Die einzelnen \Chapter werden als jeweils eigene Datei eingebunden
 \cleardoublepage
 \input{./content/content}
@@ -159,14 +159,12 @@
 \nocite{*} 
 
 %Quellenangabe auf eigener Seite
-\newpage
-\sloppy
-\printbibliography 
-
-
+\cleardoublepage
+\printbibliography[title={Literaturverzeichnis}] 
 
 %Abbildungsverzeichnis auf eigener Seite
-\newpage
+\cleardoublepage
+\label{abbildungsverzeichnis}
 \listoffigures
 
 \end{document}
