@@ -241,7 +241,8 @@ Der Zweck der Service Invitation Phase ist es die Session aufzubauen. Dabei wird
 
 Bei der Einladung von Application Classes wird die \ac{SAM} durch eine \ac{CTX} bestätigt. Bei Applications wird keine \ac{CTX} versendet. Die Service Invitation Phase wird als erfolgreich angesehen, sobald das erste \glqq REQUW\grqq~oder \glqq REQN\grqq~versendet wird. 
 
-Nach der erfolgreichen Service Invitation Phase folgt die Service Operation Phase. \todo{rausfinden, was in dieser Phase statt findet}
+Nach der erfolgreichen Service Invitation Phase folgt die Service Operation Phase.
+
 \begin{figure} 
   \centering 
    \subfigure[Ohne Bestätigung durch CTX] {\includegraphics[width=0.45\textwidth]{content/images/02_architektur/serviceAdvertisementInit.pdf}}\qquad 
@@ -249,7 +250,7 @@ Nach der erfolgreichen Service Invitation Phase folgt die Service Operation Phas
   \caption{Ablauf der Phasen des Fast Service Advertisement Protocol \cite{iso24102-5}} 
   \label{fig:architektur_ablaufPhasen}
 \end{figure}
-\todo{Prüfen, warum die Pfeile bei den Verbindungen genau umgekehrt sind}
+
 
 In \autoref{fig:architektur_ablaufPhasen} wird der Ablauf der Phasen darstellt. Die einzelnen Schritte der Kommunikation bedeuten ausgeschrieben:
 \begin{itemize}
@@ -523,8 +524,7 @@ Neben der \ac{ID} müssen die \ac{ITS-S} die Fähigkeit besitzen, die Verbindung
 
 Die Zertifikatsstelle, ist eine Einheit, die die Verwaltung der Zulassungszertifikate verantwortlich ist. Die Zertifikatsstelle werden verwendet um in Nachrichten zwischen \ac{ITS-S} und einer Security Management Einheit die \ac{ITS-S} als zugangsberechtigt auszuweisen. Das beinhaltet auch die Prüfung der Identität. Die Informationen zu der \ac{ITS-S} entnimmt die Zertifikatsstelle dem Zulassungszertifikat. Sie erstellt ein neues Zertifikat, und sendet es an die \ac{ITS-S}. Dieses Zertifikat bestätigt die Identität der \ac{ITS-S} und die der Zertifikatsstelle. Es findet lediglich die Bestätigung einer gültigen Identität statt,  auf die Identität selber können mit diesem Zertifikat keine Rückschlüsse gezogen werden. Wird eine \ac{ITS-S} als kompromittiert erkannt, informiert die Zertifikatsstelle die anderen Zertifikatsstellen. Dazu wird die eideutige \ac{ID} der \ac{ITS-S} den anderen Zertifikatsstellen mitgeteilt. Die \ac{ITS-S} bekommt so lange keine neuen Zertifikate, solange sie als kompromittiert bekannt ist.  
 
-Die Autorisierungsstelle regelt den Zugang zu allgemeinen und speziellen Diensten. Um die Dienste der Autorisierungsstelle nutzen zu können muss die die Identität der \ac{ITS-S} durch ein Zertifikat einer Zulassungsstelle nachgewiesen werden. Die \ac{ITS-S} fragt bei der Autorisierungsstelle wegen der spezifischen Berechtigungen an. Die Anfragen werden \todo{An Authorization Authority weiterschreiben} 
-
+Die Autorisierungsstelle regelt den Zugang zu allgemeinen und speziellen Diensten. Um die Dienste der Autorisierungsstelle nutzen zu können muss die die Identität der \ac{ITS-S} durch ein Zertifikat einer Zulassungsstelle nachgewiesen werden. Die \ac{ITS-S} fragt bei der Autorisierungsstelle wegen der spezifischen Berechtigungen an. Die Anfragen werden mit einem authorization certificate oder einer Fehlermeldung beantwortet. Die Autorisierungsstelle hat die Berechtigungen aus ihrem Bereich gespeichert.
 
 Erkennt die Autorisierungsstelle, dass eine \ac{ITS-S} kompromittiert ist, so informiert sie die Zertifikatsstelle, von der die \ac{ITS-S} ihr Zertifikat hat. Ihr werden keine weiteren Tickets mehr mitgeteilt. Zusätzlich wird werden alle anderen \ac{ITS-S} informiert, dass die Zertifikate ungültig sind.  
 
@@ -567,11 +567,11 @@ Process Authentication: Dieses funktionale Element enthält die Antwort auf die 
 \begin{figure}[h]
 	\includegraphics[width=0.95\textwidth]{content/images/02_architektur/enrolementFlowDiagramm.pdf}
 	\caption{Darstellung des Informationsflusses beim Anmelden einer \ac{ITS-S} \cite{ts102731}}
-	%\label{fig:architektur_enrolementInformationFlow}
+	\label{fig:architektur_enrolementInformationFlow}
 \end{figure}
 
 \autoref{fig:architektur_enrolementInformationFlow} zeigt den Informationsfluss beim Anmelden an die \ac{ITS} Infrastruktur. Dieser Prozess wird exemplarisch für die anderen Enrolement Prozesse, also erneuern und widerrufen, beschrieben. Diese laufen sehr ähnlich ab und können bei Bedarf dem Standard \cite{ts102731} entnommen werden. Die beschriebenen Informationen der Request und Confirm sind jeweils Mindestinformationen. 
-\todo{Die versendeten Informationen erklären, falls nötig und nicht schon geschehen z. B. ITS-S Key}
+
 Der erste Schritt ist das Enrol(Request). Er wird vom Invoke Enrolment ausgelöst und stellt einen Request an den Enrolment Request dar. Dadurch wird aus dem Zertifikatsbedürfnis eine konkrete Zertifikatsanfrage. Das Enrol(Request) enthält die Canonical Identify und den \ac{ITS-S} key der \ac{ITS-S}.  
 
 Der Enrolment Request sendet einen Enrolement Request(Request) an die Enrol Station. Dies ist die erste Kommunikation zwischen \ac{ITS-S} und \ac{ITS} Netzwerk. Er wird von der \ac{ITS-S} genutzt um ihre Identität zu bestätigen und ihre temporären Identitäten anzufordern (vgl. \autoref{architektur_TrustAndPrivacyManagement}). Dieser Request enthält die Canonical Identity, den \ac{ITS-S} Key und die Network challenge der \ac{ITS-S}. 
