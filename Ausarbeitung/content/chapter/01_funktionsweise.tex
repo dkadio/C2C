@@ -1,5 +1,5 @@
 \chapter{Funktionsweise \label{chap_funktionsweise}}
-\ac{ITS} besteht aus verschiedenen Komponenten. Diese Komponenten können mobil oder stationär sein. Die Grafik \ref{fig:funktionsweise_komponentenueberblick} gibt einen Überblick über die in \ac{ITS} verwendeten Komponenten. Jede dieser Komponenten enthält eine \ac{ITS} Station. Dieser Abschnitt bezieht sich hauptsächlich auf die ETSIStandards \cite{etsi2010302} und \cite{etsi302636-3}. Standard \cite{etsi2010302} definiert Funktionalitäten, Standard  \cite{etsi302636-3} definiert die Realisierung dieser Funktionalitäten. Im Folgenden werden die Komponenten beschrieben und anhand von beiden Standards erklärt.
+\ac{ITS} besteht aus verschiedenen Komponenten. Diese Komponenten können mobil oder stationär sein. Die Grafik \ref{fig:funktionsweise_komponentenueberblick} gibt einen Überblick über die in \ac{ITS} verwendeten Komponenten. Jede dieser Komponenten stellt eine \ac{ITS-S} dar. \ac{ITS-S} bezeichnet allgemein einen Teilnehmer des \ac{ITS} Systems. Dieser Abschnitt bezieht sich hauptsächlich auf die \ac{ETSI} Standards \cite{etsi2010302} und \cite{etsi302636-3}. Standard \cite{etsi2010302} definiert Funktionalitäten, Standard  \cite{etsi302636-3} definiert die Realisierung dieser Funktionalitäten. Im Folgenden werden die Komponenten beschrieben und anhand von beiden Standards erklärt.
 
 
 \begin{figure}
@@ -10,19 +10,19 @@
 
 
 \section{Funktionale Komponenten von ITS \label{funktionsweise_funktionaleKomponenten}}
-Die funktionalen Komponenten sind sind in sich geschlossene Einheiten, die in den \ac{ITS} Subsystems vorhanden sind. Sie werden anhand ihrer Aufgaben und Funktionen getrennt. Dabei muss nicht zwangsläufig eine physikalische Trennung stattfinden, prinzipiell können auch alle Subsystems in ein Gerät implementiert werden. Eine genaue Vorschrift der Implementierung sieht der Standard nicht vor, diese Entscheidung liegt bei den \ac{OEM}. 
+Die funktionalen Komponenten sind sind in sich geschlossene Einheiten, die in den \ac{ITS} Subsystems vorhanden sind. Sie werden anhand ihrer Aufgaben und Funktionen getrennt. Dabei muss nicht zwangsläufig eine physikalische Trennung stattfinden, prinzipiell können auch alle funktionalen Komponenten in ein Gerät implementiert werden. Eine genaue Vorschrift der Implementierung sieht der Standard nicht vor, diese Entscheidung liegt bei den \ac{OEM}. 
 
 Neben den Subsystems selber wird auch beschrieben, welche von ihnen als Mindestanforderung in einer \ac{ITS-S} vorhanden sein müssen.
 
 Auf die einzelnen Layer der Komponenten wird im \autoref{chap_archtitektur} eingegangen.   
 
 \subsection{ITS-S Host \label{funktionsweise_ITSHost}}
-Der \ac{ITS-S} Host beinhaltet mindestens die \ac{ITS-S} Anwendungen und die Funktionalität der ITS  Station Reference Architektur, die für die  \ac{ITS-S} Anwendungen gebraucht wird. Konkret sind das der \ac{ITS} Network Layer und die Anwendungsebene. 
+Der \ac{ITS-S} Host beinhaltet mindestens die \ac{ITS-S} Anwendungen und die Funktionalität der ITS  Station Reference Architektur, die für die  \ac{ITS-S} Anwendungen gebraucht wird. Konkret sind das der \ac{ITS} Network Layer und der Application Layer. 
 
 Die Funktionalitäten des \ac{ITS-S} Host werden im Standard \cite{etsi302636-3} der \ac{AU} zugesprochen. Sämtliche andere Funktionalitäten sind auf die \ac{CCU} ausgelagert. Diese Aufteilung hängt aber von der zu implementierenden Komponente ab, ein Skalieren muss möglich sein.
 
 \subsection{Roadside ITS-S Gateway \label{funktionsweise_RoadsideITSGateway}}
-Die Funktionsweise des Roadside \ac{ITS-S} Gateway ergibt sich aus der Grafik \ref{fig:funktionsweise_itsGateway}. Die Aufgabe ist die gleiche, wie bei den meisten Gateways. Es verbindet unterschiedliche Protokollstacks miteinander. In diesem Fall werden das \ac{ITS} interne Netzwerk und ein proprietäres Netzwerk miteinander verbunden. Das proprietäre Netzwerk kann beispielsweise ein IP basierendes Netzwerk sein.
+Die Funktionsweise des Roadside \ac{ITS-S} Gateway ergibt sich aus der Grafik \ref{fig:funktionsweise_itsGateway}. Die Aufgabe ist die Gleiche, wie bei den meisten Gateways. Es verbindet unterschiedliche Protokollstacks miteinander. In diesem Fall werden das \ac{ITS} interne Netzwerk und ein proprietäres Netzwerk miteinander verbunden. Das proprietäre Netzwerk kann beispielsweise ein IP basierendes Netzwerk sein.
 
 \begin{figure}[h]
 	\includegraphics[width=0.75\textwidth]{content/images/01_funktionsweise/layer_gateway.pdf}
@@ -36,14 +36,14 @@ Ein \ac{ITS} Router bietet alle Funktionen der \ac{ISO} Referenzarchitektur, aus
 
 \begin{figure}
 	\includegraphics[width=0.99\textwidth]{content/images/01_funktionsweise/layer_router.pdf}
-	\caption{Überblick über die Layer eines ITS Hosts \cite{etsi2010302}}
+	\caption{Überblick über die Layer eines ITS Routers \cite{etsi2010302}}
 	\label{fig:funktionsweise_layerHost}
 \end{figure}
 
 
 
 \subsection{ITS-S Border Router \label{funktionsweise_ITSBorderRouter}}
-Ein Border Router hat die gleichen Funktionalitäten wie ein Router \ref{funktionsweise_router}. Der Unterschied ist, dass ein Border Router zwischen einem \ac{ITS} Netz und einem Netz ohne die Cross Layer vermitteln kann. Ein Beispiel für ein solches Netz ist das Internet.
+Ein Border Router hat die gleichen Funktionalitäten wie ein Router \ref{funktionsweise_router}. Der Unterschied ist, dass ein Border Router zwischen einem \ac{ITS} Netz und einem Netz ohne die Cross Layer vermitteln kann. Ein Beispiel für ein solches Netz ist das Internet. Ein Border Router leitet die Datenpakete weiter, verhindert aber einen Einblick in den Aufbau des \ac{ITS} Netzes. 
 
   
 \begin{figure}
@@ -58,7 +58,7 @@ Ein Border Router hat die gleichen Funktionalitäten wie ein Router \ref{funktio
 \ac{PSS} stellen die Funktionalitäten von \ac{ITS} in Geräten zur Verfügung, die in der Hand gehalten werden können. Der Standard nennt hierzu \ac{PDA} oder Mobiltelefone als Beispiel. Sie können als eigenständige Komponente dienen, oder als Teil einer anderen Komponente arbeiten.
 
 \section{ITS Central Station}
-Die \ac{ICS}, oder Central \ac{ITS} subsystem and station ist eine zentrale Komponente im \ac{ITS} System. Sie bietet die Funktionalität an, um die Komponenten des zentralen Systems an das \ac{ITS} 
+Die \ac{ICS}, oder Central \ac{ITS} subsystem and station ist eine zentrale Komponente im \ac{ITS} System.
 
 Die mindesten funktionalen Komponenten der \ac{ICS} sind:
 \begin{itemize}
@@ -77,7 +77,8 @@ Die Kommunikation ist nicht auf die Kommunikation von Fahrzeugen untereinander b
 
 Die \ac{IRS} beherrscht zwei grundlegend unterschiedliche Verbindungsprotokolle. Über das verbindungslose ITS-G5 kann die \ac{IRS} Verbindungen zu den \ac{IVS} aufbauen. Die Verbindung zu den \ac{ICS} erfolgt über TCP/IP. 
 
-Normalerweise besteht eine \ac{IRS} aus den funktionalen Komponenten: 
+Eine \ac{IRS} besteht mindestens aus den folgenden funktionalen Komponenten:
+
 \begin{itemize}
 	\item  \ac{ITS-S} Gateway \ref{funktionsweise_RoadsideITSGateway}
 	\item \ac{ITS-S} Host \ref{funktionsweise_ITSHost}
@@ -103,11 +104,11 @@ Diese Beispiele sind aus einem Projektergebnis von \ac{SIMTD} entnommen (\cite{s
 
 
 \section{ITS Vehicle Station}
-Das \ac{IVS} ist eine mobile Komponente von \ac{ITS}. Es hat als Mindestanforderung lediglich Schnittstellen in das \ac{ITS} Netzwerk. Es besteht mindestens aus folgenden funktionalen Komponenten:
+Die \ac{IVS} ist eine mobile Komponente von \ac{ITS}. Sie hat als Mindestanforderung lediglich Schnittstellen in das \ac{ITS} Netzwerk und besteht mindestens aus folgenden funktionalen Komponenten:
 \begin{itemize}
 	\item  \ac{ITS-S} Gateway \ref{funktionsweise_RoadsideITSGateway}
 	\item \ac{ITS-S} Host \ref{funktionsweise_ITSHost}
 	\item \ac{ITS-S} Router \ref{funktionsweise_router} 
 \end{itemize}
 
-Eine \ac{IVS} wird in der Regel ein Fahrzeug sein. Die \ac{IVS} sind die Hauptteilnehmer des \ac{C2C}. Sie erfassen die Daten und übermitteln sie sich gegenseitig oder in das \ac{ITS} Netz. 
+Eine \ac{IVS} wird in der Regel ein Fahrzeug sein. Die \ac{IVS} sind die Hauptteilnehmer der \ac{C2C}. Sie erfassen die Daten und übermitteln sie sich gegenseitig oder in das \ac{ITS} Netz. 
