@@ -50,8 +50,6 @@ Das Core Network ist ein Verbindungsnetz. Es hat keine \ac{ITS} Funktionalitäte
 Die Grafik \ref{fig:architektur_netzwerkSzenario} stammt aus dem Standard \cite{etsi302636-3}. Dort ist im oberen Teil der Grafik ein Szenario beschrieben, welche Netzwerke miteinander verbunden sein können.  Zu erkennen ist, dass die Netzwerke ITS Ad Hoc Netzwerk \ref{achitektur_adHocNetwork}, ITS Access Network \ref{architektur_itsAccessNetwork} und das Core Network  \ref{achitektur_coreNetwork} miteinander verbunden sein sollen.
 
 Der untere Teil der Grafik zeigt eine Implementierungsmöglichkeit dieses Szenarios. Die hellen Rechtecke beschreiben die Komponenten, die in dieser Implementierung im System integriert sind, das dunkle Rechteck beschreibt die funktionale Komponente, die in diesem System beteiligt ist. Die Linien sind mit dem Typ des Netzwerks, welches sie repräsentieren beschriftet und zusätzlich mit dem Network Reference Point, den sie benutzen, beschriftet.
-\todo{Sollen wir hier noch was zum Thema Network Reference Point schreiben? Ich glaube aber, dass die noch in den Layern kommen}
-
 
 Auflistung und kurze Beschreibung der genutzten Network Reference Points:
 \begin{itemize}
@@ -107,8 +105,6 @@ Der Access Layer von ITS entspricht den \ac{OSI} Layern 1 und 2. Er besteht aus 
 \end{itemize}
 
 Der Access Layer übernimmt die Übertagung der Daten, ist aber nicht auf ein bestimmtes Übertragungsprotokoll festgelegt. Beispiele für ein Übertragungsprotokoll sind ITS-G5, WiFi, BlueTooth, Ethernet\dots In \ac{C2C} Anwendungen kommen Dedicated Short Range Communication Protokolle zum Einsatz. Diese sind in unterschiedlichen Ländern, bzw. Kontinenten anders genormt und haben andere Namen. Im europäischen Raum wird \ac{ITS-G5} eingesetzt. \ac{ITS-G5} ist vom \ac{IEEE} als \ac{IEEE} 802.11 p genormt. Dabei handelt sich um einen Funkstandard, der im Bereich von 5 GHz arbeitet. Eine genaue Beschreibung dieses Funkstandards findet sich in \cite{en302663} wieder und würde an dieser Stelle zu weit führen. \ac{ITS-G5} unterscheidet sich von den klassischen 802.11 Standards. Ein Vergleich ist in der \autoref{fig:architektur_vergleich-G5-802} abgebildet. 
-
-\todo{Wenn noch Zeit, ein bisschen was über den Vergleich schreiben}  
 
 \begin{figure}
 	\includegraphics[width=0.95\textwidth]{content/images/02_architektur/unterschiede-G5-Wlan.pdf}

@@ -68,7 +68,7 @@ Diese facility ist dafür da Nachrichten zu generieren, formatieren und zu struk
 \end{itemize}
 
 \subsubsection{Security access management \label{facilitylayer_AccessManagement}}
-Die Security access management facility als Kommunikationspartner für die Security Entity. Auf \autoref{fig:komponentenfacility} ist der SF-SAP erkennbar. Über diesen Access Point kommunizieren die beiden Layer miteinander und tauschen hier Informationen aus die für die Security wichtig sind. \todo{hier eventuell noch bischen mehr schreiben.}
+Das security access management sorgt im Facility Layer für die Security. Es darf nicht mit dem Security Layer verwechselt werden. Mit dem Security Layer kommuniziert es über das Interface SF-SAP, welches auf der \autoref{fig:komponentenfacility} zu erkennen ist. 
 
 \subsubsection{Time management \label{facilitylayer_TimeManagement}}
 Um im gesamten System eine einheitliche Zeitreferenz zu besitzen, stellt die Time management facility diese zur verfügung. Diese Referenzzeit wird für Zeitstempel benutzt und kann von jeder Schicht abgerufen werden. Desweiteren  berechnet die Time management facility die maximale Latenzzeit einer Übertragung. Diese Information ist vor allem für zeitkritische Anwendungen von Interesse.
@@ -331,7 +331,6 @@ Das Transfusion Management erfüllt die Aufgaben, die für das Versenden von \ac
 \paragraph{DENM reception management}
 Das Empfangsmanagement stellt die Funktionalitäten des \ac{DENM} Empfangs bereit. Beim Empfangen werden die \ac{DENM} überprüft und verworfen, wenn sie ungültig sind. Wenn sie gültig sind werden sie in die Message Table eingetragen. Die Message Table speichert die empfangenen \ac{DENM}. Dabei werden \ac{DENM} mit der gleichen actionId nur einmal gespeichert. Es wird immer nur die aktuelle \ac{DENM} mit einer actionId gespeichert. Die message table muss mindestens aus den Folgenden Spalten bestehen:
 
-\todo{Prüfen, ob die genannten Werte noch erklärt werden. Wenn nicht $\Rightarrow$ hier erklären}
 \begin{itemize}
 	\item actionID: Die actionID der \ac{DENM}, auf die sich die Zeile bezieht.
 	\item referenceTime: Diese Spalte erhält die referenceTime der \ac{DENM}, die als letztes empfangen wurde. 
@@ -368,10 +367,8 @@ Die \autoref{fig:darstellungDenVerteilenLayer} zeigt, wie sich eine \ac{DENM} ü
 \subsection{Die Aktualisierung von DENM}
 Wenn sich ein Event, zu dem es bereits \ac{DENM} gibt, ändert, müssen die \ac{DENM} aktualisiert werden. Dazu gibt es das \ac{DENM} update.Das \ac{DENM} Update wird vom Application Layer angefordert und in \ac{DEN} Basic Service erstellt. Dieser Prozess wird von der \ac{ITS-S} angestoßen, die die \ac{DENM} ursprünglich versendet hat. Bei einem Update wird die referenceTime der \ac{DENM} aktualisiert, die actionID bleibt unverändert. 
 
-\todo{DENM Update schreiben} 
  
 \subsection{Die Beendung des Events}
-\todo{Prüfen, ob die Wörter Cancellation und Negation genutzt werden. Wenn nicht $\Rightarrow$ eintragen.}
 Bereits im \autoref{facilityLayer_beschreibungDEN} wurde beschrieben, dass ein Event entweder durch den Ablauf einer Zeit oder durch eine \ac{DENM}, die das Event beendet, beendet werden. Eine beendende \ac{DENM} kann entweder eine Annullierende oder eine Negierende sein. 
 
 Die annullierende \ac{DENM} wird von der \ac{ITS-S} versendet, die das Ereignis ursprünglich bekannt gemacht hat. Sie wird versendet, wenn die \ac{ITS-S} feststellt, dass das Event beendet wurde.  Die annullierende \ac{DENM} ist eine \ac{DENM} mit einer speziellen Datenversion.
