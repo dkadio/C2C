@@ -82,20 +82,27 @@ Damit die Facility richtig Arbeiten kann sind nachfolgende Anforderungen gestell
 Der Information Support stellt die Präsentationsebene des \ac{ISO} \ac{OSI} Modells dar. Sie ist für die Datenverwaltung verantwortlich. Dazu gehören statische wie dynamische Daten, die meistens gebiets- und zeitabhängig sind und über eine Time to Live verfügen, also nicht für immer gültig sind. Um all diese Daten zu verarbeiten und immer auf dem aktuellen Stand zu halten ist im Gesamten der Information Support verantwortlich. Die wichtigste Komponente hierbei ist die \ac{LDM}. Im folgenden wird werden kurz die einzelnen Komponenten erläutert und genauer auf die LDM eingegangen.
 \begin{itemize}
 \item Data presentation - Dient zum Codieren und Decodieren von Daten, die über formale Sprachen erstellt sind (z.b. ASN1)
-\item Location referecing - Bietet die Möglichkeit bewegliche oder statische Objekte in der LDM zu positionieren. \todo{hier noch mal nachschaun, hab in dem etsi nix brauchbares gefunden}
+\item Location referecing - Bietet die Möglichkeit bewegliche oder statische Objekte in der LDM zu hinterlegen. 
 \item Station type/capabilities - Hierzu gehören einige statische wie dynamische Informationen über die ITS, wie die Art der ITS (also um was es sich für ein Fahrzeug handelt), die größe dieses Fahrzeuges oder welche die nächste RSU ist. Dazu kommen noch Informationen die die Services der ITS betreffen, also z.b. welche verfügbar sind.
 \end{itemize}
 
 \subsubsection{LDM database \label{facilitylayer_ldmdatabase}}
 Die \ac{LDM} Database ist eine Sammlung von Informationen für Facilities und Anwendungen. Facilities können der beispielsweise der \ac{CA}, \autoref{sec:cam} oder der \ac{DEN}, \autoref{sec:den} sein. Ihnen wird durch die \ac{LDM} eine Möglichkeit gegeben, ihre Daten zu speichern. Neben der Speicherung wird eine Rechtevergabe für die Daten angeboten. Dadurch kann der Zugriff auf autorisierte Anwendungen beschränkt werden. Die gespeicherten Daten entsprechen den Daten, die von den anderen Facilities, bzw. Applications, genutzt werden und  werden von der  \ac{LDM} nicht verändert. Sie werden \ac{LDM} data object genannt. 
-\todo{Keine Ahnung, wie die genau aussehen. \glqq LDM data object: instance of a data frame or data element such as defined in TS 102 894-2 [4]
-\grqq}
 Die \ac{LDM} befindet sich im Facility Layer. Auf der \autoref{fig:ldmZwischenLayern} ist die \ac{LDM} dargestellt. Auf dieser Abbildung ist zu erkennen, dass die anderen Services des Facility Layers einer Verbindung zur \ac{LDM} haben. Die \ac{LDM} besitzt weiterhin Interfaces in andere Layer.
 
 \begin{figure}[htbp]
 	\includegraphics[width=0.75\textwidth]{content/images/04_facilitylayer/ldmLayer.pdf}
 	\caption{Darstellung der LDM zwischen den Layern \cite{en302895}}
 	\label{fig:ldmZwischenLayern}
+\end{figure}
+
+\subsubsection{LDM data object}
+Wie auf \autoref{fig:ldmdataObject} zu sehen besteht ein data object aus zwei Teilen. Zu einem aus dem data object adress field und dem information field. Wobei die LDM selbst nur das address field interessiert. Dieses besteht aus aus einer Einzigartigen Id, ein Feld um den Typen des objects anzugeben, ein Location Feld um zu bestimmen an welcher Position sich das object befindet, ein Zeitstempel sowie ein Feld für weiterführende Informationen. Das letzte Feld kann Informationen enthalten, wie der Zeitpunkt des Eintrages des objects, um das Alter zu bestimmen.
+
+\begin{figure}[htbp]
+	\includegraphics[width=0.75\textwidth]{content/images/04_facilitylayer/ldmLayer.pdf}
+	\caption{Darstellung eines LDM data object  \cite{LDMdataobject}}
+	\label{fig:ldmdataObject}
 \end{figure}
 
 \paragraph{Interfaces}

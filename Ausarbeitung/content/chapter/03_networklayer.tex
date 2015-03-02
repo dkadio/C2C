@@ -129,9 +129,7 @@ Um eine \acl{GNW} Adresse zu konfigurieren gibt es drei Vorgehensweisen.
 \end{enumerate}
 Für die beiden ersten Verfahren ist das Duplicate address detection verfahren vorgesehen um zu verhindern das Adressen mehrfach vorkommen.
 Bei dem ersten Verfahren wird die Adresse automatisch von dem Fahrzeug generiert und sollte im nachhinein nur noch bei Duplicate address detection geändert werden. 
-Managed address configuration stellt eine Anfrage an die ITS Networkung \& Transport Layer Management entity um seine Adresse zu konfigurieren. Hier darf die Adresse erneut von dem Fahrzeug angefordert werden oder die ITS Networkung \& Transport Layer Management entity sendet diesem eine neue. Das anonyme Verfahren erlaubt es dem Fahrzeug eine anonyme Adresse zu konfigurieren die von einer Sicherheitseinheit kontrolliert wird.\todo{wofür ist das anonyme verfahren? steht leider nix im etsi und soll man evtl noch was über die ITS Networkung \& Transport Layer Management entity schreiben?}
-
-\todo{Doch steht im Abschnitt Data Security}
+Managed address configuration stellt eine Anfrage an die ITS Networkung \& Transport Layer Management entity um seine Adresse zu konfigurieren. Hier darf die Adresse erneut von dem Fahrzeug angefordert werden oder die ITS Networkung \& Transport Layer Management entity sendet diesem eine neue. Das anonyme Verfahren erlaubt es dem Fahrzeug eine anonyme Adresse zu konfigurieren, die von einer Sicherheitseinheit kontrolliert wird. Das anonyme Verfahren dient dem Datenschutz. Eine genaue Erklärung befindet sich in Trust and Privacy Manageement. 
 
 \subsubsection{Duplicate address detection}
 Um zu gewährleisten das die \acl{GNW} Adresse tatsächlich einzigartig ist, kommt die Duplicate address detection zum Einsatz. Sobald ein Empfänger eine Nachricht erhält. Vergleicht er seine eigene \acl{GNW} Adresse mit der des Paketes und danach die beiden MAC Adressen. Bei Übereinstimmung fordert er eine neue MAC-Adresse an. Und teilt dem System mit das eine Doppelte Adresse vorgefunden wurde. \cite{etsi302636-4-1}
