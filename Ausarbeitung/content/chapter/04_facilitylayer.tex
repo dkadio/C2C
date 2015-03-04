@@ -5,39 +5,39 @@
 \caption{Die Komponenten der \acl{C2C} \cite{etsi102638}}
 \label{fig:komponentenfacility}
 \end{figure}
-Der Facility Layer liegt unterhalb des Applicationlayer und teilt sich in drei Hauptkomponenten auf. Er bietet verschiedene allgemeine Services an die von den Anwendungen des Application Layer verwendet werden können.
+Der Facility Layer liegt unterhalb dem Applicationlayer und teilt sich in drei Hauptkomponenten auf. Er bietet verschiedene allgemeine Services an, die von den Anwendungen des Application Layer verwendet werden können.
 
 \subsection{Application Support}
-Der Application Support stellt die Grundfunktionalität für die Anwendungen zur verfügung. Darunter fällt das station lifecycle management, das automatische erkennen von Services sowie das downloaden und initialisieren von neuen Services und noch weitere. Die einzelne Komponenten des Application Support, die auf der \autoref{fig:komponentenfacility} zu sehen sind, werden im folgenden genauer erläutert. 
+Der Application Support stellt die Grundfunktionalität für die Anwendungen zur Ver\-fü\-gung. Darunter fällt beispielsweise das station lifecycle management, das automatische Erkennen von Services sowie das Downloaden und Initialisieren von neuen Services. Die einzelne Komponenten des Application Support, die auf der \autoref{fig:komponentenfacility} zu sehen sind, werden im Folgenden genauer erläutert. 
 
 \subsubsection{Station positioning}
-Dieser teil des Application Support verarbeitet die Informationen die aus den verschiedenen Datensammler gewonnen werden wie aus GNSS oder aus Fahrzeugsensoren um die Position des Station zu gewinnen. 
-Da diese Angaben sehr genau sein müssen werden die Daten in 3D Position gemessen (latitude, longitude, altitude). Dies können, durch beispielsweise GPS, in Echtzeit zur verfügung stehen. Da es jdeoch Sicherheitsbedingte Anwendungen gibt bei denen bereits über 0.5m Abweichung eine fatale Auswirkung haben kann, werden die Standortinformationen noch einmal über weitere Einheiten verbessert. Dazu gehören z.b. Odometer oder Gyroskop.
-Damit diese Support facility ihren Aufgaben Nachkommen kann, ist im \cite{etsi102638} folgende Vorraussetzungen definiert.
+Dieser Teil des Application Support verarbeitet die Informationen, die von den verschiedenen Datensammlern gewonnen werden. Die Datensammler einer \ac{ITS-S} sind beispielsweise GNSS oder Fahrzeugsensoren, die dazu dienen, die Position der \ac{ITS-S} zu ermitteln. 
+Da diese Angaben sehr genau sein müssen, werden die Daten in 3D Position gemessen (latitude, longitude, altitude). Diese können, durch beispielsweise GPS, in Echtzeit zur Verfügung stehen. Da es jedoch sicherheitsbedingte Anwendungen gibt, bei denen bereits eine Abweichung über 0.5m eine fatale Auswirkung haben kann, werden die Standortinformationen noch einmal über weitere Einheiten verbessert. Zu diesen Einheiten gehören z.B. Odometer oder Gyroskop.
+Damit diese Support facility ihren Aufgaben nachkommen kann, sind im Standard \cite{etsi102638} folgende Vorraussetzungen definiert:
 
 \begin{itemize}
-\item Benötigt Verbindung zwischen ITS station und einem GNSS system. Bei kurzfristigen Ausfall der Verbindung übernehmen interne mechanische Fahrzeugsensoren wie das Gyroskop oder das Odometer.
-\item Benötigt dauerhafte Verbindung zu den Fahrzeugsensoren (direkte Verbindung oder über einen Bus).
-\item Benötigt genug Rechenleistung um 3D Positions Angaben sicher zu Verwalten und zu Berechnen.
+	\item Benötigt Verbindung zwischen \ac{ITS-S} und einem GNSS System. Bei kurzfristigem Ausfall der Verbindung übernehmen interne mechanische Fahrzeugsensoren, wie das Gyroskop oder das Odometer
+	\item Benötigt dauerhafte Verbindung zu den Fahrzeugsensoren (direkte Verbindung oder über einen Bus)
+	\item Benötigt genug Rechenleistung um 3D Positions Angaben sicher zu verwalten und zu berechnen
 \end{itemize}
 
 \subsubsection{Mobile station dynamic monitoring}
-Das Mobile station dynamic monitoring ist nur für die \acs{VS} verfügbar. Diese Einheit des Facility Layer verwaltet eine große Anzahl an Fahrzeugspezifischen Daten, die von den Applicationen und anderen Komponenten des Facility Layers verwendet werden. Sie ist dafür verantwortlich diese Daten immer auf dem neueste  Stand zu halten. 
-Diese Einheit benötigt die folgenden Vorraussetzungen.
+Das mobile station dynamic monitoring ist nur für die \ac{IVS} verfügbar. Diese Einheit des Facility Layer verwaltet eine große Anzahl an fahrzeugspezifischen Daten, die von den Applicationen und anderen Komponenten des Facility Layers verwendet werden. Sie ist dafür verantwortlich, diese Daten immer auf dem neueste  Stand zu halten. 
+Diese Einheit hat die folgenden Vorraussetzungen:
 
 \begin{itemize}
-\item Benötigt zugriff auf Fahrzeug Funktionen wie das Bremssystem, Reifendruck, Stabilitätskontrolle, Geschwindigkeitsregelung etc.
-\item Muss verschiedne Parameter filtern können, die für die Applications benötigt werden (z.b Hauptzylinderdruck, Lenkradwinkel, Lenkradwinkeländerungsrate, Gierrate, Fahrzeuggeschwindigkeit oder Beschleunigungssteuerung).
-\item Muss über die Möglichkeit besitzen die verschiedene Werte zu aktualisieren, die für die \ac{CAM} benötigt werden.
+	\item Benötigt Zugriff auf Fahrzeug Funktionen, wie Bremssystem, Reifendruck, Stabilitätskontrolle, Geschwindigkeitsregelung, etc.
+	\item Muss verschiedene Parameter filtern können, die für die Applications benötigt werden, wie beispielsweise Hauptzylinderdruck, Lenkradwinkel, Lenk\-rad\-win\-kel\-än\-der\-ung\-sra\-te, Gierrate, Fahrzeuggeschwindigkeit oder Beschleunigungssteuerung
+	\item Muss über die Möglichkeit besitzen, die verschiedenen Werte zu aktualisieren, die für die \ac{CAM} benötigt werden
 \end{itemize}
 
 \subsubsection{Station state monitoring \label{facilitylayer_StationStateMonitoring}}
-Die Station state monitoring facility überwacht dauerhaft den aktuellen Zustand eines Fahrzeuges. Diese können sich je nach Typ des Fahrzeuges unterscheiden. Bei einem Motorrad würde neben Lichtkontrolle, der Neigungswinkel interessant sein, wobei bei einem Rettungswagen der Status der Sirene mehr Sinn ergibt. Über diese Facility können solche Daten dauerhaft abgerufen werden. 
+Die station state monitoring facility überwacht dauerhaft die aktuellen Parameter eines Fahrzeuges. Diese können sich, je nach Typ des Fahrzeuges, unterscheiden. Bei einem Motorrad würde, neben Lichtkontrolle, der Neigungswinkel interessant sein, wobei bei einem Rettungswagen der Status der Sirene mehr Sinn ergibt. Über diese Facility können solche Daten dauerhaft abgerufen werden. 
 Dazu benötigt diese die folgenden Punkte.
 \begin{itemize}
-\item Benötigt Zugriff auf die verschiedene Funktionen die überwacht werden sollen (Motor / Antriebsstrang, Cockpit, Scheibenwischer, Lichtsteuerung, etc.).
-\item Muss über die Möglichkeit verfügen diese Funktionen die von den Applications verwendet werden nach aktivität zu filtern.
-\item Muss über die Möglichkeit besitzen die verschiedene Werte zu aktualisieren, die für die \acl{CAM} benötigt werden.
+	\item Benötigt Zugriff auf die verschiedene Funktionen, die überwacht werden sollen, wie Motor / Antriebsstrang, Cockpit, Scheibenwischer, Lichtsteuerung, etc.
+	\item Muss über die Möglichkeit verfügen, diese Funktionen, die von den Applications verwendet werden, nach Aktivität zu filtern
+	\item Muss über die Möglichkeit verfügen, die verschiedene Werte zu aktualisieren, die für die \ac{CAM} benötigt werden
 \end{itemize}
 
 \subsubsection{Services management \label{facilitylayer_ServicesManagement} }

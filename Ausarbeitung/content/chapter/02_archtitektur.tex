@@ -136,15 +136,15 @@ Im Fall von \ac{ITS-G5} teilt der Physical Layer die gesamte Bandbreite in 52 Un
 
 
 \subsection{Networking \& Transporting \label{architektur_networkingTransporting}}
-Der Networking \& Transporting Layer enthält mehrere verschiedene Netzwerk- und Transportprotokolle und entspricht den \ac{OSI} Layern 3 und 4. Die Aufgabe ist das Routing und der Ende zu Ende Transport von Daten. Er wird im Kapitel \autoref{chap:networklayer} genauer beschrieben. 
+Der Networking \& Transporting Layer enthält mehrere verschiedene Netzwerk- und Transportprotokolle und entspricht den \ac{OSI} Layern 3 und 4. Die Aufgabe ist das Routing und der Ende zu Ende Transport von Daten. Er wird im \autoref{chap:networklayer} genauer beschrieben. 
 
 
 \subsection{Facilities \label{architektur_facilitiesLayer}}
-Der Facilities Layer entspricht den \ac{OSI} Layern 5, 6 und 7. Er bietet eine Sammlung von Funktionen, die die \ac{ITS} Anwendungen unterstützen. Der Layer bietet Datenstrukturen um verschiedene Daten zu speichern, zu sammeln und zu verwalten. Er wird im Kapitel \autoref{chap:facilitylayer} genauer erklärt.
+Der Facilities Layer entspricht den \ac{OSI} Layern 5, 6 und 7. Er bietet eine Sammlung von Funktionen, die die \ac{ITS} Anwendungen unterstützen. Der Layer bietet Datenstrukturen um verschiedene Daten zu speichern, zu sammeln und zu verwalten. Er wird im \autoref{chap:facilitylayer} genauer erklärt.
 
 \subsection{Applications}
 Im Applications Layer werden die Use Cases realisiert. Dafür bietet der Application Layer eine Möglichkeit, Application auszuführen. Den Applications steht der gesamte \ac{ITS} Protokoll Stack zur Verfügung. Über Interfaces können die Elemente des Protokoll Stacks angesprochen werden.
-Eine weitere Beschreibung des Application Layers und eine Auswahl seiner Use Cases findet im Kapitel \autoref{sec:applicationLayer} statt.
+Eine weitere Beschreibung des Application Layers und eine Auswahl seiner Use Cases findet im \autoref{sec:applicationLayer} statt.
 
 \section{Cross/Vertical Layer}
 Die Cross Layer weichen stark vom \ac{OSI} Modell ab. Sie erweitern die traditionellen Layer, die jeweils nur ein Interface zum nächst höheren, bzw. tieferen Layer haben um Layer, die Interfaces zu allen anderen Layern haben. Durch die Interfaces zu allen Layern ergeben sich neue Möglichkeiten. Ein Konzept kann mithilfe der Cross Layer im gesamten \ac{ITS} Protokollstack umgesetzt werden. So kann beispielsweise im Application Layer die genutzte Bandbreite an die im Physical Layer zur Verfügung stehende Bandbreite angepasst werden. Dadurch werden Überlastungen, die sich auf die Latenz auswirken oder zu fehlerhaften Übertragungen führen bereits im im Vorfeld vermieden. \ac{DCC} kann somit Staus wirkungsvoll vermeiden, anstatt nur die Symptome zu mindern.
