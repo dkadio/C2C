@@ -95,7 +95,7 @@ Obwohl das \ac{ITS-S} Reference Protocol bei der Entwicklung an das \ac{OSI} Mod
 \section{Horizontal Layer \label{architektur_horzontalLayer}}
 Dieser Abschnitt beschreibt die Layer, die klassisch übereinander angeordnet sind. Die Layer und ihre Funktionen entsprechen im Groben den Layern des \ac{OSI} Modells. Ihre Aufteilung und Aufgabenverteilung unterscheidet sich aber. Sofern eine direkte Zuordnung zwischen \ac{ITS} und \ac{OSI} treffbar ist, wird diese gemacht.
 
-\subsection{Access Layer}
+\subsection{Access Layer \label{subsec:accessLayer}}
 Der Access Layer von ITS entspricht den \ac{OSI} Layern 1 und 2. Er besteht aus zwei Sublayern und hat drei Interfaces, bzw. \ac{SAP}. Die Interfaces dienen der Kommunikation mit den anderen Layern.
 
 \begin{itemize}
@@ -139,7 +139,7 @@ Im Fall von \ac{ITS-G5} teilt der Physical Layer die gesamte Bandbreite in 52 Un
 Der Networking \& Transporting Layer enthält mehrere verschiedene Netzwerk- und Transportprotokolle und entspricht den \ac{OSI} Layern 3 und 4. Die Aufgabe ist das Routing und der Ende zu Ende Transport von Daten. Er wird im Kapitel \autoref{chap:networklayer} genauer beschrieben. 
 
 
-\subsection{Facilities}
+\subsection{Facilities \label{architektur_facilitiesLayer}}
 Der Facilities Layer entspricht den \ac{OSI} Layern 5, 6 und 7. Er bietet eine Sammlung von Funktionen, die die \ac{ITS} Anwendungen unterstützen. Der Layer bietet Datenstrukturen um verschiedene Daten zu speichern, zu sammeln und zu verwalten. Er wird im Kapitel \autoref{chap:facilitylayer} genauer erklärt.
 
 \subsection{Applications}
