@@ -41,54 +41,58 @@ Dazu benötigt diese die folgenden Punkte.
 \end{itemize}
 
 \subsubsection{Services management \label{facilitylayer_ServicesManagement} }
-Da davon auszugehen ist das die verschiedenen Services im laufe der Zeit immer weiterentwickelt werden, muss es eine Einrichtung geben, über die die Services aktuell gehalten werden. 
-Also is die Services management facility dafür da die Services auf dem neusten Stand zu halten, zu entfernen oder neue anzubieten. Die einzelnen Services werden von Services provisioning servers angeboten und können über eine spezielle Software direkt auf die ITS geladen werden. Damit dieser Vorgang durchgeführt werden kann, sind folgende Vorraussetzungen zu erfüllen.
+Es ist davon auszugehen, dass die verschiedenen Services im Laufe der Zeit immer weiter entwickelt werden. Aus diesem diesem Grund muss es eine Einrichtung geben, über die die Services aktuell gehalten werden.
+
+Diese Einrichtung ist die services management facility. Sie hält die Services auf dem neuesten Stand, entfernt Services oder bietet neue an. Die einzelnen Services werden von services provisioning servers angeboten und können über eine spezielle Software direkt auf die \ac{ITS-S} geladen werden. Damit dieser Vorgang durchgeführt werden kann, sind folgende Vorraussetzungen zu erfüllen.
 \begin{itemize}
-\item Die Services provisioning servers müssen die Fähigkeit besitzen für einzelne Services zu werben und die Lizenzbedingungen zu übermitteln. Der Zugang kann direkt über ein eigenes Globales Netzwerk geschehen oder indirekt über eine Roadstation bzw. einen Hotspot.
-\item Die angebotenen Services werden über Nachrichten gesendet, diese müssen empfangen und analysiert werden können.
-\item Um mit dem Benutzer zu interagieren müssen die ausgewählten Services an den Applicationlayer weitergegeben werden können um diese dem Benutzer zu präsentieren und dieser dann die Auswahl treffen kann.
-\item Die Anwendunge müssen aktualisierbar sein um Bugs oder Fehler zu beheben.  
+	\item Die services provisioning server müssen die Fähigkeit besitzen, für einzelne Services zu werben und die Lizenzbedingungen zu übermitteln. Der Zugang kann direkt über ein eigenes globales Netzwerk erfolgen, oder indirekt über eine \ac{IRS} bzw. einen Hotspot
+	\item Die angebotenen Services werden über Nachrichten gesendet, diese müssen empfangen und analysiert werden können
+	\item Die Services müssen an den Applicationlayer weitergegeben werden, damit sie mit dem Benutzer interagieren können. Dort werden sie dem Benutzer präsentiert und dieser kann die Auswahl treffen, welche Services er installieren will
+	\item Die Anwendungen müssen aktualisierbar sein, damit Bugs oder Fehler behoben werden können
 \end{itemize}
 
 \subsubsection{LDM management \label{facilitylayer_LDMManagement}}
-Die \ac{LDM} management facility analysiert dauerhaft die Nachrichten die von dem Applicationlayer gesendet werden. Diese Änderungen werden in der \ac{LDM} Database gespeichert und aktualisiert. Die LDM Database wird in \autoref{facilitylayer_ldmdatabase} genauer erläutert. Das heisst das alle Nachrichten die im gesamten \ac{C2X} Netzwerk empfangen werden ausgewertet werden. Unter diesem befinden sich nicht nur Fahrbahninformationen über beispielsweise Kurven, Radwege oder Ampelsteuerungen sondern auch Informationen über die Objekte die über die Sensoren erkannt werden. Das führt zu einer sehr hohen Datenmenge die in der \ac{LDM} Database verwaltet werden muss. Damit die \ac{LDM} management dies tun kann sind folgende Voraussetzungen zu erfüllen.
+Die \ac{LDM} management facility analysiert dauerhaft die Nachrichten, die vom Applicationlayer gesendet werden. Diese Änderungen werden in der \ac{LDM} Database gespeichert und aktualisiert. Die LDM Database wird in \autoref{facilitylayer_ldmdatabase} genauer erläutert. Das heißt, dass alle Nachrichten, die im gesamten \ac{C2X} Netzwerk empfangen werden, ausgewertet werden. Unter ihnen befinden sich nicht nur Fahrbahninformationen,  sondern auch Informationen über die Objekte, die über die Sensoren erkannt werden. Fahrbahninformationen sind beispielsweise Informationen über Kurven, Radwege oder Ampelsteuerungen. Die vielen Informationen führen zu einer sehr hohen Datenmenge, die in der \ac{LDM} Database verwaltet werden muss.  Folgende Voraussetzungen zu erfüllen, damit das \ac{LDM} management seine Aufgaben erfüllen kann.
 \begin{itemize}
-\item Die facility muss die einkommenden Nachrichten analysieren können und mit den relevanten Daten in Echtzeit die Datenbank aktualisieren.
-\item Es muss eine leistungsfähige Datenbanksoftware zum Einsatz kommen die eine sehr große Menge an Daten verwalten kann und mit Zugriff von vielen Applications zurecht kommen muss.
-\item Für Safety Applications muss gewährleistet sein das die relevanten Daten für die Application schnell selektiert werden können.
-\item Muss die Daten für alle Anwendungen, die den Zugriff auf die LDM database benötigen, freigeben.
+	\item Die facility muss die einkommenden Nachrichten analysieren können und die Datenbank in Echtzeit mit den relevanten Daten aktualisieren
+
+	\item Es muss eine leistungsfähige Datenbanksoftware zum Einsatz kommen. Sie muss eine sehr große Menge an Daten verwalten können und mit dem Zugriff von vielen Applications zurecht kommen 
+	
+	\item Für Safety Applications muss gewährleistet sein, dass die relevanten Daten für die Application schnell selektiert werden können
+
+	\item Das \ac{LDM} management  muss die Daten für alle Anwendungen, die  Zugriff auf die \ac{LDM} database haben, freigeben
 \end{itemize}
 
 \subsubsection{Messages management \label{facilitylayer_MessagesManagement}}
-Diese facility ist dafür da Nachrichten zu generieren, formatieren und zu strukturieren. Dies alles geschieht nach dem Europäischen Standart für diese Nachrichtentypen. Darunter zählen aktuell CAN und DENM, die in \autoref{sec:cam} und \autoref{sec:den} genauer erläutert werden. Darüber hinaus analysiert die facility die einkommenden Nachrichten und leitet deren wichtigen Inhalt an die anfordernden Applications weiter. Allerdings auch an andere lokale facilitys wie z.b. an die LDM management facility. Damit die Nachrichten richtig manipuliert werden können, sind in \cite{etsi102638} folgende Punkte aufgeführt.
+Die messages management facility ist dafür da, Nachrichten zu generieren, zu formatieren und zu strukturieren. Die Nachrichten werden in die Form von standardisierten Nachrichten formatiert. Aktuell gibt es die Nachrichtentypen \ac{CAM} und \ac{DENM}, die in \autoref{sec:cam} und \autoref{sec:den} genauer erläutert werden. Darüber hinaus analysiert die facility die einkommenden Nachrichten und leitet deren Payload an die anfordernden Applications weiter. Der Payload wird auch an andere lokale facilities, wie z.B. die \ac{LDM} management facility weitergeleitet. Im Standard  \cite{etsi102638} sind folgende Anforderungen an die messages management facility aufgeführt.
 \begin{itemize}
-\item Nachrichten erstellen nach dem Europäischen Standart. 
-\item Nachrichten erstellen die nach zukünftigen Europäischen Standart definiert sind.
-\item Muss Nachrichten senden, stoppen oder weiterleiten, je nach Applicationanforderung.
+\item Nachrichten erstellen nach europäischen Standards
+\item Nachrichten erstellen, die in zukünftigen europäischen Standards definiert sind
+\item Muss Nachrichten senden, stoppen oder weiterleiten, je nach Anforderung der Application
 \end{itemize}
 
 \subsubsection{Security access management \label{facilitylayer_AccessManagement}}
 Das security access management sorgt im Facility Layer für die Security. Es darf nicht mit dem Security Layer verwechselt werden. Mit dem Security Layer kommuniziert es über das Interface SF-SAP, welches auf der \autoref{fig:komponentenfacility} zu erkennen ist. 
 
 \subsubsection{Time management \label{facilitylayer_TimeManagement}}
-Um im gesamten System eine einheitliche Zeitreferenz zu besitzen, stellt die Time management facility diese zur verfügung. Diese Referenzzeit wird für Zeitstempel benutzt und kann von jeder Schicht abgerufen werden. Desweiteren  berechnet die Time management facility die maximale Latenzzeit einer Übertragung. Diese Information ist vor allem für zeitkritische Anwendungen von Interesse.
-Damit die Facility richtig Arbeiten kann sind nachfolgende Anforderungen gestellt.
+Um im gesamten System eine einheitliche Zeitreferenz zu besitzen, stellt die Time management facility diese zur Verfügung. Diese Referenzzeit wird für Zeitstempel benutzt und kann von jeder Schicht abgerufen werden. Desweiteren  berechnet die time management facility die maximale Latenzzeit einer Übertragung. Diese Information ist vor allem für zeitkritische Anwendungen von Interesse.
+Damit die Facility richtig arbeiten kann, sind nachfolgende Anforderungen gestellt.
 \begin{itemize}
-\item Muss die Latenzzeit berechnen können, die benötigt wird bis eine Nachricht bei dem Networklayer ankommt. 
-\item Die facility muss jeder Anwendung die sagen können, wie lange es dauert bis der Networklayer erreicht ist. 
+	\item Muss die Latenzzeit, die benötigt wird bis eine Nachricht bei dem Networklayer ankommt, berechnen können
+	\item Die Facility muss jeder Anwendung die Dauer mitteilen können, die es dauert, bis der Networklayer erreicht ist
 \end{itemize}
 
 \subsection{Information Support}
-Der Information Support stellt die Präsentationsebene des \ac{ISO} \ac{OSI} Modells dar. Sie ist für die Datenverwaltung verantwortlich. Dazu gehören statische wie dynamische Daten, die meistens gebiets- und zeitabhängig sind und über eine Time to Live verfügen, also nicht für immer gültig sind. Um all diese Daten zu verarbeiten und immer auf dem aktuellen Stand zu halten ist im Gesamten der Information Support verantwortlich. Die wichtigste Komponente hierbei ist die \ac{LDM}. Im folgenden wird werden kurz die einzelnen Komponenten erläutert und genauer auf die LDM eingegangen.
+Der Information Support entspricht der Präsentationsebene des \ac{ISO} \ac{OSI} Modells. Er ist für die Datenverwaltung verantwortlich. Dazu gehört das Verwalten von, sowohl statischen als auch von dynamischen, Daten. Sie sind meistens gebiets- und zeitabhängig und verfügen über eine Time to Live. Durch die Time to Live ist ihre Gültigkeit eingeschränkt. Der Information Support ist dafür zuständig, diese Daten zu verarbeiten und immer auf dem aktuellen Stand zu halten. Die wichtigste Komponente hierbei ist die \ac{LDM}. Im Folgenden werden die einzelnen Komponenten erläutert und es wird genauer auf die LDM eingegangen.
 \begin{itemize}
-\item Data presentation - Dient zum Codieren und Decodieren von Daten, die über formale Sprachen erstellt sind (z.b. ASN1)
-\item Location referecing - Bietet die Möglichkeit bewegliche oder statische Objekte in der LDM zu hinterlegen. 
-\item Station type/capabilities - Hierzu gehören einige statische wie dynamische Informationen über die ITS, wie die Art der ITS (also um was es sich für ein Fahrzeug handelt), die größe dieses Fahrzeuges oder welche die nächste RSU ist. Dazu kommen noch Informationen die die Services der ITS betreffen, also z.b. welche verfügbar sind.
+	\item Data presentation - Dient zum Codieren und Decodieren von Daten, die mit formalen Sprachen beschrieben sind (z.b. \ac{ASN.1})
+	\item Location referencing - Bietet die Möglichkeit, bewegliche oder statische Objekte in der LDM zu hinterlegen 
+	\item Station type/capabilities - Hierzu gehören einige, statische sowie dynamische, Informationen über die \ac{ITS-S}. Diese Informationen können beispielsweise die Art der \ac{ITS-S} (also um was es sich für ein Fahrzeug handelt), die Größe dieses Fahrzeuges oder die Frage, welche die nächste RSU ist, betreffen. Hinzu kommen noch Informationen, die die Services der \ac{ITS-S} betreffen, also z.B. welche verfügbar sind
 \end{itemize}
 
 \subsubsection{LDM database \label{facilitylayer_ldmdatabase}}
-Die \ac{LDM} Database ist eine Sammlung von Informationen für Facilities und Anwendungen. Facilities können der beispielsweise der \ac{CA}, \autoref{sec:cam} oder der \ac{DEN}, \autoref{sec:den} sein. Ihnen wird durch die \ac{LDM} eine Möglichkeit gegeben, ihre Daten zu speichern. Neben der Speicherung wird eine Rechtevergabe für die Daten angeboten. Dadurch kann der Zugriff auf autorisierte Anwendungen beschränkt werden. Die gespeicherten Daten entsprechen den Daten, die von den anderen Facilities, bzw. Applications, genutzt werden und  werden von der  \ac{LDM} nicht verändert. Sie werden \ac{LDM} data object genannt. 
-Die \ac{LDM} befindet sich im Facility Layer. Auf der \autoref{fig:ldmZwischenLayern} ist die \ac{LDM} dargestellt. Auf dieser Abbildung ist zu erkennen, dass die anderen Services des Facility Layers einer Verbindung zur \ac{LDM} haben. Die \ac{LDM} besitzt weiterhin Interfaces in andere Layer.
+Die \ac{LDM} Database ist eine Sammlung von Informationen für Facilities und Anwendungen. Facilities können der beispielsweise der \ac{CA} Service, \autoref{sec:cam}, oder der \ac{DEN} Service, \autoref{sec:den}, sein. Ihnen wird durch die \ac{LDM} eine Möglichkeit gegeben, ihre Daten zu speichern. Neben der Speicherung wird eine Rechtevergabe für die Daten angeboten. Dadurch kann der Zugriff auf autorisierte Anwendungen beschränkt werden. Die gespeicherten Daten entsprechen den Daten, die von den anderen Facilities, bzw. Applications, genutzt werden und  werden von der  \ac{LDM} nicht verändert. Sie werden \ac{LDM} data object genannt. 
+Die \ac{LDM} befindet sich im Facility Layer. Auf der \autoref{fig:ldmZwischenLayern} ist die \ac{LDM} dargestellt. Auf dieser Abbildung ist zu erkennen, dass die anderen Services des Facility Layers eine Verbindung zur \ac{LDM} haben. Die \ac{LDM} besitzt weiterhin Interfaces in andere Layer.
 
 \begin{figure}[htbp]
 	\includegraphics[width=0.75\textwidth]{content/images/04_facilitylayer/ldmLayer.pdf}
@@ -97,18 +101,26 @@ Die \ac{LDM} befindet sich im Facility Layer. Auf der \autoref{fig:ldmZwischenLa
 \end{figure}
 
 \subsubsection{LDM data object}
-Wie auf \autoref{fig:ldmdataObject} zu sehen besteht ein data object aus zwei Teilen. Zu einem aus dem data object adress field und dem information field. Wobei die LDM selbst nur das address field interessiert. Dieses besteht aus aus einer Einzigartigen Id, ein Feld um den Typen des objects anzugeben, ein Location Feld um zu bestimmen an welcher Position sich das object befindet, ein Zeitstempel sowie ein Feld für weiterführende Informationen. Das letzte Feld kann Informationen enthalten, wie der Zeitpunkt des Eintrages des objects, um das Alter zu bestimmen.
+Wie auf \autoref{fig:ldmdataObject} zu sehen, besteht ein data object aus zwei Teilen. Zu einem aus dem data object adress field und dem information field. Für die \ac{LDM} ist lediglich das address field relevant. Im Einzelnen besteht das address field aus:
+\begin{itemize}
+	\item Einer einzigartigen \ac{ID}
+	\item Einem Feld um den Typen des Objekts anzugeben
+	\item Einem Location Feld um zu bestimmen, an welcher Position sich das Objekt befindet
+	\item Einem Zeitstempel
+	\item Einem Feld für weiterführende Informationen. 
+\end{itemize}	
+Das letzte Feld kann beispielsweise Informationen zum Zeitpunkt des Eintrages des Objekts enthalten, um das Alter zu bestimmen.
 
 \begin{figure}[htbp]
-	\includegraphics[width=0.75\textwidth]{content/images/04_facilitylayer/ldmLayer.pdf}
+	\includegraphics[width=0.75\textwidth]{content/images/04_facilitylayer/LDMdataObject.png}
 	\caption{Darstellung eines LDM data object  \cite{LDMdataobject}}
 	\label{fig:ldmdataObject}
 \end{figure}
 
 \paragraph{Interfaces}
-Die Interfaces sind auf der \autoref{fig:ldmZwischenLayern} zu erkennen. Auf der Abbildung \autoref{fig:ldmInterfaces} sind diese Interfaces funktional dargestellt. Der Unterschied in der Beschreibung ist, dass diese Interfaces nicht dadurch beschrieben werden, wohin sie die Schnittstelle bieten, sondern welche Funktionen sie anbieten.
+Die Interfaces sind auf der \autoref{fig:ldmZwischenLayern} zu erkennen. Auf der \autoref{fig:ldmInterfaces} sind diese Interfaces funktional dargestellt. Der Unterschied zwischen den Beschreibungen ist, dass diese Interfaces nicht dadurch beschrieben werden, wohin sie die Schnittstelle bieten, sondern welche Funktionen sie anbieten.
 
-Es gibt vier Interfaces. In \autoref{tab:facilityLayer_Beschreibung_Interfaces} werden die Interfaces beschrieben. Die erste Spalte beschreibt den Namen des Interfaces. Dieser findet sich auch in der \autoref{fig:ldmInterfaces} wieder. Die zweite Spalte beschriebt, ob \ac{LDM} etwas anbietet (\textbf{P}rovided) oder ob es Funktionen benötigt, die es über dieses Interface erhält (\textbf{R}equired). Die dritte Spalte beschreibt, zu welchen Komponenten das Interface verbindet. Im Falle von IF:LDM.1 und IF.LDM.2 ist die Verbindung zur \autoref{fig:ldmZwischenLayern} offensichtlich. Die letzten Spalten verbinden zu den Data Providern, bzw. Data Consumern. Im Bezug auf die \autoref{fig:ldmZwischenLayern} sind das der Application Layer, sowie die anderen Komponenten des Facility Layers. 
+Es gibt vier Interfaces. In \autoref{tab:facilityLayer_Beschreibung_Interfaces} werden die Interfaces beschrieben. Die erste Spalte beschreibt den Namen des Interfaces. Dieser findet sich auch in der \autoref{fig:ldmInterfaces} wieder. Die zweite Spalte beschriebt, ob die \ac{LDM} etwas anbietet (\textbf{P}rovided), oder ob sie Funktionen benötigt, die es über dieses Interface erhält (\textbf{R}equired). Die dritte Spalte beschreibt, zu welchen Komponenten das Interface verbindet. Im Falle von IF:LDM.1 und IF.LDM.2 ist die Verbindung zur \autoref{fig:ldmZwischenLayern} offensichtlich. Die letzten Spalten verbinden zu den Data Providern, bzw. Data Consumern. Im Bezug auf die \autoref{fig:ldmZwischenLayern} sind das der Application Layer, sowie die anderen Komponenten des Facility Layers. 
 
  \begin{longtable}{| p{0.15\linewidth} | p{0.15\linewidth} | p{0.24\linewidth} |p{0.24\linewidth}| p{0.15\linewidth}|}
  \hline
@@ -127,9 +139,9 @@ IF.LDM.4 & P & LDM Data Consumers & CAM, DENM, other & OUT \\
 
 Neben den Interfaces sind zwei Hauptkomponenten beschrieben. 
 
-Der \ac{LDM} Service bietet die Funktionalitäten autorisierten \ac{LDM} Data Providern an. Data Provider sind Komponenten, die die Daten bearbeiten. Bearbeiten kann neue Daten hinzufügen sein, vorhandene Daten modifizieren oder vorhandene Daten löschen. Sie können aber auch einen direkten Zugriff auf die Daten haben und sie zur Verfügung stellen. Der \ac{LDM} Service bietet auch Funktionalitäten an um Data Provider, bzw. Data Consumer anzumelden oder abzumelden. 
+Der \ac{LDM} Service bietet  autorisierten \ac{LDM} Data Providern die Funktionalitäten an. Data Provider sind Komponenten, die die Daten bearbeiten. Bearbeiten kann neue Daten hinzufügen sein, vorhandene Daten modifizieren oder vorhandene Daten löschen. Sie können aber auch einen direkten Zugriff auf die Daten haben und sie zur Verfügung stellen. Der \ac{LDM} Service bietet auch Funktionalitäten an, um Data Provider, bzw. Data Consumer anzumelden oder abzumelden. 
 
-Die \ac{LDM} Maintenance Komponente verwaltet die Daten, die von registrierten und autorisierten Data Providern gespeichert wurden. Er prüft, ob die Datenobjekte korrekt sind. Bei dieser Prüfung werden die Zeiten des Datenobjekts geprüft. Mit dem Erstellungs Timestamp und der Gültigkeitsdauer  kann die Gültigkeit überprüft werden. 
+Die \ac{LDM} Maintenance Komponente verwaltet die Daten, die von registrierten und autorisierten Data Providern gespeichert wurden. Sie prüft, ob die Datenobjekte korrekt sind. Bei dieser Prüfung werden die Zeiten des Datenobjekts geprüft. Mit dem Erstellungs Timestamp und der Gültigkeitsdauer  kann errechnet werden, ob das Datenobjekt noch gültig ist.
 
 \begin{figure}[htbp]
 	\includegraphics[width=0.95\textwidth]{content/images/04_facilitylayer/ldmFunktionelleInterfaces.pdf}
@@ -140,24 +152,24 @@ Die \ac{LDM} Maintenance Komponente verwaltet die Daten, die von registrierten u
 
 
 \paragraph{Funktionen der LDM}
-Der Standard \cite{en302895} beschriebt folgende Funktionen der \ac{LDM}:
+Der Standard \cite{en302895} beschreibt folgende Funktionen der \ac{LDM}:
 \begin{itemize}
-	\item Empfangen von Informationen, wie beispielsweise dekodierte \ac{CAM} oder \ac{DENM}
+	\item Empfangen von Informationen, wie beispielsweise decodierte \ac{CAM} oder \ac{DENM}
 	\item Speichern und schützen  von Informationen nach den Regeln des Zeit- und Wartungsbereichs
 	\item Autorisierten Anwendungen Informationen anbieten. 
-	\item Periodisierung von Datenanfragen
+	\item Priorisierung von Datenanfragen
 	\item Anbieten eines Mechanismus für das An- und Abmelden als Datenprovider
 	\item Anbieten eines Mechanismus für das An- und Abmelden als Datenconsumer
-	\item Sicherstellen dass der Datenzugriffs durch \ac{LDM} Datenprovider und \ac{LDM} Datenconsumer autorisiert ist
+	\item Sicherstellen, dass der Datenzugriff durch \ac{LDM} Datenprovider und \ac{LDM} Datenconsumer autorisiert ist
 \end{itemize}
 
 
 
 \subsection{Communication Support}
-Der Communication Support hilft dabei die verschiedenen Kommunikationsarten zu verwalten und dem Application layer diese anzubieten. Darunter gehören unter anderem das Georouting. Diese Einheit arbeitet mit dem Networklayer zusammen und hilft dabei die Fahrzeuge zu adressieren, ins Internet zu Routen und auch die Pakete aus dem Internet zu empfangen während sich das Fahrzeug bewegt. 
+Der Communication Support hilft dabei, die verschiedenen Kommunikationsarten zu verwalten und sie dem Applicationlayer anzubieten. Zu den Kommunikationsarten gehört beispielsweise das Georouting. Der communication support arbeitet mit dem Networklayer zusammen und unterstützt bei der Adressierung von Fahrzeugen. Außerdem unterstützt er dabei, dass, während die \ac{IVS} sich bewegt, in ein Core Network geroutet werden kann und dabei, dass Pakete aus diesem Netzwerk empfangen werden können. 
 
 \section{CAM\label{sec:cam}}
-\ac{ITS} bietet die Möglichkeit, dass \ac{ITS-S} untereinander Statusinformationen austauschen. Für den Austausch von Statusinformationen werden \ac{CAM} versandt. Diese beinhalten Informationen über die Anwesenheit allgemein, über die Position und den grundsätzlichen Status. Gemäß Standard \cite{ts102637-2} soll jede \ac{ITS-S} den Umgang mit diesen Nachrichten beherrschen. Das beinhaltet das Senden, das Empfangen und das Generieren dieser Nachrichten. So kennt jede \ac{ITS-S} ihre aktuellen Nachbarn inklusive ihrer Positionen, Bezwungen und den grundlegenden Sensorinformationen. Die \ac{CAM} werden über den Standard \ac{ITS-G5} übertragen. \ac{CAM} werden mit einer Kadenz zwischen 1 und 10 Hz übertragen, das bedeutet, dass mindestens jede Sekunde eine \ac{CAM} generiert und versendet wird, maximal werden aber 10 \ac{CAM} pro Sekunde generiert und versendet. Der Versand erfolgt über ein Single Hop Broadcast. \ac{CAM} spielen besonders für \ac{IVS} eine Rolle.
+\ac{ITS} bietet die Möglichkeit, dass \ac{ITS-S} untereinander Statusinformationen austauschen. Für den Austausch von Statusinformationen werden \ac{CAM} versandt. Diese beinhalten Informationen über die Anwesenheit allgemein, über die Position und den grundsätzlichen Status. Gemäß Standard \cite{ts102637-2} soll jede \ac{ITS-S} den Umgang mit diesen Nachrichten beherrschen. Das beinhaltet das Senden, das Empfangen und das Generieren dieser Nachrichten. So kennt jede \ac{ITS-S} ihre aktuellen Nachbarn inklusive ihrer Positionen, Bewegungen und den grundlegenden Sensorinformationen. Die \ac{CAM} werden über den Standard \ac{ITS-G5} übertragen. \ac{CAM} werden mit einer Frequenz zwischen 1 und 10 Hz übertragen, das bedeutet, dass mindestens jede Sekunde eine \ac{CAM} generiert und versendet wird, maximal werden aber 10 \ac{CAM} pro Sekunde generiert und versendet. Der Versand erfolgt über einen Single Hop Broadcast. \ac{CAM} spielen besonders für \ac{IVS} eine Rolle.
 
 
 Das Nennen des vollständigen Inhalts einer \ac{CAM} würde den Rahmen dieser Ausarbeitung sprengen. Im Folgenden werden dennoch einige interessante Datenelemente aufgezählt. Sie entstammen dem Standard \cite{ts102637-2}. Dort können auch die Restlichen nachlesen werden.
@@ -169,15 +181,15 @@ Das Nennen des vollständigen Inhalts einer \ac{CAM} würde den Rahmen dieser Au
 		\item privateItsStation: Die \ac{ITS-S} wird von keiner Behörde betrieben.
 		\item physicalRelevantItsStation: Kann eine andere \ac{ITS-S} diese \ac{ITS-S} rammen?
 	\end{itemize}
-	\item \textbf{AmbientAirTemperature: } Die Außentemperatur, die die \ac{ITS-S} misst.
+	\item \textbf{AmbientAirTemperature: } Die Außentemperatur,  welche von der \ac{ITS-S} gemessen wird.
 	\item \textbf{CrashStatus: } Dieses Datenelement enthält Informationen über einen Unfall, der eine Weiterfahrt verhindert. Beispiele dafür sind das Auslösen der Airbags oder ein Überschlag.
-	\item \textbf{CurvatureChange: } Dieses Datenelement beschriebt die Änderung der Kurvenrichtung. Ein positiver Wert bedeutet, dass das \ac{IVS} nach rechts abbiegt.
+	\item \textbf{CurvatureChange: } Dieses Datenelement beschreibt die Änderung der Kurvenrichtung. Ein positiver Wert bedeutet, dass die \ac{IVS} nach rechts abbiegt.
 	\item  \textbf{DangerousGoods: } Dieses Datenelement beschreibt, ob und welches Gefahrgut  das \ac{IVS} transportiert.
 	\item \textbf{StationWidth: } Dieses Element beschreibt die zulässige Gesamtbreite der \ac{ITS-S}. Die Breite ist mit einer Feinheit von 0,01m aufgelöst.
 \end{itemize}
 
 \subsection{Cooperative Awareness Management}
-Das \ac{CA} Management ist im Facilitylayer angesiedelt. Eine der Aufgaben den \ac{CA} Management ist die Bearbeitung von \ac{CAM}. Die \ac{CAM} werden erstellt und versendet, empfangen, aber auch weitergeleitet. Der Austausch zu den anderen Layern geschieht über die Interfaces, die im \autoref{facilitylayer_cam_interfaces} genauer beschrieben werden.  
+Das \ac{CA} Management ist im Facilitylayer angesiedelt. Eine der Aufgaben des \ac{CA} Managements ist die Bearbeitung von \ac{CAM}. Die \ac{CAM} werden erstellt und versendet, empfangen, aber auch weitergeleitet. Der Austausch zu den anderen Layern geschieht über die Interfaces, die im \autoref{facilitylayer_cam_interfaces} genauer beschrieben werden.  
 
 \begin{figure}[htbp]
 	\includegraphics[width=0.95\textwidth]{content/images/04_facilitylayer/caManagementLAyerUebersicht.pdf}
@@ -186,10 +198,10 @@ Das \ac{CA} Management ist im Facilitylayer angesiedelt. Eine der Aufgaben den \
 \end{figure}
 
 \subsubsection{Funktionalitäten}
-Das \ac{CA} Management besteht selber aus mehreren Funktionalitäten. Die haben jeweils eigene Aufgaben und sind voneinander getrennt. In der \autoref{fig:darstellungCAManagement} ist der \ac{CA} Basic Service darlegt. Dort sind die einzelnen funktionalen Elemente und die Interfaces zu erkennen.
+Das \ac{CA} Management besteht selber aus mehreren Funktionalitäten. Sie haben jeweils eigene Aufgaben und sind voneinander getrennt. In der \autoref{fig:darstellungCAManagement} ist der \ac{CA} Basic Service dargestellt. Dort sind die einzelnen funktionalen Elemente und die Interfaces zu erkennen.
 
 \paragraph{CAM transmission management}
-Diese Funktionalität beinhaltet die Protokoll Funktionalitäten. Sie werden für die die \ac{ITS-S} benötigt, die \ac{CAM} aussenden. Diese Funktionalitäten beinhalten im Einzelnen:
+Diese Funktionalität beinhaltet die Protokoll Funktionalitäten. Sie werden für die \ac{ITS-S} benötigt, die \ac{CAM} aussenden. Diese Funktionalitäten beinhalten im Einzelnen:
 \begin{itemize}
 	\item Aktivierung und Beendung der \ac{CAM} Übertragung
 	\item Festlegung der \ac{CAM} Generierungsfrequenz 
@@ -199,8 +211,8 @@ Diese Funktionalität beinhaltet die Protokoll Funktionalitäten. Sie werden fü
 \paragraph{CAM reception management}
 Diese Funktionalität beinhaltet die Protokoll Funktionalitäten, die zum Empfangen von \ac{CAM} benötigt werden. Diese Funktionalitäten beinhalten im Einzelnen:
 \begin{itemize}
-	\item Steuerung der Decodierung der \ac{CAM}
-	\item Verteilung der empfangen \ac{CAM} an das \ac{LDM} (\ref{facilitylayer_LDMManagement}) oder an den Application Layer der empfangenen \ac{ITS-S}.
+	\item Steuerung der Decodierung von \ac{CAM}
+	\item Verteilung der empfangen \ac{CAM} an die \ac{LDM} (\ref{facilitylayer_LDMManagement}) oder an den Application Layer der empfangenen \ac{ITS-S}.
 	\item Optional findet eine Überprüfung der Informationen der empfangenen \ac{CAM} statt.
 \end{itemize}
 
@@ -208,26 +220,26 @@ Diese Funktionalität beinhaltet die Protokoll Funktionalitäten, die zum Empfan
 Diese Funktionalität erstellt die \ac{CAM} nach den Regeln, die im Standard \cite{en302637-2} beschrieben sind. Dabei sollen die wichtigsten Daten der \ac{IVS} in der \ac{CAM} enthalten sein.
 
 \paragraph{Decode CAM}
-Diese Funktionalität dekodiert die empfangenen \ac{CAM}.
+Diese Funktionalität decodiert die empfangenen \ac{CAM}.
 
 
 \subsubsection{Interfaces \label{facilitylayer_cam_interfaces}}
 Zur externen Kommunikation nutzt das \ac{CA} Management Interfaces. Diese Interfaces sind auch in der  \autoref{fig:darstellungCAManagement} dargestellt. 
 
 \paragraph{IF.CAM}
-Das Interface IF.CAM ist das Interface, das zum Application Layer und zu den \ac{LDM}. 
+Das Interface IF.CAM ist das Interface zum Application Layer und zur \ac{LDM}. 
 
 \paragraph{IF.FAC}
 Zum Generieren der \ac{CAM} ist der Facilitylayer auf Informationen der anderen Layer angewiesen. Das Interface IF.FAC ist zum Austausch der benötigten Daten gedacht. Eine genaue Beschreibung dieses Interfaces sieht der Standard \cite{en302637-2} zum aktuellen Zeitpunkt nicht vor. 
 
 \paragraph{IF.N\&T}
-Das Interface IF.N\&T bietet die Schnittstelle zu dem Networking \& Transport Layer, vgl. \autoref{chap:networklayer}. Es dient vor allem dazu, die im \ac{CA} Management generierten \ac{CAM} zu versenden und \ac{CAM} zu empfangen. 
+Das Interface IF.N\&T bietet die Schnittstelle zu dem Networking \& Transport Layer (\autoref{chap:networklayer}). Es dient vor allem dazu, die im \ac{CA} Management generierten \ac{CAM} zu versenden und \ac{CAM} zu empfangen. 
 
 \paragraph{IF.Mng}
-Das Interface IF.Mng bietet die Schnittstelle zum Management Layer, vgl. \ref{architektur_managementLayer}. Der Management Layer bestimmt beispielsweise das Intervall zum Versenden von \ac{CAM}.
+Das Interface IF.Mng bietet die Schnittstelle zum Management Layer (\ref{architektur_managementLayer}). Der Management Layer bestimmt beispielsweise das Intervall zum Versenden von \ac{CAM}.
 
 \paragraph{IF.Sec}
-Das Interface IF.Sec bietet die Schnittstelle zum Security Layer, vgl. \ref{architektur_securityLayer}.
+Das Interface IF.Sec bietet die Schnittstelle zum Security Layer (\ref{architektur_securityLayer}).
 
 
 \iffalse
@@ -244,20 +256,20 @@ Die anderen Facilities sind in der \autoref{fig:komponentenfacility} eingezeichn
 \subsection{Verbreitung der CAM}
 \ac{CAM} werden als Point-Mulitipoint Nachrichten verteilt. Sie sollen nicht weitergeleitet werden, sie sind also single hop Nachrichten und werden nur von den umliegenden \ac{ITS-S} empfangen. \ac{CAM} werden nur versendet, wenn die \ac{ITS-S} aktiv ist. \ac{CAM} machen nur für \ac{IVS} Sinn, der Standard \cite{en302637-2} bezieht sich auch nur auf \ac{IVS}. 
 
-Die Senderate der \ac{CAM} wird vom sendenden \ac{IVS} gesteuert. Die ist zwischen einem und zehn Herz definiert und hängt sowohl von der Kanalauslastung als auch von Dynamik der \ac{IVS} ab. Die Dynamik gibt an, ob eine bestimmte Differenz zwischen den Werten in der gesendeten \ac{CAM} und den aktuellen Werten gibt. Diese Werte können, eine Position, eine Richtung oder eine Geschwindigkeit sein.
+Die Senderate der \ac{CAM} wird von der sendenden \ac{IVS} gesteuert. Die ist zwischen einem und zehn Herz definiert und hängt sowohl von der Kanalauslastung als auch von Dynamik der \ac{IVS} ab. Die Dynamik gibt an, ob es eine bestimmte Differenz zwischen den Werten in der gesendeten \ac{CAM} und den aktuellen Werten gibt. Diese Werte können eine Position, eine Richtung oder eine Geschwindigkeit sein.
 
 Die \ac{CAM} werden im \ac{CA} Management generiert und durch die darunter liegenden Layer übertragen.
 
 \subsection{Security \label{facilitylayer_CAM-Security}}
-Die Sicherheit des \ac{CA} Basic Service wird im Security Layer, vgl. \autoref{architektur_securityLayer} geregelt. Die Zertifikate, die dort verarbeitet werden enthalten die Berechtigung der \ac{ITS-S}. Diese Berechtigungen enthalten, welche Informationen über die \ac{CAM} versendet werden. Sie sind in vier Level eingeteilt:
+Die Sicherheit des \ac{CA} Basic Service wird im Security Layer (\autoref{architektur_securityLayer}) geregelt. Die Zertifikate, die dort verarbeitet werden, enthalten die Berechtigung der \ac{ITS-S}. Diese Berechtigungen enthalten, welche Informationen über die \ac{CAM} versendet werden. Sie sind in vier Level eingeteilt:
 \begin{itemize}
 	\item Basic \ac{CAM} authorization: Sie wird allen \ac{ITS-S} erteilt, die das \ac{ITS} System nutzen dürfen. Hiermit darf eine \ac{ITS-S} Basisinformationen, wie beispielsweise Länge, Breite, Geschwindigkeit oder Beschleunigung, verteilen. 
-	\item Advanced \ac{CAM} authorization: Sie wird den \ac{ITS-S} erteilt, die dazu in der Lage sind. Ob eine \ac{ITS-S} dazu in der Lage ist, hängt beispielsweise vom implementierten Kryptoalgorithmus oder den vorhandenen Sensoren ab. Mit advanced \ac{CAM} authorization kann eine \ac{ITS-S} \ac{CAM} versenden, die das Linksabbieger unterstützen, das Einfädeln in den Verkehr unterstützen.
-	\item Authorization to claim priority rights for emergency vehicles: Dieser Level verleiht den \ac{ITS-S} die Rechte von Einsatzfahrzeugen. Er wird nur \ac{ITS-S} vergeben, Notfall Einsatzfahrzeuge sind oder Fahrzeuge des öffentlichen Verkehrs sind. Die genaue Vergabe regelt die  nationale Gesetzgebung.  Dabei können auch Abstufungen in der Periodisierung gemacht werden. Die Autorisierung wird von Regierungsstellen oder deren authorisierte Stellvertreter vergeben. Die Priorisierung ist  auf konkrete Einsätze beschränkt, sie gilt nicht permanent.
-	\item Authorization to state regulatory orders such as speed limits and road closures: Diese Autorisierung stellt die höchste Stufe der Autorisierung da. Mit ihr dürfen beispielsweise Geschwindigkeitsbeschränkungen geändert werden oder Straßen gesperrt werden. Sie soll nur an speziell authorisierte \ac{ITS-S}, wie \ac{IRS} oder Polizeifahrzeuge vergeben werden. Die Autorisierung erfolgt durch Regierungsstellen oder deren authorisierte Stellvertreter. 
+	\item Advanced \ac{CAM} authorization: Sie wird den \ac{ITS-S} erteilt, die dazu in der Lage sind. Ob eine \ac{ITS-S} dazu in der Lage ist, hängt beispielsweise vom implementierten Kryptoalgorithmus oder den vorhandenen Sensoren ab. Mit advanced \ac{CAM} authorization kann eine \ac{ITS-S} \ac{CAM} versenden, die das Linksabbiegen, oder das Einfädeln in den Verkehr, unterstützen.
+	\item Authorization to claim priority rights for emergency vehicles: Dieser Level verleiht den \ac{ITS-S} die Rechte von Einsatzfahrzeugen. Er wird nur \ac{ITS-S} vergeben, die Notfall Einsatzfahrzeuge oder Fahrzeuge des öffentlichen Verkehrs sind. Die genaue Vergabe regelt die  nationale Gesetzgebung.  Dabei können auch Abstufungen in der Priorisierung gemacht werden. Die Autorisierung wird von Regierungsstellen oder deren autorisierten Stellvertretern vergeben. Die Priorisierung ist  auf konkrete Einsätze beschränkt, sie gilt nicht permanent.
+	\item Authorization to state regulatory orders such as speed limits and road closures: Diese Autorisierung stellt die höchste Stufe der Autorisierung da. Mit ihr dürfen beispielsweise Geschwindigkeitsbeschränkungen geändert werden, oder Straßen gesperrt werden. Sie soll nur an speziell autorisierte \ac{ITS-S}, wie \ac{IRS} oder Polizeifahrzeuge, vergeben werden. Die Autorisierung erfolgt durch Regierungsstellen oder deren authorisierte Stellvertreter. 
 \end{itemize}
  
-\ac{CAM} unterliegen keiner Vertraulichkeit, dürfen aber keiner konkreten \ac{ITS-S} zugeordnet werden. Diese Anforderungen werden vom Security Layer, \autoref{architektur_securityLayer}, sichergestellt. 
+\ac{CAM} unterliegen keiner Vertraulichkeit, dürfen aber keiner konkreten Identität zugeordnet werden. Diese Anforderungen werden vom Security Layer (\autoref{architektur_securityLayer}) sichergestellt. 
 
  
 \subsection{Aufbau der CAM}
