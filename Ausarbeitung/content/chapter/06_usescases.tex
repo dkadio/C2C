@@ -2,18 +2,23 @@
 \section{Application Layer \label{sec:applicationLayer}}
 \begin{figure}[htbp]
 \includegraphics[width=0.99\textwidth]{content/images/06_use_cases/komponenten.png}
-\caption{Die Komponenten der \acl{C2C}\cite{etsi102638}}
+\caption{Die Komponenten der \acl{C2C} \cite{etsi102638}}
 \label{fig:komponentenderc2x}
 \end{figure}
-Die \acl{C2C} bietet eine große Vielfalt an verschiedenen Einsatzmöglichkeiten. Da es sich bei dem gesamten Projekt nicht nur darum handelt das Fahrzeuge untereinander kommunizieren, sondern wie auf \autoref{fig:komponentenderc2x} zu sehen, auch andere Verkehrskomponenten. Um das Zusammenspiel der Komponenten besser zu verstehen und zu sehen wie groß das Potential der \acl{C2C} ist, werden im folgenden mehrere Szenarien aufgezählt und erklärt. Der Applicaationlayer unterscheidet dabei drei Kategorien von Anwendungsfällen. Dazu gehören die Sicherheitsbedingten, die Verkehrseffizienz und die Kategorie Infotainment und andere.
+Die \acl{C2C} bietet eine große Vielfalt an verschiedenen Ein\-satz\-mög\-lich\-keit\-en. Das gesamte Projekt ist nicht nur darauf ausgelegt, dass Fahrzeuge untereinander kommunizieren, sondern, wie in der \autoref{fig:komponentenderc2x} zu erkennen, auch andere Verkehrskomponenten. Um das Zusammenspiel der Komponenten besser zu verstehen und zu sehen, wie groß das Potential der \acl{C2C} ist, werden im Folgenden mehrere Szenarien aufgezählt und erklärt. Der Applicationlayer unterscheidet dabei drei Kategorien von Anwendungsfällen. Dazu gehören die Sicherheitsbedingten, die Verkehrseffizienz und die Kategorie Infotainment und Andere.
+
+Der Applicationlayer ist der Layer, der die Applications ausführt. Er hat die Schnittstellen zu dem Management Layer, zu dem Security Layer und dem Facilities Layer. Den Applications bietet er eine Nutzung der Dienste der anderen Layer. 
 
 \section{Use cases}
 \subsection{Sicherheitsbedingt}
-Sicherheitsbedingte Szenarien sind Fälle bei denen ein Möglicher Unfall verhindert werden kann. Im Folgenden werden drei Szenarien erklärt bei denen das Unfallrisiko minimiert werden kann.
+Sicherheitsbedingte Use Cases sind Anwendungsfälle, bei denen ein möglicher Unfall verhindert werden kann. Im Folgenden werden drei Szenarien erklärt, durch diese das Unfallrisiko minimiert werden kann.
 
 \subsubsection{Cooperative Forward Collision Warning}
-Einer der häufigsten Ursachen für Verkehrsunfälle sind plötzliche Bremsmanöver von Vorrausfahrenden Fahrzeugen und die Unaufmerksamkeit eines Fahrers. Aus diesen Ursachen besteht ein erhöhtes Risiko für Auffahrunfälle. Cooperative Forward Collision Warning versucht genau dieses Risiko zu vermindern. Um dies zu vollbringen überwacht jedes Fahrzeug die eigenen Informationen, wie die Geschwindigkeit, Richtung und Position und vergleicht diese mit den Daten der anderen Fahrzeugen. Bei Auffälligkeiten und Abweichungen warnt das System dem Fahrer frühzeitig vor einer möglichen Kollision. Diese Warnung kann durch auditive, visuelle oder haptische Alarme signalisiert werden. Da es durchaus sein kann das noch Fahrzeuge, die nicht in dem C2C Netz kommunizieren, unterwegs sind, können über Objekterkennungssensoren diese ebenfalls identifiziert werden. Dadurch sinkt das Risiko noch einmals für die C2C Teilnehmer. Die Informationen werden innerhalb von 20 bis 200 meter geteilt womit auch genug Zeit bleibt um diese Auszuwerten und den Fahrer frühzeitig zu Informieren. \\
-Nachfolgend wird gezeigt wie die Use Cases im Standart definiert werden. Dazu solle dieses Beispiel noch einmal dienen.
+Einer der häufigsten Ursachen für Verkehrsunfälle sind plötzliche Bremsmanöver von vorrausfahrenden Fahrzeugen und die Unaufmerksamkeit eines Fahrers. Aus diesen Ursachen resultiert ein erhöhtes Risiko für Auffahrunfälle. Cooperative Forward Collision Warning versucht genau dieses Risiko zu vermindern. Um dies zu erreichen, überwacht jedes Fahrzeug die eigenen Informationen, wie die Geschwindigkeit, Richtung und Position und vergleicht diese mit den Daten der anderen Fahrzeuge. Bei Auffälligkeiten und Abweichungen warnt das System dem Fahrer frühzeitig vor einer möglichen Kollision. Diese Warnung kann durch auditive, visuelle oder haptische Alarme signalisiert werden. Da es durchaus sein kann, dass noch Fahrzeuge, die nicht in dem \ac{ITS} Netz kommunizieren, unterwegs sind, werden die Daten von Objekterkennungssensoren identifiziert ausgewertet. Dadurch wird das Risiko einer Kollision für die \ac{IVS} weiter reduziert. Die Informationen werden innerhalb von 20 bis 200 Meter mit den anderen \ac{ITS-S} geteilt. Dadurch bleibt den \ac{IVS} genug Zeit um sie auszuwerten und die Fahrer zu warnen.
+
+
+Nachfolgend wird gezeigt, wie die Use Cases im Standard definiert werden.
+
 
 \textbf{Application name:} Co-operative collision avoidance or mitigation.
 \textbf{Short description:} This use case is based on co-operation between vehicles which detect a risk of forward collision.
@@ -37,14 +42,18 @@ following the same path to reduce the risk of accident.
 \end{itemize}
 
 \subsubsection{Pre-Crash Sensing/Warning}
-Natürlich können nicht alle Unfälle durch die Cooperative Forward Collision Warning vermieden werden. Daher ist davon auszugehen das dennoch Auffahrunfälle geschehen werden. Dafür hat man sich das Pre-Crash Sensing/Warning Szenario ausgedacht, bei dem man von einem Unvermeidbaren Unfall ausgeht. Dies soll durch die \acl{C2C} erkannt und Vorbereitungen für den Unfall getroffen werden. Damit dieses System funktioniert muss wie bei dem vorherigen Szenario dauerhaft Informationen der Fahrzeuge ausgetauscht werden. Dabei geht man davon aus das die Informationen der Fahrzeuge die sich im Umkreis von 20 bis 100 meter befinden überwacht werden müssen. Entdeckt das System einen unvermeidbaren Unfall muss sichergestellt sein das diese Fahrzeuge die Kollidieren werden sicher miteinander kommunizieren können um Daten wie die, Fahrzeuggröße und genaue Position bekannt zu geben. Über diese Informationen können dann Sicherheitsmaßnahmen wie Airbar, Gurtstraffer oder erweiterbare Stoßstangen gesteuert werden und effektiv genutzt werden. 
+Natürlich können nicht alle Unfälle durch die Cooperative Forward Collision Warning vermieden werden. Es ist davon auszugehen, dass dennoch Auffahrunfälle geschehen werden. Dafür hat man sich das Pre-Crash Sensing/Warning Szenario ausgedacht, bei dem man von einem unvermeidbaren Unfall ausgeht. Dieser soll durch \ac{ITS} erkannt werden. Nach dem Erkennen sollen Vorbereitungen zur Reduzierung der Unfallschäden getroffen werden. Damit dieses System funktioniert, müssen, wie bei dem vorherigen Szenario, dauerhaft Informationen zwischen den \ac{IVS} ausgetauscht werden. Dabei geht man davon aus, dass die Informationen der Fahrzeuge, die sich im Umkreis von 20 bis 100 meter befinden, überwacht werden müssen. Entdeckt das System einen unvermeidbaren Unfall, muss sichergestellt sein, dass die Fahrzeuge, die kollidieren werden, sicher miteinander kommunizieren können. Dabei werden Daten wie die Fahrzeuggröße, und genaue Position bekannt gegeben. Anhand dieser Informationen können dann Sicherheitsmaßnahmen, wie Airbag, Gurtstraffer oder erweiterbare Stoßstangen gesteuert und effektiv genutzt werden. 
+
 \begin{figure}[htbp]
-\includegraphics[width=0.99\textwidth]{content/images/06_use_cases/pre_crash_sensing.png}
-\caption{Pre-Crash Sensing/Warning Use Case\cite{etsi102638}}
-\label{fig:pcs}
+	\includegraphics[width=0.99\textwidth]{content/images/06_use_cases/pre_crash_sensing.png}
+	\caption{Pre-Crash Sensing/Warning Use Case\cite{etsi102638}}
+	\label{fig:pcs}
 \end{figure}
+
 \subsubsection{Hazardous Location C2C Notification}
-Die Hazardous Location C2C Notification soll dafür sorgen das gefährliche Fahrpassagen weitergegeben werden. Das heisst das System warnt nachkommende Fahrzeuge vor glatten Straßen oder Schlaglöchern. Die Schwierigkeit hierbei ist die Gewinnung der Informationen. Als Beispiel wird genannt das ein Fahrzeug das auf einer glatten Straße fährt und das ESP einsetzt, speichert an welcher stelle, Geschwindigkeit etc. eingetreten ist und diese Nachricht dann weiter sendet. Fahrzeuge die diese Warnnachricht erhalten können dann auf den Umstand mit Verbesserung der Sicherheitsmaßnahmen reagieren oder zumindest dem Fahrer darüber Informieren. 
+
+Die Hazardous Location C2C Notification soll dafür sorgen, dass gefährliche Fahrbahnpassagen weitergegeben werden. Das heißt, das System warnt nachkommende Fahrzeuge vor glatten Straßen oder Schlaglöchern. Die Schwierigkeit hierbei ist die Gewinnung der Informationen. Als Beispielszenario wird genannt, dass eine \ac{iVS} das auf einer glatten Straße fährt, sein ESP einsetzen muss. Es speichert die Position, an der das ESP regeln musste und weitere Daten, wie z.B. die Geschwindigkeit, und sendet eine Nachricht mit der Warnung und den Daten an die anderen \ac{IVS}. \ac{IVS}, die diese Warnnachricht erhalten, können dann auf die Gefährdung mit einer Verbesserung der Sicherheitsmaßnahmen reagieren, oder zumindest den Fahrer darüber Informieren. 
+
 \begin{figure}[htbp]
 \includegraphics[width=0.99\textwidth]{content/images/06_use_cases/hln.png}
 \caption{Hazardous Location C2C Notification Use Case\cite{etsi102638}}
@@ -52,7 +61,7 @@ Die Hazardous Location C2C Notification soll dafür sorgen das gefährliche Fahr
 \end{figure}
 
 \subsection{Verkehrseffizienz}
-Die Effizienz zu des Verkehrs zu steuern ist der ursprüngliche Sinn der \acl{C2C}. Durch die bessere Leitung des Verkehrs entstehen weniger Staus auf den Straßen, was zu verminderten Stresssituationen für Fahrer führt. Dadurch entstehen verkürzte Wartezeiten für die Teilnehmer am Verkehr und geringere Wartungskosten für die Straßen. Ausserdem kann dadurch die Umwelt mehr geschont werden und die Energiekosten sinken. 
+Eins der Hauptziele von \acl{C2C} war die Steigerung der Verkehrseffizienz. Durch die bessere Leitung des Verkehrs entstehen weniger Staus auf den Straßen, was zu verminderten Stresssituationen für Fahrer führt. Es entstehen verkürzte Wartezeiten für die Teilnehmer am Verkehr und geringere Wartungskosten für die Straßen. Ausserdem kann dadurch die Umwelt mehr geschont werden und die Energiekosten sinken. 
 
 \subsubsection{Enhanced Route Guidance and Navigation}
 Navigation ist ein großes Thema das bereits über Navigationssysteme stark verbessert wurde. Enhanced Route Guidance and Navigation soll die Navigation noch einmal verbessern. Dies soll erreicht werden in dem die Fahrdaten von den Roadside Stations gesammelt und ausgewertet werden. Dadurch können Verkehrsaufkommnisse vorhergesagt werden und Fahrzeuge auf ihrem Weg an einer solche Station vorbeikommen können über die aktuellen Verkehrsinformationen aufgeklärt werden und den effektivsten Weg berrechnen um die Verkehrsdichte zu verbessern. Damit dieses Szenario funktioniert müssen die Roadside Stations die Möglichkeit besitzen vorbeifahrende Fahrzeuge zu erkennen und zu Informieren. 
