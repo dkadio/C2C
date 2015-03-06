@@ -133,7 +133,6 @@ Für das zweite Feld ST sind folgende Werte in \autoref{tab:typenspezi} spezifiz
 \label{tab:typenspezi}
 \end{table}
 
-\todo{Wozu ist die Aufzählung gut?}
  \begin{itemize}
       	\item Geschwindigkeit
 	\item Heading
@@ -160,7 +159,7 @@ Managed address configuration stellt eine Anfrage an die ITS Networkung \& Trans
 Die duplicate address detection kommt zum Einsatz, um zu gewährleisten, dass die \acl{GNW} Adresse tatsächlich einzigartig ist. Sobald ein Empfänger eine Nachricht erhält, vergleicht er seine eigene \acl{GNW} Adresse mit der des Paketes und danach die beiden MAC Adressen. Bei Übereinstimmung fordert er eine neue MAC-Adresse an und teilt dem System mit, dass eine doppelte Adresse entdeckt wurde. \cite{etsi302636-4-1}
 
 \subsection{Geo Unicast}
-Geo Unicast wird spezifiziert, um einen einzelnen Knoten zu adressieren. Die \ac{ITS-S}, die zwischen dem Sender und der Empfangseinheit liegen, dienen beim Senden als Zwischenstationen. Bei einem Geo Unicast kann eine Nachricht direkt, oder über mehrere Zwischenstationen, an die Ziel \ac{ITS-S} gesendet werden. Jede Zwischenstation entspricht dabei einem Hop. Sie dekrementiert den Hop Count der Nachricht um Eins und verwirft die Nachricht, wenn der Hop Count Null erreicht. Die Nachrichten können bei einem Hop verändert werden. Eine Veränderung kann in dem Fall eine Aggregation von mehreren Nachrichten zu Einer sein, oder das Aufteilen einer Nachricht zu Mehreren. Eine direkte Manipulation der Informationen, bzw. ein Hinzufügen von Informationen ist auch möglich. \todo{Stimmt das mit dem Dekrement?}
+Geo Unicast wird spezifiziert, um einen einzelnen Knoten zu adressieren. Die \ac{ITS-S}, die zwischen dem Sender und der Empfangseinheit liegen, dienen beim Senden als Zwischenstationen. Bei einem Geo Unicast kann eine Nachricht direkt, oder über mehrere Zwischenstationen, an die Ziel \ac{ITS-S} gesendet werden. Jede Zwischenstation entspricht dabei einem Hop. Sie dekrementiert den Hop Count der Nachricht um Eins und verwirft die Nachricht, wenn der Hop Count Null erreicht. Die Nachrichten können bei einem Hop verändert werden. Eine Veränderung kann in dem Fall eine Aggregation von mehreren Nachrichten zu Einer sein, oder das Aufteilen einer Nachricht zu Mehreren. Eine direkte Manipulation der Informationen, bzw. ein Hinzufügen von Informationen ist auch möglich.
 
 %Die Nachricht kann bei den Zwischenstationen verändert werden. Das heisst zwei oder mehr Nachrichten werden zu einer zusammengefasst bevor sie weitergesendet werden. Dieser Vorgang ist auch umgekehrt durchführbar, sodass eine Nachricht aufgeteilt werden kann. Der Inhalt der Nachricht kann ebenfalls verändert oder Informationen hinzugefügt werden. 
 
