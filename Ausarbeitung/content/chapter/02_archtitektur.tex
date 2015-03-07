@@ -2,9 +2,9 @@
 Die Netzwerkarchitektur von \ac{ITS} umfasst sowohl interne als auch externe Netzwerke. Laut Standard \cite{etsi302636-3}, bzw. Standard \cite{etsi102636-3} sind dabei folgende externe Netzwerke erfasst:
 
 \begin{itemize}
- 	\item ITS ad hoc network.
-	\item Access network (ITS access network, public access network, private access network).
-	\item Core network (e.g. the Internet).
+ 	\item ITS ad hoc network
+	\item Access network (ITS access network, public access network, private access network)
+	\item Core network (e.g. the Internet)
 \end{itemize}
 
 Auf der Grafik \autoref{fig:architektur_ueberblickNetzwerke} sind die verschiedenen Netzwerke visualisiert. Diese Art der Darstellung entspricht der höchsten Abstraktionsebene. Die verschiedenen Netzwerke sind in der Grafik als Wolken dargestellt. Neben den Netzwerken sind auch die Verbindungen visualisiert.
@@ -19,9 +19,9 @@ Zusätzlich zu den hier beschriebenen Netzwerken kann eine \ac{ITS-S} ein eigene
 \end{figure}
 
 \section{Übersicht über die verschiedenen Netzwerke \label{architektur_ueberblickNetzwerke}}
-Dieser Abschnitt soll lediglich eine Übersicht über die verwendeten Netzwerke geben. Eine weitere Erklärung der Netzwerke findet an dieser Stelle nicht statt und ist nicht Gegenstand dieser Ausarbeitung. Die Netzwerke dürfen auch nicht isoliert betrachtet werden. Im Abschnitt \autoref{funktionsweise_funktionaleKomponenten} wurden funktionale Komponenten mit Routingfunktionalitäten vorgestellt. Diese können die Netze und somit ihre Vorteile, bzw. ihre Dienste, miteinander verbinden.
+Dieser Abschnitt soll lediglich eine Übersicht über die verwendeten Netzwerke geben. Eine weitere Erklärung der Netzwerke findet an dieser Stelle nicht statt und ist nicht Gegenstand dieser Ausarbeitung. Die Netzwerke dürfen auch nicht isoliert betrachtet werden. Im  \autoref{funktionsweise_funktionaleKomponenten} wurden funktionale Komponenten mit Routingfunktionalitäten vorgestellt. Diese können die Netze und somit ihre Vorteile, bzw. ihre Dienste, miteinander verbinden.
 
-Selbstverständlich benötigen die \ac{ITS-S} Zugang zu einem der im Folgenden aufgeführten Netze. Der Zugang zum Core Network \autoref{achitektur_coreNetwork} erfolgt über eins der anderen Netze. 
+Selbstverständlich benötigen die \ac{ITS-S} Zugang zu einem der im Folgenden aufgeführten Netze. Der Zugang zum Core Network (\autoref{achitektur_coreNetwork}) erfolgt über eins der anderen Netze. 
 
 \subsection{ITS Ad Hoc Network\label{achitektur_adHocNetwork}}
 Das \ac{ITS} Ad Hoc Netzwerk ist das Netzwerk für die Kommunikation zwischen \ac{IRS}, \ac{IVS} und \ac{PSS}. Die Kommunikation findet über die Luftschnittstelle statt. Sie ist in ihrer Reichweite begrenzt, dafür ist sie mobil einsetzbar. Die Drahtlose Kommunikation wird im Normalfall über den Standard ITS-G5 ermöglicht.
@@ -34,7 +34,7 @@ ITS Access Networks werden zur Vernetzung von \ac{ITS} Komponenten verwendet. Di
 Ein Public Access Network ermöglicht den Zugang in öffentlich zugängliche Mehrzwecknetzwerke. Dieses Netzwerk kann beispielsweise dazu genutzt werden, um \ac{ITS-S} mit dem Core Netzwerk zu verbinden. 
 
 \subsection{Private Access Network}
-Ein Private Access Network reguliert den Zugang durch die Teilnehmer. Die angebotenen Datendienste stehen nur einer bestimmten Gruppe von Nutzern zur Verfügung. Mit Private Access Networks besteht die Möglichkeit, eine gesicherte Verbindung in ein anderes Netzwerk aufzubauen. So kann beispielsweise ein \ac{IVS} auf das Intranet einer Firma zugreifen. 
+Ein Private Access Network reguliert den Zugang durch die Teilnehmer. Die angebotenen Datendienste stehen nur einer bestimmten Gruppe von Nutzern zur Verfügung. Mit Private Access Networks besteht die Möglichkeit, eine gesicherte Verbindung in ein anderes Netzwerk aufzubauen. So kann beispielsweise eine \ac{IVS} auf das Intranet einer Firma zugreifen. 
 
 \subsection{Core Network \label{achitektur_coreNetwork}}
 Das Core Network ist ein Verbindungsnetz. Es hat keine \ac{ITS} Funktionalitäten und wird im Standard auch nicht weiter spezifiziert. Es wird in Verbindung mit den Public Access Network dazu genutzt, traditionelle Dienste, wie Internet oder Email, anzubieten.
@@ -67,7 +67,7 @@ Erkennbar ist in dieser Implementierung, dass sich für mobile Stations Ad Hoc N
 
  
 \section{ITS Station Reference Architecture}
-Eine Referenzarchitektur beschreibt ein allgemeines Modell einer Architektur. Modelle können untereinander verglichen werden. Eine Architektur ist abstrakt beschrieben. Durch die Beschreibung einer Architektur können das Verhalten und die Anforderungen an das System beschrieben werden. Die Implementierung der Funktionalitäten ist nicht vorgegeben. 
+Eine Referenzarchitektur beschreibt ein allgemeines Modell einer Architektur. Modelle können untereinander verglichen werden. Eine Architektur ist abstrakt beschrieben. Durch die Beschreibung einer Architektur können das Verhalten des Systems und dessen Anforderungen beschrieben werden. Die Implementierung der Funktionalitäten ist nicht vorgegeben. 
 
 Die \ac{ITS-S} Reference Architecture unterscheidet sich grundlegend von bekannten Architekturen. Da sie während der Entwicklung an das \ac{OSI} Modell angelehnt war, ergeben sich einige Parallelen:
 \begin{itemize}
@@ -84,7 +84,7 @@ Der direkte Vergleich mit dem \ac{OSI} Modell und die Zuordnung der Layer wird i
 	\label{fig:architektur_vergleichItsOsi}
 \end{figure}
 
-Obwohl das \ac{ITS-S} Reference Protocol bei der Entwicklung an das \ac{OSI} Modell angelehnt wurde gibt es jedoch einen gravierenden Unterschied: In der \ac{ITS-S} Reference Architecture sind Cross Layer vorgesehen. Das \ac{OSI} Referenzmodell ist wasserfallartig aufgebaut. Das bedeutet, dass die einzelnen Layer übereinander angeordnet sind. Jeder Layer hat jeweils nur zu dem direkt darüber- und darunterliegenden Layer eine Schnittstelle. Cross Layer sind Layer, die in mehrere dieser Schichten Schnittstellen haben. Sie erweitern die vorhanden Layer in horizontaler Richtung. Im Fall der \ac{ITS} Reference Architecture sind das die Layer \glqq Management\grqq~ und \glqq Security\grqq. Sie haben Schnittstellen, bzw. Primitiven in alle anderen Layer. 
+Obwohl das \ac{ITS-S} Reference Protocol bei der Entwicklung an das \ac{OSI} Modell angelehnt wurde, gibt es jedoch einen gravierenden Unterschied: In der \ac{ITS-S} Reference Architecture sind Cross Layer vorgesehen. Das \ac{OSI} Referenzmodell ist wasserfallartig aufgebaut. Das bedeutet, dass die einzelnen Layer übereinander angeordnet sind. Jeder Layer hat jeweils nur zu dem direkt darüber- und darunterliegenden Layer eine Schnittstelle. Cross Layer sind Layer, die in mehrere dieser Schichten Schnittstellen haben. Sie erweitern die vorhanden Layer in horizontaler Richtung. Im Fall der \ac{ITS} Reference Architecture sind das die Layer \glqq Management\grqq~ und \glqq Security\grqq. Sie haben Schnittstellen, bzw. Primitiven in alle anderen Layer. 
 
 \begin{figure}
 	\includegraphics[width=0.75\textwidth]{content/images/02_architektur/stationReferenceArchitecture.pdf}
@@ -123,7 +123,7 @@ In \ac{ITS-G5} wird das Verfahren \ac{EDCA} verwendet. Es baut auf einem CSMA/CA
 Der Logic Link Control ist im Standard ANSI/IEEE Std. 802.2 definiert. Dieser ist  proprietär und lag uns nicht vor.
 
 \subsubsection{Physical Layer (PHY)}
-Der Physical Layer verbindet physikalisch mit dem Übertragungsmedium. Prinzipiell kann \ac{ITS} mit fast jedem Medium durchgeführt werden, für die mobilen Anwendungen bietet sich aber eine Übertragung über die Luftschnittstelle besonders an. Mit  \ac{ITS-G5} wurde ein besonders für dieses Zweck geeigneter Standard entworfen. Im PHY werden die physikalischen Channels verwaltet. Ein physikalischer Channel entspricht einem Frequenzbereich. 
+Der Physical Layer verbindet physikalisch mit dem Übertragungsmedium. Prinzipiell kann \ac{ITS} mit fast jedem Medium durchgeführt werden, für die mobilen Anwendungen bietet sich aber eine Übertragung über die Luftschnittstelle besonders an. Mit  \ac{ITS-G5} wurde ein besonders für diesen Zweck geeigneter Standard entworfen. Im PHY werden die physikalischen Channels verwaltet. Ein physikalischer Channel entspricht einem Frequenzbereich. 
 
 Im Fall von \ac{ITS-G5} teilt der Physical Layer die gesamte Bandbreite in 52 Unterkanäle (subcarriers) ein. Sie sind alle in der Bandbreite beschränkt. Der Physical Layer regelt weiterhin das verwendete Modulationsverfahren und die Übertragungsrate. Gemäß \cite{en302663} muss er mindestens die Transferraten 3 Mbit/s, 6 Mbit/s, und 12 Mbit/s beherrschen. 
  
@@ -143,11 +143,11 @@ Der Networking \& Transporting Layer enthält mehrere verschiedene Netzwerk- und
 Der Facilities Layer entspricht den \ac{OSI} Layern 5, 6 und 7. Er bietet eine Sammlung von Funktionen, die die \ac{ITS} Anwendungen unterstützen. Der Layer bietet Datenstrukturen um verschiedene Daten zu speichern, zu sammeln und zu verwalten. Er wird im \autoref{chap:facilitylayer} genauer erklärt.
 
 \subsection{Applications}
-Im Applications Layer werden die Use Cases realisiert. Dafür bietet der Application Layer eine Möglichkeit, Application auszuführen. Den Applications steht der gesamte \ac{ITS} Protokoll Stack zur Verfügung. Über Interfaces können die Elemente des Protokoll Stacks angesprochen werden.
+Im Applications Layer werden die Use Cases realisiert. Dafür bietet der Application Layer eine Möglichkeit, Anwendungen auszuführen. Den Applications steht der gesamte \ac{ITS} Protokoll Stack zur Verfügung. Über Interfaces können die Elemente des Protokoll Stacks angesprochen werden.
 Eine weitere Beschreibung des Application Layers und eine Auswahl seiner Use Cases findet im \autoref{sec:applicationLayer} statt.
 
 \section{Cross/Vertical Layer}
-Die Cross Layer weichen stark vom \ac{OSI} Modell ab. Sie erweitern die traditionellen Layer, die jeweils nur ein Interface zum nächst höheren, bzw. tieferen Layer haben um Layer, die Interfaces zu allen anderen Layern haben. Durch die Interfaces zu allen Layern ergeben sich neue Möglichkeiten. Ein Konzept kann mithilfe der Cross Layer im gesamten \ac{ITS} Protokollstack umgesetzt werden. So kann beispielsweise im Application Layer die genutzte Bandbreite an die im Physical Layer zur Verfügung stehende Bandbreite angepasst werden. Dadurch werden Überlastungen, die sich auf die Latenz auswirken oder zu fehlerhaften Übertragungen führen bereits im im Vorfeld vermieden. \ac{DCC} kann somit Staus wirkungsvoll vermeiden, anstatt nur die Symptome zu mindern.
+Die Cross Layer weichen stark vom \ac{OSI} Modell ab. Sie erweitern die traditionellen Layer, die jeweils nur ein Interface zum nächst höheren, bzw. tieferen Layer haben um Layer, die Interfaces zu allen anderen Layern haben. Durch die Interfaces zu allen Layern ergeben sich neue Möglichkeiten. Ein Konzept kann mithilfe der Cross Layer im gesamten \ac{ITS} Protokollstack umgesetzt werden. So kann beispielsweise im Application Layer die genutzte Bandbreite an die im Physical Layer zur Verfügung stehende Bandbreite angepasst werden. Dadurch werden Überlastungen, die sich auf die Latenz auswirken oder zu fehlerhaften Übertragungen führen, bereits im Vorfeld vermieden. \ac{DCC} kann somit Staus wirkungsvoll vermeiden, anstatt nur die Symptome zu mindern.
 
 \subsection{Management Layer \label{architektur_managementLayer}}
 Der Management Layer übernimmt alle Aufgaben, die mit der Verwaltung einer \ac{ITS-S} und deren Protokollstack zusammenzufassen sind. Vereinfacht gesagt, verwaltet er im Protokollstack die Cross Layer Funktionalität. 
@@ -159,7 +159,7 @@ Der Management Layer übernimmt alle Aufgaben, die mit der Verwaltung einer \ac{
 	\label{fig:architektur_managementLayer}
 \end{figure}
 
-In der  \autoref{fig:architektur_managementLayer} ist der Management Layer mit seinen Interfaces und Untereinheiten dargestellt. Er hat zu jedem anderen Layer ein Interface. Die fünf Untereinheiten ergeben sich aus den definierten Funktionalitäten des Management Layers. In der aktuellen Version der Standards sind die Untereinheiten der Layers noch nicht exakt definiert. Die folgende Auflistung der Funktionalitäten ist dem Standard \cite{en302665} entnommen.
+In der  \autoref{fig:architektur_managementLayer} ist der Management Layer mit seinen Interfaces und Untereinheiten dargestellt. Er hat zu jedem anderen Layer ein Interface. Die fünf Untereinheiten ergeben sich aus den definierten Funktionalitäten des Management Layers. In der aktuellen Version der Standards sind die Untereinheiten des Layers noch nicht exakt definiert. Die folgende Auflistung der Funktionalitäten ist dem Standard \cite{en302665} entnommen.
 
 \begin{itemize}
 	\item Cross-interface Management
@@ -195,7 +195,7 @@ Der Body enthält die folgenden Elemente:
 \begin{itemize}
 	\item serviceList: Eine Liste mit den angebotenen Services. Sie sind nach dem Standard ISO 17419 eindeutig kodiert
 	\item channelList:  Eine Information, welche Channels für die Service Operation Phase genutzt werden
-	\item ipServList: Informationen über Services, die angeboten wurden und der Service Operation Phase IPv6 benötigen.
+	\item ipServList: Informationen über Services, die angeboten wurden und Service Operation Phase IPv6 benötigen
 \end{itemize} 
 
 
