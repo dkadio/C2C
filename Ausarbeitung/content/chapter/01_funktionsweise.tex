@@ -10,7 +10,7 @@
 
 
 \section{Funktionale Komponenten von ITS \label{funktionsweise_funktionaleKomponenten}}
-Die funktionalen Komponenten sind sind in sich geschlossene Einheiten, die in den \ac{ITS} Subsystems vorhanden sind. Sie werden anhand ihrer Aufgaben und Funktionen getrennt. Dabei muss nicht zwangsläufig eine physikalische Trennung stattfinden, prinzipiell können auch alle funktionalen Komponenten in ein Gerät implementiert werden. Eine genaue Vorschrift der Implementierung sieht der Standard nicht vor, diese Entscheidung liegt bei den \ac{OEM}. 
+Die funktionalen Komponenten sind in sich geschlossene Einheiten, die in den \ac{ITS} Subsystems vorhanden sind. Sie werden anhand ihrer Aufgaben und Funktionen getrennt. Dabei muss nicht zwangsläufig eine physikalische Trennung stattfinden, prinzipiell können auch alle funktionalen Komponenten in ein Gerät implementiert werden. Eine genaue Vorschrift der Implementierung sieht der Standard nicht vor, diese Entscheidung liegt bei den \ac{OEM}. 
 
 Neben den Subsystems selber wird auch beschrieben, welche von ihnen als Mindestanforderung in einer \ac{ITS-S} vorhanden sein müssen.
 
@@ -22,7 +22,7 @@ Der \ac{ITS-S} Host beinhaltet mindestens die \ac{ITS-S} Anwendungen und die Fun
 Die Funktionalitäten des \ac{ITS-S} Host werden im Standard \cite{etsi302636-3} der \ac{AU} zugesprochen. Sämtliche andere Funktionalitäten sind auf die \ac{CCU} ausgelagert. Diese Aufteilung hängt aber von der zu implementierenden Komponente ab, ein Skalieren muss möglich sein.
 
 \subsection{Roadside ITS-S Gateway \label{funktionsweise_RoadsideITSGateway}}
-Die Funktionsweise des Roadside \ac{ITS-S} Gateway ergibt sich aus der Grafik \ref{fig:funktionsweise_itsGateway}. Die Aufgabe ist die Gleiche, wie bei den meisten Gateways. Es verbindet unterschiedliche Protokollstacks miteinander. In diesem Fall werden das \ac{ITS} interne Netzwerk und ein proprietäres Netzwerk miteinander verbunden. Das proprietäre Netzwerk kann beispielsweise ein IP basierendes Netzwerk sein.
+Die Funktionsweise des Roadside \ac{ITS-S} Gateway ergibt sich aus der Grafik \ref{fig:funktionsweise_itsGateway}. Die Aufgabe ist die Gleiche, wie die der meisten Gateways. Es verbindet unterschiedliche Protokollstacks miteinander. In diesem Fall werden das \ac{ITS} interne Netzwerk und ein proprietäres Netzwerk miteinander verbunden. Das proprietäre Netzwerk kann beispielsweise ein IP basierendes Netzwerk sein.
 
 \begin{figure}[h]
 	\includegraphics[width=0.75\textwidth]{content/images/01_funktionsweise/layer_gateway.pdf}
@@ -32,7 +32,7 @@ Die Funktionsweise des Roadside \ac{ITS-S} Gateway ergibt sich aus der Grafik \r
 
 
 \subsection{ITS-S Router \label{funktionsweise_router}}
-Ein \ac{ITS} Router bietet alle Funktionen der \ac{ISO} Referenzarchitektur, ausgenommen die beiden oberen Layer Application und Facilities. Er verbindet zwei unterschiedliche \ac{ITS} Protokoll Stacks auf Layer 3. Einer dieser Protokoll Stacks ist normalerweise mit dem internen \ac{ITS} Netzwerk verbunden. Router werden genutzt um eine Verbindung zu anderen \ac{ITS} Komponenten aufzubauen. Die Darstellung der Layer eines Routers befindet sich in Grafik  \ref{fig:funktionsweise_layerHost}.
+Ein \ac{ITS} Router bietet alle Funktionen der \ac{ISO} Referenzarchitektur, ausgenommen die beiden oberen Layer Application und Facilities. Er verbindet zwei unterschiedliche \ac{ITS} Protokoll Stacks auf Layer 3. Einer dieser Protokoll Stacks ist normalerweise mit dem internen \ac{ITS} Netzwerk verbunden. Router werden genutzt um eine Verbindung zu anderen \ac{ITS} Komponenten aufzubauen. Die Darstellung der Layer eines Routers befindet sich in  \autoref{fig:funktionsweise_layerHost}.
 
 \begin{figure}
 	\includegraphics[width=0.99\textwidth]{content/images/01_funktionsweise/layer_router.pdf}
@@ -43,7 +43,7 @@ Ein \ac{ITS} Router bietet alle Funktionen der \ac{ISO} Referenzarchitektur, aus
 
 
 \subsection{ITS-S Border Router \label{funktionsweise_ITSBorderRouter}}
-Ein Border Router hat die gleichen Funktionalitäten wie ein Router \ref{funktionsweise_router}. Der Unterschied ist, dass ein Border Router zwischen einem \ac{ITS} Netz und einem Netz ohne die Cross Layer vermitteln kann. Ein Beispiel für ein solches Netz ist das Internet. Ein Border Router leitet die Datenpakete weiter, verhindert aber einen Einblick in den Aufbau des \ac{ITS} Netzes. 
+Ein Border Router hat die gleichen Funktionalitäten wie ein Router (\autoref{funktionsweise_router}). Der Unterschied ist, dass ein Border Router zwischen einem \ac{ITS} Netz und einem Netz ohne die Cross Layer vermitteln kann. Ein Beispiel für ein solches Netz ist das Internet. Ein Border Router leitet die Datenpakete weiter, verhindert aber einen Einblick in den Aufbau des \ac{ITS} Netzes. 
 
   
 \begin{figure}
@@ -67,7 +67,7 @@ Die mindesten funktionalen Komponenten der \ac{ICS} sind:
 	\item \ac{ITS-S} Border Router \ref{funktionsweise_ITSBorderRouter}
 \end{itemize}
 
-Die \ac{ICS} hat mehrere Aufgaben. Sie wird als Netzwerkknoten eingesetzt. Das bedeutet, dass die Daten, die von den \ac{IRS} empfangen wurden, zusammenführt. Sie kann aber auch die \ac{IRS} an das Core Network anbinden.
+Die \ac{ICS} hat mehrere Aufgaben. Sie wird als Netzwerkknoten eingesetzt. Das bedeutet, dass sie die Daten, die von den \ac{IRS} empfangen wurden, zusammenführt. Sie kann aber auch die \ac{IRS} an das Core Network anbinden.
 
 Eine weitere mögliche Funktion der \ac{ICS} ist die Funktion als Verkehrsleitzentrale. Dazu kann sie Applications hosten, die für die Steuerung des Verkehrsflusses verantwortlich sind. Vom baulichen her, kann sie auch die entsprechenden Arbeitsplätze für die Operatoren zur Verfügung stellen. 
 	
@@ -94,7 +94,7 @@ Beispiele für Applikationen der \ac{IRS} sind:
 	\item Weiterleitung von Ereignisinformationen an Versuchszentrale (Testzentrale)
 	\item Aggregation von empfangenen Fahrzeugdaten zur Verbesserung der Wetter- und Verkehrslageerfassung
 	\item Neue Anwendungen bzgl. der Interaktion zwischen Fahrzeug und LSA
-	\item  Kreuzungsassistenz sowie Assistenz im Baustellenbereich.
+	\item  Kreuzungsassistenz sowie Assistenz im Baustellenbereich
 	\item Verteilung von Daten der ergänzenden Dienste aus der Versuchszentrale an die Fahrzeuge
 	\item Versendung von Daten zur Kreuzungstopologie
 \end{itemize}
