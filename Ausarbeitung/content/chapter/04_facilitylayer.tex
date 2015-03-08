@@ -28,7 +28,7 @@ Diese Einheit hat die folgenden Vorraussetzungen:
 \begin{itemize}
 	\item Benötigt Zugriff auf Fahrzeug Funktionen, wie Bremssystem, Reifendruck, Stabilitätskontrolle, Geschwindigkeitsregelung, etc.
 	\item Muss verschiedene Parameter filtern können, die für die Applications benötigt werden, wie beispielsweise Hauptzylinderdruck, Lenkradwinkel, Lenk\-rad\-win\-kel\-än\-der\-ung\-sra\-te, Gierrate, Fahrzeuggeschwindigkeit oder Beschleunigungssteuerung
-	\item Muss über die Möglichkeit besitzen, die verschiedenen Werte zu aktualisieren, die für die \ac{CAM} benötigt werden
+	\item Muss über die Möglichkeit verfügen, die verschiedenen Werte zu aktualisieren, die für die \ac{CAM} benötigt werden
 \end{itemize}
 
 \subsubsection{Station state monitoring \label{facilitylayer_StationStateMonitoring}}
@@ -52,7 +52,7 @@ Diese Einrichtung ist die services management facility. Sie hält die Services a
 \end{itemize}
 
 \subsubsection{LDM management \label{facilitylayer_LDMManagement}}
-Die \ac{LDM} management facility analysiert dauerhaft die Nachrichten, die vom Applicationlayer gesendet werden. Diese Änderungen werden in der \ac{LDM} Database gespeichert und aktualisiert. Die LDM Database wird in \autoref{facilitylayer_ldmdatabase} genauer erläutert. Das heißt, dass alle Nachrichten, die im gesamten \ac{C2X} Netzwerk empfangen werden, ausgewertet werden. Unter ihnen befinden sich nicht nur Fahrbahninformationen,  sondern auch Informationen über die Objekte, die über die Sensoren erkannt werden. Fahrbahninformationen sind beispielsweise Informationen über Kurven, Radwege oder Ampelsteuerungen. Die vielen Informationen führen zu einer sehr hohen Datenmenge, die in der \ac{LDM} Database verwaltet werden muss.  Folgende Voraussetzungen zu erfüllen, damit das \ac{LDM} management seine Aufgaben erfüllen kann.
+Die \ac{LDM} management facility analysiert dauerhaft die Nachrichten, die vom Applicationlayer gesendet werden. Diese Änderungen werden in der \ac{LDM} Database gespeichert und aktualisiert. Die LDM Database wird in \autoref{facilitylayer_ldmdatabase} genauer erläutert. Das heißt, dass alle Nachrichten, die im gesamten \ac{C2X} Netzwerk empfangen werden, ausgewertet werden. Unter ihnen befinden sich nicht nur Fahrbahninformationen,  sondern auch Informationen über die Objekte, die über die Sensoren erkannt werden. Fahrbahninformationen sind beispielsweise Informationen über Kurven, Radwege oder Ampelsteuerungen. Die vielen Informationen führen zu einer sehr hohen Datenmenge, die in der \ac{LDM} Database verwaltet werden muss.  Folgende Voraussetzungen sind zu erfüllen, damit das \ac{LDM} management seine Aufgaben erfüllen kann.
 \begin{itemize}
 	\item Die facility muss die einkommenden Nachrichten analysieren können und die Datenbank in Echtzeit mit den relevanten Daten aktualisieren
 
@@ -87,11 +87,11 @@ Der Information Support entspricht der Präsentationsebene des \ac{ISO} \ac{OSI}
 \begin{itemize}
 	\item Data presentation - Dient zum Codieren und Decodieren von Daten, die mit formalen Sprachen beschrieben sind (z.b. \ac{ASN.1})
 	\item Location referencing - Bietet die Möglichkeit, bewegliche oder statische Objekte in der LDM zu hinterlegen 
-	\item Station type/capabilities - Hierzu gehören einige, statische sowie dynamische, Informationen über die \ac{ITS-S}. Diese Informationen können beispielsweise die Art der \ac{ITS-S} (also um was es sich für ein Fahrzeug handelt), die Größe dieses Fahrzeuges oder die Frage, welche die nächste RSU ist, betreffen. Hinzu kommen noch Informationen, die die Services der \ac{ITS-S} betreffen, also z.B. welche verfügbar sind
+	\item Station type/capabilities - Hierzu gehören einige, statische sowie dynamische, Informationen über die \ac{ITS-S}. Diese Informationen können beispielsweise die Art der \ac{ITS-S} (also um was es sich für ein Fahrzeug handelt), die Größe dieses Fahrzeuges oder die Frage, welche die nächste \ac{IRS} ist, betreffen. Hinzu kommen noch Informationen, die die Services der \ac{ITS-S} betreffen, also z.B. welche verfügbar sind
 \end{itemize}
 
 \subsubsection{LDM database \label{facilitylayer_ldmdatabase}}
-Die \ac{LDM} Database ist eine Sammlung von Informationen für Facilities und Anwendungen. Facilities können der beispielsweise der \ac{CA} Service, \autoref{sec:cam}, oder der \ac{DEN} Service, \autoref{sec:den}, sein. Ihnen wird durch die \ac{LDM} eine Möglichkeit gegeben, ihre Daten zu speichern. Neben der Speicherung wird eine Rechtevergabe für die Daten angeboten. Dadurch kann der Zugriff auf autorisierte Anwendungen beschränkt werden. Die gespeicherten Daten entsprechen den Daten, die von den anderen Facilities, bzw. Applications, genutzt werden und  werden von der  \ac{LDM} nicht verändert. Sie werden \ac{LDM} data object genannt. 
+Die \ac{LDM} Database ist eine Sammlung von Informationen für Facilities und Anwendungen. Facilities können beispielsweise der \ac{CA} Service (\autoref{sec:cam}) oder der \ac{DEN} Service (\autoref{sec:den}) sein. Ihnen wird durch die \ac{LDM} eine Möglichkeit gegeben, ihre Daten zu speichern. Neben der Speicherung wird eine Rechtevergabe für die Daten angeboten. Dadurch kann der Zugriff auf autorisierte Anwendungen beschränkt werden. Die gespeicherten Daten entsprechen den Daten, die von den anderen Facilities, bzw. Applications, genutzt werden und  werden von der  \ac{LDM} nicht verändert. Sie werden \ac{LDM} data object genannt. 
 Die \ac{LDM} befindet sich im Facility Layer. Auf der \autoref{fig:ldmZwischenLayern} ist die \ac{LDM} dargestellt. Auf dieser Abbildung ist zu erkennen, dass die anderen Services des Facility Layers eine Verbindung zur \ac{LDM} haben. Die \ac{LDM} besitzt weiterhin Interfaces in andere Layer.
 
 \begin{figure}[htbp]
@@ -120,7 +120,7 @@ Das letzte Feld kann beispielsweise Informationen zum Zeitpunkt des Eintrages de
 \paragraph{Interfaces}
 Die Interfaces sind auf der \autoref{fig:ldmZwischenLayern} zu erkennen. Auf der \autoref{fig:ldmInterfaces} sind diese Interfaces funktional dargestellt. Der Unterschied zwischen den Beschreibungen ist, dass diese Interfaces nicht dadurch beschrieben werden, wohin sie die Schnittstelle bieten, sondern welche Funktionen sie anbieten.
 
-Es gibt vier Interfaces. In \autoref{tab:facilityLayer_Beschreibung_Interfaces} werden die Interfaces beschrieben. Die erste Spalte beschreibt den Namen des Interfaces. Dieser findet sich auch in der \autoref{fig:ldmInterfaces} wieder. Die zweite Spalte beschriebt, ob die \ac{LDM} etwas anbietet (\textbf{P}rovided), oder ob sie Funktionen benötigt, die es über dieses Interface erhält (\textbf{R}equired). Die dritte Spalte beschreibt, zu welchen Komponenten das Interface verbindet. Im Falle von IF:LDM.1 und IF.LDM.2 ist die Verbindung zur \autoref{fig:ldmZwischenLayern} offensichtlich. Die letzten Spalten verbinden zu den Data Providern, bzw. Data Consumern. Im Bezug auf die \autoref{fig:ldmZwischenLayern} sind das der Application Layer, sowie die anderen Komponenten des Facility Layers. 
+Es gibt vier Interfaces. In \autoref{tab:facilityLayer_Beschreibung_Interfaces} werden die Interfaces beschrieben. Die erste Spalte beschreibt den Namen des Interfaces. Dieser findet sich auch in der \autoref{fig:ldmInterfaces} wieder. Die zweite Spalte beschreibt, ob die \ac{LDM} etwas anbietet (\textbf{P}rovided), oder ob sie Funktionen benötigt, die es über dieses Interface erhält (\textbf{R}equired). Die dritte Spalte beschreibt, zu welchen Komponenten das Interface verbindet. Im Falle von IF:LDM.1 und IF.LDM.2 ist die Verbindung zur \autoref{fig:ldmZwischenLayern} offensichtlich. Die letzten Spalten verbinden zu den Data Providern, bzw. Data Consumern. Im Bezug auf die \autoref{fig:ldmZwischenLayern} sind das der Application Layer, sowie die anderen Komponenten des Facility Layers. 
 
  \begin{longtable}{| p{0.15\linewidth} | p{0.15\linewidth} | p{0.24\linewidth} |p{0.24\linewidth}| p{0.15\linewidth}|}
  \hline
@@ -177,14 +177,14 @@ Das Nennen des vollständigen Inhalts einer \ac{CAM} würde den Rahmen dieser Au
 \begin{itemize}
 	\item \textbf{stationCharacteristics: } Dieses Datenelement besteht laut der \ac{ASN.1} Beschreibung aus mindestens drei weiteren Datenelemten:
 	\begin{itemize}
-		\item mobileItsStation: Kann die \ac{ITS-S} ihre Station ändern?
+		\item mobileItsStation: Kann die \ac{ITS-S} ihre Position ändern?
 		\item privateItsStation: Die \ac{ITS-S} wird von keiner Behörde betrieben.
 		\item physicalRelevantItsStation: Kann eine andere \ac{ITS-S} diese \ac{ITS-S} rammen?
 	\end{itemize}
 	\item \textbf{AmbientAirTemperature: } Die Außentemperatur,  welche von der \ac{ITS-S} gemessen wird.
 	\item \textbf{CrashStatus: } Dieses Datenelement enthält Informationen über einen Unfall, der eine Weiterfahrt verhindert. Beispiele dafür sind das Auslösen der Airbags oder ein Überschlag.
 	\item \textbf{CurvatureChange: } Dieses Datenelement beschreibt die Änderung der Kurvenrichtung. Ein positiver Wert bedeutet, dass die \ac{IVS} nach rechts abbiegt.
-	\item  \textbf{DangerousGoods: } Dieses Datenelement beschreibt, ob und welches Gefahrgut  das \ac{IVS} transportiert.
+	\item  \textbf{DangerousGoods: } Dieses Datenelement beschreibt, ob und welches Gefahrgut  die \ac{IVS} transportiert.
 	\item \textbf{StationWidth: } Dieses Element beschreibt die zulässige Gesamtbreite der \ac{ITS-S}. Die Breite ist mit einer Feinheit von 0,01m aufgelöst.
 \end{itemize}
 
@@ -212,8 +212,8 @@ Diese Funktionalität beinhaltet die Protokoll Funktionalitäten. Sie werden fü
 Diese Funktionalität beinhaltet die Protokoll Funktionalitäten, die zum Empfangen von \ac{CAM} benötigt werden. Diese Funktionalitäten beinhalten im Einzelnen:
 \begin{itemize}
 	\item Steuerung der Decodierung von \ac{CAM}
-	\item Verteilung der empfangen \ac{CAM} an die \ac{LDM} (\ref{facilitylayer_LDMManagement}) oder an den Application Layer der empfangenen \ac{ITS-S}.
-	\item Optional findet eine Überprüfung der Informationen der empfangenen \ac{CAM} statt.
+	\item Verteilung der empfangen \ac{CAM} an die \ac{LDM} (\autoref{facilitylayer_LDMManagement}) oder an den Application Layer der empfangenen \ac{ITS-S}
+	\item Optional findet eine Überprüfung der Informationen der empfangenen \ac{CAM} statt
 \end{itemize}
 
 \paragraph{Encode CAM}
@@ -236,10 +236,10 @@ Zum Generieren der \ac{CAM} ist der Facilitylayer auf Informationen der anderen 
 Das Interface IF.N\&T bietet die Schnittstelle zu dem Networking \& Transport Layer (\autoref{chap:networklayer}). Es dient vor allem dazu, die im \ac{CA} Management generierten \ac{CAM} zu versenden und \ac{CAM} zu empfangen. 
 
 \paragraph{IF.Mng}
-Das Interface IF.Mng bietet die Schnittstelle zum Management Layer (\ref{architektur_managementLayer}). Der Management Layer bestimmt beispielsweise das Intervall zum Versenden von \ac{CAM}.
+Das Interface IF.Mng bietet die Schnittstelle zum Management Layer (\autoref{architektur_managementLayer}). Der Management Layer bestimmt beispielsweise das Intervall zum Versenden von \ac{CAM}.
 
 \paragraph{IF.Sec}
-Das Interface IF.Sec bietet die Schnittstelle zum Security Layer (\ref{architektur_securityLayer}).
+Das Interface IF.Sec bietet die Schnittstelle zum Security Layer (\autoref{architektur_securityLayer}).
 
 
 \iffalse
@@ -256,7 +256,7 @@ Die anderen Facilities sind in der \autoref{fig:komponentenfacility} eingezeichn
 \subsection{Verbreitung der CAM}
 \ac{CAM} werden als Point-Mulitipoint Nachrichten verteilt. Sie sollen nicht weitergeleitet werden, sie sind also single hop Nachrichten und werden nur von den umliegenden \ac{ITS-S} empfangen. \ac{CAM} werden nur versendet, wenn die \ac{ITS-S} aktiv ist. \ac{CAM} machen nur für \ac{IVS} Sinn, der Standard \cite{en302637-2} bezieht sich auch nur auf \ac{IVS}. 
 
-Die Senderate der \ac{CAM} wird von der sendenden \ac{IVS} gesteuert. Die ist zwischen einem und zehn Herz definiert und hängt sowohl von der Kanalauslastung als auch von Dynamik der \ac{IVS} ab. Die Dynamik gibt an, ob es eine bestimmte Differenz zwischen den Werten in der gesendeten \ac{CAM} und den aktuellen Werten gibt. Diese Werte können eine Position, eine Richtung oder eine Geschwindigkeit sein.
+Die Senderate der \ac{CAM} wird von der sendenden \ac{IVS} gesteuert. Sie ist zwischen einem und zehn Herz definiert und hängt sowohl von der Kanalauslastung als auch von Dynamik der \ac{IVS} ab. Die Dynamik gibt an, ob es eine bestimmte Differenz zwischen den Werten in der gesendeten \ac{CAM} und den aktuellen Werten gibt. Diese Werte können eine Position, eine Richtung oder eine Geschwindigkeit sein.
 
 Die \ac{CAM} werden im \ac{CA} Management generiert und durch die darunter liegenden Layer übertragen.
 
@@ -266,7 +266,7 @@ Die Sicherheit des \ac{CA} Basic Service wird im Security Layer (\autoref{archit
 	\item Basic \ac{CAM} authorization: Sie wird allen \ac{ITS-S} erteilt, die das \ac{ITS} System nutzen dürfen. Hiermit darf eine \ac{ITS-S} Basisinformationen, wie beispielsweise Länge, Breite, Geschwindigkeit oder Beschleunigung, verteilen. 
 	\item Advanced \ac{CAM} authorization: Sie wird den \ac{ITS-S} erteilt, die dazu in der Lage sind. Ob eine \ac{ITS-S} dazu in der Lage ist, hängt beispielsweise vom implementierten Kryptoalgorithmus oder den vorhandenen Sensoren ab. Mit advanced \ac{CAM} authorization kann eine \ac{ITS-S} \ac{CAM} versenden, die das Linksabbiegen, oder das Einfädeln in den Verkehr, unterstützen.
 	\item Authorization to claim priority rights for emergency vehicles: Dieser Level verleiht den \ac{ITS-S} die Rechte von Einsatzfahrzeugen. Er wird nur \ac{ITS-S} vergeben, die Notfall Einsatzfahrzeuge oder Fahrzeuge des öffentlichen Verkehrs sind. Die genaue Vergabe regelt die  nationale Gesetzgebung.  Dabei können auch Abstufungen in der Priorisierung gemacht werden. Die Autorisierung wird von Regierungsstellen oder deren autorisierten Stellvertretern vergeben. Die Priorisierung ist  auf konkrete Einsätze beschränkt, sie gilt nicht permanent.
-	\item Authorization to state regulatory orders such as speed limits and road closures: Diese Autorisierung stellt die höchste Stufe der Autorisierung da. Mit ihr dürfen beispielsweise Geschwindigkeitsbeschränkungen geändert werden, oder Straßen gesperrt werden. Sie soll nur an speziell autorisierte \ac{ITS-S}, wie \ac{IRS} oder Polizeifahrzeuge, vergeben werden. Die Autorisierung erfolgt durch Regierungsstellen oder deren authorisierte Stellvertreter. 
+	\item Authorization to state regulatory orders such as speed limits and road closures: Diese Autorisierung stellt die höchste Stufe der Autorisierung dar. Mit ihr dürfen beispielsweise Geschwindigkeitsbeschränkungen geändert werden, oder Straßen gesperrt werden. Sie soll nur an speziell autorisierte \ac{ITS-S}, wie \ac{IRS} oder Polizeifahrzeuge, vergeben werden. Die Autorisierung erfolgt durch Regierungsstellen oder deren authorisierte Stellvertreter. 
 \end{itemize}
  
 \ac{CAM} unterliegen keiner Vertraulichkeit, dürfen aber keiner konkreten Identität zugeordnet werden. Diese Anforderungen werden vom Security Layer (\autoref{architektur_securityLayer}) sichergestellt. 
@@ -297,9 +297,10 @@ Der low frequency container ist in der aktuellen Version des Standards \cite{en3
 
 \subsubsection{Special vehicle Container}
 Wenn ein \ac{IVS} eine spezielle Rolle im Straßenverkehr hat, kann es den special vehicle Container mit den \ac{CAM} versenden. Dieser enthält wiederum einen Container, der diese Rolle genauer beschriebt. 
+
 \section{DEN\label{sec:den}}
 \subsection{Beschreibung von DEN \label{facilityLayer_beschreibungDEN}}
-\ac{DEN} ist definiert um die \ac{RHW} Anwendungsfälle zu unterstützen.	Die \ac{RHW} Anwendung ist auf \ac{IVS} und \ac{ITS} verteilt. Sie ist eine aktive Straßensicherheit Anwendung und verteilt Informationen über die Straßenverkehrsverhältnisse. Um die \ac{DEN} Informationen zu verteilen gibt es \ac{DENM}. Diese enthalten die relevanten Informationen und informieren die anderen \ac{ITS-S}. \ac{DENM} werden beim Eintreffen eines \ac{RHW} relevanten Ereignisses an alle \ac{ITS-S} verteilt, die durch dieses Ereignis betroffen sind. Während das Ereignis anhält, werden die \ac{DENM} verteilt. Das Verteilen endet nach einer festgelegten Zeit oder durch eine weitere \ac{DENM}, die eine andere beendet. In einer \ac{ITS-S}, die eine \ac{DENM} empfängt, wird geprüft, ob die Information für den Benutzer relevant ist. Abhängig der Relevanz wird sie angezeigt oder nicht. Ein Beispiel für eine \ac{DENM}, die nach einer festen Zeit ungültig wird, ist eine Notbremsung eines \ac{IVS}. Durch die Bremsung entsteht lediglich eine temporäre Gefahr. 
+\ac{DEN} ist definiert um die \ac{RHW} Anwendungsfälle zu unterstützen.	Die \ac{RHW} Anwendung ist auf \ac{IVS} und \ac{IRS} verteilt. Sie ist eine aktive Straßensicherheit Anwendung und verteilt Informationen über die Straßenverkehrsverhältnisse. Um die \ac{DEN} Informationen zu verteilen gibt es \ac{DENM}. Diese enthalten die relevanten Informationen und informieren die anderen \ac{ITS-S}. \ac{DENM} werden beim Eintreffen eines \ac{RHW} relevanten Ereignisses an alle \ac{ITS-S} verteilt, die durch dieses Ereignis betroffen sind. Während das Ereignis anhält, werden die \ac{DENM} verteilt. Das Verteilen endet nach einer festgelegten Zeit oder durch eine weitere \ac{DENM}, die eine andere beendet. In einer \ac{ITS-S}, die eine \ac{DENM} empfängt, wird geprüft, ob die Information für den Benutzer relevant ist. Abhängig der Relevanz wird sie angezeigt oder nicht. Ein Beispiel für eine \ac{DENM}, die nach einer festen Zeit ungültig wird, ist eine Notbremsung einer \ac{IVS}. Durch die Bremsung entsteht lediglich eine temporäre Gefahr. 
 
 
 \subsection{DEN Management}
@@ -312,7 +313,7 @@ Auf der \autoref{fig:darstellungDenServices} sind die Komponenten von \ac{DEN} d
 \end{figure}
 
 
-Das \ac{DEN} Management  ist für das Steuern der \ac{DENM} Übertragung verantwortlich. Dazu gehören das Gerieren, das Aktualisieren und das Beenden der Übertragung. Es regelt das \ac{DENM} Protokoll. Das schließt die Einhaltung des korrekten Nachrichtenformats und der korrekten Semantik ein. Zum Erstellen von \ac{DENM} hat das \ac{DEN} Management Interfaces zu den \ac{RHW} Anwendungen und den anderen Facilities. Die \ac{DENM} werden in diesem Services auch aktuell gehalten. Veraltete \ac{DENM} werden gelöscht, bzw. für ungültig erklärt. Eine \ac{DENM}, die im \ac{DEN} Management erzeugt wird, muss mindestens den Typ des entdeckten Events und dessen Position enthalten. Zusätzlich muss sie die Eintrittszeit des Events und die voraussichtliche Dauer des Events enthalten. Kann keine voraussichtliche Dauer genannt werden, muss sie geschätzt werden. Das betroffene Gebiet muss auch genannt werden. Bei dem Gebiet, bzw. relevante area, handelt es sich um einen oder mehrere Straßenabschnitte, in denen sich die \ac{ITS-S} befinden, die von dem Event betroffen werden. Ein Gebiet kann aber auch eine Richtung sein.
+Das \ac{DEN} Management  ist für das Steuern der \ac{DENM} Übertragung verantwortlich. Dazu gehören das Gerieren, das Aktualisieren und das Beenden der Übertragung. Es regelt das \ac{DENM} Protokoll. Das schließt die Einhaltung des korrekten Nachrichtenformats und der korrekten Semantik ein. Zum Erstellen von \ac{DENM} hat das \ac{DEN} Management Interfaces zu den \ac{RHW} Anwendungen und den anderen Facilities. Die \ac{DENM} werden in diesen Services auch aktuell gehalten. Veraltete \ac{DENM} werden gelöscht, bzw. für ungültig erklärt. Eine \ac{DENM}, die im \ac{DEN} Management erzeugt wird, muss mindestens den Typ des entdeckten Events und dessen Position enthalten. Zusätzlich muss sie die Eintrittszeit des Events und die voraussichtliche Dauer des Events enthalten. Kann keine voraussichtliche Dauer genannt werden, muss sie geschätzt werden. Das betroffene Gebiet muss auch genannt werden. Bei dem Gebiet, bzw. relevante area, handelt es sich um einen oder mehrere Straßenabschnitte, in denen sich die \ac{ITS-S} befinden, die von dem Event betroffen werden. Ein Gebiet kann aber auch eine Richtung sein.
 
 \subsection{DEN Basic Service}
 Der \ac{DEN} Basic Service ist für die Verarbeitung von \ac{DENM} verantwortlich. Die Verarbeitung beinhaltet auf der sendenden Seite das Auslösen von \ac{DENM} und auf die der empfangenden Seite das Empfangen der \ac{DENM}, sowie deren Bereitstellen für die Benutzung in den \ac{ITS-S} Anwendungen. Das Auslösen kann in mehrere Tätigkeiten unterteilt werden und wird im Folgenden genauer erklärt. Der \ac{DENM} Basic Service kann auch die Funktionalität des Weiterleitens von \ac{DENM} anbieten. Der \ac{DEN} Basic Service besteht wiederum aus fünf weiteren Komponenten. Er hat fünf Interfaces. Die Komponenten und Interfaces sind in der \autoref{fig:darstellungDenBasicServiceKomponenten} abgebildet.
