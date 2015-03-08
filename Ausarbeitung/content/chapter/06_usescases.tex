@@ -14,7 +14,7 @@ Der Applicationlayer ist der Layer, der die Applications ausführt. Er hat die S
 Sicherheitsbedingte Use Cases sind Anwendungsfälle, bei denen ein möglicher Unfall verhindert werden kann. Im Folgenden werden drei Szenarien erklärt, durch diese das Unfallrisiko minimiert werden kann.
 
 \subsubsection{Cooperative Forward Collision Warning}
-Einer der häufigsten Ursachen für Verkehrsunfälle sind plötzliche Bremsmanöver von vorrausfahrenden Fahrzeugen und die Unaufmerksamkeit eines Fahrers. Aus diesen Ursachen resultiert ein erhöhtes Risiko für Auffahrunfälle. Cooperative Forward Collision Warning versucht genau dieses Risiko zu vermindern. Um dies zu erreichen, überwacht jedes Fahrzeug die eigenen Informationen, wie die Geschwindigkeit, Richtung und Position und vergleicht diese mit den Daten der anderen Fahrzeuge. Bei Auffälligkeiten und Abweichungen warnt das System dem Fahrer frühzeitig vor einer möglichen Kollision. Diese Warnung kann durch auditive, visuelle oder haptische Alarme signalisiert werden. Da es durchaus sein kann, dass noch Fahrzeuge, die nicht in dem \ac{ITS} Netz kommunizieren, unterwegs sind, werden die Daten von Objekterkennungssensoren ausgewertet. Dadurch wird das Risiko einer Kollision für die \ac{IVS} weiter reduziert. Die Informationen werden innerhalb von 20 bis 200 Meter mit den anderen \ac{ITS-S} geteilt. Dadurch bleibt den \ac{IVS} genug Zeit um sie auszuwerten und die Fahrer zu warnen.
+Einer der häufigsten Ursachen für Verkehrsunfälle sind plötzliche Bremsmanöver von vorrausfahrenden Fahrzeugen und die Unaufmerksamkeit eines Fahrers. Aus diesen Ursachen resultiert ein erhöhtes Risiko für Auffahrunfälle. Cooperative Forward Collision Warning versucht genau dieses Risiko zu vermindern. Um dies zu erreichen, überwacht jedes Fahrzeug die eigenen Informationen, wie die Geschwindigkeit, Richtung und Position und vergleicht diese mit den Daten der anderen Fahrzeuge. Bei Auffälligkeiten und Abweichungen warnt das System den Fahrer frühzeitig vor einer möglichen Kollision. Diese Warnung kann durch auditive, visuelle oder haptische Alarme signalisiert werden. Da es durchaus sein kann, dass noch Fahrzeuge, die nicht in dem \ac{ITS} Netz kommunizieren, unterwegs sind, werden die Daten von Objekterkennungssensoren ausgewertet. Dadurch wird das Risiko einer Kollision für die \ac{IVS} weiter reduziert. Die Informationen werden innerhalb von 20 bis 200 Meter mit den anderen \ac{ITS-S} geteilt. Dadurch bleibt den \ac{IVS} genug Zeit um sie auszuwerten und die Fahrer zu warnen.
 
 
 Nachfolgend wird gezeigt, wie die Use Cases im Standard definiert werden.
@@ -42,7 +42,7 @@ Such co\-operation is achieved to avoid accident either through driver assistanc
 \item Maximum latency time: 100 ms.
 \item Minimum frequency of V2V co-operation awareness messages: 10 Hz.
 \item Authenticity of V2X co-operative awareness messages.
-\item Vehicles relative positioning accuracy: < 1 m.
+\item Vehicles relative positioning accuracy: \textless 1 m.
 following the same path to reduce the risk of accident.
 \end{itemize}
 
