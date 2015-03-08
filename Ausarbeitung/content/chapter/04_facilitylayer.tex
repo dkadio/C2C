@@ -331,7 +331,7 @@ Der Standard \cite{en302637-3} beschreibt zu diesem Interface lediglich, dass es
 \paragraph{IF.Mng}
 Der Standard \cite{en302637-3} beschreibt zu diesem Interface lediglich, dass es Informationen zu dem Management Layer überträgt. 
 \paragraph{IF.DEN.1}
-Das Interface IF.DEN.1 wird vom Application Layer genutzt. Damit werden Anforderungen für \ac{DENM} übertragen. Möglich sind die Anforderungen AppDENM\_trigger, AppDENM\_update, AppDENM\_termination. Sie entsprechen dem Anfordern, dem Aktualisieren oder dem Beenden von \ac{DENM} und werden vom Application Layer an den \ac{DEN} Basic Service übertragen. Die übertragenen Daten sind im Standard \cite{en302637-3} definiert. Die Anfragen vom Application Layer werden vom \ac{DEN} Basic Service mit der actionId der bearbeiteten \ac{DENM} oder einer Fehlerbenachrichtigung quittiert.
+Das Interface IF.DEN.1 wird vom Application Layer genutzt. Damit werden Anforderungen für \ac{DENM} übertragen. Möglich sind die Anforderungen AppDENM\_trigger, AppDENM\_update und AppDENM\_termination. Sie entsprechen dem Anfordern, dem Aktualisieren oder dem Beenden von \ac{DENM} und werden vom Application Layer an den \ac{DEN} Basic Service übertragen. Die übertragenen Daten sind im Standard \cite{en302637-3} definiert. Die Anfragen vom Application Layer werden vom \ac{DEN} Basic Service mit der actionId der bearbeiteten \ac{DENM} oder einer Fehlerbenachrichtigung quittiert.
 \paragraph{IF.DEN.2}
 Das Interface IF.DEN.2 wird genutzt um die empfangen Daten vom \ac{DEN} Basic Service in den Application Layer zu transportieren. Dabei werden ganze \ac{DENM} transportiert.
 
@@ -346,7 +346,7 @@ Diese Komponente konstruiert eine \ac{DENM}. Dazu werden die zu übertragenden D
 Diese Komponente decodiert die empfangenen \ac{DENM} und stellt somit die enthaltenen Daten bereit.
 
 \paragraph{DENM transmission management}
-Das Transfusion Management erfüllt die Aufgaben, die für das Versenden von \ac{DENM} nötig sind. Das Versenden beginnt bei der Erstellung einer \ac{DENM}. Die Erstellung wird von einer Application angefordert. Nachdem die \ac{DENM} erstellt wurde, wird sie von der Komponente \ref{facilitylayer_EncodeDENM} codiert. Neben der Erstellung einer neuen \ac{DENM} können auch vorhandene \ac{DENM} aktualisiert werden. Dies geschieht auch in diesem Layer und läuft analog zu dem Erstellen neuer \ac{DENM}. Das Beenden von \ac{DENM} Übertragungen und die wiederholte Übertragung wird auch in dieser Komponente gemacht.
+Das Transmission Management erfüllt die Aufgaben, die für das Versenden von \ac{DENM} nötig sind. Das Versenden beginnt bei der Erstellung einer \ac{DENM}. Die Erstellung wird von einer Application angefordert. Nachdem die \ac{DENM} erstellt wurde, wird sie von der Komponente \ref{facilitylayer_EncodeDENM} codiert. Neben der Erstellung einer neuen \ac{DENM} können auch vorhandene \ac{DENM} aktualisiert werden. Dies geschieht auch in diesem Layer und läuft analog zu dem Erstellen neuer \ac{DENM}. Das Beenden von \ac{DENM} Übertragungen und die wiederholte Übertragung wird auch in dieser Komponente gemacht.
 
 \paragraph{DENM reception management}
 Das Empfangsmanagement stellt die Funktionalitäten des \ac{DENM} Empfangs bereit. Beim Empfangen werden die \ac{DENM} überprüft und, falls sie ungültig sind, verworfen. Wenn sie gültig sind werden sie in die Message Table eingetragen. Die Message Table speichert die empfangenen \ac{DENM}. Dabei werden \ac{DENM} mit der gleichen actionId nur einmal gespeichert. Es wird immer nur die aktuelle \ac{DENM} mit einer actionId gespeichert. Die message table muss mindestens aus den folgenden Spalten bestehen:
@@ -361,7 +361,7 @@ Das Empfangsmanagement stellt die Funktionalitäten des \ac{DENM} Empfangs berei
 Die gespeicherten Werte werden im \autoref{facilityLayer_denmManagementContainer} genauer beschrieben.
 
  
-Das \ac{DENM} reception management stellt stellt die die Daten der empfangen \ac{DENM} den anderen Komponenten des Facility Layers und den Anwendungen zur Verfügung.
+Das \ac{DENM} reception management stellt die die Daten der empfangen \ac{DENM} den anderen Komponenten des Facility Layers und den Anwendungen zur Verfügung.
 
 \paragraph{DENM Keep Alive Forwarding}
 Das Keep Alive Forwaring implementiert das im \ac{DENM} Protokoll beschriebene Verfahren zum Weiterleiten von \ac{DENM}. Der Standard \cite{en302637-3} bezeichnet diese Komponente als optional. Ein genaues Protokoll zum Weiterleiten der \ac{DENM} ist noch nicht definiert.
@@ -385,7 +385,7 @@ Eine \ac{DENM} soll an so viele \ac{ITS-S} des gleichen Gebiets wie möglich ver
 	\label{fig:darstellungDenVerteilenLayer}
 \end{figure}
 
-Die \autoref{fig:darstellungDenVerteilenLayer} zeigt, wie sich eine \ac{DENM} über die verschiedenen Layer ausbreitet. In diesem Prozess sind drei \ac{ITS-S} beteiligt. Es gibt eine sendende \ac{ITS-S}, eine Empfangende und eine, die nur weiterleitet. Zu sehen ist, dass die Verarbeitung der \ac{DENM} im Application Layer beginnt und endet. Am Weiterleiten sind nur die unteren Layer, bis einschließlich der Facilities Layer beteiligt. Die Entscheidung, ob und wie weitergeleitet wird wird im \ac{DEN} Basic Service getroffen. 
+Die \autoref{fig:darstellungDenVerteilenLayer} zeigt, wie sich eine \ac{DENM} über die verschiedenen Layer ausbreitet. In diesem Prozess sind drei \ac{ITS-S} beteiligt. Es gibt eine sendende \ac{ITS-S}, eine Empfangende und eine, die nur weiterleitet. Zu sehen ist, dass die Verarbeitung der \ac{DENM} im Application Layer beginnt und endet. Am Weiterleiten sind nur die unteren Layer, bis einschließlich des Facilities Layers beteiligt. Die Entscheidung, ob und wie weitergeleitet wird wird im \ac{DEN} Basic Service getroffen. 
 
 \subsection{Die Aktualisierung von DENM}
 Wenn sich ein Event, zu dem es bereits \ac{DENM} gibt, ändert, müssen die \ac{DENM} aktualisiert werden. Dazu gibt es das \ac{DENM} update. Das \ac{DENM} Update wird vom Application Layer angefordert und im \ac{DEN} Basic Service erstellt. Dieser Prozess wird von der \ac{ITS-S} angestoßen, die die \ac{DENM} ursprünglich versendet hat. Bei einem Update wird die referenceTime der \ac{DENM} aktualisiert, die actionID bleibt unverändert. 
@@ -404,7 +404,7 @@ Wenn eine beendende \ac{DENM} aus einer vertrauenswürdigen Quelle empfangen wur
 Die Autorisierung der \ac{DENM} ist wie die der \ac{CAM} definiert. Wie \ac{CAM} werden \ac{DENM} gebroadcastet und unterliegen keiner Vertraulichkeit. Die Identität der sendenden \ac{ITS-S} muss geschützt bleiben.
 
 \subsection{Aufbau der DEMN}
-Eine \ac{DENM} besteht aus mehren Containern. Die Container sind in einer festen Reihenfolge angeordnet.  Vor den Containern befindet sich ein \ac{ITS} PDU Header, vgl. \autoref{facilitylayer_PduHeader}. Soweit der Aufbau der Datentypen beschrieben ist, werden sie beschrieben. Auffällig ist, dass der Standard \cite{en302637-3} wegen dem Aufbau der Datentypen auf den Standard \cite{ts102894-2} referenziert. Dieser beschreibt die Datenelemente aber nicht immer.
+Eine \ac{DENM} besteht aus mehren Containern. Die Container sind in einer festen Reihenfolge angeordnet.  Vor den Containern befindet sich ein \ac{ITS} PDU Header(\autoref{facilitylayer_PduHeader}). Soweit der Aufbau der Datentypen beschrieben ist, werden sie beschrieben. Auffällig ist, dass der Standard \cite{en302637-3} wegen dem Aufbau der Datentypen auf den Standard \cite{ts102894-2} referenziert. Dieser beschreibt die Datenelemente aber nicht immer.
 
 \begin{figure}[htbp]
 	\includegraphics[width=0.95\textwidth]{content/images/04_facilitylayer/denmAufbau.pdf}
@@ -417,7 +417,7 @@ Der Management Container enthält Management Daten des entdeckten Events und Inf
 \paragraph{actionID}
 Die actionID identifiziert ein Event. Sie soll das Event einzigartig beschreiben und wird für jedes Event neu generiert und diesem zugewiesen. Sie besteht aus der \ac{ITS-S} \ac{ID} der erstellenden \ac{ITS-S} und einer Sequenzummer, die noch nicht benutzt wurde. Falls mehrere \ac{ITS-S} eine \ac{DENM} zu dem gleichen Event erstellen, müssen sich die actionID der \ac{DENM} unterscheiden. 
 
-Die actionID einer \ac{DENM} ändert sich nicht mehr. Auch nicht, wenn die \ac{DENM} weitergeleitet oder aktualisiert wird. Anhand der actionID können die \ac{ITS-S} \ac{DENM} voneinander unterscheiden, die von unterschiedlichen \ac{ITS-S} zu einem gleichen Event erstellt wurden.
+Die actionID einer \ac{DENM} ändert sich nicht mehr. Auch nicht, wenn die \ac{DENM} weitergeleitet oder aktualisiert wird. Anhand der actionID können die \ac{ITS-S} \ac{DENM}, die von unterschiedlichen \ac{ITS-S} zu einem gleichen Event erstellt wurden, voneinander unterscheiden.
 
 \paragraph{detectionTime \label{facilitylayer_referenceTime}}
 Die detectionTime ist die Zeit, zu der das Event von der sendenden \ac{ITS-S} entdeckt wurde. Diese Zeit wird geändert, wenn eine \ac{DENM} aktualisiert wird, oder wenn das Event beendet wird. Gemäß Standard \cite{ts102894-2} ist die Zeit als die Millisekunden seit 00:00:00.000 01. Januar 2004 \ac{UTC} definiert.
@@ -452,10 +452,10 @@ Dieses Datenelement beschreibt den Typ der sendenden \ac{ITS-S}. Die vordefinier
 Der Situation Container enthält Daten zu dem entdeckten Event. Er muss mindestens die Datenelemente informationQuality und eventType beinhalten. Darüber hinaus kann er aber noch weitere Elemente enthalten. Die Informationen, die hier übertragen werden, werden vom Application Layer bereit gestellt.
 
 \paragraph{informationQuality}
-Dieses Datenelement beschreibt die Wahrscheinlichkeit, ob das entdeckte Event wirklich passiert ist. Es wird von der entdeckenden Application gesetzt. Dieses Element ist eine Ganzzahl und kann acht Werte annehmen, wobei 0 unbekannt bedeutet, der niedrigste Wert ist 1 und der höchste Wert ist 7.
+Dieses Datenelement beschreibt die Wahrscheinlichkeit, mit der das entdeckte Event wirklich passiert ist. Es wird von der entdeckenden Application gesetzt. Dieses Element ist eine Ganzzahl und kann acht Werte annehmen, wobei 0 unbekannt bedeutet, der niedrigste Wert ist 1 und der höchste Wert ist 7.
 
 \paragraph{eventType \label{facilitylayer_eventType}}
-Der eventType beschreibt das Event, das entdeckt wurde. Der eventType besteht wiederum aus mehreren Werten. Der erste Wert nennt sich causeCodeType und enthält den Grund des Events. Beispiele hierfür sind accident,  wrongWayDriving oder vehicleBreakdown. Er ist als Ganzzahl codiert und besitzt einen Zahlenraum von 256. Der zweite Wert des eventTypes ist der SubCauseCodeType. Er ist auch eine Anzahl mit dem Wertebereich 0 \dots 255. Der subCauseCode beschreibt den causeCode genauer, eine genauere Beschreibung ist zum gegenwärtigen Zeitpunkt nicht in den \ac{ETSI} Dokumenten zu finden.
+Der eventType beschreibt das Event, das entdeckt wurde. Der eventType besteht wiederum aus mehreren Werten. Der erste Wert nennt sich causeCodeType und enthält den Grund des Events. Beispiele hierfür sind accident,  wrongWayDriving oder vehicleBreakdown. Er ist als Ganzzahl codiert und besitzt einen Zahlenraum von 256. Der zweite Wert des eventTypes ist der SubCauseCodeType. Er ist auch eine Ganzzahl mit dem Wertebereich 0 \dots 255. Der subCauseCode beschreibt den causeCode genauer, eine genauere Beschreibung ist zum gegenwärtigen Zeitpunkt nicht in den \ac{ETSI} Dokumenten zu finden.
 
 \paragraph{linkedCause}
 Dieses Datenelement beschreibt ein verknüpftes Event. Es enthält die gleichen Werte wie der eventType (\ref{facilitylayer_eventType}). Ein Beispiel für ein verknüpftes Event ist ein vehicleBreakdown, das der linkedCause für ein dangerousEndOfQueue ist.  
@@ -493,7 +493,7 @@ Die Fahrtrichtung wird als Gradzahl beschrieben, die vom, in WGS84 definierten, 
 Die Genauigkeit der Richtung wird mit einem Wert zwischen 0 und 127 beschrieben. 0 entspricht \glqq withinZeroPointOneDegree (0)\grqq~und der Wert 127 entspricht \glqq unavailable (127)\grqq.
 
 \paragraph{traces}
-Das Datenelement traces beinhaltet mehrere Wegpunkte. Sie bilden zusammen eine Wegbeschreibung zu dem Event. Eine \ac{DENM} kann mehre Traces enthalten. Dadurch können verschiedene Wege zu dem Event beschrieben werden. Eine \ac{IVS} kann seine eigene Route mit den empfangen Traces	 vergleichen und feststellen, ob es auf dem Weg zum Event ist. Aktuell darf eine \ac{DENM} bis zu sieben Traces enthalten.
+Das Datenelement traces beinhaltet mehrere Wegpunkte. Sie bilden zusammen eine Wegbeschreibung zu dem Event. Eine \ac{DENM} kann mehre Traces enthalten. Dadurch können verschiedene Wege zu dem Event beschrieben werden. Eine \ac{IVS} kann ihre eigene Route mit den empfangen Traces	 vergleichen und feststellen, ob sie auf dem Weg zum Event ist. Aktuell darf eine \ac{DENM} bis zu sieben Traces enthalten.
 
 
 \paragraph{roadType}
@@ -501,13 +501,13 @@ Das Datenelement roadtype beschreibt den Typ der Straße. Möglich sind vier Wer
 
 
 \section{SPaT\label{sec:spat}}
-\ac{SPaT} ist eine Nachricht, die den Zustand einer Straßenkreuzung beschreibt. Die Beschreibung enthält Statusinformationen der \ac{VBA} und Informationen über die Kreuzung selber. \ac{SPaT} ist noch nicht vom \ac{ETSI}, bzw. dem \ac{ISO} standardisiert. Aus diesem Grund stammen die folgenden Informationen hauptsächlich aus den U.S. amerikanischen Quellen \cite{usSpat} und \cite{usCaliforniaSpat}. 
+\ac{SPaT} ist eine Nachricht, die den Zustand einer Straßenkreuzung beschreibt. Die Beschreibung enthält Statusinformationen der \ac{VBA} und Informationen über die Kreuzung selber. \ac{SPaT} ist noch nicht vom \ac{ETSI}, bzw. der \ac{ISO} standardisiert. Aus diesem Grund stammen die folgenden Informationen hauptsächlich aus den U.S. amerikanischen Quellen \cite{usSpat} und \cite{usCaliforniaSpat}. 
 
 Für \ac{SPaT} gibt es zwei grundsätzliche Betriebsarten. Die erste Betriebsart ist eine feste \ac{VBA} Schaltung. Diese wird den \ac{IVS} über \ac{SPaT} Nachrichten mitgeteilt. Anhand dieser Informationen kann die \ac{IVS} selber die Ampelzeiten berechnen und benötigt keine  weiteren \ac{SPaT} Nachrichten. Die zweite Betriebsart ist, dass die Ampelzeiten aufgrund externer Ereignisse beeinflusst werden können. Externe Ereignisse sind beispielsweise Fußgänger, verkehrsabhängige Schaltungen oder priorisierte \ac{IVS}, wie z.B. Rettungswagen. Bei der zweiten Betriebsart muss beachtet werden, dass zu schnelle Änderungen vermieden werden müssen. Die \ac{IVS} benötigen eine bestimmte Zeit zur Reaktion, so benötigt beispielsweise ein Auto die Reaktionszeit des Fahrers und einen Bremsweg. Wird die Fahrspur dieses Autos gesperrt und andere Fahrspuren dafür freigegeben, wenn das Auto sich schon fast vor der Haltelinie befindet, so ist eine Bremsung vor der Kreuzung nicht mehr möglich. Daraus resultiert ein Sicherheitsrisiko, da die andere Fahrspur für die anderen Fahrzeuge nicht garantiert frei ist. 
 
 Auf dieser Grundlage können weitere Dienste angeboten werden. So können Abbiegeassistent Systeme oder Vorzugsschaltungen realisiert werden. 
 
- Abbiegeassistent Systeme unterstützen \ac{IVS} beim Abbiegen in Kreuzungen. Anhand der Positions- und Geschwindigkeitsdaten der \ac{IVS} kann die \ac{IRS} berechnen, ob ein Abbiegen nach rechts oder nach links sicher ist. Neben der Positionsdaten können auch Erfassungssysteme genutzt werden, die in die Infrastruktur integriert sind. Beispielsweise können \ac{Radar} oder \ac{Lidar} Systeme genutzt werden. Der Nachteil von rein \ac{ITS} basierten Systemen ist, dass nicht \ac{ITS} kompatible Fahrzeuge nicht erkannt werden. Das bedeutet, dass die \ac{IRS} eine freie Kreuzung erkennt und meldet, obwohl nicht \ac{ITS} basierende Fahrzeuge über die Kreuzung fahren. 
+ Abbiegeassistent Systeme unterstützen \ac{IVS} beim Abbiegen in Kreuzungen. Anhand der Positions- und Geschwindigkeitsdaten der \ac{IVS} kann die \ac{IRS} berechnen, ob ein Abbiegen nach rechts oder nach links sicher ist. Neben der Positionsdaten können auch Erfassungssysteme genutzt werden, die in die Infrastruktur integriert sind. Beispielsweise können \ac{Radar} oder \ac{Lidar} Systeme genutzt werden. Der Nachteil von rein auf \ac{ITS} basierenden Systemen ist, dass nicht \ac{ITS} kompatible Fahrzeuge nicht erkannt werden. Das bedeutet, dass die \ac{IRS} eine freie Kreuzung erkennt und meldet, obwohl nicht \ac{ITS} basierende Fahrzeuge über die Kreuzung fahren. 
  
 Die Bevorzugung von Fahrzeugen bietet sich gemäß der Empfehlung \cite{usSpat} für Notfallfahrzeuge, für Fahrzeuge des Nahverkehrs und für den Frachtverkehr an. Durch die Bevorzugung können diese \ac{IVS} eine grüne Welle erreichen. Das bedeutet, dass entweder Grünphasen verlängert werden oder Rotphasen unterbrochen werden. Sofern nicht bereits durch andere Nachrichten, wie \ac{CAM} geschehen, fordert die \ac{IVS} bei der \ac{IRS} eine Bevorrangung an, wenn sie anhand der \ac{SPaT} erkennt, dass die Kreuzung nicht frei ist. Die \ac{IVS} beantwortet diese Anfrage im positiven Fall mit einer weiteren \ac{SPaT} Nachricht, die eine freie Kreuzung signalisiert.   
 
