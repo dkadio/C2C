@@ -28,7 +28,7 @@ Im Folgenden werden die einzelnen Komponenten des Networklayers genauer erläute
 Wie auf \autoref{fig:layerUeberblick-nwLayer} zu sehen ist, hat der Network Layer Interfaces zum Access Layer (\autoref{subsec:accessLayer}), dem Management Layer (\autoref{architektur_managementLayer}), dem Security Layer (\autoref{architektur_securityLayer}) und dem Facilities Layer (\autoref{architektur_facilitiesLayer}).
 
 \subsubsection{Location Table}
-Jedes \ac{ITS-S} verfügt über eine Location Table. In dieser Tabelle werden Informationen über die naheliegenden Knoten, also \ac{ITS-S}, gespeichert. Diese Tabelle ist für das Forwarding notwendig, da hier unter anderem die Adressen und Positionen der zu erreichenden \ac{ITS-S} gespeichert sind. 
+Jede \ac{ITS-S} verfügt über eine Location Table. In dieser Tabelle werden Informationen über die naheliegenden Knoten, also \ac{ITS-S}, gespeichert. Diese Tabelle ist für das Forwarding notwendig, da hier unter anderem die Adressen und Positionen der zu erreichenden \ac{ITS-S} gespeichert sind. 
 Im Folgenden werden einige der Informationen, die in einer solchen Tabelle enthalten sind, aufgeführt. Zusätzlich können dort noch weitere Informationen  gespeichert werden. Das genaue Format der Datensätze ist noch nicht spezifiziert und kann somit von diesem Dokument abweichen. Die Daten, die in der Location Table gespeichert sind, sind nur zeitweise korrekt, daher sind sie mit einem Timestamp versehen und werden nach einer gewissen Zeit verworfen. Die Informationen des Positionsvektors sollten mindestens über die unten aufgeführten Informationen verfügen. 
 \begin{enumerate}
       \item C2C Netzwerkadresse
@@ -72,7 +72,7 @@ Anhand der Paketpriorität wird entschieden, wie mit dem Paket verfahren wird. H
 
 %Damit wichtige Pakete zuerst gesendet werden können und andere dennoch empfangen werden, gibt es eine Paketqueue in die die unwichtigeren Nachrichten eingereiht werden. 
 
-\subsubsection{Packet Assemby}
+\subsubsection{Packet Assembly}
 Da sich beim Versenden von Paketen die Positionsangaben der \ac{IVS}, sowie die Hops oder Time-to-Live ändern, muss der Networklayer dafür sorgen, dass die Pakete beim Weitersenden modifiziert oder aktualisiert werden. Hierfür werden die Informationen aus der Location Table verwendet.
 
 \subsubsection{Congestion Control}
@@ -88,7 +88,7 @@ Da die Paketdichte in einem C2C-Netz sehr hoch werden kann und es zu Überläufe
 Damit in \ac{C2C} die richtigen Routen gefunden werden können und die Ziele adressierbar sind, benötigen die Teilnehmer einmalige Adressen. Diese sind als \acl{GNW} Adresse spezifiziert. 
 
 \subsection{Adressierung} 
-Die \acl{GNW} Adresse besteht aus acht Bytes, welche verschiedene Informationen repräsentieren. Die ersten zwei Bytes zeigen, ob die Adresse manuell oder automatisch konfiguriert wurde, spezifizieren die \ac{ITS-S} und geben den den ITS-S Country Code an. Die restlichen sechs Bytes repräsentieren die MAC Adresse.\cite{etsi302636-4-1}
+Die \acl{GNW} Adresse besteht aus acht Bytes, welche verschiedene Informationen repräsentieren. Die ersten zwei Bytes zeigen, ob die Adresse manuell oder automatisch konfiguriert wurde, spezifizieren die \ac{ITS-S} und geben den ITS-S Country Code an. Die restlichen sechs Bytes repräsentieren die MAC Adresse.\cite{etsi302636-4-1}
 
 \begin{figure}
 	\includegraphics[width=0.99\textwidth]{content/images/03_networklayer/gnwadress.jpg}
@@ -100,11 +100,11 @@ Die auf der \autoref{fig:formatgnwa} zu sehenden Felder sind in der nachfolgende
 \begin{table}[h]
 \begin{tabular}{llp{0.7\linewidth}}
 \textbf{Feld} & \textbf{Feldname} & \textbf{Bedeutung} \\ \hline
-    1 & M       & wird auf 1 gesetzt wenn die Adresse manuell vergeben worden ist, andernfalls auf 0          \\
+    1 & M       & Wird auf 1 gesetzt wenn die Adresse manuell vergeben worden ist, andernfalls auf 0          \\
     2 & ST    & Identifiziert um was es sich für eine ITS handelt       \\
     3 & SCC   &   ITS-S Country Code        \\
-    4 & MID    &    erster Teil der MAC-Adresse       \\
-    5 & MID     &   zweiter Teil der MAC-Adresse        \\
+    4 & MID    &    Erster Teil der MAC-Adresse       \\
+    5 & MID     &   Zweiter Teil der MAC-Adresse        \\
 \end{tabular}
 \caption{Felder und Bedeutung der \acs{GNW} Adresse \cite{etsi302636-4-1}}
 \label{tab:formatgnwa}
