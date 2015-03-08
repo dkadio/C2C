@@ -1,6 +1,6 @@
 \chapter{Network Layer\label{chap:networklayer}}
-Der Networklayer in der \ac{C2C} übernimmt die Aufgabe, Nachrichten durch das Netz zu routen. Er bietet, Transportdienste an, welche vom Applicationlayer genutzt werden können. Darüber hinaus ist er für die Koordination des Netzwerkes zuständig.
-Das bedeutete im Genauen, dass er dafür Sorge trägt, dass die Nachrichten auch wirklich ankommen. Dafür beachtet er die Anforderungen der verschiedenen Anwendungen, wie z.b. das Senden von zeitkritischen Nachrichten einer Safety Application. Um bei einem Netzwerk, wie es in der \acl{C2C} zu finden ist, die Kommunikation zu steuern, stellen sich einige Anforderungen und Herausforderungen. Vor allem bei der Adressierung der richtigen Knoten.
+Der Networklayer in der \ac{C2C} übernimmt die Aufgabe, Nachrichten durch das Netz zu routen. Er bietet Transportdienste an, welche vom Applicationlayer genutzt werden können. Darüber hinaus ist er für die Koordination des Netzwerkes zuständig.
+Das bedeutet im Genauen, dass er dafür Sorge trägt, dass die Nachrichten auch wirklich ankommen. Dafür beachtet er die Anforderungen der verschiedenen Anwendungen, wie z.b. das Senden von zeitkritischen Nachrichten einer Safety Application. Um bei einem Netzwerk, wie es in der \acl{C2C} zu finden ist, die Kommunikation zu steuern, stellen sich einige Anforderungen und Herausforderungen. Vor allem bei der Adressierung der richtigen Knoten.
 
 \begin{figure}
 	\includegraphics[width=0.95\textwidth]{content/images/03_networklayer/uebersichtLayer.pdf}
@@ -43,14 +43,14 @@ Im Folgenden werden einige der Informationen, die in einer solchen Tabelle entha
 	\item Genauigkeit des Vektors
       \end{enumerate}
       \item Version des Protokolls
-      \item Typ des \ac{ITS-S}s
+      \item Typ der \ac{ITS-S}
       \item Zeitstempel des zuletzt erhaltenen Paketes
-      \item Datenrate des ITS
+      \item Datenrate der \ac{ITS-S}
       \item Direkter Nachbar Flag
 \end{enumerate}
 
 \subsubsection{Beaconing}
-Um die Informationen in der Location Table zu füllen, sendet jedes \ac{ITS-S} in einem periodischen Abstand eine sogenannte Beacon-Nachricht an seine Umgebung. In dieser Nachricht sind die oben aufgeführten Informationen enthalten. Jede \ac{ITS-S}, die diese Nachrichten empfängt aktualisiert bei Bedarf ihre Location Table.
+Um die Informationen in der Location Table zu füllen, sendet jede \ac{ITS-S} in einem periodischen Abstand eine sogenannte Beacon-Nachricht an ihre Umgebung. In dieser Nachricht sind die oben aufgeführten Informationen enthalten. Jede \ac{ITS-S}, die diese Nachrichten empfängt aktualisiert bei Bedarf ihre Location Table.
 
 \subsubsection{Forwarding}
 Der Networklayer untersützt verschiedene Arten von Forwarding Algorithmen. Diese werden im späteren \autoref{sec:georouting} genauer erläutert.
