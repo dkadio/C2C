@@ -28,7 +28,7 @@ Diese Einheit hat die folgenden Vorraussetzungen:
 \begin{itemize}
 	\item Benötigt Zugriff auf Fahrzeug Funktionen, wie Bremssystem, Reifendruck, Stabilitätskontrolle, Geschwindigkeitsregelung, etc.
 	\item Muss verschiedene Parameter filtern können, die für die Applications benötigt werden, wie beispielsweise Hauptzylinderdruck, Lenkradwinkel, Lenk\-rad\-win\-kel\-än\-der\-ung\-sra\-te, Gierrate, Fahrzeuggeschwindigkeit oder Beschleunigungssteuerung
-	\item Muss über die Möglichkeit verfügen, die verschiedenen Werte zu aktualisieren, die für die \ac{CAM} benötigt werden
+	\item Muss über die Mög\-lichkeit verfügen, die verschiedenen Werte zu aktualisieren, die für die \ac{CAM} benötigt werden
 \end{itemize}
 
 \subsubsection{Station state monitoring \label{facilitylayer_StationStateMonitoring}}
@@ -36,8 +36,8 @@ Die station state monitoring facility überwacht dauerhaft die aktuellen Paramet
 Dazu benötigt diese die folgenden Punkte.
 \begin{itemize}
 	\item Benötigt Zugriff auf die verschiedene Funktionen, die überwacht werden sollen, wie Motor / Antriebsstrang, Cockpit, Scheibenwischer, Lichtsteuerung, etc.
-	\item Muss über die Möglichkeit verfügen, diese Funktionen, die von den Applications verwendet werden, nach Aktivität zu filtern
-	\item Muss über die Möglichkeit verfügen, die verschiedene Werte zu aktualisieren, die für die \ac{CAM} benötigt werden
+	\item Muss über die Mög\-lichkeit verfügen, diese Funktionen, die von den Applications verwendet werden, nach Aktivität zu filtern
+	\item Muss über die Mög\-lichkeit verfügen, die verschiedene Werte zu aktualisieren, die für die \ac{CAM} benötigt werden
 \end{itemize}
 
 \subsubsection{Services management \label{facilitylayer_ServicesManagement} }
@@ -86,12 +86,12 @@ Damit die Facility richtig arbeiten kann, sind nachfolgende Anforderungen gestel
 Der Information Support entspricht der Präsentationsebene des \ac{ISO} \ac{OSI} Modells. Er ist für die Datenverwaltung verantwortlich. Dazu gehört das Verwalten von, sowohl statischen als auch von dynamischen, Daten. Sie sind meistens gebiets- und zeitabhängig und verfügen über eine Time to Live. Durch die Time to Live ist ihre Gültigkeit eingeschränkt. Der Information Support ist dafür zuständig, diese Daten zu verarbeiten und immer auf dem aktuellen Stand zu halten. Die wichtigste Komponente hierbei ist die \ac{LDM}. Im Folgenden werden die einzelnen Komponenten erläutert und es wird genauer auf die LDM eingegangen.
 \begin{itemize}
 	\item Data presentation - Dient zum Codieren und Decodieren von Daten, die mit formalen Sprachen beschrieben sind (z.b. \ac{ASN.1})
-	\item Location referencing - Bietet die Möglichkeit, bewegliche oder statische Objekte in der LDM zu hinterlegen 
+	\item Location referencing - Bietet die Mög\-lichkeit, bewegliche oder statische Objekte in der LDM zu hinterlegen 
 	\item Station type/capabilities - Hierzu gehören einige, statische sowie dynamische, Informationen über die \ac{ITS-S}. Diese Informationen können beispielsweise die Art der \ac{ITS-S} (also um was es sich für ein Fahrzeug handelt), die Größe dieses Fahrzeuges oder die Frage, welche die nächste \ac{IRS} ist, betreffen. Hinzu kommen noch Informationen, die die Services der \ac{ITS-S} betreffen, also z.B. welche verfügbar sind
 \end{itemize}
 
 \subsubsection{LDM database \label{facilitylayer_ldmdatabase}}
-Die \ac{LDM} Database ist eine Sammlung von Informationen für Facilities und Anwendungen. Facilities können beispielsweise der \ac{CA} Service (\autoref{sec:cam}) oder der \ac{DEN} Service (\autoref{sec:den}) sein. Ihnen wird durch die \ac{LDM} eine Möglichkeit gegeben, ihre Daten zu speichern. Neben der Speicherung wird eine Rechtevergabe für die Daten angeboten. Dadurch kann der Zugriff auf autorisierte Anwendungen beschränkt werden. Die gespeicherten Daten entsprechen den Daten, die von den anderen Facilities, bzw. Applications, genutzt werden und  werden von der  \ac{LDM} nicht verändert. Sie werden \ac{LDM} data object genannt. 
+Die \ac{LDM} Database ist eine Sammlung von Informationen für Facilities und Anwendungen. Facilities können beispielsweise der \ac{CA} Service (\autoref{sec:cam}) oder der \ac{DEN} Service (\autoref{sec:den}) sein. Ihnen wird durch die \ac{LDM} eine Mög\-lichkeit gegeben, ihre Daten zu speichern. Neben der Speicherung wird eine Rechtevergabe für die Daten angeboten. Dadurch kann der Zugriff auf autorisierte Anwendungen beschränkt werden. Die gespeicherten Daten entsprechen den Daten, die von den anderen Facilities, bzw. Applications, genutzt werden und  werden von der  \ac{LDM} nicht verändert. Sie werden \ac{LDM} data object genannt. 
 Die \ac{LDM} befindet sich im Facility Layer. Auf der \autoref{fig:ldmZwischenLayern} ist die \ac{LDM} dargestellt. Auf dieser Abbildung ist zu erkennen, dass die anderen Services des Facility Layers eine Verbindung zur \ac{LDM} haben. Die \ac{LDM} besitzt weiterhin Interfaces in andere Layer.
 
 \begin{figure}[htbp]
@@ -122,7 +122,7 @@ Die Interfaces sind auf der \autoref{fig:ldmZwischenLayern} zu erkennen. Auf der
 
 Es gibt vier Interfaces. In \autoref{tab:facilityLayer_Beschreibung_Interfaces} werden die Interfaces beschrieben. Die erste Spalte beschreibt den Namen des Interfaces. Dieser findet sich auch in der \autoref{fig:ldmInterfaces} wieder. Die zweite Spalte beschreibt, ob die \ac{LDM} etwas anbietet (\textbf{P}rovided), oder ob sie Funktionen benötigt, die es über dieses Interface erhält (\textbf{R}equired). Die dritte Spalte beschreibt, zu welchen Komponenten das Interface verbindet. Im Falle von IF:LDM.1 und IF.LDM.2 ist die Verbindung zur \autoref{fig:ldmZwischenLayern} offensichtlich. Die letzten Spalten verbinden zu den Data Providern, bzw. Data Consumern. Im Bezug auf die \autoref{fig:ldmZwischenLayern} sind das der Application Layer, sowie die anderen Komponenten des Facility Layers. 
 
- \begin{longtable}{| p{0.15\linewidth} | p{0.15\linewidth} | p{0.24\linewidth} |p{0.24\linewidth}| p{0.15\linewidth}|}
+ \begin{longtable}{| p{0.15\linewidth} | p{0.15\linewidth} | p{0.15\linewidth} |p{0.20\linewidth}| p{0.15\linewidth}|}
  \hline
  \textbf{IF ID} & \textbf{IF Type} & \textbf{Connected Component} &  \textbf{Message Type}&\textbf{Direction} \\
 IF:LDM.1 & R & Management Layer & MF-SAP & IN \& OUT \\
@@ -169,7 +169,7 @@ Der Standard \cite{en302895} beschreibt folgende Funktionen der \ac{LDM}:
 Der Communication Support hilft dabei, die verschiedenen Kommunikationsarten zu verwalten und sie dem Applicationlayer anzubieten. Zu den Kommunikationsarten gehört beispielsweise das Georouting. Der communication support arbeitet mit dem Networklayer zusammen und unterstützt bei der Adressierung von Fahrzeugen. Außerdem unterstützt er dabei, dass, während die \ac{IVS} sich bewegt, in ein Core Network geroutet werden kann und dabei, dass Pakete aus diesem Netzwerk empfangen werden können. 
 
 \section{CAM\label{sec:cam}}
-\ac{ITS} bietet die Möglichkeit, dass \ac{ITS-S} untereinander Statusinformationen austauschen. Für den Austausch von Statusinformationen werden \ac{CAM} versandt. Diese beinhalten Informationen über die Anwesenheit allgemein, über die Position und den grundsätzlichen Status. Gemäß Standard \cite{ts102637-2} soll jede \ac{ITS-S} den Umgang mit diesen Nachrichten beherrschen. Das beinhaltet das Senden, das Empfangen und das Generieren dieser Nachrichten. So kennt jede \ac{ITS-S} ihre aktuellen Nachbarn inklusive ihrer Positionen, Bewegungen und den grundlegenden Sensorinformationen. Die \ac{CAM} werden über den Standard \ac{ITS-G5} übertragen. \ac{CAM} werden mit einer Frequenz zwischen 1 und 10 Hz übertragen, das bedeutet, dass mindestens jede Sekunde eine \ac{CAM} generiert und versendet wird, maximal werden aber 10 \ac{CAM} pro Sekunde generiert und versendet. Der Versand erfolgt über einen Single Hop Broadcast. \ac{CAM} spielen besonders für \ac{IVS} eine Rolle.
+\ac{ITS} bietet die Mög\-lichkeit, dass \ac{ITS-S} untereinander Statusinformationen austauschen. Für den Austausch von Statusinformationen werden \ac{CAM} versandt. Diese beinhalten Informationen über die Anwesenheit allgemein, über die Position und den grund\-sätz\-lich\-en Status. Gemäß Standard \cite{ts102637-2} soll jede \ac{ITS-S} den Umgang mit diesen Nachrichten beherrschen. Das beinhaltet das Senden, das Empfangen und das Generieren dieser Nachrichten. So kennt jede \ac{ITS-S} ihre aktuellen Nachbarn inklusive ihrer Positionen, Bewegungen und den grundlegenden Sensorinformationen. Die \ac{CAM} werden über den Standard \ac{ITS-G5} übertragen. \ac{CAM} werden mit einer Frequenz zwischen 1 und 10 Hz übertragen, das bedeutet, dass mindestens jede Sekunde eine \ac{CAM} generiert und versendet wird, maximal werden aber 10 \ac{CAM} pro Sekunde generiert und versendet. Der Versand erfolgt über einen Single Hop Broadcast. \ac{CAM} spielen besonders für \ac{IVS} eine Rolle.
 
 
 Das Nennen des vollständigen Inhalts einer \ac{CAM} würde den Rahmen dieser Ausarbeitung sprengen. Im Folgenden werden dennoch einige interessante Datenelemente aufgezählt. Sie entstammen dem Standard \cite{ts102637-2}. Dort können auch die Restlichen nachlesen werden.
@@ -331,7 +331,7 @@ Der Standard \cite{en302637-3} beschreibt zu diesem Interface lediglich, dass es
 \paragraph{IF.Mng}
 Der Standard \cite{en302637-3} beschreibt zu diesem Interface lediglich, dass es Informationen zu dem Management Layer überträgt. 
 \paragraph{IF.DEN.1}
-Das Interface IF.DEN.1 wird vom Application Layer genutzt. Damit werden Anforderungen für \ac{DENM} übertragen. Möglich sind die Anforderungen AppDENM\_trigger, AppDENM\_update und AppDENM\_termination. Sie entsprechen dem Anfordern, dem Aktualisieren oder dem Beenden von \ac{DENM} und werden vom Application Layer an den \ac{DEN} Basic Service übertragen. Die übertragenen Daten sind im Standard \cite{en302637-3} definiert. Die Anfragen vom Application Layer werden vom \ac{DEN} Basic Service mit der actionId der bearbeiteten \ac{DENM} oder einer Fehlerbenachrichtigung quittiert.
+Das Interface IF.DEN.1 wird vom Application Layer genutzt. Damit werden Anforderungen für \ac{DENM} übertragen. Mög\-lich sind die Anforderungen AppDENM\_trigger, AppDENM\_update und AppDENM\_termination. Sie entsprechen dem Anfordern, dem Aktualisieren oder dem Beenden von \ac{DENM} und werden vom Application Layer an den \ac{DEN} Basic Service übertragen. Die übertragenen Daten sind im Standard \cite{en302637-3} definiert. Die Anfragen vom Application Layer werden vom \ac{DEN} Basic Service mit der actionId der bearbeiteten \ac{DENM} oder einer Fehlerbenachrichtigung quittiert.
 \paragraph{IF.DEN.2}
 Das Interface IF.DEN.2 wird genutzt um die empfangen Daten vom \ac{DEN} Basic Service in den Application Layer zu transportieren. Dabei werden ganze \ac{DENM} transportiert.
 
@@ -376,7 +376,7 @@ Das Keep Alive Forwaring implementiert das im \ac{DENM} Protokoll beschriebene V
 \end{figure}
 
 \subsection{Verbreitung der DENM}
-Eine \ac{DENM} soll an so viele \ac{ITS-S} des gleichen Gebiets wie möglich verteilt werden. Das schließt auch \ac{ITS-S} ein, die während der Eventdauer das Gebiet erreichen. Auch wenn eine \ac{ITS-S} keine direkte Verbindung zu der auslösenden \ac{ITS-S} hat, soll sie die \ac{DENM} empfangen. Deswegen werden einige Parameter von der \ac{RHW} Applikation selber definiert. Die Liste dieser Parameter beginnt mit dem Zeitintervall zwischen den \ac{DENM}, die von der gleichen \ac{ITS-S} ausgesendet werden. Neben der Frequenz wird auch die maximale Latenz, die für das Senden der \ac{DENM} benötigt wird, definiert und die Priorität der \ac{DENM}. Die Latenz beschreibt die Zeit, die \ac{DENM} vom Facility Layer der aussendenden \ac{ITS-S} zum Networking and Transport Layer der empfangenden \ac{ITS-S} benötigen. Die Priorität wird nicht in der \ac{DENM} selber festgelegt, da sie von unteren Layern übertragen wird. Das Zielgebiet für die \ac{DENM} wird auch von der \ac{RHW} Application festgelegt.
+Eine \ac{DENM} soll an so viele \ac{ITS-S} des gleichen Gebiets wie Mög\-lich verteilt werden. Das schließt auch \ac{ITS-S} ein, die während der Eventdauer das Gebiet erreichen. Auch wenn eine \ac{ITS-S} keine direkte Verbindung zu der auslösenden \ac{ITS-S} hat, soll sie die \ac{DENM} empfangen. Deswegen werden einige Parameter von der \ac{RHW} Applikation selber definiert. Die Liste dieser Parameter beginnt mit dem Zeitintervall zwischen den \ac{DENM}, die von der gleichen \ac{ITS-S} ausgesendet werden. Neben der Frequenz wird auch die maximale Latenz, die für das Senden der \ac{DENM} benötigt wird, definiert und die Priorität der \ac{DENM}. Die Latenz beschreibt die Zeit, die \ac{DENM} vom Facility Layer der aussendenden \ac{ITS-S} zum Networking and Transport Layer der empfangenden \ac{ITS-S} benötigen. Die Priorität wird nicht in der \ac{DENM} selber festgelegt, da sie von unteren Layern übertragen wird. Das Zielgebiet für die \ac{DENM} wird auch von der \ac{RHW} Application festgelegt.
 
 
 \begin{figure}[htbp]
@@ -404,7 +404,7 @@ Wenn eine beendende \ac{DENM} aus einer vertrauenswürdigen Quelle empfangen wur
 Die Autorisierung der \ac{DENM} ist wie die der \ac{CAM} definiert. Wie \ac{CAM} werden \ac{DENM} gebroadcastet und unterliegen keiner Vertraulichkeit. Die Identität der sendenden \ac{ITS-S} muss geschützt bleiben.
 
 \subsection{Aufbau der DEMN}
-Eine \ac{DENM} besteht aus mehren Containern. Die Container sind in einer festen Reihenfolge angeordnet.  Vor den Containern befindet sich ein \ac{ITS} PDU Header(\autoref{facilitylayer_PduHeader}). Soweit der Aufbau der Datentypen beschrieben ist, werden sie beschrieben. Auffällig ist, dass der Standard \cite{en302637-3} wegen dem Aufbau der Datentypen auf den Standard \cite{ts102894-2} referenziert. Dieser beschreibt die Datenelemente aber nicht immer.
+Eine \ac{DENM} besteht aus mehren Containern. Die Container sind in einer festen Reihenfolge angeordnet.  Vor den Containern befindet sich ein \ac{ITS} PDU Header (\autoref{facilitylayer_PduHeader}). Soweit der Aufbau der Datentypen beschrieben ist, werden sie beschrieben. Auffällig ist, dass der Standard \cite{en302637-3} wegen dem Aufbau der Datentypen auf den Standard \cite{ts102894-2} referenziert. Dieser beschreibt die Datenelemente aber nicht immer.
 
 \begin{figure}[htbp]
 	\includegraphics[width=0.95\textwidth]{content/images/04_facilitylayer/denmAufbau.pdf}
@@ -497,13 +497,13 @@ Das Datenelement traces beinhaltet mehrere Wegpunkte. Sie bilden zusammen eine W
 
 
 \paragraph{roadType}
-Das Datenelement roadtype beschreibt den Typ der Straße. Möglich sind vier Werte, es wird unterschieden, ob die Fahrspuren getrennt sind und ob es eine städtische Straße ist oder nicht. 
+Das Datenelement roadtype beschreibt den Typ der Straße. Mög\-lich sind vier Werte, es wird unterschieden, ob die Fahrspuren getrennt sind und ob es eine städtische Straße ist oder nicht. 
 
 
 \section{SPaT\label{sec:spat}}
 \ac{SPaT} ist eine Nachricht, die den Zustand einer Straßenkreuzung beschreibt. Die Beschreibung enthält Statusinformationen der \ac{VBA} und Informationen über die Kreuzung selber. \ac{SPaT} ist noch nicht vom \ac{ETSI}, bzw. der \ac{ISO} standardisiert. Aus diesem Grund stammen die folgenden Informationen hauptsächlich aus den U.S. amerikanischen Quellen \cite{usSpat} und \cite{usCaliforniaSpat}. 
 
-Für \ac{SPaT} gibt es zwei grundsätzliche Betriebsarten. Die erste Betriebsart ist eine feste \ac{VBA} Schaltung. Diese wird den \ac{IVS} über \ac{SPaT} Nachrichten mitgeteilt. Anhand dieser Informationen kann die \ac{IVS} selber die Ampelzeiten berechnen und benötigt keine  weiteren \ac{SPaT} Nachrichten. Die zweite Betriebsart ist, dass die Ampelzeiten aufgrund externer Ereignisse beeinflusst werden können. Externe Ereignisse sind beispielsweise Fußgänger, verkehrsabhängige Schaltungen oder priorisierte \ac{IVS}, wie z.B. Rettungswagen. Bei der zweiten Betriebsart muss beachtet werden, dass zu schnelle Änderungen vermieden werden müssen. Die \ac{IVS} benötigen eine bestimmte Zeit zur Reaktion, so benötigt beispielsweise ein Auto die Reaktionszeit des Fahrers und einen Bremsweg. Wird die Fahrspur dieses Autos gesperrt und andere Fahrspuren dafür freigegeben, wenn das Auto sich schon fast vor der Haltelinie befindet, so ist eine Bremsung vor der Kreuzung nicht mehr möglich. Daraus resultiert ein Sicherheitsrisiko, da die andere Fahrspur für die anderen Fahrzeuge nicht garantiert frei ist. 
+Für \ac{SPaT} gibt es zwei grundsätzliche Betriebsarten. Die erste Betriebsart ist eine feste \ac{VBA} Schaltung. Diese wird den \ac{IVS} über \ac{SPaT} Nachrichten mitgeteilt. Anhand dieser Informationen kann die \ac{IVS} selber die Ampelzeiten berechnen und benötigt keine  weiteren \ac{SPaT} Nachrichten. Die zweite Betriebsart ist, dass die Ampelzeiten aufgrund externer Ereignisse beeinflusst werden können. Externe Ereignisse sind beispielsweise Fußgänger, verkehrsabhängige Schaltungen oder priorisierte \ac{IVS}, wie z.B. Rettungswagen. Bei der zweiten Betriebsart muss beachtet werden, dass zu schnelle Änderungen vermieden werden müssen. Die \ac{IVS} benötigen eine bestimmte Zeit zur Reaktion, so benötigt beispielsweise ein Auto die Reaktionszeit des Fahrers und einen Bremsweg. Wird die Fahrspur dieses Autos gesperrt und andere Fahrspuren dafür freigegeben, wenn das Auto sich schon fast vor der Haltelinie befindet, so ist eine Bremsung vor der Kreuzung nicht mehr Mög\-lich. Daraus resultiert ein Sicherheitsrisiko, da die andere Fahrspur für die anderen Fahrzeuge nicht garantiert frei ist. 
 
 Auf dieser Grundlage können weitere Dienste angeboten werden. So können Abbiegeassistent Systeme oder Vorzugsschaltungen realisiert werden. 
 
