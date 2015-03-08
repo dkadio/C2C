@@ -177,7 +177,7 @@ In der  \autoref{fig:architektur_managementLayer} ist der Management Layer mit s
 
 \subsubsection{Management Information Base}
 Die Management Information Base verwaltet die Dienste, die im Netzwerk angeboten werden. \ac{ITS} verwendet das Simple Network Management Protocol in der Version 2. Mit diesem Protokoll können Komponenten im Netzwerk zentral überwacht und gesteuert werden. Da die Komponenten unterschiedliche Services anbieten, werden die Komponenten mit ihren angebotenen Services in der Management Information Base gespeichert.
-Laut Standard \cite{ts102723-2} wird es für \ac{ITS} keine besondere Management Information Base geben, es werden die aktuell im Simple Network Management Protocol verfügbaren \ac{ASN.1} Elemente genutzt. 
+Laut Standard \cite{ts102723-2} wird es für \ac{ITS} keine besondere Management Information Base geben, es werden die aktuell im Simple Network Management Protocol ver\-füg\-baren \ac{ASN.1} Elemente genutzt. 
 
 
 \subsubsection{ITS Service Advertisement}
@@ -225,8 +225,8 @@ Der Header der \ac{CTX} entspricht dem einer \ac{SAM}. Hier wird aber anstatt de
 
 Die Body Inhalte einer \ac{CTX}:
 \begin{itemize}
-	\item servContextList: Informationen über den Service Kontext, der beim Service User verfügbar ist. Kann als Antwort auf einen angebotenen Service in der serviceList der \ac{SAM} vorliegen.
-	\item ipContextList: Informationen über Service Kontexte, die beim Service User verfügbar sind und IPv6 benötigen. Kann als Antwort auf einen Service, der in der ipServList der \ac{SAM} angeboten wurde vorliegen.
+	\item servContextList: Informationen über den Service Kontext, der beim Service User ver\-füg\-bar ist. Kann als Antwort auf einen angebotenen Service in der serviceList der \ac{SAM} vorliegen.
+	\item ipContextList: Informationen über Service Kontexte, die beim Service User ver\-füg\-bar sind und IPv6 benötigen. Kann als Antwort auf einen Service, der in der ipServList der \ac{SAM} angeboten wurde vorliegen.
 \end{itemize}  
 
 Das Bekanntmachen von Services kann auf zwei Arten erfolgen. Die Möglichkeiten unterscheiden sich darin, dass bei der ersten Möglichkeit die \ac{SAM} vom Service User mit einer \ac{CTX} beantwortet wird. Bei der zweiten Möglichkeit wird die \ac{SAM} nicht beantwortet. Grundsätzlich laufen die Möglichkeiten aber gleich ab.  
@@ -258,7 +258,7 @@ In \autoref{fig:architektur_ablaufPhasen} wird der Ablauf der Phasen darstellt. 
 Beschrieben in \cite{etsi102723-2}
 
 \subsubsection{Decentralizied Congestion Control\label{architektur_dcc}}
-Congestion lässt sich aus dem Englischen mit Stau übersetzen. \ac{DCC} ist ein Mechanismus, der verhindern soll, dass Staus auftreten. Besonders bei \ac{ITS} Anwendungen kommt es auf zuverlässige und schnelle Übertragungswege an. Es werden hohe Anforderungen an die Verfügbarkeit und die Latenzen der Übertragungen gestellt. An Luftschnittstellen sind diese Anforderungen ohne eine Komponente wie \ac{DCC} kaum zu erfüllen. Der Standard \cite{etsi102687} definiert folgende Anforderungen an \ac{DCC}:
+Congestion lässt sich aus dem Englischen mit Stau übersetzen. \ac{DCC} ist ein Mechanismus, der verhindern soll, dass Staus auftreten. Besonders bei \ac{ITS} Anwendungen kommt es auf zuverlässige und schnelle Übertragungswege an. Es werden hohe Anforderungen an die ver\-füg\-barkeit und die Latenzen der Übertragungen gestellt. An Luftschnittstellen sind diese Anforderungen ohne eine Komponente wie \ac{DCC} kaum zu erfüllen. Der Standard \cite{etsi102687} definiert folgende Anforderungen an \ac{DCC}:
 \begin{itemize}
 	\item Eine faire Verteilung von Ressourcen und ein fairer Kanalzugriff zwischen allen \ac{ITS-S} in der gleichen Kommunikationszone
 	\item Die Auslastung der Kanäle muss unter vordefinierten Werten bleiben. Dies muss durch eine periodische Messung sichergestellt werden
@@ -268,7 +268,7 @@ Congestion lässt sich aus dem Englischen mit Stau übersetzen. \ac{DCC} ist ein
 	\item Es muss den spezifischen Systemanforderungen, beispielsweise Zuverlässigkeit, entsprechen
 \end{itemize}
 
-Aus diesen Anforderungen lässt sich herauslesen, dass das Vermeiden von Staus durch mehrere Mechanismen realisiert wird. Eine wichtige Eigenschaft von \ac{DCC} ist, dass es im Management Layer angesiedelt ist. Diese Tatsache ermöglicht es \ac{DCC} seine Aufgaben parallel in mehreren Layern zu realisieren. Die \autoref{fig:architektur_dccArchitektur} zeigt die Architektur von \ac{DCC}. Sie zeigt den \ac{ITS} Protokoll Stack in den die \ac{DCC} Komponenten und Interfaces eingezeichnet sind. Der Vorteil dass die Layer vernetzt sind ist, dass der Stau wirklich vermieden werden kann und nicht nur die Auswirkungen des Staus behandelt werden müssen. Ein Beispiel dafür ist, dass \ac{DCC} das Trafficaufkommen bereits im Network Layer an das Medium anpassen und einzelne Dienste priorisieren kann. IEEE 802.11 beispielsweise muss bei einer Überlast, bzw. einem Pufferüberlauf, Frames verwerfen. Dieses Verwerfen muss durch Protokolle höherer Layer abgefangen werden und führt aufgrund von Retransmissions zu höheren Latenzen und einer ingesamt höheren Netzwerkauslastung. 
+Aus diesen Anforderungen lässt sich herauslesen, dass das Vermeiden von Staus durch mehrere Mechanismen realisiert wird. Eine wichtige Eigenschaft von \ac{DCC} ist, dass es im Management Layer angesiedelt ist. Diese Tatsache ermöglicht es \ac{DCC}, seine Aufgaben parallel in mehreren Layern zu realisieren. Die \autoref{fig:architektur_dccArchitektur} zeigt die Architektur von \ac{DCC}. Sie zeigt den \ac{ITS} Protokoll Stack in den die \ac{DCC} Komponenten und Interfaces eingezeichnet sind. Der Vorteil dass die Layer vernetzt sind ist, dass der Stau wirklich vermieden werden kann und nicht nur die Auswirkungen des Staus behandelt werden müssen. Ein Beispiel dafür ist, dass \ac{DCC} das Trafficaufkommen bereits im Network Layer an das Medium anpassen und einzelne Dienste priorisieren kann. IEEE 802.11 beispielsweise muss bei einer Überlast, bzw. einem Pufferüberlauf, Frames verwerfen. Dieses Verwerfen muss durch Protokolle höherer Layer abgefangen werden und führt aufgrund von Retransmissions zu höheren Latenzen und einer ingesamt höheren Netzwerkauslastung. 
 
 \begin{figure}
 	\includegraphics[width=0.75\textwidth]{content/images/02_architektur/dccArchitektur.pdf}
@@ -285,7 +285,7 @@ Eine Unterkomponente der DCCmgmt Komponente ist die DCC\_CROSS\_Facilities.
 
 
 \subsubsection{CI/ITS-S application mapping}
-Das CI/ITS-S application mapping weist Anwendungen ein Kommunikationsinterface zu. Die Zuordnung geschieht durch einen Application Mapping Manager. Für eine  Zuordnung benötigt er verschiedene Angaben. Die wichtigsten Angaben sind welche Anforderungen die Application hat und welche Interfaces verfügbar sind, bzw. welche Eigenschaften und welchen Status sie haben. Zusätzlich muss bekannt sein, was die anwendbaren Regeln sind. 
+Das CI/ITS-S application mapping weist Anwendungen ein Kommunikationsinterface zu. Die Zuordnung geschieht durch einen Application Mapping Manager. Für eine  Zuordnung benötigt er verschiedene Angaben. Die wichtigsten Angaben sind welche Anforderungen die Application hat und welche Interfaces ver\-füg\-bar sind, bzw. welche Eigenschaften und welchen Status sie haben. Zusätzlich muss bekannt sein, was die anwendbaren Regeln sind. 
 
 
 \subsection{Security Layer \label{architektur_securityLayer}}
@@ -304,7 +304,7 @@ Der Standard \cite{en302665} beschreibt für den den Security Layer folgende Fun
 
 
 \section{Data Security\label{architektur_dataSecurity}}
-Der Begriff Security umfasst in \ac{ITS} verschiedene Bereiche der Sicherheit. Im \ac{ITS} Netz muss sichergestellt werden, dass die Nachrichten für die berechtigten Teilnehmer lesbar sind, für den unberechtigten Teilnehmer aber nicht. Dabei ist zu beachten, dass über \ac{ITS} sensible Daten verbreitet werden. Es muss neben dem Schutz gegen unbefugtes Lesen auch ein Mechanismus implementiert sein, der verhindert, dass falsche Informationen übertragen werden. Da die \ac{ITS} Architektur verschiedene Netzwerktypen \autoref{architektur_ueberblickNetzwerke} beinhaltet muss die Architektur auch ein Data Security Konzept beinhalten. Der Standard \cite{ts102940} spezifiziert dieses Konzept.  
+Der Begriff Security umfasst in \ac{ITS} verschiedene Bereiche der Sicherheit. Im \ac{ITS} Netz muss sichergestellt werden, dass die Nachrichten für die berechtigten Teilnehmer lesbar sind, für den unberechtigten Teilnehmer aber nicht. Dabei ist zu beachten, dass über \ac{ITS} sensible Daten verbreitet werden. Es muss neben dem Schutz gegen unbefugtes Lesen auch ein Mechanismus implementiert sein, der verhindert, dass falsche Informationen übertragen werden. Da die \ac{ITS} Architektur verschiedene Netzwerktypen (\autoref{architektur_ueberblickNetzwerke}) beinhaltet muss die Architektur auch ein Data Security Konzept beinhalten. Der Standard \cite{ts102940} spezifiziert dieses Konzept.  
 
 \begin{figure}
 	\includegraphics[width=0.95\textwidth]{content/images/02_architektur/securityLayer.pdf}
@@ -313,7 +313,7 @@ Der Begriff Security umfasst in \ac{ITS} verschiedene Bereiche der Sicherheit. I
 \end{figure}
 
 
-Die \autoref{fig:architektur_securityLayer}  beschreibt die \ac{ITS-S} Architektur. Dabei wird besonders der Security Layer hervorgehoben und genauer beschrieben. In der Abbildung sind die Interfaces des Security Layers abgebildet. Es ist auch zu erkennen, dass der Security Layer in weitere vier Untermodule, bzw. Funktionalitäten aufgeteilt ist. Diese vier Untermodule sind, zumindest von dem \ac{ETSI} noch nicht abschließend beschrieben. So konnten beispielsweise zum Thema Firewall keine Dokumente gefunden werden. Die \autoref{fig:architektur_securityDienste} bietet einen weiteren Überblick über die verschiedenen Layer. Die dort beschriebenen Funktionalitäten sind die, die der Security Layer anbietet.  
+Die \autoref{fig:architektur_securityLayer}  beschreibt die \ac{ITS-S} Architektur. Dabei wird besonders der Security Layer hervorgehoben und genauer beschrieben. In der Abbildung sind die Interfaces des Security Layers abgebildet. Es ist auch zu erkennen, dass der Security Layer in weitere vier Untermodule, bzw. Funktionalitäten aufgeteilt ist. Diese vier Untermodule sind, zumindest vom \ac{ETSI} noch nicht abschließend beschrieben. So konnten beispielsweise zum Thema Firewall keine Dokumente gefunden werden. Die \autoref{fig:architektur_securityDienste} bietet einen weiteren Überblick über die verschiedenen Layer. Die dort beschriebenen Funktionalitäten sind die, die der Security Layer anbietet.  
 
 \begin{figure}
 	\includegraphics[width=0.99\textwidth]{content/images/02_architektur/securityDienste.pdf}
@@ -339,23 +339,13 @@ Unobservability bedeutet, dass der Nutzer eine Ressource nutzen kann, ohne dass 
 
 
 
-Neben dem Datenschutz muss im \ac{ITS} System aber auch eine Zugangskontrolle realisiert werden. Die Zugangskontrolle teilt sich in zwei Bereiche auf: Die Berechtigung, das \ac{ITS} System als Ganzes zu nutzen und die Berechtigung, einzelne Services und Anwendungen zu nutzen. Die Prüfung der Identitäten wird über Zertifikate und Public-Key Verfahren realisiert. Zur Verteilung der Berechtigungen werden im Standard \cite{ts102731} definiert.
-
-
-
-
-
-
-
-
+Neben dem Datenschutz muss im \ac{ITS} System aber auch eine Zugangskontrolle realisiert werden. Die Zugangskontrolle teilt sich in zwei Bereiche auf: Die Berechtigung, das \ac{ITS} System als Ganzes zu nutzen und die Berechtigung, einzelne Services und Anwendungen zu nutzen. Die Prüfung der Identitäten wird über Zertifikate und Public-Key Verfahren realisiert. Die Verteilung der Berechtigungen wird im Standard \cite{ts102731} definiert.
 
 \subsection{Enrolement \label{architektur_enrolement}}
-Die Funktion Enrolement authentisiert eine \ac{ITS-S} und ermöglicht ihr damit den Zugriff auf das  \ac{ITS} System.  Das bedeutet, dass die Identität der \ac{ITS-S} dem System gegenüber bestätigt wird. Dieser Zugriff ist noch keine Genehmigung, bestimmte Dienste nutzen zu können. Diese wird erst nach einer Autorisation, vgl. \autoref{architektur_authorization}, erteilt. Zuständig für die Regelung des Zugangs ins \ac{ITS} Netz ist eine Enrolment Authority.
-
-Der Zugang wird durch Enrolement Authorities gewährt.
+Die Funktion Enrolement authentisiert eine \ac{ITS-S} und ermöglicht ihr damit den Zugriff auf das  \ac{ITS} System.  Das bedeutet, dass die Identität der \ac{ITS-S} dem System gegenüber bestätigt wird. Dieser Zugriff ist noch keine Genehmigung, bestimmte Dienste nutzen zu können. Diese wird erst nach einer Autorisation (\autoref{architektur_authorization}), erteilt. Zuständig für die Regelung des Zugangs ins \ac{ITS} Netz ist eine Enrolment Authority.
 
 \subsubsection{Enrolment Authority}
-Eine Enrolement Authority prüft die Identität einer \ac{ITS-S}. Wenn die Identität erfolgreich überprüft wurde  übermittelt die Enrolement Authority enrolement credentials an die \ac{ITS-S}. Enrolement credentials lassen sich mit \glqq Registrierungs Zeugnis\grqq~übersetzen. Sie können als digitale Zertifikate, die  mit kryptographischen Prüfsummen gesichert sind, ausgeteilt werden. Anhand dieser Zertifikate kann sich die \ac{ITS-S} als gültiger Teilnehmer des \ac{ITS} Systems ausweisen. So kann beispielsweise beim Versenden von \ac{CAM}, vgl. \autoref{sec:cam}, bewiesen werden, dass die sendende \ac{ITS-S} dazu berechtig ist und dass ihr vertraut werden kann. 
+Eine Enrolement Authority prüft die Identität einer \ac{ITS-S}. Wenn die Identität erfolgreich überprüft wurde  übermittelt die Enrolement Authority enrolement credentials an die \ac{ITS-S}. Enrolement credentials lassen sich mit \glqq Registrierungs Zeugnis\grqq~übersetzen. Sie können als digitale Zertifikate, die  mit kryptographischen Prüfsummen gesichert sind, ausgeteilt werden. Anhand dieser Zertifikate kann sich die \ac{ITS-S} als gültiger Teilnehmer des \ac{ITS} Systems ausweisen. So kann beispielsweise beim Versenden von \ac{CAM} (vgl. \autoref{sec:cam}) bewiesen werden, dass die sendende \ac{ITS-S} dazu berechtig ist und dass ihr vertraut werden kann. 
 
 \subsubsection{Ausgetauschte Daten}
 Um eine Registrierung zu ermöglichen muss die Enrolement Authority Daten von der \ac{ITS-S} erhalten. Hierbei sind nur die Daten aufgeführt, die relevant für das Verständnis des Systems sind. Steuerdaten, wie z.B. der Grund eines Fehlers, sind hier nicht aufgeführt. Der Austausch dieser Daten geschieht bereits verschlüsselt. 
@@ -368,7 +358,7 @@ Hierbei handelt es sich um einen Schlüssel. Der Key kann ein öffentlicher oder
 \paragraph{List of enrolement credentials}
 Diese Liste enthält die ausgestellten Enrolement Credentials. 
 
-Es gibt verschiedene grundlegende Operationen auf die Enrolment Credentials. Diese stellen die Oberbegriffe für weitere Operationen da. 
+Es gibt verschiedene grundlegende Operationen auf die Enrolment Credentials. Diese stellen die Oberbegriffe für weitere Operationen dar. 
 
 
  
@@ -386,7 +376,7 @@ Sie beginnt damit, dass die \ac{ITS-S} feststellt, dass sich für die \ac{ITS} D
 Die \autoref{fig:architektur_enrolementFunktionalModel} beschreibt den Prozess Obtain Enrolement Credentials mit einem erfolgreichen Ausgang. Sie steht stellvertretend für die anderen Prozesse, deren Abläufe sich kaum ändern. In der Abbildung sind funktionale Elemente definiert. Sie werden folgendermaßen beschrieben:
 \paragraph{Invoke Enrolment} Dieses funktionale Element entdeckt das Bedürfnis einer \ac{ITS-S}, dass sie sich an der \ac{ITS} Infrastruktur anmelden muss und initiiert die Anmeldungsprozedur.
 
-\paragraph{Enrolment Request} Dieses funktionale Element liefert die Anmeldungsanfrage für einer \ac{ITS-S} an die \ac{ITS} Infrastruktur. Anschließend empfängt es die entsprechende Antwort und speichert die geheimen Kommunikationsparameter in der \ac{ITS-S}.
+\paragraph{Enrolment Request} Dieses funktionale Element liefert die Anmeldungsanfrage einer \ac{ITS-S} an die \ac{ITS} Infrastruktur. Anschließend empfängt es die entsprechende Antwort und speichert die geheimen Kommunikationsparameter in der \ac{ITS-S}.
 
 
 \paragraph{Enrole Station} Dieses funktionale Element empfängt eine Anmeldungsanfrage einer \ac{ITS-S}. Nach dieser Anfrage beginnt es, den Benutzer zu authentisieren. Wenn diese Authentisierung erfolgreich war, sendet es eine positive Antwort mit den Parametern, die für eine laufende sichere Kommunikation nötig sind, an die \ac{ITS-S}. Die Enrolement Station entspricht der Enrolement Authority. In diesem Fall ist sie als funktionales Element beschrieben. Das bedeutet, dass es in diesem Modell nur dieses eine Element gibt. 
@@ -397,37 +387,37 @@ Die \autoref{fig:architektur_enrolementFunktionalModel} beschreibt den Prozess O
  
  
 \subsubsection{Update Enrolment Credentials}
-Die Enrolement Credentials können aktualisiert werden. Dies geschieht auf die Anfrage einer \ac{ITS-S}. Initiiert wird die Aktualisierung, wenn die \ac{ITS-S}  einen Bedarf feststellt. Der weitere Prozess entspricht dem Anfordern von Enrolement Credentials, vgl. \autoref{architektur_obtainEnrolementCredentials}.
+Die Enrolement Credentials können aktualisiert werden. Dies geschieht auf die Anfrage einer \ac{ITS-S}. Initiiert wird die Aktualisierung, wenn die \ac{ITS-S}  einen Bedarf feststellt. Der weitere Prozess entspricht dem Anfordern von Enrolement Credentials (\autoref{architektur_obtainEnrolementCredentials}).
 
 \subsubsection{Remove Enrolment Credentials}
 Der \ac{ITS-S} Service kann einer \ac{ITS-S} die Enrolement Credentials wieder entziehen, bzw. diese Enrolement Credentials für ungültig erklären. Dadurch werden alle Informationen, die die \ac{ITS-S} verteilt, auch ungültig. Damit dieses Verfahren effektiv ist, müssen die Enrolement Authority und die Authorization Authority miteinander kommunizieren. Dadurch wird sichergestellt, dass korrekte Autorisierung Status Updates verteilt werden. 
 
-Der Prozess beginnt, wenn die Enrolement Authority feststellt, dass das die Liste mit den Enrolement Credentials aktualisiert werden muss. Dabei wird die Enrolement Credentials aus dem gesamten \ac{ITS} Netzwerk entfernt. Das Entfernen beginnt bei der  Enrolement Authority, sie entfernt die Credentials aus ihrer Liste. Anschließend macht sie bei den    Authorization Authority bekannt, dass die entsprechenden Credentials ungültig sind und broadcastet an alle Teilnehmer im \ac{ITS-S} Netz, dass die Credentials ungültig sind.
+Der Prozess beginnt, wenn die Enrolement Authority feststellt, dass das die Liste mit den Enrolement Credentials aktualisiert werden muss. Dabei werden die Enrolement Credentials aus dem gesamten \ac{ITS} Netzwerk entfernt. Das Entfernen beginnt bei der  Enrolement Authority, sie entfernt die Credentials aus ihrer Liste. Anschließend macht sie bei den    Authorization Authority bekannt, dass die entsprechenden Credentials ungültig sind und broadcastet an alle Teilnehmer im \ac{ITS-S} Netz, dass die Credentials ungültig sind.
 
 
 \subsection{Authorization \label{architektur_authorization}}
 
-Autorisieren bedeutet, dass Rechte eingeräumt werden. Im Sinne von \ac{ITS-S} bedeutet es, dass eine \ac{ITS-S} durch die Autorisierung bestimmte Services nutzen darf. Die Voraussetzung für eine Autorisierung ist eine Authentisierung, vgl. \autoref{architektur_enrolement}. 
+Autorisieren bedeutet, dass Rechte eingeräumt werden. Im Sinne von \ac{ITS} bedeutet es, dass eine \ac{ITS-S} durch die Autorisierung bestimmte Services nutzen darf. Die Voraussetzung für eine Autorisierung ist eine Authentisierung (\autoref{architektur_enrolement}). 
 
 Die Autorisierungen werden von den Authorization Authority verwaltet.
 \subsubsection{Authorization Authority}
-Authorization Authorities verwalten die Berechtigungen von \ac{ITS-S}. Sie  sollen hierarchisch aufgebaut und für verschiedene Kontexte verfügbar sein. Ein Kontext grenzt sich durch die  Applications, die er autorisiert, eine Zeitdauer, eine geographische Region oder andere  kodierbare Gründe ab. Die Aufteilung der Applications kann sehr granular sein, es können beispielsweise für die einzelnen Einträge von \ac{CAM} (\autoref{sec:cam}) unterschiedliche Authorization Authority zuständig sein. Der hierarchische Aufbau bedeutet, dass es verschiedene Level von Authorization Authorities geben kann. Higher Level Authorization Authorities sollen lower-level Authorization Authorities autorisieren, diese autorisieren dann die \ac{ITS-S}. 
+Authorization Authorities verwalten die Berechtigungen von \ac{ITS-S}. Sie  sollen hierarchisch aufgebaut und für verschiedene Kontexte ver\-füg\-bar sein. Ein Kontext grenzt sich durch die  Applications, die er autorisiert, eine Zeitdauer, eine geographische Region oder andere codierbare Gründe ab. Die Aufteilung der Applications kann sehr granular sein, es können beispielsweise für die einzelnen Einträge von \ac{CAM} (\autoref{sec:cam}) unterschiedliche Authorization Authority zuständig sein. Der hierarchische Aufbau bedeutet, dass es verschiedene Level von Authorization Authorities geben kann. Higher Level Authorization Authorities sollen lower-level Authorization Authorities autorisieren, diese autorisieren dann die \ac{ITS-S}. 
 
 \subsubsection{Obtain Authorization Tickets \label{architektur_obtain-authorisation-tickets}}
 Obtain Authorization Tickets beschreibt das Empfangen von Authorisation Tickets. Dieser Prozess wird von den \ac{ITS-S} ausgelöst. Dazu fragt die \ac{ITS-S} einer Authorization Authoritiy wegen einem Authorisation Ticket an. Diese Anfrage beinhaltet bereits die Enrolement Credentials der \ac{ITS-S}. Diese überprüft anhand der Enrolement Credentials die Identität der \ac{ITS-S} und beantwortet die Anfrage. Die Antwort kann entweder  Authorization Tickets enthalten, oder den Grund, warum die \ac{ITS-S} keine bekommt.
 
 
 \subsubsection{Update Authorization Tickets}
-Autorisation Tickets haben nur eine begrenzte Lebensdauer. Diese Lebensdauer ist von der Application abhängig. Aus diesem Grund müssen sie regelmäßig erneuert werden. Wenn der Bedarf besteht, die Authorization Tickets zu aktualisieren, fordert die \ac{ITS-S} von einer Authorisation Authory eine Aktualisierung an. Die benötigten Daten entsprechen dem Anfordern von Tickets, vgl. \autoref{architektur_obtain-authorisation-tickets}.
+Autorisation Tickets haben nur eine begrenzte Lebensdauer. Diese Lebensdauer ist von der Application abhängig. Aus diesem Grund müssen sie regelmäßig erneuert werden. Wenn der Bedarf besteht, die Authorization Tickets zu aktualisieren, fordert die \ac{ITS-S} von einer Authorisation Authory eine Aktualisierung an. Die benötigten Daten entsprechen dem Anfordern von Tickets (\autoref{architektur_obtain-authorisation-tickets}).
 
 \subsubsection{Publish Authorization Status}
-Der Authorisation Status wird versendet, wenn das Versenden explizit von einer \ac{ITS-S} oder einer Authorisation Authory angefordert wird. Der Grund hierfür kann sein, dass einer \ac{ITS-S} Berechtigungen entzogen werden sollen. Dabei können einzelne Berechtigungen oder alle temporär oder dauerhaft entzogen werden.
+Der Authorisation Status wird versendet, wenn das Versenden explizit von einer \ac{ITS-S} oder einer Authorisation Authory angefordert wird. Der Grund hierfür kann sein, dass einer \ac{ITS-S} Berechtigungen entzogen werden sollen. Dabei können einzelne Berechtigungen, oder alle Berechtigungen, temporär, oder dauerhaft, entzogen werden.
 
 \subsubsection{Update Local Authorization Status Repository}
-Fall eine \ac{ITS-S} keinen Zugang zu der Infrastruktur hat, nutzt sie einen lokalen Autorisierungsspeicher um die Athorisierungsinformationen von anderen \ac{ITS-S} zu überprüfen. Sobald die \ac{ITS-S} wieder Zugang zur \ac{ITS-S} Infrastruktur hat, wird der Speicher aktualisiert.  
+Falls eine \ac{ITS-S} keinen Zugang zu der Infrastruktur hat, nutzt sie einen lokalen Autorisierungsspeicher um die Athorisierungsinformationen von anderen \ac{ITS-S} zu überprüfen. Sobald die \ac{ITS-S} wieder Zugang zur \ac{ITS-S} Infrastruktur hat, wird der Speicher aktualisiert.  
 
 \subsection{Interfaces}
-Der Security Layer besitzt Interfaces in alle anderen Layer. Diese Interfaces stellen die Kommunikationsschnittstellen dar. Die genaue Spezifizierung dieser Interfaces findet zum aktuellen Zeitpunkt noch statt. Die Standards, die die  Interfaces genauer beschreiben sind noch im  \glqq Draft\grqq , bzw. \glqq early Draft\grqq , Zustand und damit nicht verfügbar. 
+Der Security Layer besitzt Interfaces in alle anderen Layer. Diese Interfaces stellen die Kommunikationsschnittstellen dar. Die genaue Spezifizierung dieser Interfaces findet zum aktuellen Zeitpunkt noch statt. Die Standards, die die  Interfaces genauer beschreiben sind noch im  \glqq Draft\grqq , bzw. \glqq early Draft\grqq , Zustand und damit nicht ver\-füg\-bar. 
 
 \subsection{Angebotene Services}
  \begin{longtable}{| p{0.24\linewidth} | p{0.24\linewidth} | p{0.24\linewidth} |p{0.24\linewidth}|}
@@ -519,11 +509,11 @@ Allow remote activation and deactivation of ITS-S & ITS-S Remote Management Repo
 \subsection{ITS Security Serivces}
 Bei den in \ac{ITS} versendeten Nachrichten müssen aus Sicht der Sicherheit drei verschiedene Typen betrachtet werden. 
 
-Der erste Typ ist die \glqq Individual public message\grqq~Dieser Typ wird per Broadcast an andere \ac{ITS-S} versendet. Da es sich um eine Broadcast Nachricht handelt, ist eine Verschlüsselung nicht nötig. Um zu verhindern, dass mit dieser Nachricht Fehlinformationen übertragen werden muss sie lediglich signiert werden. Der Standard \cite{ts102731} nennt für diesen Typ von Nachricht die Schlagwörter: authorization, authentication und integrity. Damit wird ausgedrückt, dass die sendende \ac{ITS-S} im System legitimiert sein muss, die Nachricht wird als Schutz gegen Verfälschungen und fehlerhafte Nachrichten von Angreifern aber signiert.
+Der erste Typ ist die \glqq Individual public message\grqq~Dieser Typ wird per Broadcast an andere \ac{ITS-S} versendet. Da es sich um eine Broadcast Nachricht handelt, ist eine Verschlüsselung nicht nötig. Um zu verhindern, dass mit dieser Nachricht Fehlinformationen übertragen werden muss sie lediglich signiert werden. Der Standard \cite{ts102731} nennt für diesen Typ von Nachricht die Schlagwörter: authorization, authentication und integrity. Damit wird ausgedrückt, dass die sendende \ac{ITS-S} im System legitimiert sein muss, die Nachricht wird zum Schutz gegen Verfälschungen und fehlerhafte Nachrichten von Angreifern aber signiert.
 
-Der zweite Typ ist die \glqq    Individual private message\grqq~. Sie wird an eine bestimmte \ac{ITS-S} verschickt. Da hier kein Broadcast vorliegt, macht es auch Sinn diese Nachricht zu verschlüsseln. Der Standard nennt zu diesem Nachrichtentyp die Schlüsselwörter require authorization, authentication, integrity, privacy und confidentiality. Diese Schlüsselwörter erweitern die Schlüsselwörter der \glqq Individual public message\grqq~um den Faktor, dass der Inhalt von Dritten nicht mitgelesen darf. Aus diesem Grund findet zusätzlich eine Verschlüsselung der Nachricht statt.
+Der zweite Typ ist die \glqq    Individual private message\grqq~. Sie wird an eine bestimmte \ac{ITS-S} verschickt. Da hier kein Broadcast vorliegt, macht es auch Sinn diese Nachricht zu verschlüsseln. Der Standard nennt zu diesem Nachrichtentyp die Schlüsselwörter require authorization, authentication, integrity, privacy und confidentiality. Diese Schlüs\-sel\-wört\-er erweitern die Schlüs\-sel\-wört\-er der \glqq Individual public message\grqq~um den Faktor, dass der Inhalt von Dritten nicht mitgelesen werden darf. Aus diesem Grund findet zusätzlich eine Verschlüsselung der Nachricht statt.
 
-Als drittes sind die \glqq Security Associations\grqq zu nennen. Sie werden zwischen zwei oder mehreren \ac{ITS-S} aufgebaut und beinhalten einen Satz von Krypto Algorithmen, Schlüsseln und andere private und öffentliche Parameter. Sie werden genutzt um eine Ende zu Ende Verbindung aufzubauen.  Der Standard nennt die Schlüsselwörter confidentiality, authentication und integrity.  Diese entsprechen prinzipiell den Schlüsselwörtern der \glqq    Individual private message\grqq. Diese Verbindungen können auf andere autorisierte Teilnehmer dupliziert werden. Jeder Teilnehmer kann mehrere sichere Verbindungen haben. Wenn de sichere Verbindung aufgebaut wird, sollen die Zertifikate und die Kryptowerkzeuge die mit den sicheren Verbindungen verknüpft sind genutzt werden. Die sichere Verbindung soll regelmäßig neu verhandelt werden. 
+Als drittes sind die \glqq Security Associations\grqq~zu nennen. Sie werden zwischen zwei oder mehreren \ac{ITS-S} aufgebaut und beinhalten einen Satz von Krypto Algorithmen, Schlüs\-seln und andere private und öffentliche Parameter. Sie werden genutzt um eine Ende zu Ende Verbindung aufzubauen.  Der Standard nennt die Schlüsselwörter confidentiality, authentication und integrity.  Diese entsprechen prinzipiell den Schlüsselwörtern der \glqq    Individual private message\grqq. Diese Verbindungen können auf andere autorisierte Teilnehmer dupliziert werden. Jeder Teilnehmer kann mehrere sichere Verbindungen haben. Wenn de sichere Verbindung aufgebaut wird, sollen die Zertifikate und die Kryptowerkzeuge, die mit den sicheren Verbindungen verknüpft sind, genutzt werden. Die sichere Verbindung soll regelmäßig neu verhandelt werden. 
 
 \begin{figure}[h]
 	\includegraphics[width=0.95\textwidth]{content/images/02_architektur/enrolementScenario-ts102_940.pdf}
