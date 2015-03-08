@@ -155,7 +155,7 @@ Geo Unicast wird spezifiziert, um einen einzelnen Knoten zu adressieren. Die \ac
 
 %Die Nachricht kann bei den Zwischenstationen verändert werden. Das heisst zwei oder mehr Nachrichten werden zu einer zusammengefasst bevor sie weitergesendet werden. Dieser Vorgang ist auch umgekehrt durchführbar, sodass eine Nachricht aufgeteilt werden kann. Der Inhalt der Nachricht kann ebenfalls verändert oder Informationen hinzugefügt werden. 
 
-\begin{figure}
+\begin{figure}[H]
 	\includegraphics[width=0.99\textwidth]{content/images/03_networklayer/GeoUnicast.png}
 	\caption{Geo Unicast \cite{etsi102636-1}}
 	\label{fig:geounicast}
@@ -164,7 +164,7 @@ Geo Unicast wird spezifiziert, um einen einzelnen Knoten zu adressieren. Die \ac
 \subsection{Topologically-scoped broadcast}
 Der Topologically-scoped broadcast sendet eine Nachricht mit einem bestimmten Hop Count an alle, direkt vom  Knoten erreichbaren, Einheiten. Diese Nachricht wird dann von den Knoten empfangen, bei denen der Hop Count endet.
 
-\begin{figure}
+\begin{figure}[H]
 	\includegraphics[width=0.99\textwidth]{content/images/03_networklayer/TSC.png}
 	\caption{Topologically-scoped broadcast mit Hop Count 2 \cite{etsi102636-1}}
 	\label{fig:tsc}
@@ -174,7 +174,7 @@ Der Topologically-scoped broadcast sendet eine Nachricht mit einem bestimmten Ho
 \subsection{Geographically-scoped broadcast}
 Über den Geographically-scoped broadcast ist es einem Knoten möglich, eine bestimmte Region, die sich um ihn herum befindet, zu erreichen. Die Region wird durch den Standort der \ac{ITS-S} und einen Radius definiert. Dabei spielt die Anzahl der Hops keine Rolle, alle \ac{ITS-S}, die sich in dieser Region befinden, sind adressiert.
 
-\begin{figure}
+\begin{figure}[H]
 	\includegraphics[width=0.99\textwidth]{content/images/03_networklayer/GSB.png}
 	\caption{geographically-scoped broadcast \cite{etsi102636-1}}
 	\label{fig:gsb}
@@ -183,7 +183,7 @@ Der Topologically-scoped broadcast sendet eine Nachricht mit einem bestimmten Ho
 \subsection{Geographical Scoped Anycast}
 Der Geographical Scoped Anycast ist ähnlich zu dem Geographically-scoped broadcast. Der Unterschied ist, dass hier die Nachricht innerhalb der Region nicht weitergeleitet wird. Das Routing stoppt, sobald ein Ziel innerhalb der Region die Nachricht empfangen hat.
 
-\begin{figure}
+\begin{figure}[H]
 	\includegraphics[width=0.99\textwidth]{content/images/03_networklayer/GSA.png}
 	\caption{geographically-scoped anycast \cite{etsi102636-1}}
 	\label{fig:gsa}
